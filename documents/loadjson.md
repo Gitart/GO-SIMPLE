@@ -3,15 +3,18 @@
 
 @echo off
 
-rem 1 аргумент - база данных (test)
-rem 2 аргумент - таблица (Post)
-rem 3 аргумент - имя json файла  (Holders.json)
-rem 4 аргумент - D удалять данные перед загрузкой
+* rem 1 аргумент - база данных (test)
+* rem 2 аргумент - таблица (Post)
+* rem 3 аргумент - имя json файла  (Holders.json)
+* rem 4 аргумент - D удалять данные перед загрузкой
 
+### Запуск
+```bat
 loadjsonfile.exe test Post Holders.json D >> log.txt
-
 rem pause
+```
 
+## Programma
 
 ```golang
 /*
