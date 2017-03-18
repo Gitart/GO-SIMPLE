@@ -691,17 +691,17 @@ var rr = tabs.count();
     .table("Docs")
     .limit(10000)
     .group("ID_DRUG")
-    .map({"Cnt":            r.row("QUANT"), 
-                "STOCK":      r.row("QUANT_STOCK"), 
-                "Summ":       r.row("PRICE_BUY_SUM")  })
+    .map({"Cnt":         r.row("QUANT"), 
+           "STOCK":      r.row("QUANT_STOCK"), 
+           "Summ":       r.row("PRICE_BUY_SUM")  })
      .ungroup()
      .map({"ID_DRUG": r.row("group"), 
                  "Reduct":     r.row("reduction")("Summ").sum(),  
-                 "Cnt":           r.row("reduction")("Cnt").sum(),
+                 "Cnt":        r.row("reduction")("Cnt").sum(),
                  "STOCK":      r.row("reduction")("STOCK").sum(),
-                 "DDD":         r.row("reduction")("STOCK").sum().sub(r.row("reduction")("Cnt").sum()),
-                 "Cnts":         r.row("reduction")("STOCK").count(),
-                 "Avg":          r.row("reduction")("STOCK").avg()
+                 "DDD":        r.row("reduction")("STOCK").sum().sub(r.row("reduction")("Cnt").sum()),
+                 "Cnts":       r.row("reduction")("STOCK").count(),
+                 "Avg":        r.row("reduction")("STOCK").avg()
      })
    
 ```  
@@ -770,8 +770,11 @@ r.db("test").table("temp").get(1422532194.416)
 
 ## Необходимо находить строку а потом команде Update/Insert указывать путь к обновляемуму ключу данных.
 Важно !! При этом не нужно указывать все ключи встречающиеся, а только те которые указывают точный путь к ключу. Другие ключи не будут тронуты.
+
 Например :  чтобы поменять ключ gggg
+```Javascript
 var i={"idd": { "jjj":{"gggg":"kkkkk"}}};  
+```
 
 ВАЖНО !! На тег вида [11,22,333] это не распространяется в этом случае необходимо менять весь тег !!!!! 
 Если нужно заменить один элемент в теге!!! см. “работа с тегом”.
@@ -779,15 +782,12 @@ var i={"idd": { "jjj":{"gggg":"kkkkk"}}};
   
 // Declaration inetrfaces
 type Mst map[string]interface{} // Map - string - interface
-type Mif []interface{}               // Interface
-type Mii interface{}                  // Interface
-type Mss map[string]string        // Map - string - string
-type Msi map[string]int64         // Map - string - int64
-type Msr []string                     // String
+type Mif []interface{}           // Interface
+type Mii interface{}             // Interface
+type Mss map[string]string       // Map - string - string
+type Msi map[string]int64        // Map - string - int64
+type Msr []string                // String
 ```
-
-
-
 
 ###  Тестовая функция для проверки остальных функций
 ```golang
@@ -840,9 +840,6 @@ r.table('scores')
 r.db("test").table("persons").changes()
 ```
 
-
-
-
 ### BETWEEN
 ```Javascript
 r.Db("database").
@@ -876,11 +873,8 @@ r.db("System").table("Temp").get(2)//.update({ms:r.row("ms").append({"ff":"news"
 ```  
 ### Конвертация в дату
 ```Javascript
- r.epochTime(1426079167215/1000).toISO8601()
-
-r.db("test").table("Docmove")
-  .update({"HDF_TIME_STR": r.epochTime(r.row("HDF_TIME_UNX").coerceTo("number").mul(0.001)).toISO8601()})
-
+r.epochTime(1426079167215/1000).toISO8601()
+r.db("test").table("Docmove").update({"HDF_TIME_STR": r.epochTime(r.row("HDF_TIME_UNX").coerceTo("number").mul(0.001)).toISO8601()})
 r.db("test").table("Docmove").map({"rrrrr":r.row("HDF_TIME_UNX").coerceTo("number").mul(222)})
 ```
 
@@ -897,7 +891,7 @@ r.db("test").table("Docmove").map({"rrrrr":r.row("HDF_TIME_UNX").coerceTo("numbe
 Cуть сложности заключается в том, что если фильтровать без применения опции по умолчанию {default: true}, то не получим вообще ни каких записей, потому что их нет,
 а опция по умолчанию ставит их если даже их там нет (физически нет у этих документов такого поля). В этом и заключается подвох. Поэтому этот параметр обязателен, если мы хотим получить записи которые не имеют определенного поля.
 ```Javascript
-r.db("HO").table("Groups").filter( r.row("Status").lt(11), {default: true})
+   r.db("HO").table("Groups").filter( r.row("Status").lt(11), {default: true})
 ```
 
 Основным показателем есть параметер -  {default: true}.   
@@ -919,21 +913,13 @@ r.db("HO").table("Drugs")("ID_CATEGORY").distinct()
 ### Группировка во втором уровне 
 ```Javascript
   r.db("HO").table("ConsignmentNote")
-      r.db("HO").table("ConsignmentNote")("ITEMS").group('AMOUNT_BUY')
-      r.db("HO").table("ConsignmentNote").get("-152967961447961997")("ITEMS").sum("AMOUNT_BUY")
+  r.db("HO").table("ConsignmentNote")("ITEMS").group('AMOUNT_BUY')
+  r.db("HO").table("ConsignmentNote").get("-152967961447961997")("ITEMS").sum("AMOUNT_BUY")
        
-       
-       // Сумирование в таблице во втором уровне ITEMS:"AMMOUNT_BUY"
-       r.db("HO").table("ConsignmentNote")
-        .filter({"HDF_SEQ":199})
-        .concatMap(r.row("ITEMS"))
-        .sum("AMOUNT_BUY")
-       
-       
-       r.db("HO").table("ConsignmentNote")
-        .filter(r.row("HDF_SEQ").lt(199))
-        .concatMap(r.row("ITEMS"))
-        .sum("AMOUNT_BUY")
+  // Сумирование в таблице во втором уровне ITEMS:"AMMOUNT_BUY"
+  r.db("HO").table("ConsignmentNote").filter({"HDF_SEQ":199}).concatMap(r.row("ITEMS")).sum("AMOUNT_BUY")
+  
+  r.db("HO").table("ConsignmentNote").filter(r.row("HDF_SEQ").lt(199)).concatMap(r.row("ITEMS")).sum("AMOUNT_BUY")
 ```   
     
 ### Группировка во втором уровне ITEMS: по ID_DRUG
@@ -984,11 +970,11 @@ r.expr([1, 2, 3]).concatMap([{"Значение":   r.row.add(1), "Расчет"
 ### В один столбец с разбивкой
 ```Javascript
 r.expr([1, 2, 3]) .concatMap([{"Значение":  r.row.add(1), 
-                               "Расчет":        r.row,
-                                "Ответ":          r.row.mul(2)},
-                                {"Ответ":       "ffff"},
-                                {"Расчет":      "Расчет"},
-                                {"Значение": "fffуууууf"}])
+                               "Расчет":    r.row,
+                                "Ответ":    r.row.mul(2)},
+                                {"Ответ":   "ffff"},
+                                {"Расчет":  "Расчет"},
+                                {"Значение": "Пример"}])
 				
 ```
 ### Просмотр - разворот второго уровня в таблице
