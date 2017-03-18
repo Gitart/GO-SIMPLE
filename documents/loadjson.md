@@ -179,19 +179,13 @@ func loadPostsJson() string {
 func loadCsv() {
 	r := csv.NewReader("")
 	row, err := r.Read()
-
 	for err != nil {
 		row.err = r.Read()
-
 	}
 
 	if err != os.EOF {
-
 		fmt.Println("Error", err)
-
 	}
 }
 */
 ```
-
-
