@@ -663,9 +663,9 @@ r.db("test").table("Docmove").pluck({"DocumentItem":{"Title":true}})
 ```javascript
 r.db("test").table("Docmove").get("N00130")("DocBody").pluck("ABC","BCQ").slice(2,11)
 ```
-### Доступ ко второму уровню вложения
 
-```Javascript
+### Доступ ко второму уровню вложения
+```javascript
 var tt={"Info":{"Id":3341, 
                            "Version Databse":"A-03444", 
                             "Version Client":"122.334", 
@@ -675,6 +675,13 @@ r.db("HO").table("Setting").insert(tt);
 r.db("HO").table("Setting")("Info")
 
 r.db("HO").table("Setting")("Info")("Version")("Infos")
-
 ````
 
+### Перекачка в другую таблицу с преобразование ключевого поля в номер
+```Javascript
+var tabs = r.db("HO").table("Drugs");
+var tt      = r.db("HO").table("Drug")
+                    .merge({"ID":r.row("ID").coerceTo("NUMBER")});
+tabs.insert(tt);
+var rr = tabs.count();
+```
