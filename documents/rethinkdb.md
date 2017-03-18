@@ -685,3 +685,62 @@ var tt      = r.db("HO").table("Drug")
 tabs.insert(tt);
 var rr = tabs.count();
 ```
+### Агррегация с группировкой
+```Javascript
+   r.db("HO")
+    .table("Docs")
+    .limit(10000)
+    .group("ID_DRUG")
+    .map({"Cnt":            r.row("QUANT"), 
+                "STOCK":      r.row("QUANT_STOCK"), 
+                "Summ":       r.row("PRICE_BUY_SUM")  })
+     .ungroup()
+     .map({"ID_DRUG": r.row("group"), 
+                 "Reduct":     r.row("reduction")("Summ").sum(),  
+                 "Cnt":           r.row("reduction")("Cnt").sum(),
+                 "STOCK":      r.row("reduction")("STOCK").sum(),
+                 "DDD":         r.row("reduction")("STOCK").sum().sub(r.row("reduction")("Cnt").sum()),
+                 "Cnts":         r.row("reduction")("STOCK").count(),
+                 "Avg":          r.row("reduction")("STOCK").avg()
+     })
+   
+```  
+
+ 
+### Позволяет складывать в нескольких столбцах суммы
+```Javascript
+   r.db("HO")
+    .table("Docs")
+    .getAll(3565509, {index: "ID_STRUCTURE"})
+    .limit(2000)
+    .group("ID_DRUG")
+    .map({"Cnt":r.row("QUANT"), "Summ":r.row("PRICE_BUY_SUM")})
+    .ungroup()
+    .map({"Csnt":r.row("group"), 
+              "Cntw":r.row("reduction")("Summ").sum(), 
+              "Cnt":r.row("reduction")("Cnt").sum()})
+```
+
+### Группировка и фильтрация
+```Javascript
+ r.db("System")
+    .table("Tabtest")
+    .filter({"Age":42 })
+    .group("Name")
+    .orderBy("Name")
+    .count()
+    .ungroup()
+    .merge({"Name":r.row("group"), "Ages":r.row("reduction")})
+    .without("reduction", "group")
+```
+
+ ### Показать второй вложенный уровень после группировки  в одном столбце
+ ```Javascript
+r.db("HO")
+.table("Wrk")
+.group("ID_STRUCTURE", "ID_DRUG")
+.ungroup()
+.concatMap(r.row("reduction")("ID_DRUG"))
+```
+
+
