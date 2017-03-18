@@ -124,10 +124,10 @@ func loadPostsJson() string {
 	// os.Args[4]  -- 1 - нужно ли очищать таблицу перед добавлением информации
 
 	// Параметры
-	NameBase := os.Args[1]   // База
-	NameTables := os.Args[2] // Таблица
-	NameFile := os.Args[3]   // Файл JSON
-	DelFile := os.Args[4]    // A=добавление D=удаление
+	NameBase   := os.Args[1]  // База
+	NameTables := os.Args[2]  // Таблица
+	NameFile   := os.Args[3]  // Файл JSON
+	DelFile    := os.Args[4]  // A=добавление D=удаление
 
 	// Текущее время
 	var CurTime = time.Now().Format("2006-01-02 15:04:05")
@@ -136,15 +136,19 @@ func loadPostsJson() string {
 	//content, _ := ioutil.ReadFile("mp.json")
 	content, _ := ioutil.ReadFile(NameFile)
 
-	//var posts []*Post
-	var posts []*Mst // Автоматически подходит для всех форматов Json
-	// var posts []*Pt // Описание структуры Json
+	// var posts []*Post
+	// Автоматически подходит для всех форматов Json
+	var posts []*Mst 
+	
+	// Описание структуры Json
+	// var posts []*Pt 
 	json.Unmarshal(content, &posts)
 
-	//	r.Table("Post").Insert(posts).RunWrite(sess)
+	//r.Table("Post").Insert(posts).RunWrite(sess)
+	
 	// Очистка таблицы
 	if DelFile == "D" {
-		r.Db(NameBase).Table(NameTables).Delete().Run(sessionArray[0])
+	   r.Db(NameBase).Table(NameTables).Delete().Run(sessionArray[0])
 	}
 
 	// Добавление поля Insert Time
@@ -154,15 +158,14 @@ func loadPostsJson() string {
 	defer r.Db(NameBase).Table(NameTables).Insert(posts).Run(sessionArray[0])
 
 	if DelFile == "D" {
-		fmt.Printf(CurTime+".... Данные из таблицы %s сначала были удалены а потом добавлены...\n", NameTables)
+	   fmt.Printf(CurTime+".... Данные из таблицы %s сначала были удалены а потом добавлены...\n", NameTables)
 	} else {
-		fmt.Printf(CurTime+".... Данные добавлены в таблицу %s . \n", NameTables)
+	   fmt.Printf(CurTime+".... Данные добавлены в таблицу %s . \n", NameTables)
 	}
 
 	return "Ok"
 	// Return col записей всталенных
 	// r.Db(NameBase).Table(NameTables).Count()
-
 	/*
 		var users []*models.User
 		rows, _ := r.Table(models.UserTable).GetAllByIndex("username", "wangbin").Run(sess)
