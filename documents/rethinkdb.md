@@ -1405,3 +1405,38 @@ r.table("documents").filter(r.row("tags").contains("foo", "def"))
 ```
 
 
+### Поиск подчиненных полей
+```json
+{
+    "feed": {
+        "entry": [
+            {
+                "title": {
+                    "label": "Some super duper app"
+                },
+                "summary": {
+                    "label": "Bla bla bla..."
+                }
+            },
+            {
+                "title": {
+                    "label": "Another awsome app"
+                },
+                "summary": {
+                    "label": "Lorem ipsum blabla..."
+                }
+            }
+        ]
+    }
+}
+
+```
+
+#### Решение :
+```javascript
+r.table("feeds")
+.concatMap(function(doc) { return doc("feed")("entry") })
+.filter(function(entry)  { return entry("title")("label").match("xyz") })
+```
+
+
