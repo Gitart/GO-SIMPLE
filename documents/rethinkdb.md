@@ -132,6 +132,213 @@ r.table('Aliance').get(3).update({"post":2});
 r.table("Aliance").filter(r.row("post").count().gt(2))
 ```
 
+### Добавление на второй уровень
+```javascript
+r.table('Aliance').filter(r.row("post").eq(1)).update({posts: r.row("posts").append({"title": "Shakespeare", "content": "What a piece of work is man..."})});
+```
+
+### Удаление по фильтру
+```javascript
+r.table('authors').filter(r.row('posts').count().lt(3)).delete()
+```
+
+### Создание таблицы
+```javascript
+r.db("test").table_create("Authors")
+```
+
+### Заполнение JSON Format
+```javascript
+r.table("Authors").insert([
+{ "name": "William Adama", "tv_show": "Battlestar Galactica",
+"posts": [
+{"title": "Decommissioning speech", "content": "The Cylon War is long over..."},
+{"title": "We are at war", "content": "Moments ago, this ship received..."},
+{"title": "The new Earth", "content": "The discoveries of the past few days..."}
+]
+},
+{ "name": "Laura Roslin", "tv_show": "Battlestar Galactica",
+"posts": [
+{"title": "The oath of office", "content": "I, Laura Roslin, ..."},
+{"title": "They look like us", "content": "The Cylons have the ability..."}
+]
+},
+{ "name": "Jean-Luc Picard", "tv_show": "Star Trek TNG",
+"posts": [
+{"title": "Civil rights", "content": "There are some words I've known since..."}
+]
+}
+])
+```
+  
+### Выборка между двумя индексами 
+```javascript
+r.table('Aliance').between(1, 2)
+```
+
+### Фильтр по посту
+```javascript
+ r.table('Aliance').filter({"post": 22})
+```
+
+### Объединение таблиц
+```javascript
+ r.table('marvel').inner_join(r.table('dc'), lambda marvelRow, dcRow: marvelRow['strength'] < dcRow['strength'])
+ r.table('marvel').outer_join(r.table('dc'), lambda marvelRow, dcRow: marvelRow['strength'] < dcRow['strength'])
+ 
+ r.table('marvel').eq_join('main_dc_collaborator', r.table('dc'))
+ r.table('Aliance').eqJoin('post', r.table('ts')).zip()
+```
+
+ ### По всей таблице добавили 100 в поле summ
+ ```javascript
+ r.table('Aliance').update({"summ":100});
+```
+
+### Выбор с двумя полями сортировка
+```javascript
+ r.table('Aliance').withFields('summ','post').orderBy('post')
+```
+
+### В обрезанном и отфильтрованом взять первую запись
+```javascript
+ r.table('Aliance').withFields('summ','post').orderBy('post').limit(2).nth(0)
+```
+
+### Bозвращает Тру если в поле содержит фразу которая есть в поле - целиком!!!
+Смотрит во всех записях в текущем поле !!!
+```javascript
+r.table('Aliance')('name').contains("Доброго")
+```
 
 
+### Второе значение в наброе записей
+```javascript
+r.expr([1,2,3])(1)    = 2
+```
 
+### Копирование таблицы самой в себя без ИД т.к. не даст скопировать с ид можно добавить условие
+```javascript
+r.table('Aliance').insert(r.table('Aliance').without("id") )
+```
+
+### Возвращает номер позиции в списке буквы с
+```javascript
+r.expr(['a','b','c']).indexesOf('c')
+```
+
+### Добавить поле polls к таблице
+```javascript
+r.table('Aliance').merge({polls: 1})
+```
+
+### Добавление саму в себя без ид с добавлением поля Polls
+```javascript
+ r.table('Aliance').insert(r.table('Aliance').without("id").merge({polls: 12}))
+```
+
+### Добавление объекта как последовательность чисел 
+```javascript
+r.table('Aliance').insert(r.object('id', 12225, 'data', ['foo', 'bar']))
+```
+
+### Объединение двух таблиц
+```javascript
+r.table('Aliance').limit(2).union(r.table('ts').limit(3))
+```
+
+### Добавление в таблицу объединенных двух других таблиц
+```javascript
+r.db("test").table("Calc").insert(r.table('Aliance').limit(2).union(r.table('ts').limit(3)))
+```
+
+### Показать записи в котрых поле имеет значение
+```javascript
+r.db("test").table("Calc").hasFields("_id")
+```
+
+### Вывод трех любых записей
+```javascript
+r.db("test").table("Calc").sample(3)
+```
+
+### Содержится ли выражение в поле name
+```javascript
+r.table('Aliance')('name').contains('Morion')
+```
+
+### Не работает
+```javascript
+r.table('Aliance').get("5d5ad6b0-9d2f-4b68-aa27-26fa59b0e04f").pluck("name").prepend('newBoots')
+```
+
+### r.db('test').table('user').get(1).do(r.row('list').nth(0)) // returns "a"
+```javascript
+r.db('test').table('user').get(1)('list').nth(0)
+r.db('test').table('test').insert( { 'nest_one': { 'nest_two': [ { 'target': '1'} ] } } )
+r.db('test').table('test').insert( { 'nest_one': { 'nest_two': [ { 'target': '2'} ] } } )
+r.db('test').table('test').insert( { 'nest_one': { 'nest_two': [ { 'target': '1'} ] } } )
+r.db('test').table('test').insert( { 'nest_one': { 'nest_two': [ { 'target': '4'} ] } } )
+r.db('test').table('test').indexCreate( 'idx_nest_target', function( obj ) { return obj('nest_one')('nest_two')('target') } )
+```
+
+### Поиск по индексу актуально при больших данных
+```javascript
+r.db('test').table('test').getAll( '1', {index:'idx_nest_target'} )
+```
+
+### Бинарный файл
+```javascript
+r.http('gravatar.com/avatar/0b1129eaca8152c556c200cd8d179187', {resultFormat: 'binary'})
+```
+
+### Вставка в таблицу из ссылки
+```javascript
+r.table("ts").insert(r.http("http://beta.json-generator.com/api/json/get/BhzRccE"));
+r.table("ts").insert(r.http("https://drivenotepad.appspot.com/app?state=%7B%22ids%22:%5B%220B-bpvLJFQcdIRmZnMFROQnBDMDA%22%5D,%22action%22:%22open%22,%22userId%22:%22107765580792592500254%22%7D"))
+```
+
+### Вставка таблицы в таблицу
+```javascript
+r.table("tr").insert(r.table("ts"))
+```
+
+### Поиск в первом уровне + во вторм вхождении
+```javascript
+r.table("tr").filter({
+           index: 1,                                             -- индекс на первом уровне
+           name:{                                                -- на первом уровне
+                             first:"Britt",                      -- на втором уровне
+                             last:"Donaldson"                    -- на втором уровне
+                }
+             });
+```
+
+### Вывод второго уровня вложения
+```javascript
+r.table("tr")("name")("first")
+```
+
+### Возвращает True если в списке второго уровня есть такое имя хотябы один раз в любой строчке
+```javascript
+r.table("tr")("name")("first").contains("Jan")
+```
+
+### Вывод перечисленных полей - и обратите внимание !!! Поле name составное с уровнями и оно віводит свои под уровнями
+```javascript
+r.table("tr").pluck('index','id','isActive','name')
+
+[
+{
+"id":  "314a57e9-58f9-4102-a081-b4c262d13c7a" ,
+"index": 0 ,
+"isActive": true ,
+"name": {
+     "first":  "Roach" ,
+     "last":  "Brewer"
+}
+} ,
+
+r.table('posts').filter( r.row('category').eq('article').or(r.row('genre').eq('mystery'))).run(conn, callback);
+r.db("foo").table("bar").insert(document).run(durability="soft")
+```
