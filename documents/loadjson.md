@@ -94,15 +94,13 @@ type Mif []interface{}          // interface
 // Connect ini DB
 //
 //****************************************************************************************************
-
 func Dbini() {
 	session, err := r.Connect(r.ConnectOpts{Address: "10.0.50.16:28015", Database: "test"})
 
-	// ќбработка ошибок
+	// Обработка ошибок
 	if err != nil {
-		log.Fatalln(err)
+	   log.Fatalln(err)
 	}
-
 	sessionArray = append(sessionArray, session)
 }
 
@@ -113,12 +111,12 @@ func Dbini() {
 // Кодировка обязательно должна быть Bom
 //****************************************************************************************************
 func main() {
-	Dbini()
-	loadPostsJson()
+     Dbini()
+     loadPostsJson()
 }
 
+// Загрузка файла JSON
 func loadPostsJson() string {
-
 	// os.Args[0]  -- полный путь без аргументов
 	// os.Args[1]  -- первый аргумент база
 	// os.Args[2]  -- первый аргумент таблица
