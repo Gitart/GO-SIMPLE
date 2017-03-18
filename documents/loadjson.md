@@ -2,6 +2,9 @@
 ### Загружает файл JSON в базу RETHINKDB в опредленную базу - таблицу удаляя (не удаляя) перед закачкой данные
 
 
+
+
+
 ### run.bat
 ```bat
 @echo off
@@ -13,6 +16,45 @@
 
 loadjsonfile.exe test Post Holders.json D >> log.txt
 rem pause
+```
+
+### Compilation
+```bat
+@echo off
+SETLOCAL
+:: start
+
+rem Path to current Programm API Service
+SET GOPATH=D:\ORION\RETHINKDB\GO
+
+rem путь к компилятору
+SET GOROOT=C:\GO
+SET PATH=%GOROOT%\BIN;%PATH%;
+cls
+
+title Run "GO" 
+color 0f
+
+rem echo "  "                 
+rem echo ....................................................................
+rem echo gopath = %gopath%
+rem echo ....................................................................
+
+rem go get -u "github.com/dancannon/gorethink"
+go get github.com/beego/bee
+
+rem go env
+rem go build -o bin\app.exe d:\ORION\RETHINKDB\GO\main.go
+rem go build -o loadjsonfile.exe loadjson.go
+go build  -o service.exe service.go 
+service.exe
+
+rem Запись в лог файл о действиях запуска
+rem echo %Date% %Time%  %date:~-10,2% Run >> d:\morion\rethinkdb\go\bin\log.txt
+
+rem go run selectgo.go
+rem go run d:\MORION\RETHINKDB\GO\main.go
+@pause
 ```
 
 ## Programm
