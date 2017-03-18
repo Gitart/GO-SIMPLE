@@ -978,35 +978,26 @@ r.expr([1, 2, 3]).concatMap([r.row.add(1), r.row])
 
 ### В один столбец
 ```Javascript
-r.expr([1, 2, 3]) 
-.concatMap([{"Значение":   r.row.add(1), 
-                         "Расчет" :       r.row, 
-                          "Ответ"  :       r.row.mul(2)}])
+r.expr([1, 2, 3]).concatMap([{"Значение":   r.row.add(1), "Расчет" :r.row, "Ответ":r.row.mul(2)}])
 ```
 
 ### В один столбец с разбивкой
 ```Javascript
 r.expr([1, 2, 3]) .concatMap([{"Значение":  r.row.add(1), 
-                                                     "Расчет":        r.row,
-                                                     "Ответ":          r.row.mul(2)},
-                                                     {"Ответ":       "ffff"},
-                                                     {"Расчет":      "Расчет"},
-                                                     {"Значение": "fffуууууf"}])
+                               "Расчет":        r.row,
+                                "Ответ":          r.row.mul(2)},
+                                {"Ответ":       "ffff"},
+                                {"Расчет":      "Расчет"},
+                                {"Значение": "fffуууууf"}])
+				
 ```
-
-
-### Просомтр - разворот второго уровня в таблицу
+### Просмотр - разворот второго уровня в таблице
 ```Javascript
-r.db("System").table("Corporation")
-  .get("C6")("BUSINESS")("STRUCTURES")
- .concatMap(r.row)
+r.db("System").table("Corporation").get("C6")("BUSINESS")("STRUCTURES").concatMap(r.row)
 ```
 
-### ИЛИ
+### Просмотр - разворот второго уровня в таблице (второй вариант)
 ```Javascript
-r.db("System").table("Corporation")
-  .get("C6")  ("BUSINESS")
-.map(r.row("STRUCTURES"))
+r.db("System").table("Corporation") .get("C6")  ("BUSINESS").map(r.row("STRUCTURES")).concatMap(r.row)
 ```
 
-.concatMap(r.row)
