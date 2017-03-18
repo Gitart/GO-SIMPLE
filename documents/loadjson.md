@@ -15,7 +15,7 @@ loadjsonfile.exe test Post Holders.json D >> log.txt
 rem pause
 ```
 
-## Programma
+## Programm
 
 ```golang
 /*
