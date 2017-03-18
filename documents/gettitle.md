@@ -4,7 +4,7 @@
 ```golang
 package main
 import "fmt"
-type Mst map[string]interface{}     // map - string - interface
+type Mst map[string]interface{}              // map - string - interface
 type Mif []interface{}                       // interface
 
 
