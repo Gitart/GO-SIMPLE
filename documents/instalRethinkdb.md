@@ -35,6 +35,8 @@ sudo vim /etc/rethinkdb/instances.d/instance1.conf
 ```
 
 ### 6. Добавить :
+Для доступа к базе по HTTP
+
 ```sh
 bind=all
 ```
