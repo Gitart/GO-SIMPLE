@@ -1,6 +1,9 @@
 ## Инструкция
 ### Загружает файл JSON в базу RETHINKDB в опредленную базу - таблицу удаляя (не удаляя) перед закачкой данные
 
+
+### run.bat
+```bat
 @echo off
 
 * rem 1 аргумент - база данных (test)
@@ -8,8 +11,6 @@
 * rem 3 аргумент - имя json файла  (Holders.json)
 * rem 4 аргумент - D удалять данные перед загрузкой
 
-### Запуск
-```bat
 loadjsonfile.exe test Post Holders.json D >> log.txt
 rem pause
 ```
