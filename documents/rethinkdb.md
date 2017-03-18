@@ -742,5 +742,271 @@ r.db("HO")
 .ungroup()
 .concatMap(r.row("reduction")("ID_DRUG"))
 ```
+### Вставка и показ первого єлемента в теге
+```Javascript
+var tt={"ids":123, "Title":"Test", "TAG":["fff","hhh","kkkk"]};
+r.db("System").table("Works").get("S26")("bodys")("TAG").nth(0)    // первое значение
+.insert({"ID":"S26", "bodys":tt})
+```
+
+### разница во времени от какой то даты
+```Javascript
+r.expr(r.now().toEpochTime()).sub(1421951862.587) // => 111.36300015449524
+```
+
+### Работа с многоуровневыми данными
+Примеры и тесты работы со структурой
+```Javascript
+var p=r.now().toEpochTime();
+  var c=5;
+  var i={"id": p, "idd": {"idd":c, "jjj":{"hhhh":"ssssss","gggg":"kkkkk"}}};  
+  var i={"idd": {"idd":c, "jjj":{"mmm":"new-MMMM8999", "tag":["nnews","tez","tax"]}}};  
+         i={"idd": { "jjj":{"mmm":"aaa-eeee-new-MMMM8999"}}};  
+    
+r.db("test").table("temp").get(1422532194.416)
+ // .orderBy(r.desc("id")).limit(10)
+ .update(i)
+```Javascript
+
+## Необходимо находить строку а потом команде Update/Insert указывать путь к обновляемуму ключу данных.
+Важно !! При этом не нужно указывать все ключи встречающиеся, а только те которые указывают точный путь к ключу. Другие ключи не будут тронуты.
+Например :  чтобы поменять ключ gggg
+var i={"idd": { "jjj":{"gggg":"kkkkk"}}};  
+
+ВАЖНО !! На тег вида [11,22,333] это не распространяется в этом случае необходимо менять весь тег !!!!! 
+Если нужно заменить один элемент в теге!!! см. “работа с тегом”.
+```Javascript
+  
+// Declaration inetrfaces
+type Mst map[string]interface{} // Map - string - interface
+type Mif []interface{}               // Interface
+type Mii interface{}                  // Interface
+type Mss map[string]string        // Map - string - string
+type Msi map[string]int64         // Map - string - int64
+type Msr []string                     // String
+```
 
 
+
+
+###  Тестовая функция для проверки остальных функций
+```golang
+func Sys_test(w http.ResponseWriter, rr *http.Request) {
+
+	T := Mst{"mmm": "new-MMMM8999", "mmms": "iiiiiiiiii"}
+	Y := Mst{"vbar": Msr{"foo", "bar", "baz", "Neyuton"}}
+	G := Msr{"foo", "bar", "baz", "Hossss"}
+	L := Mst{"Status": "New", "vbar": Msr{"NN-01", "NN-02"}, "INNN": T}
+
+	Z := Mst{"id": SKEY(), "II": "ss", "ss": T, "PO": Y, "TAG": G}
+	// r.Db("test").Table("temp").Delete().Run(sessionArray[0])
+
+	i, e := r.Db("test").Table("temp").Insert(Z).RunWrite(sessionArray[0])
+
+	r.Db("test").Table("temp").Get("01-292015160229-255478").Update(L).RunWrite(sessionArray[0])
+
+	T = Mst{"mmms": "n-99999999999--------ew-MMMM8999"}
+	L = Mst{"Status": "New 2", "vbar": Msr{"NN-0001", "NN-00002"}, "INNN": T}
+
+	r.Db("test")
+              .Table("temp")
+              .Get("01-292015160229-255478")
+              .Update(L).RunWrite(sessionArray[0])
+
+	T = Mst{"A": "A", "mmm": "MMM-n-99999999999--------ew-MMMM-00000 - Да исправлен"}
+	L = Mst{"Status": "New-0000000", "vbar": Msr{"NN-01", "NN-00000"}, "INNN": T}
+
+	r.Db("test").Table("temp").Get("01-292015160229-255478").Update(L).RunWrite(sessionArray[0])
+
+	if e != nil {
+		log.Println(e)
+	}
+
+	fmt.Fprintf(w, "OK %s", i)
+}
+
+ Пример использования :
+Msr - > [“www”,”htpp”,”htps”]
+```
+
+### Пример использования фильтра
+```Javascript
+r.table('scores')
+.changes()
+.filter(r.row('new_val')('score').gt(r.row('old_val')('score')))('new_val')
+.run(conn, callback)
+
+-- в новой версии Rethinkdb 1.16.2-1
+r.db("test").table("persons").changes()
+```
+
+
+
+
+### BETWEEN
+```Javascript
+r.Db("database").
+  Table("table").
+  Between(1, 10, r.BetweenOpts{Index: "num", RightBound: "closed",}).
+  Run(session)
+```
+
+### Интеренсное использование вставки
+```Javascript
+r.db("System")
+.table("Temp")
+.insert(r({ms:[{i:1, nam:"Oleg"},{i:2, nam:"Semen"},{i:3, nam:"Seva"}]}))
+```
+
+### Замена во второй позиции подчиненного єлемента
+```Javascript
+r.db("System").table("Temp").get(2).update({ms:r.row("ms").changeAt(1,{i:2,nam:"ffff"} )})
+```
+
+### Добавление строки во второй уровень
+```Javascript
+r.db("System").table("Temp").get(2)//.update({ms:r.row("ms").append({"ff":"news"})})
+r.db("System").table("Temp").get(2)//.update({ms:r.row("ms").append({"ff":"news"})})
+```
+### Обновление второго уровня в опредленой записи
+```Javascript
+ r.db("HO").table("A_3500000")
+ .get(2)
+.update({"Items":{"item":r.db("HO").table("A_3500000").get(2)("Items").changeAt(r.db("HO").table("A_3500000").get(2)("Items")("item").indexesOf(322).nth(0).coerceTo("number") ,{"item":321, "price":777, "name":"2sss-dddd"})}}, {nonAtomic: true});
+```  
+### Конвертация в дату
+```Javascript
+ r.epochTime(1426079167215/1000).toISO8601()
+
+r.db("test").table("Docmove")
+  .update({"HDF_TIME_STR": r.epochTime(r.row("HDF_TIME_UNX").coerceTo("number").mul(0.001)).toISO8601()})
+
+r.db("test").table("Docmove").map({"rrrrr":r.row("HDF_TIME_UNX").coerceTo("number").mul(222)})
+```
+
+### Удалить записи у которых нет определенного поля !!!
+(задача оказалась не простой)
+
+#### Суть ситуации :
+Есть таблица в которой часть строк имеют поле (Status), а часть не имеют.
+
+#### Задача.   
+Удалить записи которіе не имеют этого поля (Status).    
+
+#### Решение :
+Cуть сложности заключается в том, что если фильтровать без применения опции по умолчанию {default: true}, то не получим вообще ни каких записей, потому что их нет,
+а опция по умолчанию ставит их если даже их там нет (физически нет у этих документов такого поля). В этом и заключается подвох. Поэтому этот параметр обязателен, если мы хотим получить записи которые не имеют определенного поля.
+```Javascript
+r.db("HO").table("Groups").filter( r.row("Status").lt(11), {default: true})
+```
+
+Основным показателем есть параметер -  {default: true}.   
+В данном пример получим все записи у которых нет поля (Status) cо значением 10.   
+
+Окончательно конструкция для удаления будет выглядеть так.  
+```Javascript
+ r.db("HO").table("Groups").filter( r.row("Status").lt(10), {default: true}).delete()
+```
+
+#### Окончательная реализация :
+
+Производится фильтрация заведомо не существующих по этим условиям строк с выдачей по умолчанию null, только после этого сработает удаление тех записей которые не имоеют определенного поля.
+```Javascript
+// Получение уникального списка
+r.db("HO").table("Drugs")("ID_CATEGORY").distinct()
+```
+
+### Группировка во втором уровне 
+```Javascript
+  r.db("HO").table("ConsignmentNote")
+      r.db("HO").table("ConsignmentNote")("ITEMS").group('AMOUNT_BUY')
+      r.db("HO").table("ConsignmentNote").get("-152967961447961997")("ITEMS").sum("AMOUNT_BUY")
+       
+       
+       // Сумирование в таблице во втором уровне ITEMS:"AMMOUNT_BUY"
+       r.db("HO").table("ConsignmentNote")
+        .filter({"HDF_SEQ":199})
+        .concatMap(r.row("ITEMS"))
+        .sum("AMOUNT_BUY")
+       
+       
+       r.db("HO").table("ConsignmentNote")
+        .filter(r.row("HDF_SEQ").lt(199))
+        .concatMap(r.row("ITEMS"))
+        .sum("AMOUNT_BUY")
+```   
+    
+### Группировка во втором уровне ITEMS: по ID_DRUG
+```Javascript     
+        r.db("HO").table("ConsignmentNote")
+        .filter(r.row("HDF_SEQ").lt(199))
+        .concatMap(r.row("ITEMS"))
+        .group("ID_DRUG")
+        .sum("AMOUNT_BUY")
+```
+
+
+### Добавление для каждой строки в наборе записей поле таг [,,,,] 
+```Javascript
+r.db("System").table("Corporation").map({"TAGS":r.row("TAGS").setUnion(['newBoots', 'arc_reactor'])})
+```
+
+### Добавление для одной строки в теги поле таг [,,,,] 
+```Javascript
+r.db("System").table("Corporation").get("C3")("TAGS").setUnion(['newBoots', 'arc_reactor']
+```
+
+## MAP
+
+### Описание :
+Основное задание МАР - прогнать каждое значение через шаблон и выстроить их в столбец или в строчки.
+
+Примеры :
+```Javascript
+r.expr([1, 2, 3]).map(function(x) { return [x, x.mul(2)] })
+```
+
+### Прогоняет каждый элемент через шаблон-расчет
+```Javascript
+r.expr([1,4,6]).map({"ddd":[r.row, r.row.add(1),r.now()]})
+```
+
+### C каждым элементом выполняется расчет и записывается все в один столбец
+```
+r.expr([1, 2, 3]).concatMap([r.row.add(1), r.row])
+```
+
+### В один столбец
+```Javascript
+r.expr([1, 2, 3]) 
+.concatMap([{"Значение":   r.row.add(1), 
+                         "Расчет" :       r.row, 
+                          "Ответ"  :       r.row.mul(2)}])
+```
+
+### В один столбец с разбивкой
+```Javascript
+r.expr([1, 2, 3]) .concatMap([{"Значение":  r.row.add(1), 
+                                                     "Расчет":        r.row,
+                                                     "Ответ":          r.row.mul(2)},
+                                                     {"Ответ":       "ffff"},
+                                                     {"Расчет":      "Расчет"},
+                                                     {"Значение": "fffуууууf"}])
+```
+
+
+### Просомтр - разворот второго уровня в таблицу
+```Javascript
+r.db("System").table("Corporation")
+  .get("C6")("BUSINESS")("STRUCTURES")
+ .concatMap(r.row)
+```
+
+### ИЛИ
+```Javascript
+r.db("System").table("Corporation")
+  .get("C6")  ("BUSINESS")
+.map(r.row("STRUCTURES"))
+```
+
+.concatMap(r.row)
