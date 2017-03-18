@@ -987,3 +987,421 @@ r.db("System").table("Corporation").get("C6")("BUSINESS")("STRUCTURES").concatMa
 r.db("System").table("Corporation") .get("C6")  ("BUSINESS").map(r.row("STRUCTURES")).concatMap(r.row)
 ```
 
+### C разбивкой
+```Javascript
+r.db("System").table("Corporation")  .get("C6")("BUSINESS")("STRUCTURES") .concatMap(r.row) .map({"Аптеки":r.row})
+```
+
+### C разбивкой второй вариант
+```Javascript
+r.db("System").table("Corporation")  .get("C6")  .pluck({"BUSINESS":["ADDRESS","NAME_BUSINESS",{"STRUCTURES":["NAME"]}]})
+```
+
+
+### Добавление вниз строчки
+```Javascript
+r.db("System")
+  .table("Corporation")
+  .get("C6")  ("BUSINESS")//("STRUCTURES") 
+  .map(r.row("STRUCTURES"))
+  .concatMap(r.row)
+  .append({"ID_STRUCTURE":"SSS","ADDRESS":"DSDDD","NAME":"yFBVTYJDFYBT"})
+```
+
+
+### Замена второй записи в подчиненой ветке-уровне
+```Javascript
+r.db("System")
+  .table("Corporation")
+  .get("C6")  ("BUSINESS")//("STRUCTURES") 
+  .map(r.row("STRUCTURES"))
+  .concatMap(r.row)
+  .changeAt(2,{"ID_STRUCTURE":1234567,
+                       "ADDRESS":"Новый  адрес",
+                       "NAME":"Онбновление",
+                       "NAME_EXT":"Расширенное"})
+```
+
+### Удаление двух позиций
+```Javascript
+r.db("System")
+  .table("Corporation")
+  .get("C6")  ("BUSINESS")//("STRUCTURES") 
+  .map(r.row("STRUCTURES"))
+  .concatMap(r.row)
+  .deleteAt(2,3)
+```
+
+### Добавить строку на верх
+```Javascript
+r.db("System")
+  .table("Corporation")
+  .get("C6")  ("BUSINESS")//("STRUCTURES") 
+  .map(r.row("STRUCTURES"))
+  .concatMap(r.row)
+.prepend({"ID_STRUCTURE":1234567,
+                       "ADDRESS":"Новый  адрес",
+                       "NAME":"Онбновление",
+                       "NAME_EXT":"Расширенное"})
+
+```
+
+
+### Добавление вниз во втором уровне
+```Javascript
+r.db("System")
+  .table("Corporation")
+  .get("C6")  ("BUSINESS")//("STRUCTURES") 
+  .map(r.row("STRUCTURES"))
+  .concatMap(r.row)
+  .append({"ID_STRUCTURE":1234567,
+                       "ADDRESS":"Новый  адрес",
+                       "NAME":"Онбновление",
+                       "NAME_EXT":"Расширенное"})
+
+```
+### Опредление индекса позиции в списке 
+```Javascript
+ r.db("System")
+  .table("Corporation")
+  .get("C6")  ("BUSINESS")//("STRUCTURES") 
+  .map(r.row("STRUCTURES"))
+  .concatMap(r.row)("ID_STRUCTURE")
+  .offsetsOf(6021251)
+```
+
+### Получение трех строк с 3 по 6
+```Javascript
+r.db("System")
+  .table("Corporation")
+  .get("C6")  ("BUSINESS")//("STRUCTURES") 
+  .map(r.row("STRUCTURES"))
+  .concatMap(r.row)//("ID_STRUCTURE")
+  .slice(3,6)
+```
+### Добавление строки в определенную позицию
+```Javascript
+ r.db("System")
+  .table("Corporation")
+  .get("C6")  ("BUSINESS")//("STRUCTURES") 
+  .map(r.row("STRUCTURES"))
+  .concatMap(r.row)//("ID_STRUCTURE")
+   .spliceAt(2,[{"NAME":"fff"},{"NAME_EXT":"fff"}])
+```
+
+
+### Добавление две строки
+```Javascript
+ r.db("System")
+  .table("Corporation")
+  .get("C6")  ("BUSINESS")//("STRUCTURES") 
+  .map({"STRUCTURES":r.row("STRUCTURES")})
+  //.concatMap(r.row)("ID_STRUCTURE")
+  .spliceAt(2,[{"STRUCTURES":"Добавление 1"},{"STRUCTURES":"Добавление 2"}])
+ ```
+ ### Вставка JSON
+ ```Javascript
+var t='{"ss":"ddddd"}'  ;
+r.db("test").table("Test").insert(r.json(t));
+```
+
+
+### Вставка из битбакета
+
+```Javascript
+r.http('https://bitbucket.org/arthur_savage/ho/raw/90350e9d43ec46041853d04030e8b1f44629e3f5/aplan.go', {
+       auth: {
+           user: "arthur_savage",
+           pass: 'Gerda3000$'
+       }
+})
+```
+
+### Опредление максимального значения по опредленному полю
+```Javascript
+r.db("C3").table("A_6370944").max("DOC_DATE_TIME_BUY_STR")("DOC_DATE_TIME_BUY_STR");
+
+r.Db("quiz")
+.Table("questions")
+.GetAllByIndex("category", "Bravo")
+.Sample(10)
+.Map(func(row r.Term) interface{} {
+        return map[string]interface{}{
+            "sum":  row.Field("value"),
+            "list": []interface{}{row.Field("id")},
+        }
+    })
+.Reduce(func(left, right r.Term) interface{} {
+        return r.Branch(
+            left.Field("sum").Add(right.Field("sum")).Lt(15),
+            map[string]interface{}{
+                "sum":  left.Field("sum").Add(right.Field("sum")),
+                "list": left.Field("sum").Add(right.Field("sum")),
+            },
+            map[string]interface{}{
+                "sum":  left.Field("sum"),
+                "list": left.Field("sum"),
+            },
+        )
+    })
+
+ ```
+
+
+### РАЗВОРОТ СТРУКТУРЫ В ОБЪЕКТЕ
+```Javascript
+{
+"DATE_TIME_STR": "2015-10-14T07:55:12.000" ,
+"DATE_TIME_UNX": "1444802112000" ,
+"HDF_DEL": 0 ,
+"HDF_EDITOR": "0" ,
+"HDF_SEQ": 58 ,
+"HDF_STATUS": 1 ,
+"HDF_TIME_STATUS": 2 ,
+"HDF_TIME_STR": "2015-11-23T17:38:33.816" ,
+"HDF_TIME_UNX": "1448293113816" ,
+"ID": "-1186259333377067919" ,
+"ID_CASHIER": "5776074858111382956" ,
+"ID_PERSON": "3464652019326971542" ,
+"ID_STRUCTURE": "7136566" ,
+"ITEMS": [
+{
+"AMOUNT": 50.86 ,
+"DOC_NAME": "Расходный кассовый ордер" ,
+"DOC_TYPE": "18" ,
+"ID": "1250942855979650201" ,
+"ID_DT": "301" ,
+"ID_ENTRY": "10" ,
+"ID_ITEM": "-1186259333377067919" ,
+"ID_KT": "301" ,
+"NAME_DT": "Готівка в національній валюті" ,
+"NAME_KT": "Готівка в національній валюті"
+}
+] ,
+"NOTE": "" ,
+"NUMBER": "ВКО-0000820" ,
+"REASON": "Винесення розмінної монети"
+}
+{
+"DATE_TIME_STR": "2015-06-18T08:05:42.000" ,
+"DATE_TIME_UNX": "1434607542000" ,
+"HDF_DEL": 0 ,
+"HDF_EDITOR": "0" ,
+"HDF_SEQ": 42 ,
+"HDF_STATUS": 1 ,
+"HDF_TIME_STATUS": 2 ,
+"HDF_TIME_STR": "2015-11-23T17:38:25.707" ,
+"HDF_TIME_UNX": "1448293105707" ,
+"ID": "-1120019709551775897" ,
+"ID_CASHIER": "5776074858111382956" ,
+"ID_PERSON": "1974277564506894594" ,
+"ID_STRUCTURE": "7136566" ,
+"ITEMS": [
+{
+"AMOUNT": 50.47 ,
+"DOC_NAME": "Расходный кассовый ордер" ,
+"DOC_TYPE": "18" ,
+"ID": "-8637428725325917185" ,
+"ID_DT": "301" ,
+"ID_ENTRY": "10" ,
+"ID_ITEM": "-1120019709551775897" ,
+"ID_KT": "301" ,
+"NAME_DT": "Готівка в національній валюті" ,
+"NAME_KT": "Готівка в національній валюті"
+}
+] ,
+"NOTE": "" ,
+"NUMBER": "ВКО-0000484" ,
+"REASON": "Винесення розмінної монети"
+}
+```
+
+
+### Разворачивает поле "ITEMS": [] как в обычную таблицу для просмотра
+```Javascript
+ rk, err:= r.DB("C3").Table("Cashbox").Field("ITEMS").ConcatMap(r.Row).Limit(100).Run(sessionArray[0])
+
+r.DB().Table().Get(3)(“hh”).offsetsOff(“b”)
+в таблице {“hh”:[“a”,”b”,”c”,”d”]} ищет букву и возвращает индекс в списке - 1
+
+r.DB().Table().map({“s”:r.row(“N”).add(“ddd”)))
+к каждому полю справа “ddd”
+```
+
+### ГРУППИРОВКА СО СЛОЖЕНИЕМ ВО ВТОРОМ УРОВНЕ!!!!!!!!
+```Javascript
+r.db("C3")
+  .table("Cashbox")
+  .map({"Items":r.row("ITEMS")("AMOUNT").coerceTo("array")})  
+  .concatMap(r.row("Items"))
+```Javascript
+
+#### Есть сложна и замысловатя структура так получилось исторически
+Задача :   
+Необходимо получить доступ к     "AMOUNT": 50.86     
+```Json
+{
+"DATE_TIME_STR":  "2015-10-14T07:55:12.000" ,
+"DATE_TIME_UNX":  "1444802112000" ,
+"DELETED": 0 ,
+"HDF_CORP":  "C3" ,
+"HDF_EDITOR":  "6370944" ,
+"HDF_SEQ": 396 ,
+"HDF_TB":  "Cashbox" ,
+"HDF_TIME_STATUS": 2 ,
+"HDF_TIME_STR":  "2016-02-10T12:25:06.790" ,
+"HDF_TIME_UNX":  "1455099906790" ,
+"ID":  "-1186259333377067919" ,
+"ID_CASHIER":  "5776074858111382956" ,
+"ID_PERSON":  "3464652019326971542" ,
+"ID_STRUCTURE":  "8378100" ,
+"ITEMS": [
+           {
+              "AMOUNT": 50.86 ,
+              "DOC_NAME":  "Видатковий касовий ордер" ,
+              "DOC_TYPE":  "18" ,
+              "ID":  "1250942855979650201" ,
+              "ID_DT":  "301" ,
+              "ID_ENTRY":  "10" ,
+              "ID_ITEM":  "-1186259333377067919" ,
+              "ID_KT":  "301" ,
+              "NAME_DT":  "Готівка в національній валюті" ,
+              "NAME_KT":  "Готівка в національній валюті"
+           }
+] ,
+"NOTE":  "" ,
+"NUMBER":  "ВКО-0000820" ,
+"REASON":  "Винесення розмінної монети"
+}
+```
+
+### Супер Решение :
+Промежуточные шаги.   
+
+```Javascript
+r.db("C3")
+  .table("Cashbox")
+  .group("ID_STRUCTURE")
+  .map({"Items":r.row("ITEMS")("AMOUNT")})                // выводим второе вложенное поле    
+  .concatMap(r.row("Items"))                              // Доступ ко второму уровню
+  .map({"Otvet":r.row})                                   // Оглавление поля
+  .sum("Otvet")
+  
+r.db("C3")
+  .table("Cashbox")
+  .map({"Items":r.row("ITEMS")("AMOUNT")})                // выводим второе вложенное поле    
+  .concatMap(r.row("Items"))                                       // Доступ ко второму уровню
+  .map({"Otvet":r.row})                                              // Оглавление поля
+  
+
+r.db("C3")
+  .table("Cashbox")
+  .map({"Items":r.row("ITEMS")("AMOUNT")})                // выводим второе вложенное поле    
+  .concatMap(r.row("Items"))                                       // Доступ ко второму уровню
+  .map({"Otvet":r.row})                                              // Оглавление поля
+  .sum("Otvet")                                                         // Суммирование 
+```                      
+### И наконец вот ЗОЛОТОЕ решение каверзной задачи 
+
+```Javascript
+r.db("C3")
+  .table("Cashbox")                                               // таблица
+  .group("ID_STRUCTURE")                                          // Группировка по структуре
+  .map({"Items":r.row("ITEMS")("AMOUNT")})                        // выводим второе вложенное поле    
+  .concatMap(r.row("Items"))                                      // Доступ ко второму уровню
+  .map({"Sum":r.row})                                             // Оглавление поля
+  .sum("Sum")                                                     // Суммирование по полю 
+  .ungroup()                                                      // Разгруппировка нужна   
+  .map({"STRUCTURE":r.row("group"),"SUM":r.row("reduction")})     // Подпись столбцов 
+```  
+
+
+#### Итог после группировки :
+```json
+  [
+      {   "STRUCTURE":  "6370944" , "SUM": 3665008.479999999    } ,
+      {   "STRUCTURE":  "8378100" , "SUM": 3471130.0200000005   }
+  ]
+```
+
+
+### Обновление в цикле 
+```Javascript
+       r.db("System")
+      .table("Users")
+      .filter({"Fname":"Сенюк"})
+         .forEach(function(row) { return r.db("System").table("Corporation").filter({"ID":"C159"}).update({"WTS": row("Id"), "WTSNAME":row("Name")})    })
+```
+    
+### Привязка пользователей к ВТС базам
+```Javascript
+ r.db("System")
+      .table("Users")
+      .filter({"Fname":"Шеремет"})
+      .forEach(function(row) { return r.db("System").table("Corporation").filter({"ID":"C6"}).update({"WTS": row("Id")})    });
+
+  r.db("System")
+      .table("Users")
+      .filter({"Fname":"Шеремет"})
+      .forEach(function(row) { return r.db("System").table("Corporation").filter({"ID":"C160"}).update({"WTS": row("Id")})    });
+  
+  
+     r.db("System")
+      .table("Users")
+      .filter({"Fname":"Шеремет"})
+      .forEach(function(row) { return r.db("System").table("Corporation").filter({"ID":"C158"}).update({"WTS": row("Id")})    });
+
+       r.db("System")
+      .table("Users")
+      .filter({"Fname":"Зуб"})
+         .forEach(function(row) { return r.db("System").table("Corporation").filter({"ID":"C9"}).update({"WTS": row("Id"), "WTSNAME":row("Name")})    });
+      
+           
+       r.db("System")
+      .table("Users")
+      .filter({"Fname":"Зуб"})
+         .forEach(function(row) { return r.db("System").table("Corporation").filter({"ID":"C160"}).update({"WTS": row("Id"), "WTSNAME":row("Name")})    });
+```
+
+
+ ### Обновление в цикле в GO
+ * Обновление одной таблицы в цикле из другой таблицы связанные между собой полями
+
+```Javascript
+     r.DB("C001").
+       Table("Matrix").
+       ForEach(func(row r.Term) interface{}{
+       	                                     return 
+       	                                     r.DB("C001").Table("Log").Filter(Mst{"code": row.Field("code")}).Update(Mst{"Noo": row.Field("id")})
+       	                                    }).Run(sessionArray[0])
+
+```
+
+
+### TAG
+```Javascript  
+// И то и то в Tag[]
+r.db("System")
+ .table("Navigation")
+ .filter(r.row("Tag").contains("An","Rp"))
+
+// Или то или др  
+  r.db("System")
+ .table("Navigation")
+ .filter(r.or(r.row("Tag").contains("An"),
+              r.row("Tag").contains("Rp")))
+
+```
+
+### Фильтрация по содержанию тега
+```Javascript  
+r.table("documents").filter(r.row("tags").contains("foo", "def"))
+```
+
+```json
+{ id: 1, title: "Foo post", tags: ["foo", "bar", "baz"]},
+{ id: 2, title: "Bar post", tags: ["abc", "def", "ghi"]},
+{ id: 3, title: "Baz post", tags: ["foo", "def", "buzz"]},
+```
+
+
