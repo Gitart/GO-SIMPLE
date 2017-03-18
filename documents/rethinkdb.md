@@ -342,3 +342,326 @@ r.table("tr").pluck('index','id','isActive','name')
 r.table('posts').filter( r.row('category').eq('article').or(r.row('genre').eq('mystery'))).run(conn, callback);
 r.db("foo").table("bar").insert(document).run(durability="soft")
 ```
+
+### Не работает!!
+```javascript
+r.table("Aliance").map(r.row.merge({Title: r.row("id")}).without("id"))
+```
+
+### Уникальные значения в поле
+```javascript
+r.table("tr").pluck('age').distinct()
+```
+
+### Фильтрация с последующим выводом опредленных полей
+```javascript
+r.table("tr").filter({age:38}).pluck('age','index','id','isActive','name')
+```
+
+### Выводом определенных поле с сортировкой во втором уровне (first)
+```javascript
+r.table("tr").pluck('age','index','id','isActive','name').orderBy('index','first')
+```
+
+### Фильтрация с выводом определенных поле с сортировкой во втором уровне (first)
+```javascript
+r.table("tr").filter({eyeColor:"sd",age:32 }) .pluck('age','index','id','isActive','name') .orderBy('index','first','last')
+```
+
+### Отобрать все не пустые значения в поле ege и вывести первіе 3
+```javascript
+r.table("tr").hasFields('age').limit(3)
+```
+
+### Группировка с выводом на экран
+```javascript
+r.table("tr").group("index","age").pluck('age','index')
+```
+
+### Обновление с поля ид поле Value 
+```javascript
+r.table('Aliance').get(5).update({Value: r.row('count').default(0).add(1) });
+```
+
+### Поиск в первом уровне по двум условиям
+```javascript
+r.table("Aliance").filter({"Title": "Aliance 4"})
+r.table("tr").filter({eyeColor:"sd",age:38 });
+r.table("tr").filter({age:38});
+```
+
+### Фильтр по значению в поле Title='Aliance 5' или views=1250000
+```javascript
+r.table('Aliance').filter(r.row('Title').default('foo').eq('Aliance 5').or(r.row('views').default('foo').eq(1250000)))
+```
+
+### Выбирает построчно начиная (с 3 строки и по 5 ) из набора записей
+```javascript
+r.table("tr").slice(3,5)
+```
+
+### Связь по полю ID где поля есть в обеих таблицах
+```javascript
+r.table("tr").eqJoin('id',r.table("ts"));
+```
+
+### Обновление по ключу
+```javascript
+r.table("tr").get("f261abe6-e44e-4b0b-bf07-e60abcb01e0b").update({eyeColor:"sd"})
+```
+
+### Добавление нового значения в кoнец
+```javascript
+r.tableCreate('stargazers'); r.table('stargazers').insert( r.http('https://api.github.com/repos/rethinkdb/rethinkdb/stargazers'));
+```
+
+### Обновление информации
+```javascript
+r.table('stargazers').update(r.http(r.row('url')))
+```
+
+### По десять страниц
+```javascript
+r.http('https://api.github.com/repos/rethinkdb/rethinkdb/stargazers',       { page: 'link-next', pageLimit: 10 })
+```
+
+### Вывод первого поля из таблицы
+```javascript
+r.table("tr")("eyeColor");
+```
+
+### Пропустить две строки и с третьей вібрать 3 записи
+```javascript
+r.table("Aliance").orderBy("id").skip(2).limit(3) 
+```
+
+### Среднее значение по полю ИД
+```javascript
+r.table("Aliance").avg("id")
+```
+
+### Группировка
+```javascript
+r.table("Aliance").group([r.row("date").year(), r.row("date").month()])
+```
+
+### Создание индекса
+```javascript
+r.table('invoices').indexCreate('byDay', [r.row('date').year(), r.row('date').month(), r.row('date').day()])
+```
+
+### Максимальная по группировке
+```javascript
+r.table("invoices").group({index: 'byDay'}).max('price')
+```
+
+### Пример вставки документа
+```javascript
+r.table('Aliance').insert({
+               _id: "5099803df3f4948bd2f98391",
+               name: { first: "Alan", last: "Turing" },
+               birth: 'Jun 23, 1912',
+               death: 'Jun 07, 1954',
+               contribs: [ "Turing machine", "Turing test", "Turingery" ],
+               views : 1250000
+            }) 
+```
+
+### Замена документа без поля
+```javascript
+r.table("Aliance").get("1").replace(r.row.without('Value')) 
+```
+
+### Не работает !!!
+```javascript
+r.table('posts').filter(r.row('Value').eq('Kyev').or(r.row('Title').eq('Aliance 1'))
+```
+
+### Замена документа по ИД который должен быть указан
+```javascript
+r.table("Aliance").get(1).replace({"id":1,"Title":"New Aliance","Value":"Kyev"})
+```
+
+### Минуты
+```javascript
+r.now().minutes()
+```
+
+### Дата
+```javascript
+r.now()    --- Thu Nov 06 2014 19:34:55 GMT+00:00
+```
+
+### Вхождение
+```javascript
+r.expr('abcdefghijklmnopqrstuvwxyz').match('hijklmnopqrst')
+```
+
+### Пересечение
+```javascript
+r.expr('abcdefghijklmnopqrstuvwxyz').match('^[abcdef]{3}')
+{
+"end": 3 ,
+"groups": [ ],
+"start": 0 ,
+"str":  "abc"
+}
+```
+
+### Поиск вхождения
+```javascript
+r.expr('abcdefghijklmnopqrstuvwxyz').match('^abcdefghijkl')
+```
+
+### Выражение   
+```javascript
+r.expr('ііі')
+```
+
+### Бинарный файл
+```javascript
+r.http('gravatar.com/avatar/0b1129eaca8152c556c200cd8d179187', {resultFormat: 'binary'})
+```
+
+### Вставка в таблицу из ссылки
+```javascript
+r.table("ts").insert(r.http("http://beta.json-generator.com/api/json/get/BhzRccE"));
+```
+
+### Вставка таблицы в таблицу
+```javascript
+r.table("tr").insert(r.table("ts"))
+```
+
+### Вставка таблицы в таблицу в GO
+```javascript
+var response []interface{}
+res,err:=r.Db(“test”).Table(“testtabler”).Run(sess)
+err=res.All(&response)
+r.Db(“test”).Table(“Intable”).Insert(response).RunWrite(sess)
+```
+
+
+### Поиск в первом уровне + во вторм вхождении
+```javascript
+r.table("tr").filter({
+           index: 1,                                             -- индекс на первом уровне
+           name:{                                                -- на первом уровне
+                             first:"Britt",                      -- на втором уровне
+                             last:"Donaldson"                    -- на втором уровне
+                }
+             });
+```
+
+### Вывод второго уровня вложения
+```javascript
+r.table("tr")("name")("first")
+```
+
+
+### Возвращает True если в списке второго уровня есть такое имя хотябы один раз в любой строчке
+```javascript
+r.table("tr")("name")("first").contains("Jan")
+```
+
+### Вывод перечисленных полей - и обратите внимание !!! Поле name составное с уровнями и оно віводит свои под уровнями
+```javascript
+r.table("tr").pluck('index','id','isActive','name')
+
+[
+{
+"id":  "314a57e9-58f9-4102-a081-b4c262d13c7a" ,
+"index": 0 ,
+"isActive": true ,
+"name": {
+     "first":  "Roach" ,
+     "last":  "Brewer"
+}
+} ,
+```
+
+### Уникальные значения в поле
+```javascript
+r.table("tr").pluck('age').distinct()
+```
+
+### Фильтрация с последующим выводом опредленных полей
+```javascript
+r.table("tr").filter({age:38}).pluck('age','index','id','isActive','name')
+```
+### Выводом определенных поле с сортировкой во втором уровне (first)
+```javascript
+r.table("tr").pluck('age','index','id','isActive','name').orderBy('index','first')
+```
+
+### Фильтрация с выводом определенных поле с сортировкой во втором уровне (first)
+```javascript
+r.table("tr").filter({eyeColor:"sd",age:32 }) .pluck('age','index','id','isActive','name') .orderBy('index','first','last')
+```
+
+### Отобрать все не пустые значения в поле ege и вывести первіе 3
+```javascript
+r.table("tr").hasFields('age').limit(3)
+```
+
+### Группировка с выводом на экран
+```javascript
+r.table("tr").group("index","age").pluck('age','index')
+```
+
+### Поиск в первом уровне по двум условиям
+```javascript
+r.table("tr").filter({eyeColor:"sd",age:38 });
+r.table("tr").filter({age:38});
+```
+
+### Выбирает построчно начиная (с 3 строки и по 5 ) из набора записей
+```javascript
+r.table("tr").slice(3,5)
+```
+
+### Связь по полю ID где поля есть в обеих таблицах
+```javascript
+r.table("tr").eqJoin('id',r.table("ts"));
+```
+
+### Обновление по ключу
+```javascript
+r.table("tr").get("f261abe6-e44e-4b0b-bf07-e60abcb01e0b").update({eyeColor:"sd"})
+```
+
+### Добавление нового значения в кoнец
+```javascript
+r.tableCreate('stargazers'); r.table('stargazers').insert( r.http('https://api.github.com/repos/rethinkdb/rethinkdb/stargazers'));
+```
+
+### Обновление информации
+```go
+r.table('stargazers').update(r.http(r.row('url')))
+```
+
+### По десять страниц
+```javascript
+r.http('https://api.github.com/repos/rethinkdb/rethinkdb/stargazers',       { page: 'link-next', pageLimit: 10 })
+```
+
+### Вывод первого поля из таблицы
+```javascript
+r.table("tr")("eyeColor");
+```
+
+### Cовмещение таблиц справа
+```javascript
+r.table().get().merge(r.table().get())
+```
+
+### Получение одного поля во вотром уровне которое имеет значени
+```javascript
+r.db("test").table("Docmove").pluck({"DocumentItem":{"Title":true}})
+```
+### Записи  второго уровня из поля DocBody по ключу N00130 из двух столбцов выбраны записи со 2 по 11 
+```javascript
+r.db("test").table("Docmove").get("N00130")("DocBody").pluck("ABC","BCQ").slice(2,11)
+```
+
+
