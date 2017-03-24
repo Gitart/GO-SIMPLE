@@ -666,7 +666,7 @@ Output:
 
 
 
-### Пример работі со структурой
+### Пример работе со структурой
 ```golang
 type ExampleTypeNested struct {
     N int
