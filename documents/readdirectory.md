@@ -106,3 +106,50 @@ func main() {
     fmt.Println(pwd)
 }
 ```
+
+
+## Write wiyh buf
+
+```golang
+package main
+
+import (
+    "bufio"
+    "fmt"
+    "os"
+)
+
+func check(e error) {
+    if e != nil {
+        panic(e)
+    }
+}
+
+func main() {
+
+    //specify folder
+    path := "/"
+    folder := path+"test"
+
+    //create it with permissions
+    os.Mkdir(folder, 0700)
+	
+    //define filename
+    file := folder+"/1.html"
+
+    //open a file for writing.
+    f, err := os.Create(file)
+    check(err)
+
+    // `bufio` provides buffered writers and readers
+    w := bufio.NewWriter(f)
+    n4, err := w.WriteString("does<b>this</b>work")
+    fmt.Printf("wrote %d bytes\n", n4)
+
+    // Use `Flush` to ensure all buffered operations have been applied to the underlying writer.
+    w.Flush()
+
+}
+```
+
+
