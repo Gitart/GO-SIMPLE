@@ -1,8 +1,16 @@
 ## Загрузка JSON файла в базу
 
-```golang
-Shell "d:\MYSOLUTION\LoadJson\loadtxt.exe test Post " & "`{""id"":1222, ""sName"":""dddd""}`"
+Пример использования
 
+```
+Shell "d:\MYSOLUTION\LoadJson\loadtxt.exe test Post " & "`{""id"":1222, ""sName"":""Тest"}`"
+```
+
+Code
+```golang
+
+
+*/
 Copyright (C) <2014> SERVICE HOF
 Description : Services and Calculation
 Version : Version 1.0
