@@ -1439,4 +1439,35 @@ r.table("feeds")
 .filter(function(entry)  { return entry("title")("label").match("xyz") })
 ```
 
+### Sample
+
+```javascript
+r.table('customers')
+  .hasFields('purchases')
+  .map(function(customer) {
+    return {
+      id: customer('id'),
+      firstName: customer('firstName'),
+      lastName: customer('lastName'),
+      purchaseTotal: customer('purchases')('amount')
+        .reduce(function(acc,amount) {
+          return acc.add(amount);
+        }, 0)
+    }
+  })
+  .orderBy(r.desc('purchaseTotal')).limit(10)
+  .innerJoin(
+    r.table('visits').groupBy('customer', r.sum('hits')),
+    function( customer, visit ) {
+      return customer('id').eq(visit('group')('customer'));
+    }
+  )
+  .map({
+    id:r.row('left')('id'),
+    firstName:r.row('left')('firstName'),
+    lastName:r.row('left')('lastName'),
+    purchases:r.row('left')('purchaseTotal'),
+    hits:r.row('right')('reduction')
+  })
+```
 
