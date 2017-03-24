@@ -3,6 +3,8 @@
 Пользование как патернами в разработке так и в виде шпаркалки.    
 Много трудов разных авторов.   
 
+### Book
+[Книга по GO](https://github.com/astaxie/build-web-application-with-golang/blob/master/ru/preface.md)
 
 [Sample](https://gobyexample.com/)
 
