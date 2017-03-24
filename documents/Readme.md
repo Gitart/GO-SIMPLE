@@ -4,5 +4,6 @@
 Много трудов разных авторов.   
 
 
-(Sample)[https://gobyexample.com/]
+[Sample](https://gobyexample.com/)
+
 
