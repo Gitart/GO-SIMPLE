@@ -152,4 +152,28 @@ func main() {
 }
 ```
 
+### Read file
+
+```golang
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+)
+
+func check(e error) {
+    if e != nil {
+        panic(e)
+    }
+}
+
+func main() {
+    d, err := ioutil.ReadFile("./test/1.html")
+    check(err)
+    fmt.Print(string(d))
+}
+```
+
+
 
