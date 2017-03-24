@@ -2,6 +2,9 @@
 [Rossettacode CODE](http://rosettacode.org/wiki/CSV_data_manipulation#Go)
 
 
+### Программа загружает СSV файл и суммирует эементы в строке и в конце дописывает сумму последним элементом
+
+
 ```golang
 package main
  
