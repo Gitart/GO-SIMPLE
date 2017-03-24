@@ -1,3 +1,64 @@
+# 5.3 SQLite
+
+SQLite это открытая встраиваемая реляционная база данных. Она автономна, не требует конфигурации и является полноценной СУБД. Ее основные характеристики это: высокая портативность, простота использования, эффективность и надежость. В большинстве случаев вам нужен только двоичный файл SQLite для создания, подключения и эксплуатации базы данных. Если вы ищите встраиваемое решение СУБД, вам стоит рассмотреть SQLite. По сути SQLite является версией Access с открыты исходным кодом.
+
+## Драйвера SQLite
+
+В Go есть множество драйверов баз данных для SQLite, но многие из них не поддерживают стандарты интерфейсов `database/sql`.
+
+- [https://github.com/mattn/go-sqlite3](https://github.com/mattn/go-sqlite3) поддерживает `database/sql`, базируется на cgo.
+- [https://github.com/feyeleanor/gosqlite3](https://github.com/feyeleanor/gosqlite3) не поддерживает `database/sql`, базируется на cgo.
+- [https://github.com/phf/go-sqlite3](https://github.com/phf/go-sqlite3) не поддерживает `database/sql`, базируется на cgo.
+
+Первый драйвер является единственным, который поддерживает стандарты интерфейса `database/sql` в SQLite, поэтому я использую его в моих проектах. Поддержка стандартов позволит легко мигрировать на другую базу в будущем.
+
+##Примеры
+
+Создайте таблицу следующим запросом:
+
+    CREATE TABLE `userinfo` (
+        `uid` INTEGER PRIMARY KEY AUTOINCREMENT,
+        `username` VARCHAR(64) NULL,
+        `departname` VARCHAR(64) NULL,
+        `created` DATE NULL
+    );
+
+Пример:
+
+    package main
+    
+    import (
+    	"database/sql"
+    	"fmt"
+    
+    	_ "github.com/mattn/go-sqlite3"
+    )
+    
+    func main() {
+    	db, err := sql.Open("sqlite3", "./foo.db")
+    	checkErr(err)
+    
+    	// вставка
+    	stmt, err := db.Prepare("INSERT INTO userinfo(username, departname, created) values(?,?,?)")
+    	checkErr(err)
+    
+    	res, err := stmt.Exec("astaxie", "研发部门", "2012-12-09")
+    	checkErr(err)
+    
+    	id, err := res.LastInsertId()
+    	checkErr(err)
+    
+    	fmt.Println(id)
+    	// обновление
+    	stmt, err = db.Prepare("update userinfo set username=? where uid=?")
+    	checkErr(err)
+    
+    	res, err = stmt.Exec("astaxieupdate", id)
+    	checkErr(err)
+    
+    	affect, err := res.RowsAffected()
+    	checkErr(err)
+    
     	fmt.Println(affect)
     
     	// запрос
