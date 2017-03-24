@@ -50,3 +50,59 @@ directory:/usr/local/go/lib
 directory:/usr/local/go/lib/time
 file:/usr/local/go/lib/time/zoneinfo.zip
 ```
+
+
+## Read in array
+
+```golang
+package main
+ 
+import (
+    "fmt"
+    "os"
+    "path/filepath"
+)
+
+func dir(thepath string) []string {
+
+  var files []string
+
+  filepath.Walk(thepath, func(path string, _ os.FileInfo, _ error) error {
+    //fmt.Println(path)
+    files = append(files, path)
+    return nil
+  })
+
+  return files
+
+}
+
+func main() {
+
+  path := "/"
+  fmt.Println(dir(path))
+
+}
+
+```
+
+
+## Current directory
+
+```golang
+package main
+
+import (
+    "fmt"
+    "os"
+)
+
+func main() {
+    pwd, err := os.Getwd()
+    if err != nil {
+        fmt.Println(err)
+        os.Exit(1)
+    }
+    fmt.Println(pwd)
+}
+```
