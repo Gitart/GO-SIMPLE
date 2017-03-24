@@ -5,6 +5,8 @@
 [resource](https://github.com/search?q=Go&type=Repositories&ref=advsearch&l=Go)   
 [resourse for GO](http://go-lang.cat-v.org/)     
 [Sample code GO](http://go-lang.cat-v.org/go-code)    
+[Work with Redis](http://www.alexedwards.net/blog/working-with-redis)   
+
 
 
 
