@@ -1,3 +1,7 @@
+# Go Lang Notes
+
+[Link to ](http://log.zyxar.com/blog/2012/04/08/go-lang-notes/)
+
 ## Array
 
 ```golang
