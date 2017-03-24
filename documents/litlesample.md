@@ -172,16 +172,18 @@ SetFinalizer does not execute when the program comes to an normal end or when an
 ## VIII. Interface
 
 
-Polymorphism
+### Polymorphism
 
 An interface defines abstract method set, but cannot contain variables;
 Interface internal:
-
+```
   +------------+------------+
   |            |   method   | 
   |  receiver  |   table    |
   |            |   pointer  |
   +------------+------------+
+```
+
 Thus, pointers to interface values are illegal.
 Table of method pointers is built through runtime reflection capability.
 Multiple types can implement the same interface;
