@@ -4,6 +4,100 @@
 package main
 
 import (
+    rethink "github.com/dancannon/gorethink"
+    "log"
+    "time")
+
+type User struct {
+    Name    string `gorethink:"name"`
+    Password string `gorethink:"password"`}
+
+func main() {
+    session, err := rethink.Connect(rethink.ConnectOpts{
+        Address:    "127.0.0.1:28015",
+        Database:    "test",
+        MaxIdle:    10,
+        IdleTimeout: time.Second * 10,
+    })
+    if err != nil {
+        log.Println(err)
+    }
+
+    err = rethink.DbCreate("test").Exec(session)
+    if err != nil {
+        log.Println(err)
+    }
+
+    _, err = rethink.Db("test").TableCreate("users").RunWrite(session)
+    if err != nil {
+        log.Println(err)
+    }
+
+    _, err = rethink.Db("test").Table("users").IndexCreate("name").Run(session)
+    if err != nil {
+        log.Println(err)
+    }
+
+    _, err = rethink.Db("test").Table("users").IndexWait("name").Run(session)
+    if err != nil {
+        log.Println(err)
+    }
+
+    _, err = rethink.Db("test").Table("users").GetAllByIndex("name", "torufurukawa").Delete().Run(session)
+    if err != nil {
+        log.Println(err)
+    }
+
+    response, err := rethink.Db("test").Table("users").Insert(User{Name: "torufurukawa", Password: "pass"}).RunWrite(session)
+
+    log.Println(response.GeneratedKeys[0])
+
+    _, err = rethink.Db("test").Table("users").Insert(User{Name: "bucho", Password: "pass"}).RunWrite(session)
+
+    row, err := rethink.Db("test").Table("users").GetAllByIndex("name", "torufurukawa").RunRow(session)
+    if err != nil {
+        log.Println(err)
+    }
+
+    if row.IsNil() {
+        log.Fatalf("User not found")
+    }
+
+    var user User
+
+    err = row.Scan(&user)
+    if err != nil {
+        log.Println(err)
+    }
+
+    log.Println(user.Name)
+    log.Println(user.Password)
+
+    _, err = rethink.Db("test").Table("users").Insert(User{Name: "torufurukawa", Password: "pass"}).RunWrite(session)
+
+        // index name が torufurukawa の一覧を取得する
+    rows, err := rethink.Db("test").Table("users").GetAllByIndex("name", "torufurukawa").Run(session)
+    if err != nil {
+        log.Println(err)
+    }
+
+    users := []User{}
+        // 引っ張ってきた一覧を users にマッピングする
+    err = rows.ScanAll(&users)
+
+    for _, user := range users {
+        log.Println(user.Name)
+        log.Println(user.Password)
+    }}
+```
+
+## Other Sample
+
+
+```golang
+package main
+
+import (
 
 //        "fmt"
         "log"
