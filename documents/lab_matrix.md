@@ -1,5 +1,6 @@
 ## Пример лаб по матрице
 
+```golang
 package main
 
 import (
@@ -132,6 +133,7 @@ func GetEl(Str, Elm int, Dat []Mst) float64{
 func SetEl(Str, Elm int, Res float64, Dat []Mst) {
      Dat[Str]["A"].([]interface{})[Elm]=Res 
 }
+```
 
 
 ## Пример сложения матрицы
