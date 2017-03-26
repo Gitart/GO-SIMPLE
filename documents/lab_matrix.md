@@ -9,7 +9,6 @@ import (
        "encoding/json"
 )
 
-
 type Mst map[string]interface{}  
 type Msl []interface{}  
 type Mil []int64
@@ -19,11 +18,9 @@ type Msi struct {
      Zn []int64 	
 }
 
-
-// 
+// Main 
 func main(){
-    
-   
+      
     var m []Mst    // входная матрица
     var v []Mst    // выходная матрица
     var t []Mst    // выходная матрица
@@ -33,25 +30,21 @@ func main(){
     Vt:=[]byte(`[{"A":[0,0,0]}, {"A":[0,0,0]},  {"A":[0,0,0]}]`)     // Промежуточные вычисления
     Tr:=[]byte(`[{"A":[0,0,0]}, {"A":[0,0,0]},  {"A":[0,0,0]}]`)     // Трансопнрирование 
 
-	json.Unmarshal(Dt, &m)
+    json.Unmarshal(Dt, &m)
     json.Unmarshal(Vt, &v)
     json.Unmarshal(Tr, &t)
-
 
     // -110
     F:=GetEl(0, 0, m) * (GetEl(1, 1, m) * GetEl(2, 2, m) - GetEl(1, 2, m) *GetEl(2, 1, m)) - GetEl(0, 1, m) * (GetEl(1, 0, m) * GetEl(2, 2, m)-GetEl(1, 2, m)*GetEl(2, 0, m)) + GetEl(0, 2, m)  *(GetEl(1, 0, m)*GetEl(2, 1, m)-GetEl(1, 1, m)* GetEl(2, 0, m))
     var P float64 =-1
 
-
     fmt.Println("Определитель матрицы : ", F)
-
 
     // первая строка
     A:= math.Pow(P,(1+1)) * (GetEl(1, 1, m)* GetEl(2, 2, m) - GetEl(1, 2, m) * GetEl(2, 1, m))
     SetEl(0, 0, A, v) 
     fmt.Println("A11 : ",A)
-
-    
+   
     A = math.Pow(P,(1+2)) * (GetEl(1, 0, m)* GetEl(2, 2, m) - GetEl(1, 2, m) * GetEl(2, 0, m))
     SetEl(0, 1, A, v) 
     fmt.Println("A12 : ",A)
@@ -72,8 +65,7 @@ func main(){
     A = math.Pow(P,(2+3)) * (GetEl(0, 0, m) * GetEl(2, 1, m) - GetEl(0, 1, m) * GetEl(2, 0, m))
     SetEl(1, 2, A, v) 
     fmt.Println("A23 : ",A)
-    
-    
+        
     // Третья строка
     A = math.Pow(P,(3+1)) * (GetEl(0, 1, m) * GetEl(1, 2, m) - GetEl(0, 2, m) * GetEl(1, 1, m))
     SetEl(2, 0, A, v) 
@@ -86,7 +78,6 @@ func main(){
     A = math.Pow(P,(3+3)) * (GetEl(0, 0, m) * GetEl(1, 1, m) - GetEl(0, 1, m) * GetEl(1, 0, m))
     SetEl(2, 2, A, v) 
     fmt.Println("A33 : ",A)
-
 
     fmt.Println("Матрица из алгебраических дополнений элементов : ", A)
     fmt.Println(v)
@@ -126,8 +117,6 @@ func main(){
 func GetEl(Str, Elm int, Dat []Mst) float64{
      return Dat[Str]["A"].([]interface{})[Elm].(float64) 
 }
-
-
 
 // Запись в матрицу
 func SetEl(Str, Elm int, Res float64, Dat []Mst) {
