@@ -1,3 +1,6 @@
+## Пример работы
+
+```golang
 package main
 
 import (
@@ -43,3 +46,4 @@ func main() {
         log.Fatal(err)
     }
 }
+```
