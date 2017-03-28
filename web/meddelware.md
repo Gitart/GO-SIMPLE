@@ -1,4 +1,4 @@
-## Meddelware
+## Middleware
 
 Middleware функция которая должна выполниться всегда со многими другими функциями.    
 Для этого необходимо создать функцию котрая на вход принимает имя второй функции   
@@ -84,6 +84,33 @@ c:\curl\curl.exe -XPOST  -i localhost:3000/test
 ```
 
 
+## Второй вариант
 
 
+```golang
+package main
 
+import (
+  "github.com/gorilla/handlers"
+  "net/http"
+  "os"
+)
+
+func main() {
+  finalHandler := http.HandlerFunc(final)
+
+
+  logFile, err := os.OpenFile("server.log", os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0666)
+  if err != nil {
+    panic(err)
+  }
+
+  http.Handle("/", handlers.LoggingHandler(logFile, finalHandler))
+  http.ListenAndServe(":3000", nil)
+}
+
+
+func final(w http.ResponseWriter, r *http.Request) {
+     w.Write([]byte("OK"))
+}
+```
