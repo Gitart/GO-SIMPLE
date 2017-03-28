@@ -114,3 +114,13 @@ func final(w http.ResponseWriter, r *http.Request) {
      w.Write([]byte("OK"))
 }
 ```
+
+### Output
+
+```
+127.0.0.1 - - [28/Mar/2017:10:47:19 +0300] "POST / HTTP/1.1" 200 2
+127.0.0.1 - - [28/Mar/2017:10:47:19 +0300] "GET / HTTP/1.1" 200 2
+127.0.0.1 - - [28/Mar/2017:10:47:20 +0300] "PUT / HTTP/1.1" 200 2
+```
+
+
