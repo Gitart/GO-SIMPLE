@@ -98,18 +98,21 @@ if err != nil {
 ### Working with replies
 
 When we are interested in the reply from Redis, the Resp object comes with some useful helper functions for    
-converting the reply into a Go type we can easily work with. These are:
+converting the reply into a Go type we can easily work with.     
+
+These are:
 
 ```
-Resp.Bytes() – converts a single reply to a byte slice ([]byte)
-Resp.Float64() – converts a single reply to a Float64
-Resp.Int() – converts a single reply to a int
-Resp.Int64() – converts a single reply to a int64
-Resp.Str() – converts a single reply to a string
-Resp.Array() – converts an array reply to an slice of individual Resp objects ([]*Resp)
-Resp.List() – converts an array reply to an slice of strings ([]string)
+Resp.Bytes()     – converts a single reply to a byte slice ([]byte)
+Resp.Float64()   – converts a single reply to a Float64
+Resp.Int()       – converts a single reply to a int
+Resp.Int64()     – converts a single reply to a int64
+Resp.Str()       – converts a single reply to a string
+Resp.Array()     – converts an array reply to an slice of individual Resp objects ([]*Resp)
+Resp.List()      – converts an array reply to an slice of strings ([]string)
 Resp.ListBytes() – converts an array reply to an slice of byte slices ([][]byte)
-Resp.Map() – converts an array reply to a map of strings, using each item in the array reply alternately as the keys and values for the map (map[string]string)
+Resp.Map()       – converts an array reply to a map of strings, using each item in the array    
+                   reply alternately as the keys and values for the map (map[string]string)  
 ```
 
 Let's use some of these in conjunction with the HGET command to retrieve information from one of our album hashes:
