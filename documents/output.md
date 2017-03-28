@@ -4,9 +4,8 @@
 
 
 func Test(w http.ResponseWriter, rq *http.Request){
-	 // io.WriteString(w, "hello, world!\n")
-	   // fmt.Fprintln(w, "Входите пожалуйста")
-	   w.Write([]byte("Hello word"))
-
+	  io.WriteString(w, "hello, world!\n")
+	  fmt.Fprintln(w, "Входите пожалуйста")
+	  w.Write([]byte("Hello word"))
 }
 ```
