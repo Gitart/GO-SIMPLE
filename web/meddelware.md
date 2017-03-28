@@ -73,7 +73,6 @@ func main() {
 
 
 ## Test
-### test.bat
 
 ```batch
 c:\curl\curl.exe -XPOST  -i localhost:3000
@@ -85,7 +84,6 @@ c:\curl\curl.exe -XPOST  -i localhost:3000/test
 
 
 ## Второй вариант
-
 
 ```golang
 package main
