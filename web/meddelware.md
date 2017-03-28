@@ -111,7 +111,7 @@ func final(w http.ResponseWriter, r *http.Request) {
 ```
 
 ### Output
-
+#### server.log
 ```
 127.0.0.1 - - [28/Mar/2017:10:47:19 +0300] "POST / HTTP/1.1" 200 2
 127.0.0.1 - - [28/Mar/2017:10:47:19 +0300] "GET / HTTP/1.1" 200 2
