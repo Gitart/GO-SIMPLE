@@ -73,7 +73,7 @@ func main() {
 
 ## Test
 
-```batch
+```bat
 c:\curl\curl.exe -XPOST  -i localhost:3000
 c:\curl\curl.exe -XGET   -i localhost:3000
 c:\curl\curl.exe -XPUT   -i localhost:3000
