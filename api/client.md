@@ -13,7 +13,7 @@ import (
 
 func main() {
 
-	url := "http://kparser.pp.ua/json/film/7988?="
+	url := "http://kparser.pp.ua/json/film/7988"
 	req, _ := http.NewRequest("GET", url, nil)
 	res, _ := http.DefaultClient.Do(req)
 
