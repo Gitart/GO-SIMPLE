@@ -25,7 +25,10 @@ func main() {
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
 
-	fmt.Println(res)
+	// Info
+	// fmt.Println(res)
+	
+	// Body 
 	fmt.Println(string(body))
 }
 ```
