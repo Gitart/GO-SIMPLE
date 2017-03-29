@@ -25,29 +25,33 @@ var (
                                 TokenCache: oauth.CacheFile("cache.json"), } 
  type run map[int64]chan bool 
  var running run 
- func (r run) IsHave(id int64) bool { 
+
+func (r run) IsHave(id int64) bool { 
       if _, ok := r[id]; ok { 
          return true 
        } 
   return false 
   } 
-  
-  func (r run) Add(id int64) (chan bool, bool) { 
+
+
+func (r run) Add(id int64) (chan bool, bool) { 
        c := make(chan bool) if r.IsHave(id) { 
            return c, false } 
        else { 
            r[id] = c return c, true } 
    } 
-   
-  func (r run) Del(id int64) bool { 
+
+
+func (r run) Del(id int64) bool { 
      if r.IsHave(id) { 
         delete(r, id) 
         return true 
       } 
       return false 
  } 
- 
- func init() { } 
+
+
+func init() { } 
  
  func getTransport(w http.ResponseWriter, r *http.Request) (*oauth.Transport, error) { 
  t := &oauth.Transport{Config: oauthCfg} 
@@ -65,7 +69,7 @@ var (
      
      } 
      
- func handleRoot(w http.ResponseWriter, r *http.Request) { 
+func handleRoot(w http.ResponseWriter, r *http.Request) { 
      t, err := getTransport(w, r) 
      if err != nil { 
        fmt.Println(err.Error()) 
@@ -84,7 +88,8 @@ var (
         } 
         } 
         
-      func handleStatus(w http.ResponseWriter, r *http.Request) { 
+
+func handleStatus(w http.ResponseWriter, r *http.Request) { 
           t, err := getTransport(w, r) 
           if err != nil { 
              fmt.Println(err.Error()) 
@@ -108,7 +113,7 @@ var (
                 fmt.Println(err.Error()) } 
              } 
              
-            func handleAutoSofa(w http.ResponseWriter, r *http.Request) { 
+func handleAutoSofa(w http.ResponseWriter, r *http.Request) { 
                  r.ParseForm() 
                  t, err := getTransport(w, r) 
                  if err != nil { 
@@ -146,9 +151,9 @@ var (
                       fmt.Println("execute error:", err.Error()) 
                       return 
                     } 
-                   } 
+} 
                    
-                   func handleDel(w http.ResponseWriter, r *http.Request) { 
+func handleDel(w http.ResponseWriter, r *http.Request) { 
                        r.ParseForm() 
                        str := r.Form.Get("id") 
                        if str != "" { 
@@ -163,15 +168,16 @@ var (
                             } } 
                             
                             http.Redirect(w, r, "/autosofa", http.StatusFound) 
-                 } 
-                 
-                 func handleAuthorize(w http.ResponseWriter, r *http.Request) { 
+} 
+
+
+func handleAuthorize(w http.ResponseWriter, r *http.Request) { 
                       url := oauthCfg.AuthCodeURL("") 
                       fmt.Println("from /authorize to ", url) 
                       http.Redirect(w, r, url, http.StatusFound) 
-                 } 
+} 
                  
-                 func handleOAuth2CallBack(w http.ResponseWriter, r *http.Request) { 
+func handleOAuth2CallBack(w http.ResponseWriter, r *http.Request) { 
                       code := r.FormValue("code") 
                       if code == "" { 
                          fmt.Println("from /oauthecallback to /authorize") 
@@ -188,7 +194,7 @@ var (
                         _token = t.Token fmt.Println("from /oauthcallback to ", r.URL.RequestURI()) 
                         
                         http.Redirect(w, r, r.URL.RequestURI(), http.StatusFound) 
-                        } 
+ } 
                         
  func main() { 
                       running = make(map[int64]chan bool) 
