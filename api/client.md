@@ -1,5 +1,7 @@
 ## Client get
 
+Получение информации с сервиса в виде JSON файла
+
 ```golang
 package main
 
