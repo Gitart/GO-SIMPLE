@@ -16,13 +16,13 @@ var (
        _code = "" 
        _token *oauth.Token 
    ) 
-   var oauthCfg = &oauth.Config{ClientId: "2a7e17af6b2e42e2b0682551735602df", 
-                                ClientSecret: "7dbc044f03604aada969e095d7b8e670", 
-                                AuthURL: "https://graph.renren.com/oauth/authorize", 
-                                TokenURL: "https://graph.renren.com/oauth/token", 
-                                RedirectURL: "http://localhost:8080/oauth2callback", 
-                                Scope: "read_user_status", 
-                                TokenCache: oauth.CacheFile("cache.json"), } 
+   var oauthCfg = &oauth.Config{ClientId:      "2a7e17af6b2e42e2b0682551735602df", 
+                                ClientSecret:  "7dbc044f03604aada969e095d7b8e670", 
+                                AuthURL:       "https://graph.renren.com/oauth/authorize", 
+                                TokenURL:      "https://graph.renren.com/oauth/token", 
+                                RedirectURL:   "http://localhost:8080/oauth2callback", 
+                                Scope:         "read_user_status", 
+                                TokenCache:     oauth.CacheFile("cache.json"), } 
  type run map[int64]chan bool 
  var running run 
 
