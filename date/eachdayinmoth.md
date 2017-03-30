@@ -43,32 +43,6 @@ Sample output:
 Current month: [February]
 Total number of days in [2016], [February] is [29]
 1 February 2016
-2 February 2016
-3 February 2016
-4 February 2016
-5 February 2016
-6 February 2016
-7 February 2016
-8 February 2016
-9 February 2016
-10 February 2016
-11 February 2016
-12 February 2016
-13 February 2016
-14 February 2016
-15 February 2016
-16 February 2016
-17 February 2016
-18 February 2016
-19 February 2016
-20 February 2016
-21 February 2016
-22 February 2016
-23 February 2016
-24 February 2016
-25 February 2016
-26 February 2016
-27 February 2016
-28 February 2016
+...
 29 February 2016
 ```
