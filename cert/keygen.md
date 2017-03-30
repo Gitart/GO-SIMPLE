@@ -1,5 +1,19 @@
 ## Key Generation KEY PEM
 
+
+#### Installing certificates to the Intel® Edison board
+
+From your computer, run the following commands:
+
+```
+scp -r cert.pem USERNAME@xxx.xxx.x.xxx:/home/root/.ssh
+scp -r publicKey.pem USERNAME@xxx.xxx.x.xxx:/home/root/.ssh
+scp -r privateKey.pem USERNAME@xxx.xxx.x.xxx:/home/root/.ssh
+```
+
+where USERNAME@xxx.xxx.x.xxx is the username and IP address you set for your board.
+
+
 ```golang
 package main
 
