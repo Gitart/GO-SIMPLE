@@ -82,3 +82,14 @@ conside реализации 2 фактора аутентификации , а 
  }
  ```
  
+ 
+ Sample output:
+```
+(enter wrong password)
+Enter your password to execute this script:
+Authenticated ? : false
+(enter right password)
+Enter your password to execute this script:
+Authenticated ? : true
+ ```
+ 
