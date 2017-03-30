@@ -58,3 +58,106 @@
  ```
  
 
+## Get URI segments by number and assign as variable example
+
+Coming from PHP and CodeIgniter(framework for PHP) background. One thing that I missed is the URI helper
+'s $this->uri->segment(n) where it permits me to retrieve the segment by number and assign the value to
+string variable. For example :
+
+URL : http://example.com/index.php/news/local/metro/crimeisup
+
+The segment numbers would be this:
+news
+local
+metro
+crimeisup
+
+
+news/local/metro/crime_is_up is known as URL Path.
+
+In this tutorial, we will learn how to get the URI segments by number and assign the segment as variable with Golang.
+See codes below :
+
+
+```golang
+ package main
+
+ import (
+         "fmt"
+         "net/url"
+         "strings"
+ )
+
+ func main() {
+         rawURL := "http://example.com/index.php/news/local/metro/crime_is_up"
+
+         fmt.Println("URL : ", rawURL)
+
+         url, err := url.Parse(rawURL)
+
+         if err != nil {
+                 panic(err)
+         }
+
+         path := url.Path
+         uriSegments := strings.Split(path, "/")
+         fmt.Println(uriSegments) // count starts from 1
+         var metro = uriSegments[3] // assign to variable
+         fmt.Println("[segment 3] : ", metro)
+         fmt.Println("[segment 4] : ", uriSegments[4])
+ }
+ ```
+ 
+Output :
+
+```
+URL : http://example.com/index.php/news/local/metro/crimeisup
+[ index.php news local metro crimeisup]
+[segment 3] : local
+[segment 4] : metro
+```
+
+Hang on..this is processing a static URL string. How about getting the URL from browser ?
+
+No worries, here it is :
+
+```golang
+ package main
+
+ import (
+         "net/http"
+         "strings"
+ )
+
+ func SayHello(w http.ResponseWriter, r *http.Request) {
+         w.Write([]byte("Hello, World!"))
+ }
+
+ func GetURISegment(w http.ResponseWriter, r *http.Request) {
+         uriSegments := strings.Split(r.URL.Path, "/")
+         var metro = uriSegments[3]
+
+         w.Write([]byte("[segment 3] : " + metro + "\r\n"))
+         w.Write([]byte("[segment 4] : " + uriSegments[4]))
+ }
+
+ func main() {
+         // http.Handler
+         mux := http.NewServeMux()
+         mux.HandleFunc("/", SayHello)
+         mux.HandleFunc("/news/local/metro/crime_is_up", GetURISegment)
+
+         http.ListenAndServe(":8080", mux)
+ }
+ ```
+ 
+Run this modified code and point your browser URL to :
+
+```
+http://localhost:8080/news/local/metro/crime_is_up
+```
+
+and you will see the following output :
+
+[segment 3] : metro
+[segment 4] : crimeisup
