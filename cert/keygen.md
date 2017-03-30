@@ -1,7 +1,7 @@
 ## Key Generation KEY PEM
 
 
-#### Installing certificates to the Intel® Edison board
+#### Installing certificates to the 
 
 From your computer, run the following commands:
 
