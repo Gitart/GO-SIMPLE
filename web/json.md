@@ -669,3 +669,84 @@ Employee's secret message : {"Id":0,"Name":"Adam","RawMessage":{"Message":"I lov
 emp.Json : {"Message":"I love you!"}
 Secret Message : {I love you!}
 ```
+
+
+
+## How to convert strange string to JSON with json.MarshalIndent
+
+### Problem:
+Your database is spewing out a funny looking string that looks like this {"width";800;"height";450} 
+and you want to map that string into something like this
+
+```json
+ [
+   {
+    width: 800,
+    height: 450,
+   }
+ ]
+ ```
+ 
+You've tried converting the string to byte and decode with json.Unmarshal without luck. Is there a way to convert the string?
+
+### Solution:
+
+
+First, clean up the funny/strange string into something sensible with strings.Replace() function and then format it to JSON with json.MarshalIndent() function. json.MarshalIndent() is to pretty-print the JSON output to multiple lines instead of lumping everything into a single line.
+
+```golang
+ package main
+
+ import (
+ 	"encoding/json"
+ 	"fmt"
+ 	"os"
+ 	"strings"
+ )
+
+ func main() {
+
+ 	strFromDB := `{"width";800;"height";450}`
+ 	
+ 	// deal with ;
+ 	// change ; to : after "
+ 	dealtWith := strings.Replace(strFromDB, "\";", "\":", -1)
+ 	
+         fmt.Println("Converted to : ", dealtWith)
+
+ 	// trim and split
+ 	noCurlyBraces := strings.Replace(dealtWith, "{", "", -1)
+ 	noCurlyBraces = strings.Replace(noCurlyBraces, "}", "", -1)
+
+ 	// turn to slice
+
+ 	strSliceWithQuote := strings.Split(noCurlyBraces, ";")
+
+ 	fmt.Println("Slice : ", strSliceWithQuote)
+
+ 	jsonWithQuote, err := json.MarshalIndent(strSliceWithQuote, "", "  ")
+
+ 	if err != nil {
+ 		fmt.Println(err)
+ 		os.Exit(-1)
+ 	}
+
+ 	fmt.Println("JSON : \n",string(jsonWithQuote))
+
+ }
+ ```
+ 
+Output :
+```
+Converted to : {"width":800;"height":450}
+Slice : ["width":800 "height":450]
+```
+
+JSON :
+
+```json
+[
+"\"width\":800",
+"\"height\":450"
+]
+```
