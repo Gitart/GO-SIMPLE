@@ -1,4 +1,6 @@
 # Первый пример сортировки
+[Sample](https://www.socketloop.com/tutorials/golang-bubble-sort-example)
+
 ```
 package main
 
