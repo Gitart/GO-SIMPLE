@@ -1,5 +1,11 @@
 ## Пример работы с Pointer.
-[Pointer method](https://tour.golang.org/methods/5)
+[This sample](https://play.golang.org/p/ETouyXB_nZ)   
+[Pointer method](https://tour.golang.org/methods/5)   
+[Point sample](https://www.golang-book.com/books/intro/8)   
+[Point sample](https://nathanleclaire.com/blog/2014/08/09/dont-get-bitten-by-pointer-vs-non-pointer-method-receivers-in-golang/)   
+
+
+
 
 Показывает как меняется переменная (метод I) в структуре
 если использовать для передачи данных через & адресс 
