@@ -1,7 +1,7 @@
 ### Логирование операций
 
 
-```
+```golang
 package main
 import (
  "errors"
