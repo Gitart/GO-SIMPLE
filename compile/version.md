@@ -46,3 +46,33 @@ If you encounter this error message during compilation time:
 ```
 
 simply change "-X main.version v0.1" to "-X main.version=v0.1"
+
+
+## Other
+
+```golang
+ package main
+
+ import "fmt"
+
+ var str string
+
+ func main() {
+     fmt.Println(str)
+ }
+ ```
+ 
+and execute the program with -ldflags to initialize the str variable value
+```
+$ go run -ldflags "-X main.str abc" main.go
+```
+
+or if you prefer, build it first into executable binary :
+```
+$ go build -ldflags "-X main.str 'abc'" main.go && ./main
+```
+
+
+Output :
+
+abc
