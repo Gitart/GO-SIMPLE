@@ -1,4 +1,5 @@
 ## Info Load
+http://www.ozon.ru/context/detail/id/139528350/
 
 ```golang
 package main
