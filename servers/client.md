@@ -1,4 +1,4 @@
-
+## Simple client
 ```golang
 package main
 
@@ -16,7 +16,7 @@ func main() {
 }
 ```
 
-##delete request
+## delete request
 ```golang
 
 package main
