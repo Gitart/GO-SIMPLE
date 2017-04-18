@@ -45,3 +45,20 @@ func main() {
 }
 ```
 
+
+Being context-aware is more than knowing that these are HTML templates. The
+package understands what’s happening inside the templates. Take the following tem-
+plate snippet:
+
+```html
+<a href="/user?id={{.Id}}">{{.Content}}</a>
+```
+
+The html/template package expands this intelligently. For escaping purposes, it adds
+context-appropriate functionality. The preceding snippet is automatically expanded
+
+to look like this:
+```html
+<a href="/user?id={{.Id | urlquery}}">{{.Content | html}}</a>
+```
+
