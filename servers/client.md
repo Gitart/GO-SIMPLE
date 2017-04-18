@@ -48,3 +48,48 @@ func main() {
   res.Body.Close()
   fmt.Printf("%s", b)
 }
+```
+
+
+
+## Has time out
+
+```golang
+
+func hasTimedOut(err error) bool {
+  switch err := err.(type) {
+  case *url.Error:
+  if err, ok := err.Err.(net.Error); ok && err.Timeout() {
+  return true
+}
+
+
+case net.Error:
+if err.Timeout() {
+  return true
+}
+
+case *net.OpError:
+if err.Timeout() {
+  return true
+}
+}
+
+errTxt := "use of closed network connection"
+if err != nil && strings.Contains(err.Error(), errTxt) {
+  return true
+}
+return false
+}
+
+
+//This function provides the capability to detect a variety of timeout situations. The fol-
+//lowing snippet is an example of using that function to check whether an error was
+//caused by a timeout:
+
+res, err := http.Get("http://example.com/test.zip")
+if err != nil && hasTimedOut(err) {
+fmt.Println("A timeout error occured")
+return
+}
+```
