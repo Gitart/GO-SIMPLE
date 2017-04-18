@@ -30,3 +30,51 @@ http.HandleFunc("/", diaplayPage)
 http.ListenAndServe(":8080", nil)
 }
 ```
+
+## index.html
+```html
+<!DOCTYPE HTML>
+<html>
+{{template "head.html" .}}
+<body>
+<h1>{{.Title}}</h1>
+<p>{{.Content}}</p>
+</body>
+</html>
+```
+
+
+## Head.html
+```html
+<head>
+<meta charset="utf-8">
+<title>{{.Title}}</title>
+</head>
+```
+
+
+## Base.html
+
+```html
+{{define "base"}}<!DOCTYPE HTML>
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>{{template "title" .}}</title>
+{{ block "styles" . }}<style>
+h1 {
+color: #400080
+}
+</style>{{ end }}
+</head>
+
+<body>
+<h1>{{template "title" .}}</h1>
+{{template "content" .}}
+{{block "scripts" .}}{{end}}
+</body>
+
+</html>{{end}}
+```
+
