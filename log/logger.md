@@ -26,10 +26,10 @@ func initLog(traceHandle io.Writer,infoHandle io.Writer,warningHandle io.Writer,
 flag := log.Ldate | log.Ltime | log.Lshortfile
 
 // Create log.Logger objects
-Trace   = log.New(traceHandle, "TRACE: ", flag)
-Info    = log.New(infoHandle, "INFO: ", flag)
+Trace   = log.New(traceHandle,   "TRACE: ",   flag)
+Info    = log.New(infoHandle,    "INFO: ",    flag)
 Warning = log.New(warningHandle, "WARNING: ", flag)
-Error   = log.New(errorHandle, "ERROR: ", flag)
+Error   = log.New(errorHandle,   "ERROR: ",   flag)
 }
 
 
