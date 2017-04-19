@@ -74,6 +74,8 @@ func RemoveIndex(s []int, index int) []int {
 ```
 
 
+### Function delete
+```golang
 package main
 
 import (
@@ -90,4 +92,4 @@ func main() {
     n := RemoveIndex(all, 5)
     fmt.Println(n) //[0 1 2 3 4 6 7 8 9]
 }
-
+```
