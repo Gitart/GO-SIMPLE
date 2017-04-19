@@ -4,8 +4,8 @@
 package main
 
 import (
-"fmt"
-"sync"
+   "fmt"
+   "sync"
 )
 
 // wg is used to wait for the program to finish.
@@ -13,13 +13,12 @@ var wg sync.WaitGroup
 
 func main() {
  count := make(chan int)
- // Add a count of two, one for each goroutine.
+
+// Add a count of two, one for each goroutine.
  wg.Add(2)
  fmt.Println("Start Goroutines")
- // Launch a goroutine with label "Goroutine-1"
- go printCounts("Goroutine-1", count)
- // Launch a goroutine with label "Goroutine-2"
- go printCounts("Goroutine-2", count)
+ go printCounts("Goroutine-1", count)   // Launch a goroutine with label "Goroutine-1"
+ go printCounts("Goroutine-2", count)  // Launch a goroutine with label "Goroutine-2"
  fmt.Println("Communication of channel begins")
  count <- 1
 // Wait for the goroutines to finish.
@@ -34,11 +33,11 @@ func printCounts(label string, count chan int) {
 defer wg.Done()
 
 for {
-// Receives message from Channel
-val, ok := <-count
-if !ok {
-fmt.Println("Channel was closed")
-return
+   // Receives message from Channel
+   val, ok := <-count
+   if !ok {
+   fmt.Println("Channel was closed")
+   return
 }
 
 fmt.Printf("Count: %d received from %s \n", val, label)
