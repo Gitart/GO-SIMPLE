@@ -93,3 +93,71 @@ func main() {
     fmt.Println(n) //[0 1 2 3 4 6 7 8 9]
 }
 ```
+
+## Sample
+
+```golang
+package main
+
+import "fmt"
+
+func Exclude(xs *[]string, excluded map[string]bool) {
+    w := 0
+    for _, x := range *xs {
+        if !excluded[x] {
+            (*xs)[w] = x
+            w++
+        }
+    }
+    *xs = (*xs)[:w]
+}
+
+func mapFromSlice(ex []string) map[string]bool {
+    r := map[string]bool{}
+    for _, e := range ex {
+        r[e] = true
+    }
+    return r
+}
+
+func main() {
+    urls := []string{"test", "abc", "def", "ghi"}
+    remove := mapFromSlice([]string{"abc", "test"})
+    Exclude(&urls, remove)
+    fmt.Println(urls)
+}
+```
+
+
+## Sample 3
+
+```golang
+package main
+
+import "fmt"
+
+func main() {
+    urlList := []string{"test", "abc", "def", "ghi"}
+    remove := []string{"abc", "test"}
+
+    new_list := make([]string, 0)
+
+    my_map := make(map[string]bool, 0)
+    for _, ele := range remove {
+        my_map[ele] = true
+    }
+
+    for _, ele := range urlList {
+        _, is_in_map := my_map[ele]
+        if is_in_map {
+            fmt.Printf("Have to ignore : %s\n", ele)
+        } else {
+            new_list = append(new_list, ele)    
+        }
+    }
+
+    fmt.Println(new_list)
+
+}
+```
+
