@@ -104,9 +104,10 @@ count <- val
 
 
 ## Fibonacci
+A Three-Stage Pipeline with Three Goroutines Connected by Two Channels
 
 ```golang
-Listing 4-7. A Three-Stage Pipeline with Three Goroutines Connected by Two Channels
+
 
 package main
 import (
