@@ -1,5 +1,6 @@
 ## Logger
 
+```golang
 package main
 
 import (
@@ -51,3 +52,4 @@ Warning.Println("The counter variable is not being used")
 Trace.Println("Loop completed")
 
 }
+```
