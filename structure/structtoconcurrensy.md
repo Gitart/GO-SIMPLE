@@ -1,3 +1,6 @@
+## Concurrancy
+
+```golang
 package main
 
 import (
@@ -54,3 +57,4 @@ for i := 1; i <= 10; i++ {
       fmt.Println("\n")
     }
 }
+```
