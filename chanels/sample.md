@@ -104,7 +104,7 @@ func red(ch chan string){
 ```
 
 
-## Bahbfyn 2
+## Вариант № 2
 
 ```golang
 package main
