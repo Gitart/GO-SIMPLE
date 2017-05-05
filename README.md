@@ -18,6 +18,10 @@ http://guzalexander.com/2013/12/06/golang-channels-tutorial.html
 https://gobyexample.com/non-blocking-channel-operations   
 https://medium.com/golangspec/range-over-channels-in-go-3d45dd825d2a   
 https://www.dotnetperls.com/chan-go    
+http://openmymind.net/Introduction-To-Go-Channels/  
+https://mmcgrana.github.io/2012/09/go-by-example-timers-and-tickers.html  
+http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/   
+https://nanxiao.gitbooks.io/golang-101-hacks/content/posts/unbuffered-and-buffered-channels.html  
 
 
 
