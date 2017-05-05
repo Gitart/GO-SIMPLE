@@ -144,3 +144,27 @@ F(8): 21
 F(9): 34
 F(10): 55
 ```
+
+### Other
+```golang
+package main
+
+import "fmt"
+
+func main() {
+    ch := make(chan int)
+
+    go func(chan int) {
+        for _, v := range []int{1, 2,345,455,567,678,8999,5677} {
+            ch <- v
+        }
+        close(ch)
+    }(ch)
+
+    for v := range ch {
+        fmt.Println(v)
+    }
+
+    fmt.Println("The channel is closed.")
+}
+```
