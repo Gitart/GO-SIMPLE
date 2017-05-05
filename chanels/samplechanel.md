@@ -325,6 +325,7 @@ func main() {
 
 ### Unbuffered and buffered channels
 https://nanxiao.gitbooks.io/golang-101-hacks/content/posts/unbuffered-and-buffered-channels.html   
+http://www.tapirgames.com/blog/golang-channel    
 
 
 The channel is divided into two categories: unbuffered and buffered.  
