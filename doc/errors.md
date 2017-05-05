@@ -1,81 +1,84 @@
-50 Shades of Go: Traps, Gotchas, and Common Mistakes for New Golang Devs
+## 50 Shades of Go: Traps, Gotchas, and Common Mistakes for New Golang Devs
 
-Go is a simple and fun language, but, like any other language, it has a few gotchas... Many of those gotchas are not entirely Go's fault. Some of these mistakes are natural traps if you are coming from another language. Others are due to faulty assumptions and missing details.
+Go is a simple and fun language, but, like any other language, it has a few gotchas... Many of those gotchas are not entirely Go's fault. Some of these mistakes are natural traps if you are coming from another language. Others are due to faulty assumptions and missing details.    
 
 A lot of these gotchas may seem obvious if you took the time to learn the language reading the official spec, wiki, mailing list discussions, many great posts and presentations by Rob Pike, and the source code. Not everybody starts the same way though and that's OK. If you are new to Go the information here will save you hours debugging your code.
 
-This post covers Go 1.5 and below.
+### This post covers Go 1.5 and below.
 
 Total Beginner:
 
-Opening Brace Can't Be Placed on a Separate Line
-Unused Variables
-Unused Imports
-Short Variable Declarations Can Be Used Only Inside Functions
-Redeclaring Variables Using Short Variable Declarations
-Can't Use Short Variable Declarations to Set Field Values
-Accidental Variable Shadowing
-Can't Use "nil" to Initialize a Variable Without an Explicit Type
-Using "nil" Slices and Maps
-Map Capacity
-Strings Can't Be "nil"
-Array Function Arguments
-Unexpected Values in Slice and Array "range" Clauses
-Slices and Arrays Are One-Dimensional
-Accessing Non-Existing Map Keys
-Strings Are Immutable
-Conversions Between Strings and Byte Slices
-Strings and Index Operator
-Strings Are Not Always UTF8 Text
-String Length
-Missing Comma In Multi-Line Slice/Array/Map Literals
-log.Fatal and log.Panic Do More Than Log
-Built-in Data Structure Operations Are Not Synchronized
-Iteration Values For Strings in "range" Clauses
-Iterating Through a Map Using a "for range" Clause
-Fallthrough Behavior in "switch" Statements
-Increments and Decrements
-Bitwise NOT Operator
-Operator Precedence Differences
-Unexported Structure Fields Are Not Encoded
-App Exits With Active Goroutines
-Sending to an Unbuffered Channel Returns As Soon As the Target Receiver Is Ready
-Sending to an Closed Channel Causes a Panic
-Using "nil" Channels
-Methods with Value Receivers Can't Change the Original Value
-Intermediate Beginner:
+Opening Brace Can't Be Placed on a Separate Line 
+Unused Variables   
+Unused Imports   
+Short Variable Declarations Can Be Used Only Inside Functions  
+Redeclaring Variables Using Short Variable Declarations 
+Can't Use Short Variable Declarations to Set Field Values   
+Accidental Variable Shadowing   
+Can't Use "nil" to Initialize a Variable Without an Explicit Type   
+Using "nil" Slices and Maps 
+Map Capacity    
+Strings Can't Be "nil"  
+Array Function Arguments    
+Unexpected Values in Slice and Array "range" Clauses    
+Slices and Arrays Are One-Dimensional   
+Accessing Non-Existing Map Keys 
+Strings Are Immutable       
+Conversions Between Strings and Byte Slices     
+Strings and Index Operator      
+Strings Are Not Always UTF8 Text        
+String Length       
+Missing Comma In Multi-Line Slice/Array/Map Literals        
+log.Fatal and log.Panic Do More Than Log    
+Built-in Data Structure Operations Are Not Synchronized 
+Iteration Values For Strings in "range" Clauses 
+Iterating Through a Map Using a "for range" Clause  
+Fallthrough Behavior in "switch" Statements 
+Increments and Decrements   
+Bitwise NOT Operator    
+Operator Precedence Differences 
+Unexported Structure Fields Are Not Encoded 
+App Exits With Active Goroutines        
+Sending to an Unbuffered Channel Returns As Soon As the Target Receiver Is Ready        
+Sending to an Closed Channel Causes a Panic     
+Using "nil" Channels        
+Methods with Value Receivers Can't Change the Original Value    
 
-Closing HTTP Response Body
-Closing HTTP Connections
-Unmarshalling JSON Numbers into Interface Values
-Comparing Structs, Arrays, Slices, and Maps
-Recovering From a Panic
-Updating and Referencing Item Values in Slice, Array, and Map "for range" Clauses
-"Hidden" Data in Slices
-Slice Data Corruption
-"Stale" Slices
-Type Declarations and Methods
-Breaking Out of "for switch" and "for select" Code Blocks
-Iteration Variables and Closures in "for" Statements
-Deferred Function Call Argument Evaluation
-Deferred Function Call Execution
-Failed Type Assertions
-Blocked Goroutines and Resource Leaks
-Advanced Beginner:
+### Intermediate Beginner:  
+Closing HTTP Response Body  
+Closing HTTP Connections    
+Unmarshalling JSON Numbers into Interface Values    
+Comparing Structs, Arrays, Slices, and Maps 
+Recovering From a Panic 
+Updating and Referencing Item Values in Slice, Array, and Map "for range" Clauses   
+"Hidden" Data in Slices 
+Slice Data Corruption   
+"Stale" Slices  
+Type Declarations and Methods   
+Breaking Out of "for switch" and "for select" Code Blocks   
+Iteration Variables and Closures in "for" Statements    
+Deferred Function Call Argument Evaluation  
+Deferred Function Call Execution    
+Failed Type Assertions  
+Blocked Goroutines and Resource Leaks   
 
-Using Pointer Receiver Methods On Value Instances
-Updating Map Value Fields
-"nil" Interfaces and "nil" Interfaces Values
-Stack and Heap Variables
-GOMAXPROCS, Concurrency, and Parallelism
-Read and Write Operation Reordering
-Preemptive Scheduling 
+### Advanced Beginner:  
 
-Opening Brace Can't Be Placed on a Separate Line
+Using Pointer Receiver Methods On Value Instances   
+Updating Map Value Fields   
+"nil" Interfaces and "nil" Interfaces Values    
+Stack and Heap Variables    
+GOMAXPROCS, Concurrency, and Parallelism    
+Read and Write Operation Reordering 
+Preemptive Scheduling   
+
+
+### Opening Brace Can't Be Placed on a Separate Line
 
 level: beginner
 In most other languages that use braces you get to choose where you place them. Go is different. You can thank automatic semicolon injection (without lookahead) for this behavior. Yes, Go does have semicolons :-)
 
+```golang
 Fails:
 
 package main
@@ -86,12 +89,14 @@ func main()
 { //error, can't have the opening brace on a separate line
     fmt.Println("hello there!")
 }
+```
 Compile Error:
 
 /tmp/sandbox826898458/main.go:6: syntax error: unexpected semicolon or newline before {
 
 Works:
 
+```golang
 package main
 
 import "fmt"
@@ -99,7 +104,9 @@ import "fmt"
 func main() {  
     fmt.Println("works!")
 }
-Unused Variables
+```
+
+### Unused Variables
 
 level: beginner
 If you have an unused variable your code will fail to compile. There's an exception though. You must use variables you declare inside functions, but it's OK if you have unused global variables. It's also OK to have unused function arguments.
@@ -108,6 +115,7 @@ If you assign a new value to the unused variable your code will still fail to co
 
 Fails:
 
+```golang
 package main
 
 var gvar int //not an error
@@ -122,12 +130,15 @@ func main() {
         fmt.Println("Unused arg. No compile error")
     }("what?")
 }
+```
+
 Compile Errors:
 
 /tmp/sandbox473116179/main.go:6: one declared and not used /tmp/sandbox473116179/main.go:7: two declared and not used /tmp/sandbox473116179/main.go:8: three declared and not used
 
 Works:
 
+```golang
 package main
 
 import "fmt"
@@ -146,6 +157,8 @@ func main() {
     var four int
     four = four
 }
+```
+
 Another option is to comment out or remove the unused variables :-)
 
 Unused Imports
@@ -156,7 +169,7 @@ Your code will fail to compile if you import a package without using any of its 
 If you really need the imported package you can use the blank identifier, _, as its package name to avoid this compilation failure. The blank identifier is used to import packages for their side effects.
 
 Fails:
-
+```golang
 package main
 
 import (  
@@ -167,12 +180,14 @@ import (
 
 func main() {  
 }
+```
+
 Compile Errors:
 
 /tmp/sandbox627475386/main.go:4: imported and not used: "fmt" /tmp/sandbox627475386/main.go:5: imported and not used: "log" /tmp/sandbox627475386/main.go:6: imported and not used: "time"
 
 Works:
-
+```golang
 package main
 
 import (  
@@ -186,6 +201,8 @@ var _ = log.Println
 func main() {  
     _ = time.Now
 }
+```
+
 Another option is to remove or comment out the unused imports :-) The  goimports tool can help you with that.
 
 Short Variable Declarations Can Be Used Only Inside Functions
@@ -193,24 +210,30 @@ Short Variable Declarations Can Be Used Only Inside Functions
 level: beginner
 Fails:
 
+```golang
 package main
 
 myvar := 1 //error
 
 func main() {  
 }
+```
+
 Compile Error:
 
 /tmp/sandbox265716165/main.go:3: non-declaration statement outside function body
 
 Works:
 
+```golang
 package main
 
 var myvar = 1
 
 func main() {  
 }
+```
+
 Redeclaring Variables Using Short Variable Declarations
 
 level: beginner
@@ -219,19 +242,21 @@ You can't redeclare a variable in a standalone statement, but it is allowed in m
 The redeclared variable has to be in the same block or you'll end up with a shadowed variable.
 
 Fails:
-
+```golang
 package main
 
 func main() {  
     one := 0
     one := 1 //error
 }
+```
+
 Compile Error:
 
 /tmp/sandbox706333626/main.go:5: no new variables on left side of :=
 
 Works:
-
+```golang
 package main
 
 func main() {  
@@ -240,11 +265,13 @@ func main() {
 
     one,two = two,one
 }
+```
+
 Can't Use Short Variable Declarations to Set Field Values
 
 level: beginner
 Fails:
-
+```golang
 package main
 
 import (  
@@ -265,16 +292,15 @@ func main() {
   data.result, err := work() //error
   fmt.Printf("info: %+v\n",data)
 }
+```
+
 Compile Error:
-
 prog.go:18: non-name data.result on left side of := 
-
 Even though there's a ticket to address this gotcha it's unlikely to change because Rob Pike likes it "as is" :-)
-
 Use temporary variables or predeclare all your variables and use the standard assignment operator.
 
 Works:
-
+```golang
 package main
 
 import (  
@@ -301,11 +327,14 @@ func main() {
 
   fmt.Printf("info: %+v\n",data) //prints: info: {result:13}
 }
+```
+
 Accidental Variable Shadowing
 
 level: beginner
 The short variable declaration syntax is so convenient (especially for those coming from a dynamic language) that it's easy to treat it like a regular assignment operation. If you make this mistake in a new code block there will be no compiler error, but your app will not do what you expect.
 
+```golang
 package main
 
 import "fmt"
@@ -320,12 +349,11 @@ func main() {
     }
     fmt.Println(x)     //prints 1 (bad if you need 2)
 }
+```
+
 This is a very common trap even for experienced Go developers. It's easy to make and it could be hard to spot.
-
 You can use the vet command to find some of these problems. By default,  vet will not perform any shadowed variable checks. Make sure to use the  -shadow flag: go tool vet -shadow your_file.go
-
 Note that the vet command will not report all shadowed variables. Use  go-nyet for more aggressive shadowed variable detection.
-
 Can't Use "nil" to Initialize a Variable Without an Explicit Type
 
 level: beginner
@@ -333,6 +361,7 @@ The "nil" identifier can be used as the "zero value" for interfaces, functions, 
 
 Fails:
 
+```golang
 package main
 
 func main() {  
@@ -340,12 +369,15 @@ func main() {
 
     _ = x
 }
+```
+
 Compile Error:
 
 /tmp/sandbox188239583/main.go:4: use of untyped nil
 
 Works:
 
+```golang
 package main
 
 func main() {  
@@ -353,21 +385,26 @@ func main() {
 
     _ = x
 }
+```
+
 Using "nil" Slices and Maps
 
 level: beginner
 It's OK to add items to a "nil" slice, but doing the same with a map will produce a runtime panic.
 
 Works:
-
+```golang
 package main
 
 func main() {  
     var s []int
     s = append(s,1)
 }
+```
+
 Fails:
 
+```golang
 package main
 
 func main() {  
@@ -375,6 +412,8 @@ func main() {
     m["one"] = 1 //error
 
 }
+```
+
 Map Capacity
 
 level: beginner
@@ -382,12 +421,15 @@ You can specify the map capacity when it's created, but you can't use the cap() 
 
 Fails:
 
+```golang
 package main
 
 func main() {  
     m := make(map[string]int,99)
     cap(m) //error
 }
+```
+
 Compile Error:
 
 /tmp/sandbox326543983/main.go:5: invalid argument m (type map[string]int) for cap
@@ -399,6 +441,7 @@ This is a gotcha for developers who are used to assigning "nil" identifiers to s
 
 Fails:
 
+```golang
 package main
 
 func main() {  
@@ -408,12 +451,13 @@ func main() {
         x = "default"
     }
 }
+```
 Compile Errors:
 
 /tmp/sandbox630560459/main.go:4: cannot use nil as type string in assignment /tmp/sandbox630560459/main.go:6: invalid operation: x == nil (mismatched types string and nil)
 
 Works:
-
+```golang
 package main
 
 func main() {  
@@ -423,11 +467,14 @@ func main() {
         x = "default"
     }
 }
+```
+
 Array Function Arguments
 
 level: beginner
 If you are a C or C++ developer arrays for you are pointers. When you pass arrays to functions the functions reference the same memory location, so they can update the original data. Arrays in Go are values, so when you pass arrays to functions the functions get a copy of the original array data. This can be a problem if you are trying to update the array data.
 
+```golang
 package main
 
 import "fmt"
@@ -442,8 +489,11 @@ func main() {
 
     fmt.Println(x) //prints [1 2 3] (not ok if you need [7 2 3])
 }
+```
+
 If you need to update the original array data use array pointer types.
 
+```golang
 package main
 
 import "fmt"
@@ -458,8 +508,11 @@ func main() {
 
     fmt.Println(x) //prints [7 2 3]
 }
+```
+
 Another option is to use slices. Even though your function gets a copy of the slice variable it still references the original data.
 
+```golang
 package main
 
 import "fmt"
@@ -474,6 +527,8 @@ func main() {
 
     fmt.Println(x) //prints [7 2 3]
 }
+```
+
 Unexpected Values in Slice and Array "range" Clauses
 
 level: beginner
@@ -481,6 +536,7 @@ This can happen if you are used to the "for-in" or "foreach" statements in other
 
 Bad:
 
+```golang
 package main
 
 import "fmt"
@@ -492,8 +548,11 @@ func main() {
         fmt.Println(v) //prints 0, 1, 2
     }
 }
+```
+
 Good:
 
+```golang
 package main
 
 import "fmt"
@@ -505,6 +564,8 @@ func main() {
         fmt.Println(v) //prints a, b, c
     }
 }
+```
+
 Slices and Arrays Are One-Dimensional
 
 level: beginner
@@ -516,6 +577,7 @@ If you are using raw one-dimensional arrays you are responsible for indexing, bo
 
 Creating a dynamic multi-dimensional array using slices of "independent" slices is a two step process. First, you have to create the outer slice. Then, you have to allocate each inner slice. The inner slices are independent of each other. You can grow and shrink them without affecting other inner slices.
 
+```golang
 package main
 
 func main() {  
@@ -527,8 +589,10 @@ func main() {
         table[i] = make([]int,y)
     }
 }
-Creating a dynamic multi-dimensional array using slices of "shared data" slices is a three step process. First, you have to create the data "container" slice that will hold raw data. Then, you create the outer slice. Finally, you initialize each inner slice by reslicing the raw data slice.
+```
 
+Creating a dynamic multi-dimensional array using slices of "shared data" slices is a three step process. First, you have to create the data "container" slice that will hold raw data. Then, you create the outer slice. Finally, you initialize each inner slice by reslicing the raw data slice.
+```golang
 package main
 
 import "fmt"
@@ -551,6 +615,8 @@ func main() {
     fmt.Println(table,&table[1][0])
     //prints: [[0 1 2 3] [4 5 6 7]] <ptr_addr_x>
 }
+```
+
 There's a spec/proposal for multi-dimensional arrays and slices, but it looks like it's a low priority feature at this point in time.
 
 Accessing Non-Existing Map Keys
@@ -559,7 +625,7 @@ level: beginner
 This is a gotcha for developers who expect to get "nil" identifiers (like it's done in other languages). The returned value will be "nil" if the "zero value" for the corresponding data type is "nil", but it'll be different for other data types. Checking for the appropriate "zero value" can be used to determine if the map record exists, but it's not always reliable (e.g., what do you do if you have a map of booleans where the "zero value" is false). The most reliable way to know if a given map record exists is to check the second value returned by the map access operation.
 
 Bad:
-
+```golang
 package main
 
 import "fmt"
@@ -571,7 +637,9 @@ func main() {
         fmt.Println("no entry")
     }
 }
+```
 Good:
+```golang
 
 package main
 
@@ -584,13 +652,16 @@ func main() {
         fmt.Println("no entry")
     }
 }
+```
+
+
 Strings Are Immutable
 
 level: beginner
 Trying to update an individual character in a string variable using the index operator will result in a failure. Strings are read-only byte slices (with a few extra properties). If you do need to update a string then use a byte slice instead converting it to a string type when necessary.
 
 Fails:
-
+```golang
 package main
 
 import "fmt"
@@ -601,12 +672,15 @@ func main() {
 
     fmt.Println(x)
 }
+```
+
 Compile Error:
 
 /tmp/sandbox305565531/main.go:7: cannot assign to x[0]
 
 Works:
 
+```golang
 package main
 
 import "fmt"
@@ -618,6 +692,8 @@ func main() {
 
     fmt.Println(string(xbytes)) //prints Text
 }
+```
+
 Note that this isn't really the right way to update characters in a text string because a given character could be stored in multiple bytes. If you do need to make updates to a text string convert it to a rune sclice first. Even with rune slices a single character might span multiple runes, which can happen if you have characters with grave accent, for example. This complicated and ambiguous nature of "characters" is the reason why Go strings are represented as byte sequences.
 
 Conversions Between Strings and Byte Slices
@@ -636,6 +712,7 @@ Strings and Index Operator
 level: beginner
 The index operator on a string returns a byte value, not a character (like it's done in other languages).
 
+```golang
 package main
 
 import "fmt"
@@ -645,6 +722,8 @@ func main() {
     fmt.Println(x[0]) //print 116
     fmt.Printf("%T",x[0]) //prints uint8
 }
+```
+
 If you need to access specific string "characters" (unicode code points/runes) use the for range clause. The official "unicode/utf8" package and the experimental utf8string package (golang.org/x/exp/utf8string) are also useful. The utf8string package includes a convenient At() method. Converting the string to a slice of runes is an option too.
 
 Strings Are Not Always UTF8 Text
@@ -654,6 +733,7 @@ String values are not required to be UTF8 text. They can contain arbitrary bytes
 
 To know if you have a UTF8 text string use the ValidString() function from the "unicode/utf8" package.
 
+```golang
 package main
 
 import (  
@@ -668,6 +748,8 @@ func main() {
     data2 := "A\xfeC"
     fmt.Println(utf8.ValidString(data2)) //prints: false
 }
+```
+
 String Length
 
 level: beginner
@@ -677,6 +759,7 @@ data = u'♥'
 print(len(data)) #prints: 1  
 When you convert it to a similar Go code snippet you might be surprised.
 
+```golang
 package main
 
 import "fmt"
@@ -685,10 +768,13 @@ func main() {
     data := "♥"
     fmt.Println(len(data)) //prints: 3
 }
+```
+
 The built-in len() function returns the number of bytes instead of the number of characters like it's done for unicode strings in Python.
 
 To get the same results in Go use the RuneCountInString() function from the "unicode/utf8" package.
 
+```golang
 package main
 
 import (  
@@ -699,8 +785,11 @@ import (
 func main() {  
     data := "♥"
     fmt.Println(utf8.RuneCountInString(data)) //prints: 1
+    ```
+    
 Technically the RuneCountInString() function doesn't return the number of characters because a single character may span multiple runes.
 
+```golang
 package main
 
 import (  
@@ -713,11 +802,14 @@ func main() {
     fmt.Println(len(data))                    //prints: 3
     fmt.Println(utf8.RuneCountInString(data)) //prints: 2
 }
+```
+
 Missing Comma In Multi-Line Slice, Array, and Map Literals
 
 level: beginner
 Fails:
 
+```golang
 package main
 
 func main() {  
@@ -727,12 +819,15 @@ func main() {
     }
     _ = x
 }
+```
+
 Compile Errors:
 
 /tmp/sandbox367520156/main.go:6: syntax error: need trailing comma before newline in composite literal /tmp/sandbox367520156/main.go:8: non-declaration statement outside function body /tmp/sandbox367520156/main.go:9: syntax error: unexpected }
 
 Works:
 
+```golang
 package main
 
 func main() {  
@@ -745,6 +840,8 @@ func main() {
     y := []int{3,4,} //no error
     y = y
 }
+```
+
 You won't get a compiler error if you leave the trailing comma when you collapse the declaration to be on a single line.
 
 log.Fatal and log.Panic Do More Than Log
@@ -752,6 +849,7 @@ log.Fatal and log.Panic Do More Than Log
 level: beginner
 Logging libraries often provide different log levels. Unlike those logging libraries, the log package in Go does more than log if you call its Fatal*() and Panic*() functions. When your app calls those functions Go will also terminate your app :-)
 
+```golang
 package main
 
 import "log"
@@ -760,6 +858,8 @@ func main() {
     log.Fatalln("Fatal Level: log entry") //app exits here
     log.Println("Normal Level: log entry")
 }
+```
+
 Built-in Data Structure Operations Are Not Synchronized
 
 level: beginner
@@ -772,6 +872,7 @@ The index value (the first value returned by the "range" operation) is the index
 
 The for range clauses with string variables will try to interpret the data as UTF8 text. For any byte sequences it doesn't understand it will return 0xfffd runes (aka unicode replacement characters) instead of the actual data. If you have arbitrary (non-UTF8 text) data stored in your string variables, make sure to convert them to byte slices to get all stored data as is.
 
+```golang
 package main
 
 import "fmt"
@@ -789,11 +890,14 @@ func main() {
     }
     //prints: 0x41 0xfe 0x2 0xff 0x4 (good)
 }
+```
+
 Iterating Through a Map Using a "for range" Clause
 
 level: beginner
 This is a gotcha if you expect the items to be in a certain order (e.g., ordered by the key value). Each map iteration will produce different results. The Go runtime tries to go an extra mile randomizing the iteration order, but it doesn't always succeed so you may get several identical map iterations. Don't be surprised to see 5 identical iterations in a row.
 
+```golang
 package main
 
 import "fmt"
@@ -804,6 +908,8 @@ func main() {
         fmt.Println(k,v)
     }
 }
+```
+
 And if you use the Go Playground (https://play.golang.org/) you'll always get the same results because it doesn't recompile the code unless you make a change.
 
 Fallthrough Behavior in "switch" Statements
@@ -811,8 +917,8 @@ Fallthrough Behavior in "switch" Statements
 level: beginner
 The "case" blocks in "switch" statements break by default. This is different from other languages where the default behavior is to fall through to the next "case" block.
 
+```golang
 package main
-
 import "fmt"
 
 func main() {  
@@ -828,8 +934,11 @@ func main() {
     fmt.Println(isSpace('\t')) //prints true (ok)
     fmt.Println(isSpace(' '))  //prints false (not ok)
 }
+```
+
 You can force the "case" blocks to fall through by using the "fallthrough" statement at the end of each "case" block. You can also rewrite your switch statement to use expression lists in the "case" blocks.
 
+```golang
 package main
 
 import "fmt"
@@ -846,13 +955,15 @@ func main() {
     fmt.Println(isSpace('\t')) //prints true (ok)
     fmt.Println(isSpace(' '))  //prints true (ok)
 }
+```
+
 Increments and Decrements
 
 level: beginner
 Many languages have increment and decrement operators. Unlike other languages, Go doesn't support the prefix version of the operations. You also can't use these two operators in expressions.
 
 Fails:
-
+```golang
 package main
 
 import "fmt"
@@ -863,12 +974,13 @@ func main() {
     ++i //error
     fmt.Println(data[i++]) //error
 }
-Compile Errors:
+```
 
+Compile Errors:
 /tmp/sandbox101231828/main.go:8: syntax error: unexpected ++ /tmp/sandbox101231828/main.go:9: syntax error: unexpected ++, expecting :
 
 Works:
-
+```golang
 package main
 
 import "fmt"
@@ -879,6 +991,8 @@ func main() {
     i++
     fmt.Println(data[i])
 }
+```
+
 Bitwise NOT Operator
 
 level: beginner
@@ -886,6 +1000,7 @@ Many languages use ~ as the unary NOT operator (aka bitwise complement), but Go 
 
 Fails:
 
+```golang
 package main
 
 import "fmt"
@@ -893,12 +1008,15 @@ import "fmt"
 func main() {  
     fmt.Println(~2) //error
 }
+```
+
 Compile Error:
 
 /tmp/sandbox965529189/main.go:6: the bitwise complement operator is ^
 
 Works:
 
+```golang
 package main
 
 import "fmt"
@@ -907,12 +1025,15 @@ func main() {
     var d uint8 = 2
     fmt.Printf("%08b\n",^d)
 }
+```
+
 Go still uses ^ as the XOR operator, which may be confusing for some people.
 
 If you want you can represent a unary NOT operation (e.g, NOT 0x02) with a binary XOR operation (e.g., 0x02 XOR 0xff). This could explain why ^ is reused to represent unary NOT operations.
 
 Go also has a special 'AND NOT' bitwise operator (&^), which adds to the NOT operator confusion. It looks like a special feature/hack to support  A AND (NOT B) without requiring parentheses.
 
+```golang
 package main
 
 import "fmt"
@@ -931,11 +1052,14 @@ func main() {
     fmt.Printf("%08b &^%08b = %08b [A 'AND NOT' B]\n",a,b,a &^ b)
     fmt.Printf("%08b&(^%08b)= %08b [A AND (NOT B)]\n",a,b,a & (^b))
 }
+```
+
 Operator Precedence Differences
 
 level: beginner
 Aside from the "bit clear" operators (&^) Go has a set of standard operators shared by many other languages. The operator precedence is not always the same though.
 
+```golang
 package main
 
 import "fmt"
@@ -956,11 +1080,14 @@ func main() {
     //Go:    (0xf | 0x2) ^ 0x2
     //C++:    0xf | (0x2 ^ 0x2) -> 0xf
 }
+```
+
 Unexported Structure Fields Are Not Encoded
 
 level: beginner
 The struct fields starting with lowercase letters will not be (json, xml, gob, etc.) encoded, so when you decode the structure you'll end up with zero values in those unexported fields.
 
+```golang
 package main
 
 import (  
@@ -985,11 +1112,14 @@ func main() {
 
     fmt.Printf("%#v\n",out) //prints main.MyData{One:1, two:""}
 }
+```
+
 App Exits With Active Goroutines
 
 level: beginner
 The app will not wait for all your goroutines to complete. This is a common mistake for beginners in general. Everybody starts somewhere, so there's no shame in making rookie mistakes :-)
 
+```golang
 package main
 
 import (  
@@ -1012,6 +1142,8 @@ func doit(workerId int) {
     time.Sleep(3 * time.Second)
     fmt.Printf("[%v] is done\n",workerId)
 }
+```
+
 You'll see:
 
 [0] is running 
@@ -1020,6 +1152,7 @@ all done!
 
 One of the most common solutions is to use a "WaitGroup" variable. It will allow the main goroutine to wait until all worker goroutines are done. If your app has long running workers with message processing loops you'll also need a way to signal those goroutines that it's time to exit. You can send a "kill" message to each worker. Another option is to close a channel all workers are receiving from. It's a simple way to signal all goroutines at once.
 
+```golang
 package main
 
 import (  
@@ -1048,6 +1181,9 @@ func doit(workerId int,done <-chan struct{},wg sync.WaitGroup) {
     <- done
     fmt.Printf("[%v] is done\n",workerId)
 }
+```
+
+
 If you run this app you'll see:
 
 [0] is running 
@@ -1056,13 +1192,12 @@ If you run this app you'll see:
 [1] is done
 
 Looks like the workers are done before the main goroutine exists. Great! However, you'll also see this:
-
 fatal error: all goroutines are asleep - deadlock!
-
 That's not so great :-) What's going on? Why is there a deadlock? The workers exited and they executed wg.Done(). The app should work.
 
 The deadlock happens because each worker gets a copy of the original "WaitGroup" variable. When workers execute wg.Done() it has no effect on the "WaitGroup" variable in the main goroutine.
 
+```golang
 package main
 
 import (  
@@ -1103,13 +1238,15 @@ func doit(workerId int, wq <-chan interface{},done <-chan struct{},wg *sync.Wait
         }
     }
 }
-Now it works as expected :-)
+```
 
+Now it works as expected :-)
 Sending to an Unbuffered Channel Returns As Soon As the Target Receiver Is Ready
 
 level: beginner
 The sender will not be blocked until your message is processed by the receiver. Depending on the machine where you are running the code, the receiver goroutine may or may not have enough time to process the message before the sender continues its execution.
 
+```golang
 package main
 
 import "fmt"
@@ -1126,6 +1263,8 @@ func main() {
     ch <- "cmd.1"
     ch <- "cmd.2" //won't be processed
 }
+```
+
 Sending to an Closed Channel Causes a Panic
 
 level: beginner
@@ -1133,6 +1272,7 @@ Receiving from a closed channel is safe. The ok return value in a receive statem
 
 Sending data to a closed channel causes a panic. It is a documented behavior, but it's not very intuitive for new Go developers who might expect the send behavior to be similar to the receive behavior.
 
+```golang
 package main
 
 import (  
@@ -1154,10 +1294,13 @@ func main() {
     //do other work
     time.Sleep(2 * time.Second)
 }
+```
+
 Depending on your application the fix will be different. It might be a minor code change or it might require a change in your application design. Either way, you'll need to make sure your application doesn't try to send data to a closed channel.
 
 The buggy example can be fixed by using a special cancellation channel to signal the remaining workers that their results are no longer neeeded.
 
+```golang
 package main
 
 import (  
@@ -1183,11 +1326,14 @@ func main() {
     //do other work
     time.Sleep(3 * time.Second)
 }
+```
+
 Using "nil" Channels
 
 level: beginner
 Send and receive operations on a nil channel block forver. It's a well documented behavior, but it can be a surprise for new Go developers.
 
+```golang
 package main
 
 import (  
@@ -1208,10 +1354,12 @@ func main() {
     //do other work
     time.Sleep(2 * time.Second)
 }
-If you run the code you'll see a runtime error like this:  fatal error: all goroutines are asleep - deadlock!
+```
 
+If you run the code you'll see a runtime error like this:  fatal error: all goroutines are asleep - deadlock!
 This behavior can be used as a way to dynamically enable and disable case blocks in a select statement.
 
+```golang
 package main
 
 import "fmt"  
@@ -1248,11 +1396,14 @@ func main() {
     inch <- 2
     time.Sleep(3 * time.Second)
 }
-Methods with Value Receivers Can't Change the Original Value
+```
+
+Methods with Value Receivers Can't Change the Original Value   
 
 level: beginner
 Method receivers are like regular function arguments. If it's declared to be a value then your function/method gets a copy of your receiver argument. This means making changes to the receiver will not affect the original value unless your receiver is a map or slice variable and you are updating the items in the collection or the fields you are updating in the receiver are pointers.
 
+```golang
 package main
 
 import "fmt"
@@ -1288,6 +1439,7 @@ func main() {
     fmt.Printf("num=%v key=%v items=%v\n",d.num,*d.key,d.items)
     //prints num=7 key=v.key items=map[vmethod:true]
 }
+```
 
 Closing HTTP Response Body
 
@@ -1296,6 +1448,7 @@ When you make requests using the standard http library you get a http response v
 
 Some new Go developers do try to close the response body, but they do it in the wrong place.
 
+```golang
 package main
 
 import (  
@@ -1320,10 +1473,13 @@ func main() {
 
     fmt.Println(string(body))
 }
+```
+
 This code works for successful requests, but if the http request fails the resp variable might be nil, which will cause a runtime panic.
 
 The most common why to close the response body is by using a defer call after the http response error check.
 
+```golang
 package main
 
 import (  
@@ -1379,6 +1535,8 @@ func main() {
 
     fmt.Println(string(body))
 }
+```
+
 The orignal implementation for resp.Body.Close() also reads and discards the remaining response body data. This ensured that the http connection could be reused for another request if the keepalive http connection behavior is enabled. The latest http client behavior is different. Now it's your responsibility to read and discard the remaining response data. If you don't do it the http connection might be closed instead of being reused. This little gotcha is supposed to be documented in Go 1.5.
 
 If reusing the http connection is important for your application you might need to add something like this at the end of your response processing logic:
@@ -1396,6 +1554,7 @@ You can ask the http library to close the connection after your request is done 
 
 Another option is to add a Connection request header and set it to close. The target HTTP server should respond with a Connection: close header too. When the http library sees this response header it will also close the connection.
 
+```golang
 package main
 
 import (  
@@ -1433,8 +1592,11 @@ func main() {
 
     fmt.Println(len(string(body)))
 }
+```
+
 You can also disable http connection reuse globally. You'll need to create a custom http transport configuration for it.
 
+```golang
 package main
 
 import (  
@@ -1467,6 +1629,8 @@ func main() {
 
     fmt.Println(len(string(body)))
 }
+```
+
 If you send a lot of requests to the same HTTP server it's ok to keep the network connection open. However, if your app sends one or two requests to many different HTTP servers in a short period of time it's a good idea to close the network connections right after your app receives the responses. Increasing the open file limit might be a good idea too. The correct solution depends on your application though.
 
 Unmarshalling JSON Numbers into Interface Values
@@ -1474,6 +1638,7 @@ Unmarshalling JSON Numbers into Interface Values
 level: intermediate
 By default, Go treats numeric values in JSON as float64 numbers when you decode/unmarshal JSON data into an interface. This means the following code will fail with a panic:
 
+```golang
 package main
 
 import (  
@@ -1493,16 +1658,15 @@ func main() {
   var status = result["status"].(int) //error
   fmt.Println("status value:",status)
 }
+```
+
 Runtime Panic:
-
 panic: interface conversion: interface is float64, not int 
-
 If the JSON value you are trying to decode is an integer you have serveral options.
-
 Option one: use the float value as-is :-)
-
 Option two: convert the float value to the integer type you need.
 
+```golang
 package main
 
 import (  
@@ -1522,8 +1686,11 @@ func main() {
   var status = uint64(result["status"].(float64)) //ok
   fmt.Println("status value:",status)
 }
+```
+
 Option three: use a Decoder type to unmarshal JSON and tell it to represent JSON numbers using the Number interface type.
 
+```golang
 package main
 
 import (  
@@ -1547,8 +1714,11 @@ func main() {
   var status,_ = result["status"].(json.Number).Int64() //ok
   fmt.Println("status value:",status)
 }
+```
+
 You can use the string representation of your Number value to unmarshal it to a different numeric type:
 
+```golang
 package main
 
 import (  
@@ -1577,8 +1747,11 @@ func main() {
 
   fmt.Println("status value:",status)
 }
+```
+
 Option four: use a struct type that maps your numeric value to the numeric type you need.
 
+```golang
 package main
 
 import (  
@@ -1602,10 +1775,13 @@ func main() {
   fmt.Printf("result => %+v",result)
   //prints: result => {Status:200}
 }
+```
+
 Option five: use a struct that maps your numeric value to the json.RawMessage type if you need to defer the value decoding.
 
 This option is useful if you have to perform conditional JSON field decoding where the field type or structure might change.
 
+```golang
 package main
 
 import (  
@@ -1646,11 +1822,14 @@ func main() {
     fmt.Printf("[%v] result => %+v\n",idx,result)
   }
 }
+```
+
 Comparing Structs, Arrays, Slices, and Maps
 
 level: intermediate
 You can use the equality operator, ==, to compare struct variables if each structure field can be compared with the equality operator.
 
+```golang
 package main
 
 import "fmt"
@@ -1673,8 +1852,11 @@ func main() {
     v2 := data{}
     fmt.Println("v1 == v2:",v1 == v2) //prints: v1 == v2: true
 }
+```
+
 If any of the struct fields are not comparable then using the equality operator will result in compile time errors. Note that arrays are comparable only if their data items are comparable.
 
+```golang
 package main
 
 import "fmt"
@@ -1692,10 +1874,12 @@ func main() {
     v2 := data{}
     fmt.Println("v1 == v2:",v1 == v2)
 }
-Go does provide a number of helper functions to compare variables that can't be compared using the comparison operators.
+```
 
+Go does provide a number of helper functions to compare variables that can't be compared using the comparison operators.
 The most generic solution is to use the DeepEqual() function in the reflect package.
 
+```golang
 package main
 
 import (  
@@ -1724,8 +1908,11 @@ func main() {
     s2 := []int{1, 2, 3}
     fmt.Println("s1 == s2:",reflect.DeepEqual(s1, s2)) //prints: s1 == s2: true
 }
+```
+
 Aside from being slow (which may or may not be a deal breaker for your application), DeepEqual() also has its own gotchas.
 
+```golang
 package main
 
 import (  
@@ -1738,8 +1925,11 @@ func main() {
     b2 := []byte{}
     fmt.Println("b1 == b2:",reflect.DeepEqual(b1, b2)) //prints: b1 == b2: false
 }
+```
+
 DeepEqual() doesn't consider an empty slice to be equal to a "nil" slice. This behavior is different from the behavior you get using the bytes.Equal() function. bytes.Equal() considers "nil" and empty slices to be equal.
 
+```golang
 package main
 
 import (  
@@ -1752,8 +1942,10 @@ func main() {
     b2 := []byte{}
     fmt.Println("b1 == b2:",bytes.Equal(b1, b2)) //prints: b1 == b2: true
 }
-DeepEqual() isn't always perfect comparing slices.
+```
 
+DeepEqual() isn't always perfect comparing slices.
+```golang
 package main
 
 import (  
@@ -1783,7 +1975,10 @@ func main() {
     fmt.Println("data == decoded:",reflect.DeepEqual(data, decoded)) 
     //prints: data == decoded: false (not ok)
 }
-If your byte slices (or strings) contain text data you might be tempted to use  ToUpper() or ToLower() from the "bytes" and "strings" packages when you need to compare values in a case insensitive manner (before using  ==,bytes.Equal(), or bytes.Compare()). It will work for English text, but it will not work for text in many other languages. strings.EqualFold() and  bytes.EqualFold() should be used instead.
+```
+
+If your byte slices (or strings) contain text data you might be tempted to use  ToUpper() or ToLower() from the "bytes" and "strings" packages when you need to compare values in a case insensitive manner (before using  ==,bytes.Equal(), or bytes.Compare()). It will work for English text, but it will not work for text in many other languages. strings.EqualFold() and  bytes.EqualFold() should be used instead.  
+
 
 If your byte slices contain secrets (e.g., cryptographic hashes, tokens, etc.) that need to be validated against user-provided data, don't use reflect.DeepEqual(),  bytes.Equal(), or bytes.Compare() because those functions will make your application vulnerable to timing attacks. To avoid leaking the timing information use the functions from the 'crypto/subtle' package (e.g.,  subtle.ConstantTimeCompare()).
 
@@ -1793,7 +1988,7 @@ level: intermediate
 The recover() function can be used to catch/intercept a panic. Calling  recover() will do the trick only when it's done in a deferred function.
 
 Incorrect:
-
+```golang
 package main
 
 import "fmt"
@@ -1804,8 +1999,10 @@ func main() {
     recover() //won't be executed :)
     fmt.Println("ok")
 }
+```
 Works:
 
+```golang
 package main
 
 import "fmt"
@@ -1817,10 +2014,12 @@ func main() {
 
     panic("not good")
 }
+```
+
 The call to recover() works only if it's called directly in your deferred function.
 
 Fails:
-
+```golang
 package main
 
 import "fmt"
@@ -1836,11 +2035,14 @@ func main() {
 
     panic("not good")
 }
+```
+
 Updating and Referencing Item Values in Slice, Array, and Map "range" Clauses
 
 level: intermediate
 The data values generated in the "range" clause are copies of the actual collection elements. They are not references to the original items. This means that updating the values will not change the original data. It also means that taking the address of the values will not give you pointers to the original data.
 
+```golang
 package main
 
 import "fmt"
@@ -1853,8 +2055,11 @@ func main() {
 
     fmt.Println("data:",data) //prints data: [1 2 3]
 }
+```
+
 If you need to update the original collection record value use the index operator to access the data.
 
+```golang
 package main
 
 import "fmt"
@@ -1867,8 +2072,11 @@ func main() {
 
     fmt.Println("data:",data) //prints data: [10 20 30]
 }
+```
+
 If your collection holds pointer values then the rules are slightly different. You still need to use the index operator if you want the original record to point to another value, but you can update the data stored at the target location using the second value in the "for range" clause.
 
+```golang
 package main
 
 import "fmt"
@@ -1883,10 +2091,12 @@ func main() {
     fmt.Println(data[0],data[1],data[2]) //prints &{10} &{20} &{30}
 }
 "Hidden" Data in Slices
+```
 
 level: intermediate
 When you reslice a slice, the new slice will reference the array of the original slice. If you forget about this behavior it can lead to unexpected memory usage if your application allocates large temporary slices creating new slices from them to refer to small sections of the original data.
 
+```golang
 package main
 
 import "fmt"
@@ -1901,8 +2111,11 @@ func main() {
     data := get()
     fmt.Println(len(data),cap(data),&data[0]) //prints: 3 10000 <byte_addr_x>
 }
+```
+
 To avoid this trap make sure to copy the data you need from the temporary slice (instead of reslicing it).
 
+```golang
 package main
 
 import "fmt"
@@ -1919,11 +2132,14 @@ func main() {
     data := get()
     fmt.Println(len(data),cap(data),&data[0]) //prints: 3 3 <byte_addr_y>
 }
+```
+
 Slice Data "Corruption"
 
 level: intermediate
 Let's say you need to rewrite a path (stored in a slice). You reslice the path to reference each directory modifying the first folder name and then you combine the names to create a new path.
 
+```golang
 package main
 
 import (  
@@ -1947,10 +2163,13 @@ func main() {
 
     fmt.Println("new path =>",string(path))
 }
+```
+
 It didn't work as you expected. Instead of "AAAAsuffix/BBBBBBBBB" you ended up with "AAAAsuffix/uffixBBBB". It happened because both directory slices referenced the same underlying array data from the original path slice. This means that the original path is also modified. Depending on your application this might be a problem too.
 
 This problem can fixed by allocating new slices and copying the data you need. Another option is to use the full slice expression.
 
+```golang
 package main
 
 import (  
@@ -1974,6 +2193,8 @@ func main() {
 
     fmt.Println("new path =>",string(path))
 }
+```
+
 The extra parameter in the full slice expression controls the capacity for the new slice. Now appending to that slice will trigger a new buffer allocation instead of overwriting the data in the second slice.
 
 "Stale" Slices
@@ -1983,6 +2204,7 @@ Multiple slices can reference the same data. This can happen when you create a n
 
 At some point adding data to one of the slices will result in a new array allocation when the original array can't hold any more new data. Now other slices will point to the old array (with old data).
 
+```golang
 import "fmt"
 
 func main() {  
@@ -2006,6 +2228,8 @@ func main() {
     fmt.Println(s1) //prints [1 22 23]
     fmt.Println(s2) //prints [32 33 14]
 }
+```
+
 Type Declarations and Methods
 
 level: intermediate
@@ -2013,6 +2237,7 @@ When you create a type declaration by defining a new type from an existing (non-
 
 Fails:
 
+```golang
 package main
 
 import "sync"
@@ -2024,6 +2249,8 @@ func main() {
     mtx.Lock() //error
     mtx.Unlock() //error  
 }
+```
+
 Compile Errors:
 
 /tmp/sandbox106401185/main.go:9: mtx.Lock undefined (type myMutex has no field or method Lock) /tmp/sandbox106401185/main.go:10: mtx.Unlock undefined (type myMutex has no field or method Unlock)
@@ -2032,6 +2259,7 @@ If you do need the methods from the original type you can define a new struct ty
 
 Works:
 
+```golang
 package main
 
 import "sync"
@@ -2045,10 +2273,12 @@ func main() {
     lock.Lock() //ok
     lock.Unlock() //ok
 }
+```
+
 Interface type declarations also retain their method sets.
 
 Works:
-
+```golang
 package main
 
 import "sync"
@@ -2060,11 +2290,14 @@ func main() {
     lock.Lock() //ok
     lock.Unlock() //ok
 }
+```
+
 Breaking Out of "for switch" and "for select" Code Blocks
 
 level: intermediate
 A "break" statement without a label only gets you out of the inner switch/select block. If using a "return" statement is not an option then defining a label for the outer loop is the next best thing.
 
+```golang
 package main
 
 import "fmt"
@@ -2081,6 +2314,8 @@ func main() {
 
     fmt.Println("out!")
 }
+```
+
 A "goto" statement will do the trick too...
 
 Iteration Variables and Closures in "for" Statements
@@ -2090,6 +2325,7 @@ This is the most common gotcha in Go. The iteration variables in for statements 
 
 Incorrect:
 
+```golang
 package main
 
 import (  
@@ -2109,10 +2345,13 @@ func main() {
     time.Sleep(3 * time.Second)
     //goroutines print: three, three, three
 }
+```
+
 The easiest solution (that doesn't require any changes to the goroutine) is to save the current iteration variable value in a local variable inside the for loop block.
 
 Works:
 
+```golang
 package main
 
 import (  
@@ -2133,10 +2372,12 @@ func main() {
     time.Sleep(3 * time.Second)
     //goroutines print: one, two, three
 }
+```
+
 Another solution is to pass the current iteration variable as a parameter to the anonymous goroutine.
 
 Works:
-
+```golang
 package main
 
 import (  
@@ -2156,10 +2397,12 @@ func main() {
     time.Sleep(3 * time.Second)
     //goroutines print: one, two, three
 }
+```
+
 Here's a slightly more complicated version of the trap.
 
 Incorrect:
-
+```golang
 package main
 
 import (  
@@ -2185,8 +2428,11 @@ func main() {
     time.Sleep(3 * time.Second)
     //goroutines print: three, three, three
 }
+```
+
 Works:
 
+```golang
 package main
 
 import (  
@@ -2213,8 +2459,11 @@ func main() {
     time.Sleep(3 * time.Second)
     //goroutines print: one, two, three
 }
+```
+
 What do you think you'll see when you run this code (and why)?
 
+```golang
 package main
 
 import (  
@@ -2239,11 +2488,14 @@ func main() {
 
     time.Sleep(3 * time.Second)
 }
+```
+
 Deferred Function Call Argument Evaluation
 
 level: intermediate
 Arguments for a deferred function call are evaluated when the defer statement is evaluated (not when the function is actually executing).
 
+```golang
 package main
 
 import "fmt"
@@ -2255,11 +2507,14 @@ func main() {
     i++
     //prints: result => 2 (not ok if you expected 4)
 }
+```
+
 Deferred Function Call Execution
 
 level: intermediate
 The deferred calls are executed at the end of the containing function and not at the end of the containing code block. It's an easy mistake to make for new Go developers confusing the deferred code execution rules with the variable scoping rules. It can become a problem if you have a long running function with a for loop that tries to defer resource cleanup calls in each iteration.
 
+```golang
 package main
 
 import (  
@@ -2302,8 +2557,10 @@ func main() {
         //do something with the file...
     }
 }
-One way to solve the problem is by wrapping the code block in a function.
+```
 
+One way to solve the problem is by wrapping the code block in a function.
+```golang
 package main
 
 import (  
@@ -2348,6 +2605,8 @@ func main() {
         }()
     }
 }
+```
+
 Another option is to get rid of the defer statement :-)
 
 Failed Type Assertions
@@ -2356,7 +2615,7 @@ level: intermediate
 Failed type assertions return the "zero value" for the target type used in the assertion statement. This can lead to unexpected behavior when it's mixed with variable shadowing.
 
 Incorrect:
-
+```golang
 package main
 
 import "fmt"
@@ -2371,8 +2630,10 @@ func main() {
         //prints: [not an int] value => 0 (not "great")
     }
 }
-Works:
+```
 
+Works:
+```golang
 package main
 
 import "fmt"
@@ -2387,11 +2648,14 @@ func main() {
         //prints: [not an int] value => great (as expected)
     }
 }
+```
+
 Blocked Goroutines and Resource Leaks
 
 level: intermediate
 Rob Pike talked about a number of fundamental concurrency patterns in his "Go Concurrency Patterns" presentation at Google I/O in 2012. Fetching the first result from a number of targets is one of them.
 
+```golang
 func First(query string, replicas ...Search) Result {  
     c := make(chan Result)
     searchReplica := func(i int) { c <- replicas[i](query) }
@@ -2400,6 +2664,8 @@ func First(query string, replicas ...Search) Result {
     }
     return <-c
 }
+```
+
 The function starts a goroutines for each search replica. Each goroutine sends its search result to the result channel. The first value from the result channel is returned.
 
 What about the results from the other goroutines? What about the goroutines themselves?
@@ -2407,7 +2673,7 @@ What about the results from the other goroutines? What about the goroutines them
 The result channel in the First() function is unbuffered. This means that only the first goroutine returns. All other goroutines are stuck trying to send their results. This means if you have more than one replica each call will leak resources.
 
 To avoid the leaks you need to make sure all goroutines exit. One potential solution is to use a buffered result channel big enough to hold all results.
-
+```golang
 func First(query string, replicas ...Search) Result {  
     c := make(chan Result,len(replicas))
     searchReplica := func(i int) { c <- replicas[i](query) }
@@ -2416,8 +2682,10 @@ func First(query string, replicas ...Search) Result {
     }
     return <-c
 }
+```
 Another potential solution is to use a select statement with a default case and a buffered result channel that can hold one value. The default case ensures that the goroutines don't get stuck even when the result channel can't receive messages.
 
+```golang
 func First(query string, replicas ...Search) Result {  
     c := make(chan Result,1)
     searchReplica := func(i int) { 
@@ -2431,8 +2699,11 @@ func First(query string, replicas ...Search) Result {
     }
     return <-c
 }
+```
+
 You can also use a special cancellation channel to interrupt the workers.
 
+```golang
 func First(query string, replicas ...Search) Result {  
     c := make(chan Result)
     done := make(chan struct{})
@@ -2449,16 +2720,19 @@ func First(query string, replicas ...Search) Result {
 
     return <-c
 }
+```
+
 Why did the presentation contain these bugs? Rob Pike simply didn't want to comlicate the slides. It makes sense, but it can be a problem for new Go developers who would use the code as is without thinking that it might have problems.
 
 
-Using Pointer Receiver Methods On Value Instances
+### Using Pointer Receiver Methods On Value Instances
 
 level: advanced
 It's OK to call a pointer receiver method on a value as long as the value is addressable. In other words, you don't need to have a value receiver version of the method in some cases.
 
 Not every variable is addressable though. Map elements are not addressable. Variables referenced through interfaces are also not addressable.
 
+```golang
 package main
 
 import "fmt"
@@ -2485,6 +2759,8 @@ func main() {
     m := map[string]data {"x":data{"three"}}
     m["x"].print() //error
 }
+```
+
 Compile Errors:
 
 /tmp/sandbox017696142/main.go:21: cannot use data literal (type data) as type printer in assignment: data does not implement printer (print method has pointer receiver)
@@ -2497,6 +2773,7 @@ If you have a map of struct values you can't update individual struct fields.
 
 Fails:
 
+```golang
 package main
 
 type data struct {  
@@ -2507,14 +2784,16 @@ func main() {
     m := map[string]data {"x":{"one"}}
     m["x"].name = "two" //error
 }
+```
+
 Compile Error:
 
 /tmp/sandbox380452744/main.go:9: cannot assign to m["x"].name
 
 It doesn't work because map elements are not addressable.
-
 What can be extra confusing for new Go devs is the fact that slice elements are addressable.
 
+```golang
 package main
 
 import "fmt"
@@ -2528,10 +2807,13 @@ func main() {
     s[0].name = "two" //ok
     fmt.Println(s)    //prints: [{two}]
 }
+```
+
 Note that a while ago it was possible to update map element fields in one of the Go compilers (gccgo), but that behavior was quickly fixed :-) It was also considered as a potential feature for Go 1.3. It wasn't important enough to support at that point in time, so it's still on the todo list.
 
 The first work around is to use a temporary variable.
 
+```golang
 package main
 
 import "fmt"
@@ -2547,8 +2829,10 @@ func main() {
     m["x"] = r
     fmt.Printf("%v",m) //prints: map[x:{two}]
 }
+```
 Another workaround is to use a map of pointers.
 
+```golang
 package main
 
 import "fmt"
@@ -2562,8 +2846,11 @@ func main() {
     m["x"].name = "two" //ok
     fmt.Println(m["x"]) //prints: &{two}
 }
+```
+
 By the way, what happens when you run this code?
 
+```golang
 package main
 
 type data struct {  
@@ -2574,6 +2861,8 @@ func main() {
     m := map[string]*data {"x":{"one"}}
     m["z"].name = "what?" //???
 }
+```
+
 "nil" Interfaces and "nil" Interfaces Values
 
 level: advanced
@@ -2581,6 +2870,7 @@ This is the second most common gotcha in Go because interfaces are not pointers 
 
 The interface type and value fields are populated based on the type and value of the variable used to create the corresponding interface variable. This can lead to unexpected behavior when you are trying to check if an interface variable equals to "nil".
 
+```golang
 package main
 
 import "fmt"
@@ -2596,10 +2886,12 @@ func main() {
     fmt.Println(in,in == nil)     //prints: <nil> false
     //'data' is 'nil', but 'in' is not 'nil'
 }
+```
+
 Watch out for this trap when you have a function that returns interfaces.
 
 Incorrect:
-
+```golang
 package main
 
 import "fmt"
@@ -2620,8 +2912,11 @@ func main() {
         //'res' is not 'nil', but its value is 'nil'
     }
 }
+```
+
 Works:
 
+```golang
 package main
 
 import "fmt"
@@ -2645,14 +2940,18 @@ func main() {
         fmt.Println("bad result (res is nil)") //here as expected
     }
 }
-Stack and Heap Variables
+```
+
+### Stack and Heap Variables
 
 level: advanced
 You don't always know if your variable is allocated on the stack or heap. In C++ creating variables using the new operator always means that you have a heap variable. In Go the compiler decides where the variable will be allocated even if the new() or make() functions are used. The compiler picks the location to store the variable based on its size and the result of "escape analysis". This also means that it's ok to return references to local variables, which is not ok in other languages like C or C++.
 
+
 If you need to know where your variables are allocated pass the "-m" gc flag to "go build" or "go run" (e.g., go run -gcflags -m app.go).
 
-GOMAXPROCS, Concurrency, and Parallelism
+
+### GOMAXPROCS, Concurrency, and Parallelism
 
 level: advanced
 Go 1.4 and below uses only one execution context / OS thread. This means that only one goroutine can execute at any given time. Starting with 1.5 Go sets the number of execution contexts to the number of logical CPU cores returned by  runtime.NumCPU(). That number may or may not match the total number of logical CPU cores on your system depending on the CPU affinity settings of your process. You can adjust this number by changing the GOMAXPROCS environment variable or by calling the runtime.GOMAXPROCS() function.
@@ -2661,6 +2960,7 @@ There's a common misconception that GOMAXPROCS represents the number of CPUs Go 
 
 You can set GOMAXPROCS to more than the number of your CPUs. The max value for GOMAXPROCS is 256.
 
+```golang
 package main
 
 import (  
@@ -2676,11 +2976,14 @@ func main() {
     runtime.GOMAXPROCS(300)
     fmt.Println(runtime.GOMAXPROCS(-1)) //prints: 256
 }
+```
+
 Read and Write Operation Reordering
 
 level: advanced
 Go may reorder some operations, but it ensures that the overall behavior in the goroutine where it happens doesn't change. However, it doesn't guarantee the order of execution across multiple goroutines.
 
+```golang
 package main
 
 import (  
@@ -2713,8 +3016,10 @@ func main() {
     go p()
     time.Sleep(1 * time.Second)
 }
-If you run this code a few times you might see these a and b variable combinations:
+```
 
+If you run this code a few times you might see these a and b variable combinations:
+```
 1 
 2
 
@@ -2729,6 +3034,7 @@ If you run this code a few times you might see these a and b variable combinatio
 
 1 
 4
+```
 
 The most interesting combination for a and b is "02". It shows that b was updated before a.
 
@@ -2738,7 +3044,7 @@ Preemptive Scheduling
 
 level: advanced
 It's possible to have a rogue goroutine that prevents other goroutines from running. It can happen if you have a for loop that doesn't allow the scheduler to run.
-
+```golang
 package main
 
 import "fmt"
@@ -2754,10 +3060,13 @@ func main() {
     }
     fmt.Println("done!")
 }
+```
+
 The for loop doesn't have to be empty. It'll be a problem as long as it contains code that doesn't trigger the scheduler execution.
 
 The scheduler will run after GC, "go" statements, blocking channel operations, blocking system calls, and lock operations. It may also run when a non-inlined function is called.
 
+```golang
 package main
 
 import "fmt"
@@ -2774,10 +3083,13 @@ func main() {
     }
     fmt.Println("done!")
 }
+```
+
 To find out if the function you call in the for loop is inlined pass the "-m" gc flag to "go build" or "go run" (e.g., go build -gcflags -m).
 
 Another option is to invoke the scheduler explicitly. You can do it with the  Gosched() function from the "runtime" package.
 
+```golang
 package main
 
 import (  
@@ -2797,4 +3109,6 @@ func main() {
     }
     fmt.Println("done!")
 }
+```
+
 If you made it here and you have comments or ideas feel free to add a note to this Reddit discussion.
