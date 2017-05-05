@@ -239,3 +239,44 @@ func main() {
       wg.Wait()                         // Wait for completing all goroutines
 }
 ```
+
+
+
+```golang
+package main
+
+import "fmt"
+
+func main() {
+    // Make a channel that returns an int.
+    c := make(chan int)
+
+    // Call this func.
+    go func() {
+        // This does a long-running numerical computation.
+        // ... It increments a number, then decrements it.
+        res := 0
+        for i := 0; i < 100; i++ {
+            for x := 0; x < 10000; x++ {
+                for z := 0; z < 10000; z++ {
+                    res++
+                }
+                for z := 0; z < 10000; z++ {
+                    res--
+                }
+            }
+        }
+        // Return the counter on the channel.
+        c <- res
+    }()
+
+    fmt.Println("HERE")
+
+    // Wait for result of func, store value in local.
+    res := <-c
+    fmt.Println("DONE")
+    fmt.Println("RESULT =", res)
+}
+```
+
+
