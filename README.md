@@ -17,6 +17,8 @@ http://golangtutorials.blogspot.com/2011/06/channels-in-go.html
 http://guzalexander.com/2013/12/06/golang-channels-tutorial.html   
 https://gobyexample.com/non-blocking-channel-operations   
 https://medium.com/golangspec/range-over-channels-in-go-3d45dd825d2a   
+https://www.dotnetperls.com/chan-go    
+
 
 
 
