@@ -43,3 +43,18 @@ if predicate(i) {
  }
 }
 ```
+## Two example
+```golang
+package main
+
+import (
+  "bytes"
+  "fmt"
+)
+
+func main() {
+  b    := []byte("a,b,c")
+  sep  := []byte(",")
+  fmt.Printf("%q\n", bytes.Split(b, sep)[1])
+}
+```
