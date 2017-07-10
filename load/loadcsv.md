@@ -1,6 +1,9 @@
 
-// https://golang.org/pkg/encoding/csv/#example_Reader
-// https://www.dotnetperls.com/csv-go
+## Load CSV File 
+
+
+[Read](https://golang.org/pkg/encoding/csv/#example_Reader)  
+[CSV Go] (https://www.dotnetperls.com/csv-go)  
 
 
 ```golang
