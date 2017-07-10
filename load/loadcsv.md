@@ -2,6 +2,8 @@
 // https://golang.org/pkg/encoding/csv/#example_Reader
 // https://www.dotnetperls.com/csv-go
 
+
+```golang
 package main
 
 
@@ -93,9 +95,6 @@ type Reader struct {
 	TrimLeadingSpace bool // trim leading space
 	                      // contains filtered or unexported fields
 }
-
-
-
 
 /*
 	uid	
@@ -332,3 +331,5 @@ func CountRec(NameTable string) int64 {
 	}
 	return response
 }
+'''
+
