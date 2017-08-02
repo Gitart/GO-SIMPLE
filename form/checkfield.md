@@ -72,13 +72,14 @@ if m, _ := regexp.MatchString("^[a-zA-Z]+$", r.Form.Get("engname")); !m {
 
 Если вы хотите узнать, вошли ли пользователи в действительные адреса электронной почты, вы можете использовать 
 следующее регулярное выражение:
+
 ```golang
     if m, _ := regexp.MatchString(`^([\w\.\_]{2,10})@(\w{1,}).([a-z]{2,4})$`, r.Form.Get("email")); !m {
         fmt.Println("no")
     }else{
         fmt.Println("yes")
     }
-    '''
+'''
     
 ### Выпадающий список
 
@@ -92,9 +93,10 @@ if m, _ := regexp.MatchString("^[a-zA-Z]+$", r.Form.Get("engname")); !m {
     <option value="banana">banana</option>
     </select>
 ```    
+
 Мы можем использовать следующую стратегию для дезинфекции нашего вклада:
    
-   ```golang
+```golang
    slice:=[]string{"apple","pear","banana"}
 
     for _, v := range slice {
@@ -103,7 +105,7 @@ if m, _ := regexp.MatchString("^[a-zA-Z]+$", r.Form.Get("engname")); !m {
         }
     }
     return false
- ```
+```
     
 Все функции, которые я показал выше, находятся в моем проекте с открытым исходным кодом для работы на срезах и картах: 
 https://github.com/astaxie/beeku
