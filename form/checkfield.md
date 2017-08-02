@@ -103,7 +103,7 @@ if m, _ := regexp.MatchString("^[a-zA-Z]+$", r.Form.Get("engname")); !m {
         }
     }
     return false
-    ```
+ ```
     
 Все функции, которые я показал выше, находятся в моем проекте с открытым исходным кодом для работы на срезах и картах: 
 https://github.com/astaxie/beeku
@@ -120,7 +120,6 @@ https://github.com/astaxie/beeku
     <input type="radio" name="gender" value="1">Male
     <input type="radio" name="gender" value="2">Female
 ```
-
 И мы используем следующий код для проверки ввода:
 
 ```golang
@@ -137,11 +136,12 @@ slice:=[]int{1,2}
 ### Флажки
 
 Предположим, что есть некоторые флажки для интересов пользователя, и что вы также не нуждаетесь в посторонних значениях. Вы можете проверить их следующим образом:
-    ```html
+
+```html
     <input type="checkbox" name="interest" value="football">Football
     <input type="checkbox" name="interest" value="basketball">Basketball
     <input type="checkbox" name="interest" value="tennis">Tennis
-    ```
+```
     
 В этом случае санитария немного отличается от проверки ввода кнопок и флажков, так как здесь мы получаем фрагмент из флажков.
 
