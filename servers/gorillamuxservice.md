@@ -1,8 +1,11 @@
 ## Sample Service for Gorilla mux
+[Youtube](https://www.youtube.com/watch?v=t96hBT53S4U&t=174s)    
+[Sample](https://github.com/HakaseLabs/source-blog/blob/master/rest-api/main.go)
+
 
 ```golang
 
-// https://github.com/HakaseLabs/source-blog/blob/master/rest-api/main.go
+
 
 package main
 
