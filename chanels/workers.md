@@ -3,6 +3,10 @@
 
 
 ```golang
+
+...
+var quit = make(chan bool)
+
 func init() {
 	go Worker1()
 	go Worker2()
