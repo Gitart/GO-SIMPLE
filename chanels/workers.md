@@ -40,6 +40,6 @@ func Worker2() {
 		time.Sleep(time.Second*20)
 		
         quit <- true
-        fmt.Println("Worker2 itercept Worker ----------")
+        fmt.Println("Worker2 interrupt Worker1 ----------")
 }
 ```
