@@ -32,3 +32,12 @@ func typeof(v interface{}) string {
     }
 }
 ```
+## And
+
+```golang
+var i interface{} = 333.55
+    s,ok:=i.(float64)
+	
+	fmt.Println(s,ok)
+    ```
+    
