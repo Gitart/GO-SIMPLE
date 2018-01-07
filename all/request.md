@@ -27,15 +27,12 @@ func main() {
 	rc.Header = r.Header // note shallow copy
 
 	fmt.Println("Headers", r.Header, rc.Header)
-	
-	
 	// Adjust copy adjusts original 
 	rc.Header.Add("X-Hello","World")
-
 	fmt.Println("Headers", r.Header, rc.Header)
-	
 }
 ```
+
 
 
 ## Round Trip
