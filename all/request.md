@@ -78,6 +78,5 @@ func doRoundTrip(c *Client, setHeaders func(*http.Request), in, out Message) err
     if err != nil {
         return err
     }
-    setHeaders(r)
-    
-    ```
+    setHeaders(r)    
+    ```  
