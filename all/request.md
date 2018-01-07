@@ -41,6 +41,14 @@ func main() {
 ## Round Trip
 
 ```golang
+package main
+
+import (
+    "fmt"
+    "net/http"
+    "sort"
+)
+
 func (c *Client) RoundTrip(action string, in, out Message) error {
     fmt.Println("****************************************************************")
     headerFunc := func(r *http.Request) {
