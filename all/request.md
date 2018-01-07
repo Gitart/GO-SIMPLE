@@ -36,3 +36,46 @@ func main() {
 	
 }
 ```
+
+
+## Round Trip
+```golang
+func (c *Client) RoundTrip(action string, in, out Message) error {
+    fmt.Println("****************************************************************")
+    headerFunc := func(r *http.Request) {
+        r.Header.Add("Content-Type", fmt.Sprintf("text/xml; charset=utf-8"))
+        r.Header.Add("SOAPAction", fmt.Sprintf(action))
+        r.Cookies()
+    }
+    return doRoundTrip(c, headerFunc, in, out)
+}
+
+func doRoundTrip(c *Client, setHeaders func(*http.Request), in, out Message) error {
+    req := &Envelope{
+        EnvelopeAttr: c.Envelope,
+        NSAttr:       c.Namespace,
+        Header:       c.Header,
+        Body:         Body{Message: in},
+    }
+
+    if req.EnvelopeAttr == "" {
+        req.EnvelopeAttr = "http://schemas.xmlsoap.org/soap/envelope/"
+    }
+    if req.NSAttr == "" {
+        req.NSAttr = c.URL
+    }
+    var b bytes.Buffer
+    err := xml.NewEncoder(&b).Encode(req)
+    if err != nil {
+        return err
+    }
+    cli := c.Config
+    if cli == nil {
+        cli = http.DefaultClient
+    }
+    r, err := http.NewRequest("POST", c.URL, &b)
+    if err != nil {
+        return err
+    }
+    setHeaders(r)
+    ```
