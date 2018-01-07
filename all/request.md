@@ -84,7 +84,7 @@ func doRoundTrip(c *Client, setHeaders func(*http.Request), in, out Message) err
         return err
     }
     setHeaders(r)    
-    ```  
+```  
     
  ## Simple Web Server in Go to log Request Headers  
     
