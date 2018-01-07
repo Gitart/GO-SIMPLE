@@ -123,3 +123,16 @@ func main() {
 }
 ```
     
+Run the server on Docker We want to run this server on Docker and register it as a backend with our proxy server. I’m using vulcand, but this setup can be used with any proxy. To create a Docker image we need to add a Dockerfile to the same folder that contains the webserver.go file, listed above.
+
+## FROM golang:1.4-onbuild
+
+EXPOSE 8080
+This simple Dockerfile tells Docker to use a base image that directly compiles and installs your Go application. For more information on how the Golang images work, have a look at: https://registry.hub.docker.com/u/library/golang/
+
+To build & run the Docker image, use the following commands:
+
+```
+docker build -t my-go-webserver .
+docker run -d -P --name proxy_this_webserver my-go-webserver
+```
