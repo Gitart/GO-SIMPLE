@@ -6,7 +6,12 @@
 Samples for go language  
 Примеры использования языка GO   
 с готовыми примерами   
-Samples   
+
+## Library
+https://github.com/golang/go/wiki/Projects
+
+
+## Samples   
 https://www.youtube.com/watch?v=53WkeeUVoTY  
 https://github.com/Rhymond/go-money  
 https://golang.org/doc/effective_go.html#init   
@@ -22,10 +27,6 @@ http://openmymind.net/Introduction-To-Go-Channels/
 https://mmcgrana.github.io/2012/09/go-by-example-timers-and-tickers.html  
 http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/   
 https://nanxiao.gitbooks.io/golang-101-hacks/content/posts/unbuffered-and-buffered-channels.html  
-
-
-
-
 
 ## Sample
 https://play.golang.org/p/M972dltae2   
