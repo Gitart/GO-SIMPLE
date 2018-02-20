@@ -1,4 +1,5 @@
 # Sample import csv
+http://rosettacode.org/wiki/CSV_data_manipulation#Go
 
 
 ```golang
