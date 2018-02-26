@@ -1,3 +1,35 @@
+## Добавление количества дней к определенной дате
+
+
+```golang
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+
+	
+        	// Входной формат и дата
+		t, err := time.Parse("01.02.2006", "03.26.2018")
+		if err != nil {
+			fmt.Println("ERROR:", err.Error())
+		}
+                
+                // Выходной формат
+		out := "01.02.2006"
+		
+		fmt.Println("DateTime:", t.AddDate(0, 0,14).Format(out))
+	
+}
+
+```
+
+
+## Base sample
+```golang
 package main
 
 import (
@@ -35,3 +67,4 @@ func main() {
 	localTime := utcTime.Local()
 	fmt.Println("Local:", localTime)
 }
+```
