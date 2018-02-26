@@ -10,18 +10,18 @@ import (
 )
 
 func main() {
-
-	
-        	// Входной формат и дата
-		t, err := time.Parse("01.02.2006", "03.26.2018")
+	       layout := "01.02.2006"         // Входной формат
+	       str    := "03.27.2018"         // Дата
+	       out    := "01.02.2006"         // Выходной формат   
+	       cday   := 14                   // Количество смещаемых дней
+	       
+               // Входной формат и дата
+		t, err := time.Parse(layout, str)
 		if err != nil {
 			fmt.Println("ERROR:", err.Error())
 		}
                 
-                // Выходной формат
-		out := "01.02.2006"
-		// Количество смещаемых дней
-		cday:=14
+             
 		fmt.Println("DateTime:", t.AddDate(0, 0, cday).Format(out))
 	
 }
