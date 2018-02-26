@@ -20,8 +20,9 @@ func main() {
                 
                 // Выходной формат
 		out := "01.02.2006"
-		
-		fmt.Println("DateTime:", t.AddDate(0, 0,14).Format(out))
+		// Количество смещаемых дней
+		cday:=14
+		fmt.Println("DateTime:", t.AddDate(0, 0, cday).Format(out))
 	
 }
 
