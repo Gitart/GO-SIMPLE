@@ -30,3 +30,22 @@ func main() {
 ### Oписание
 Находим все сочетания **ab** и если есть все сочетания **axb** и разбиваем на два объекта равное количеству сочетаний
 
+## Вариант второй
+
+```golang
+func main() {
+	re := regexp.MustCompile("a(x*)b")
+	// Indices:
+	//    01234567   012345678
+	//    -ab-axb-   -axxb-ab-
+	fmt.Println(re.FindAllStringSubmatchIndex("-ab-", -1))
+	fmt.Println(re.FindAllStringSubmatchIndex("-axxb-", -1))
+	fmt.Println(re.FindAllStringSubmatchIndex("-ab-axb-", -1))
+	fmt.Println(re.FindAllStringSubmatchIndex("-axxb-ab-", -1))
+	fmt.Println(re.FindAllStringSubmatchIndex("-foo-", -1))
+}
+```
+### Oписание
+Такой же вариант как и первый только выводим индексы
+
+
