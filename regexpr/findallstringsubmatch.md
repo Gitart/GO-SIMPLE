@@ -74,5 +74,21 @@ func main() {
 "food"
 ```
 
+### Использование варианта с или
+
+```
+func main() {
+	re := regexp.MustCompile("a(x*)b(y|z)c")
+	fmt.Printf("%q\n", re.FindStringSubmatch("-axxxbyc-"))
+	fmt.Printf("%q\n", re.FindStringSubmatch("-abzc-"))
+}
+```
+
+
+### Output
+```
+["axxxbyc" "xxx" "y"]
+["abzc" "" "z"]
+```
 
 
