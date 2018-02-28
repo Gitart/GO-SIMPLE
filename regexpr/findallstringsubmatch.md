@@ -109,4 +109,25 @@ true
 ```
 
 
+## Cоздание темплейта на основании поиска
+
+```golang
+func main() {
+	re := regexp.MustCompile("a(x*)b")
+	fmt.Println(re.ReplaceAllLiteralString("-ab-axxb-", "T"))
+	fmt.Println(re.ReplaceAllLiteralString("-ab-axxb-", "$1"))
+	fmt.Println(re.ReplaceAllLiteralString("-ab-axxb-", "${1}"))
+}
+```
+### Output
+```
+-T-T-
+-$1-$1-
+-${1}-${1}-
+```
+
+
+
+
+
 
