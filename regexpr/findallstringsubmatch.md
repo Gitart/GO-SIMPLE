@@ -59,3 +59,20 @@ func main() {
 Такой же вариант как и первый только выводим индексы
 
 
+
+### Вариант с стринг
+```golang
+func main() {
+	re := regexp.MustCompile("foo.?")
+	fmt.Printf("%q\n", re.FindString("seafood fool"))
+	fmt.Printf("%q\n", re.FindString("meat"))
+}
+```
+
+### Output
+```
+"food"
+```
+
+
+
