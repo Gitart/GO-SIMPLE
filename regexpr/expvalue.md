@@ -31,3 +31,10 @@ func main() {
 }
 ```
 
+### Output
+
+```
+option1=value1
+option2=value2
+option3=value3
+```
