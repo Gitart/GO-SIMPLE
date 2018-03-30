@@ -73,12 +73,8 @@
  }
 
  func main() {
-
          NonSEOString := "@<ElNi\u00f1o coming?  > #% sooner this year!"
-
          fmt.Println("BEFORE : ", NonSEOString)
-
          SEOedString := SEOURL(NonSEOString)
-
          fmt.Println("AFTER : ", SEOedString)
  }
