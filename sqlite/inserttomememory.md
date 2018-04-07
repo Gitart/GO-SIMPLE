@@ -1,3 +1,8 @@
+
+## Insert to memory
+
+```golang
+
 package main
 
 import (
@@ -75,3 +80,7 @@ func main() {
 
     tx.Commit()
 }
+```
+
+https://stackoverflow.com/questions/26456253/sqlite-3-not-releasing-memory-in-golang
+
