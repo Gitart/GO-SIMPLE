@@ -99,5 +99,9 @@ Total: 0.0 MB
      0.0   0.0% 100.0%      0.0 100.0% runtime.newextram
 ```
 
-https://stackoverflow.com/questions/26456253/sqlite-3-not-releasing-memory-in-golang
+## Links
+https://stackoverflow.com/questions/26456253/sqlite-3-not-releasing-memory-in-golang  
+https://github.com/mattn/go-sqlite3  
+
+
 
