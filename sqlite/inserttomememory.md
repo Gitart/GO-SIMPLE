@@ -82,5 +82,22 @@ func main() {
 }
 ```
 
+```bach
+lix@900X4C:~/Go/src$ go tool pprof --text ./test /tmp/profile102098478/mem.pprof
+Adjusting heap profiles for 1-in-4096 sampling rate
+Total: 0.0 MB
+     0.0 100.0% 100.0%      0.0 100.0% runtime.allocm
+     0.0   0.0% 100.0%      0.0 100.0% database/sql.(*DB).Exec
+     0.0   0.0% 100.0%      0.0 100.0% database/sql.(*DB).conn
+     0.0   0.0% 100.0%      0.0 100.0% database/sql.(*DB).exec
+     0.0   0.0% 100.0%      0.0 100.0% github.com/mattn/go-sqlite3.(*SQLiteDriver).Open
+     0.0   0.0% 100.0%      0.0 100.0% github.com/mattn/go-sqlite3._Cfunc_sqlite3_threadsafe
+     0.0   0.0% 100.0%      0.0 100.0% main.main
+     0.0   0.0% 100.0%      0.0 100.0% runtime.cgocall
+     0.0   0.0% 100.0%      0.0 100.0% runtime.gosched0
+     0.0   0.0% 100.0%      0.0 100.0% runtime.main
+     0.0   0.0% 100.0%      0.0 100.0% runtime.newextram
+```
+
 https://stackoverflow.com/questions/26456253/sqlite-3-not-releasing-memory-in-golang
 
