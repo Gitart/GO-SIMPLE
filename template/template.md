@@ -528,3 +528,4 @@ Summing Up
 After followed along with all of the examples you should have a solid grasp on how to use functions in templates as well as how to define your own functions and make them accessible inside of your templates.
 In the final article in this series - Creating the V in MVC - I cover how to combine everything that we have learned so far in this series in order to create a reusable view layer for a web application. We will even start to make our pages look prettier with Bootstrap, a popular HTML, CSS, and JS framework, in order to illustrate how this doesn’t affect the rest of our code complexity at all; instead, the view logic is all isolated to our newly created view type.
 
+Link https://www.calhoun.io/intro-to-templates-p3-functions/
