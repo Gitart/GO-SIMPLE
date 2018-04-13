@@ -1,0 +1,573 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Work Plan</title>
+  <meta   charset="utf-8">
+  <meta   name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+  <link   rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+
+  <link   href="http://fonts.googleapis.com/css?family=Roboto" rel='stylesheet' type='text/css'>
+  <link   href="css/main.css" rel='stylesheet' type='text/css'>
+
+  <link   rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+    
+ <script type="text/javascript" charset="utf-8">
+       $(document).ready(function() {
+       
+         $('#example').DataTable( {
+          stateSave: true,
+          "pageLength": 50,
+          "language": {
+                                     "lengthMenu":   "Записей : _MENU_",
+                                     "zeroRecords":  "Ничего не найдено",
+                                     "info":         "Страниц _PAGE_ из _PAGES_",
+                                     "infoEmpty":    "Нет данных ",
+                                     "infoFiltered": "(Отфильтрованно _MAX_ всего записей)",
+                                     "search":       "Поиск"
+                    }
+           });
+    });
+   
+   
+   
+</script>
+        <style type="text/css">
+        table.table {border-collapse: collapse !important; }
+        table.table td:nth-child(1) {text-align: center; font-weight: bold;}
+        table.table td:nth-child(2) {font-weight: bold; color: #2471A3;}
+        table.table td:nth-child(3) {text-align: center;}
+        table.table td:nth-child(4) {text-align: center;}
+        table.table td:nth-child(5) {text-align: center;}
+        table.table td:nth-child(6) {text-align: center;}
+        table.table td:nth-child(7) {text-align: center;}
+        table.table td:nth-child(8) {text-align: center;}
+        table.table td:nth-child(9) {text-align: center;}
+        table.table td:nth-child(10) {text-align: center;}
+        table.table td:nth-child(11) {text-align: center;}
+
+        table.table th{text-align: center; background-color:#F0f0f0; 084B8A; colors: white;}
+        </style>
+
+</head>
+<body>
+
+ <div class="container-fluid" style="width: 80% !important;">
+    <h3>Сравнение объектов эталонной и удаленной базой данных</h3>
+    Для сравнения разных баз применяется запрос
+    <br>
+    <code>
+      SELECT * FROM All_objects WHERE owner='BARS' 
+    </code> 
+    
+    <br><br>
+    <h4>Принцип и алгоритм работы</h4>
+    <ol>
+         <li>Запуск запроса на эталонной базе.</li>
+         <li>Запись сведений об объектах эталонной базы в локальный журнал.</li>
+         <li>Пересылка базы данных в точку где необходима сверка.</li>
+         <li>Запуск и сравнение текущих объектов проверяемой базы с эталонными записанными в журнале.</li>
+         <li>Результат разногласий анализируется в журнале.</li>
+         <li>Создается скрипт по результатам  несовпадений и применяется к рассогласованной базе.</li>
+    </ol>
+
+ <h4>Журнал рассхождения объектов базы данных и эталонной</h4>
+ 
+
+ <table id="example" class="table table-bordered table-sm  table-striped compact">
+       <thead style="background-color:#F0F0F0;">
+   
+        <tr>  
+             <th> №</th>
+             <th> Объект</th>
+             <th> Тип </th>
+             <th> Date equel </th>
+             <th> Created etalon </th>
+             <th> Changed etalon </th>
+             <th> Last DDL time etalon </th>
+             <th> Created </th>
+             <th> Changed </th>
+             <th> Last DDL time </th>
+             <th> Status  </th>
+
+        </tr>     
+    </thead>
+
+    <tbody>
+        <tr>  
+             <td>1</td>
+             <td><b>TMP_CLOB3</b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>     
+
+        <tr>  
+             <td>2</td>
+             <td><b>TELLER_TOOLS</b>  </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>     
+        
+
+      <tr>  
+             <td>3</td>
+             <td><b>ICOL</b>  </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>     
+
+        <tr>  
+             <td>4</td>
+             <td><b>UNDO </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+
+        <tr>  
+             <td>5</td>
+             <td><b>S_KLP_ZKUPP   </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+
+
+        <tr>  
+             <td>6</td>
+             <td><b>S_KLP_ZKUPP   </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td><span class="badge badge-danger">Err</span></td>
+        </tr>   
+
+
+ <tr>  
+             <td>7</td>
+             <td><b>UNDO </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+
+        <tr>  
+             <td>8</td>
+             <td><b>S_KLP_ZKUPP   </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+
+         <tr>  
+             <td>9</td>
+             <td><b>TMP_CLOB3</b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>     
+
+        <tr>  
+             <td>12</td>
+             <td><b>TELLER_TOOLS</b>  </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>     
+        
+
+      <tr>  
+             <td>13</td>
+             <td><b>ICOL</b>  </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>     
+
+        <tr>  
+             <td>14</td>
+             <td><b>UNDO </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+
+        <tr>  
+             <td>15</td>
+             <td><b>S_KLP_ZKUPP   </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+
+
+        <tr>  
+             <td>16</td>
+             <td><b>S_KLP_ZKUPP   </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td><span class="badge badge-danger">Err</span></td>
+        </tr>   
+
+
+ <tr>  
+             <td>17</td>
+             <td><b>UNDO </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+
+        <tr>  
+             <td>18</td>
+             <td><b>S_KLP_ZKUPP   </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+         <tr>  
+             <td>19</td>
+             <td><b>TMP_CLOB3</b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>     
+
+        <tr>  
+             <td>20</td>
+             <td><b>TELLER_TOOLS</b>  </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>     
+        
+
+      <tr>  
+             <td>21</td>
+             <td><b>ICOL</b>  </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>     
+
+        <tr>  
+             <td>22</td>
+             <td><b>UNDO </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+
+        <tr>  
+             <td>23</td>
+             <td><b>S_KLP_ZKUPP   </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+
+
+        <tr>  
+             <td>24</td>
+             <td><b>S_KLP_ZKUPP   </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td><span class="badge badge-danger">Err</span></td>
+        </tr>   
+
+
+ <tr>  
+             <td>25</td>
+             <td><b>UNDO </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+
+        <tr>  
+             <td>26</td>
+             <td><b>S_KLP_ZKUPP   </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+         <tr>  
+             <td>27</td>
+             <td><b>TMP_CLOB3</b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>     
+
+        <tr>  
+             <td>28</td>
+             <td><b>TELLER_TOOLS</b>  </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>     
+        
+
+      <tr>  
+             <td>29</td>
+             <td><b>ICOL</b>  </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>     
+
+        <tr>  
+             <td>30</td>
+             <td><b>UNDO </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+
+        <tr>  
+             <td>31</td>
+             <td><b>S_KLP_ZKUPP   </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+
+
+        <tr>  
+             <td>32</td>
+             <td><b>S_KLP_ZKUPP   </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td><span class="badge badge-danger">Err</span></td>
+        </tr>   
+
+
+ <tr>  
+             <td>33</td>
+             <td><b>UNDO </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+
+        <tr>  
+             <td>34</td>
+             <td><b>S_KLP_ZKUPP   </b> </td>
+             <td>TABLE  </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 2013-10-09:18:23:42 </td>
+             <td> 09/10/2013 18:37:54 </td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:23:42</td>
+             <td> 09/10/2013 18:37:54 </td>
+
+             <td> <span class="badge badge-success">Ok</span></td>
+        </tr>   
+      </tbody>
+ </table>    
+
+</div>
+</body>
+</html>
