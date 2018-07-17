@@ -2,7 +2,7 @@
 Добавим в этот пример еще один обработчик верхнего уровня, который будет обрабатывать ошибки хэндлеров и поддерживать сервер на плаву:
 
 
-'''golang
+```golang
  func recoverHandler(next http.Handler) http.Handler {
      fn := func(w http.ResponseWriter, r *http.Request) {
      defer func() {
