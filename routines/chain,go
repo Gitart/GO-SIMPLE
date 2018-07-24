@@ -1,0 +1,19 @@
+package main
+
+import "fmt"
+
+func main() {
+    a := make(chan int)
+    b := make(chan int)
+
+    go func() {
+        select {
+        case val := <-a:
+            fmt.Println("Received from a:", val)
+        case val := <-b:
+            fmt.Println("Received from b:", val)
+        }
+    }()
+
+    b <- 0
+}
