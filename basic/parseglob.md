@@ -19,3 +19,36 @@ func main() {
 }
 ```
 
+## main.html
+
+```html
+{{template "header"}}
+<p>main content</p>
+{{template "footer"}}
+```
+
+
+
+
+## header.html
+
+```html
+{{define "header"}}
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+{{end}}
+```
+
+
+## footer.html
+```html
+{{define "footer"}}
+</body>
+</html>
+{{end}}
+```
