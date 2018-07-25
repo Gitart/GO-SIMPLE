@@ -63,3 +63,34 @@ func main() {
 
 }
 ```
+
+
+### Logs
+
+```golang
+package main
+
+import (
+    "log"
+    "os"
+)
+var (
+    outfile, _ = os.Create("path/to/my.log") // update path for your needs
+    l      = log.New(outfile, "", 0)
+)
+
+func main() {
+    l.Println("hello, log!!!")
+}
+```
+
+```golang
+import (
+    "os/exec"
+)
+
+func main() {
+    // check error here...
+    exec.Command("/bin/sh", "-c", "echo "+err.Error()+" >> log.log").Run()
+}
+```
