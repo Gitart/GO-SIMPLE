@@ -1,11 +1,12 @@
 ## Coockies
 Now, to see how the cookie is being created, read and deleted. You need to follow this sequence.
 
-Run the program and point your web browser to localhost:8080
-Change the URL to localhost:8080/createcookie to create new cookie.
-Read the cookie by changing to localhost:8080/createcookie.
-Finally, delete the cookie by changing to localhost:8080/deletecookie.
-If you happen to view with Chrome browser, open up the inspector to see the cookie value
+Run the program and point your web browser to localhost:8080  
+Change the URL to localhost:8080/createcookie to create new cookie.   
+Read the cookie by changing to localhost:8080/createcookie.   
+Finally, delete the cookie by changing to localhost:8080/deletecookie.   
+If you happen to view with Chrome browser, open up the inspector to see the cookie value    
+
 
 ```go
 package main
