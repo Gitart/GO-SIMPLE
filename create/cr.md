@@ -1,3 +1,6 @@
+# Main
+
+```go
 package main
 
  import (
@@ -31,3 +34,4 @@ package main
 
          fmt.Println("HTML data saved into file.html")
  }
+```
