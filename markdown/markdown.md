@@ -2,6 +2,7 @@
 
 ```go
 package main
+
 import (
  "github.com/russross/blackfriday"
  "html/template"
@@ -11,6 +12,7 @@ import (
  "path"
  "strings"
 )
+
 type Post struct {
  Title string
  Body  template.HTML
@@ -19,6 +21,7 @@ var (
  // компилируем шаблоны, если не удалось, то выходим
  post_template = template.Must(template.ParseFiles(path.Join("templates", "layout.html"), path.Join("templates", "post.html")))
 )
+
 func main() {
  // для отдачи сервером статичный файлов из папки public/static
  fs := http.FileServer(http.Dir("./public/static"))
@@ -27,6 +30,7 @@ func main() {
  log.Println("Listening...")
  http.ListenAndServe(":3000", nil)
 }
+
 func postHandler(w http.ResponseWriter, r *http.Request) {
  // обработчик запросов
  fileread, _ := ioutil.ReadFile("posts/index.md")
