@@ -34,14 +34,15 @@ func main() {
 func postHandler(w http.ResponseWriter, r *http.Request) {
  // обработчик запросов
  fileread, _ := ioutil.ReadFile("posts/index.md")
- lines := strings.Split(string(fileread), "\n")
- title := string(lines[0])
- body := strings.Join(lines[1:len(lines)], "\n")
- body = string(blackfriday.MarkdownCommon([]byte(body)))
- post := Post{title, template.HTML(body)}
+ lines       := strings.Split(string(fileread), "\n")
+ title       := string(lines[0])
+ body        := strings.Join(lines[1:len(lines)], "\n")
+ body         = string(blackfriday.MarkdownCommon([]byte(body)))
+ post        := Post{title, template.HTML(body)}
+ 
  if err := post_template.ExecuteTemplate(w, "layout", post); err != nil {
-  log.Println(err.Error())
-  http.Error(w, http.StatusText(500), 500)
+   log.Println(err.Error())
+   http.Error(w, http.StatusText(500), 500)
  }
 }
 ```
