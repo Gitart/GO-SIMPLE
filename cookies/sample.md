@@ -12,9 +12,13 @@ http.SetCookie(w,&cookie)
 The above example shows	how to set a cookie. Now let's	see how	to get a cookie	that has been set:
 
 ```golang
-cookie,	_	:=	r.Cookie("username")
-fmt.Fprint(w,	cookie)
-Here	is	another	way	to	get	a	cookie:
+cookie,	_:=r.Cookie("username")
+fmt.Fprint(w,cookie)
+```
+
+### Here is another way to get a cookie:
+
+```golang
 for	_,	cookie	:=	range	r.Cookies()	{
 				fmt.Fprint(w,	cookie.Name)
 }
