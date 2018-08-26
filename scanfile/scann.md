@@ -1,4 +1,4 @@
-## Scan file sample
+# Scan file sample
 
 ## This is the cleanest way to read from a Reader line by line.
 
