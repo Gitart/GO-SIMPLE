@@ -1,9 +1,11 @@
 # Go's net/context and http.Handler
 
 The approaches in this post are now obsolete thanks to Go 1.7, which adds the context package to the standard library and uses it in the net/http *http.Request type. The background info here may still be helpful, but I wrote a follow-up post that revisits things for Go 1.7 and beyond.
-A summary of this post is available in Japanese thanks to @craftgear. こちらに @craftgearによる日本語の要約があります。
+
+A summary of this post is available in Japanese thanks to @craftgear. 
 The golang.org/x/net/context package (hereafter referred as net/context although it’s not yet in the standard library) is a wonderful tool for the Go programmer’s toolkit. The blog post that introduced it shows how useful it is when dealing with external services and the need to cancel requests, set deadlines, and send along request-scoped key/value data.
 The request-scoped key/value data also makes it very appealing as a means of passing data around through middleware and handlers in Go web servers. Most Go web frameworks have their own concept of context, although none yet use net/context directly.
+
 Questions about using net/context for this kind of server-side context keep popping up on the /r/golang subreddit and the Gopher’s Slack community. Having recently ported a fairly large API surface from Martini to http.ServeMux and net/context, I hope this post can answer those questions.
 
 ## About http.Handler
@@ -20,7 +22,8 @@ http.ResponseWriter is another simple interface and http.Request is a struct tha
 Notably, there’s no way to pass anything like a context.Context here.
 
 ## About context.Context
-Much more detail about contexts can be found in the introductory blog post, but the main aspect I want to call attention to in this post is that contexts are derived from other contexts. Context values become arranged as a tree, and you only have access to values set on your context or one of its ancestor nodes.
+Much more detail about contexts can be found in the introductory blog post, but the main aspect I want to call attention to in this post is that contexts are derived from other contexts. Context values become arranged as a tree, and you only have access to values set on your context or one of its ancestor nodes.  
+
 
 For example, let’s take context.Background() as the root of the tree, and derive a new context by attaching the content of the X-Request-ID HTTP header.
 ```
@@ -52,11 +55,11 @@ Create your own handler types
 Let’s examine each.
 
 Global request-to-context mapping
-In this approach we create a global map of requests to contexts, and wrap our handlers in a middleware that handles the lifetime of the context associated with a request. This is the approach taken by Gorilla’s context package, although with its own context type rather than net/context.
+In this approach we create a global map of requests to contexts, and wrap our handlers in a middleware that handles the lifetime of the context associated with a request. This is the approach taken by Gorilla’s context package, although with its own context type rather than net/context.   
 
-Because every HTTP request is processed in its own goroutine and Go’s maps are not safe for concurrent access for performance reasons, it is crucial that we protect all map accesses with a sync.Mutex. This also introduces lock contention among concurrently processed requests. Depending on your application and workload, this could become a bottleneck.
+Because every HTTP request is processed in its own goroutine and Go’s maps are not safe for concurrent access for performance reasons, it is crucial that we protect all map accesses with a sync.Mutex. This also introduces lock contention among concurrently processed requests. Depending on your application and workload, this could become a bottleneck.   
 
-In general, though, this approach works well for Gorilla’s context, because its context value is simply a map of key/value pairs. Our context is arranged like a tree, and it’s important that the map always hold a reference to the leaf. This places a burden on the programmer to manually update the pointer’s value as new contexts are derived.
+In general, though, this approach works well for Gorilla’s context, because its context value is simply a map of key/value pairs. Our context is arranged like a tree, and it’s important that the map always hold a reference to the leaf. This places a burden on the programmer to manually update the pointer’s value as new contexts are derived.   
 
 An example usage might look like this:
 
