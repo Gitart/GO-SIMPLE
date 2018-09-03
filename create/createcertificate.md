@@ -1,4 +1,4 @@
-# Create sertificate
+# Create certificate
 
 Local development notes: https://github.com/golang/build/tree/master/cmd/buildlet
 
