@@ -50,3 +50,30 @@ func FloatToStr(input_num float64) string {
 }
 
 ```
+
+
+
+```go
+/****************************************************************************************
+ * Check null is interface
+/****************************************************************************************/
+func isNil(a interface{}) bool {
+     defer func() { recover() }()
+     return a == nil || reflect.ValueOf(a).IsNil()
+}
+```
+
+
+```go
+/****************************************************************************************
+ * Check null is interface
+/****************************************************************************************/
+func ISNIL(Vars string) string{
+     defer func() { recover() }()
+     
+     if len(Vars) == 0 || reflect.ValueOf(Vars).IsNil()  {
+        return "33"
+     }
+     return Vars
+}
+```
