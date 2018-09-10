@@ -72,7 +72,7 @@ func ISNIL(Vars string) string{
      defer func() { recover() }()
      
      if len(Vars) == 0 || reflect.ValueOf(Vars).IsNil()  {
-        return "33"
+        return ""
      }
      return Vars
 }
