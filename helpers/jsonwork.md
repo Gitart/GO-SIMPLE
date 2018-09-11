@@ -1,3 +1,6 @@
+-- https://github.com/CircleCI-Public/circleci-demo-go/tree/master/service
+
+
 // ===== JSON HELPERS ==================================================================================================
 
 func writeJSON(w http.ResponseWriter, statusCode int, response interface{}) {
