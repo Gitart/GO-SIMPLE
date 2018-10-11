@@ -200,3 +200,6 @@ $ go run server.go
 # запустим клиент, предварительно поставив адрес на прокси localhost:4242 и напишем что-нибудь
 $ go run client.go
 ```
+
+Источник
+https://yanzay.com/post/go_secure_tcp_connection/
