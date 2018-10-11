@@ -165,3 +165,6 @@ $ ./netcat -e sh localhost 1408
 Как видим, всё работает как мы и ожидали. Теперь у нас есть полноценный удалённый shell.
 
 Полный исходный код программы можно почитать здесь: https://github.com/yanzay/netcat/tree/v0.1
+
+Источник
+https://yanzay.com/post/go_netcat_commands/
