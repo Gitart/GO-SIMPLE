@@ -215,3 +215,7 @@ $ ./goproxy --host yanzay.com --port 80 --listen ":4242"
 $ # в отдельном терминале делаем тестовый запрос
 $ curl localhost:4242
 И любуемся красивым дампом запроса и ответа:
+
+
+Источник :
+https://yanzay.com/post/go_tcp_proxy/
