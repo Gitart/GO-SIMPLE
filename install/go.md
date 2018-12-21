@@ -29,3 +29,9 @@ Responce
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/frolov/go/bin:/usr/local/go/bin
 GOPATH=/home/frolov/go
 ```
+
+
+#### Проверка версии
+```
+go version
+```
