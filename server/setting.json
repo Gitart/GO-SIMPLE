@@ -1,0 +1,80 @@
+{ 
+    
+    "Title":       "Информационно- аналитический портал",
+    "Dates":       "03.08.2018",
+    "Description": "Новостной портал для освещения событий и новостей",
+    "Losung":      "Лишь тот достоин жизни и свободы кто каждый день идет на бой. Гетте.",
+    "In":          "In",
+    "Out":         "Out",
+    "Request":      2,
+    "Menu":[
+                {"Head":"Домашняя",     "Gr":"Hm", "Link":"home.html"},
+                {"Head":"Новости",      "Gr":"Ns", "Link":"news.html"},
+		{"Head":"Технологии",   "Gr":"Th", "Link":"tech.html"},
+		{"Head":"Развлечения",  "Gr":"En", "Link":"entertem.html"},
+		{"Head":"Путешествия",  "Gr":"Tr", "Link":"travel.html"},
+		{"Head":"Спорт",        "Gr":"Sp", "Link":"sport.html"},
+		{"Head":"Интересно",    "Gr":"In", "Link":"interest.html"},
+		{"Head":"Прочее",       "Gr":"Ot", "Link":"other.html"},
+		{"Head":"Проект",       "Gr":"Pr", "Link":"project.html"},
+                {"Head":"Связь",        "Gr":"Ln", "Link":"link.html"},
+                {"Head":"Инфо",         "Gr":"Ln", "Link":"info.html"},
+                {"Head":"O портале",    "Gr":"Ln", "Link":"about.html"}
+
+    ],
+
+    "Pages":[
+            {"Inpage":"Page1.txt", "Otpage":"P1.html", "Group":"Искусство",  "Header":"Культура развития",         "Author":"Кореш Ивнович"},
+            {"Inpage":"Page2.txt", "Otpage":"P2.html", "Group":"Спорт",      "Header":"Бег на длинную дистанцию",  "Author":"Кореш Ивнович"},
+            {"Inpage":"Page3.txt", "Otpage":"P3.html", "Group":"Развлечение","Header":"Поход в ресторан",          "Author":"Кореш Ивнович"},
+            {"Inpage":"Page4.txt", "Otpage":"P4.html", "Group":"Путешествие","Header":"Венеция как город на воде", "Author":"Кореш Ивнович"},
+            {"Inpage":"Page5.txt", "Otpage":"P5.html", "Group":"Новости",    "Header":"Новости город",             "Author":"Кореш Ивнович"},
+            {"Inpage":"Page6.txt", "Otpage":"P6.html", "Group":"Развитие",   "Header":"Чтение новых книг",         "Author":"Кореш Ивнович"},
+            {"Inpage":"Page7.txt", "Otpage":"P7.html", "Group":"Искусство",  "Header":"Прочиее искусство",         "Author":"Кореш Ивнович"}
+    ],
+
+    "Groups":[
+               {"Code":"art",      "Title":"Искусство",   "Show":"Y", "Path":"isskusstvo.html"},
+               {"Code":"sport",    "Title":"Спорт",       "Show":"Y", "Path":"sport.html"},
+               {"Code":"relax",    "Title":"Развлечение", "Show":"Y", "Path":"relax.html"},
+               {"Code":"travel",   "Title":"Путешествие", "Show":"Y", "Path":"travel.html"},
+               {"Code":"news",     "Title":"Новости",     "Show":"Y", "Path":"news.html"},
+               {"Code":"develop",  "Title":"Развитие",    "Show":"Y", "Path":"develop.html"},
+               {"Code":"business", "Title":"Бизнес",      "Show":"Y", "Path":"bussiness.html"},
+               {"Code":"helth",    "Title":"Здоровье",    "Show":"Y", "Path":"helth.html"},
+               {"Code":"eat",      "Title":"Еда",         "Show":"Y", "Path":"eat.html"},
+               {"Code":"style",    "Title":"Стиль",       "Show":"Y", "Path":"style.html"},
+               {"Code":"family",   "Title":"Семья",       "Show":"Y", "Path":"family.html"},
+               {"Code":"sience",   "Title":"Наука",       "Show":"Y", "Path":"siens.html"},
+               {"Code":"tecnic",   "Title":"Техника",     "Show":"Y", "Path":"tecnic.html"},
+               {"Code":"it",       "Title":"ИТ",          "Show":"Y", "Path":"it.html"},
+               {"Code":"tech",     "Title":"Технологии",  "Show":"Y", "Path":"tech.html"},
+               {"Code":"city",     "Title":"Город",       "Show":"Y", "Path":"city.html"},
+               {"Code":"fitnes",   "Title":"Fitness",     "Show":"Y", "Path":"fitness.html"},
+               {"Code":"people",   "Title":"Люди",        "Show":"Y", "Path":"people.html"},
+               {"Code":"culture",  "Title":"Культура",    "Show":"Y", "Path":"culture.html"},
+               {"Code":"sex",      "Title":"Секс",        "Show":"Y", "Path":"sex.html"},
+               {"Code":"children", "Title":"Дети",        "Show":"Y", "Path":"children.html"},
+               {"Code":"video",    "Title":"Видео",       "Show":"Y", "Path":"video.html"},
+               {"Code":"book",     "Title":"Книги",       "Show":"Y", "Path":"book.html"},
+               {"Code":"Link",     "Title":"Линки",       "Show":"Y", "Path":"links.html"},
+               {"Code":"other",    "Title":"Прочее",      "Show":"Y", "Path":"other.html"},
+               {"Code":"finance",  "Title":"Финансы",     "Show":"Y", "Path":"finance.html"},
+               {"Code":"politic",  "Title":"Политика",    "Show":"Y", "Path":"politic.html"},
+               {"Code":"car",      "Title":"Машины",      "Show":"Y", "Path":"car.html"},
+               {"Code":"military", "Title":"Вооружение",  "Show":"Y", "Path":"military.html"},
+               {"Code":"butiful",  "Title":"Красота",     "Show":"Y", "Path":"butiful.html"},
+               {"Code":"mode",     "Title":"Мода",        "Show":"Y", "Path":"moda.html"},
+               {"Code":"lerning",  "Title":"Обучение",    "Show":"Y", "Path":"lerning.html"}
+            ],
+
+        "Resourse":[
+                {"Title":"Искусство",    "Path":"http://biz.liga.ua"},            
+                {"Title":"Обучение",     "Path":"http://biz.liga.ua/lerning/"},            
+                {"Title":"Машины",       "Path":"http://biz.liga.ua/car/"},            
+                {"Title":"Политика",     "Path":"http://rjrespondent.ua"},
+                {"Title":"Отдых",        "Path":"https://kiev.zagranitsa.com/places/otdykh-kiev-ukraina"}
+               
+        ]            
+}
+      
