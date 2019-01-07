@@ -35,6 +35,35 @@ func main(){
 }
 ```
 
+
+Static Page
+```golang
+/********************************************************************************************************************************
+ *
+ *   Статические странички
+ *   c установкой разрешений и доступов на операции
+ *
+ *   http.HandleFunc("/static/", func(w http.ResponseWriter, r *http.Request) {http.ServeFile(w, r, r.URL.Path[1:])})
+ *   http.HandleFunc("/static/", func(w http.ResponseWriter, r *http.Request) {http.FileServer(http.Dir("/static/"))})
+ *
+ *   /static/....
+ *
+ *********************************************************************************************************************************/
+func StaticPage(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*") // Allows
+	// Allows
+	   // if origin := r.Header().Get("Origin"); origin != "" {
+	   //  w.Header().Set("Access-Control-Allow-Origin", origin)
+	   //  w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	   //  w.Header().Set("Access-Control-Allow-Headers",  "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	   //  w.Header().Set("Access-Control-Max-Age", "86400") // 24 hours
+	   // }
+	
+	//  File static page
+	http.ServeFile(w, r, r.URL.Path[1:])
+}
+```
+
 Остановка сервера
 
 ```golang
@@ -144,5 +173,24 @@ func CopyFile(src, dst string) (int64, error) {
         defer destination.Close()
         nBytes, err := io.Copy(destination, source)
         return nBytes, err
+}
+```
+
+Удаление элмента из массива
+```golang
+//*****************************************************************************************************************  
+// Удаление элмента из массива
+//*****************************************************************************************************************  
+func DelInArray(DeletedElement string, Ins []string) []string{
+var na []string
+
+for _, v := range Ins {
+    if v == DeletedElement {
+        continue
+    } else {
+        na = append(na, v)
+    }
+}
+     return na
 }
 ```
