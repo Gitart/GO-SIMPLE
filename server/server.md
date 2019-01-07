@@ -57,3 +57,49 @@ func waitForShutdown(srv *http.Server) {
 	os.Exit(0)
 }
 ```
+
+Чтение переменных среды
+
+```golang
+func getEnv(key, defaultValue string) string {
+	value := os.Getenv(key)
+	if value == "" {
+		return defaultValue
+	}
+	return value
+}
+```
+
+Чтение тела
+
+```golang
+/************************************************************
+//
+// Read Body from http
+// Htt("http://golang.org/pkg/net/http/")
+//************************************************************
+func Htt(link string) {
+	res, err := http.Get(link)
+	checkErr(err)
+	defer res.Body.Close()
+	body, err := ioutil.ReadAll(res.Body)
+	checkErr(err)
+	fmt.Println(string(body))
+}
+```
+
+
+Обработчик ошибок
+
+```golang
+//************************************************************
+// Check error
+// Простой обработчик ошибок
+//************************************************************
+func checkErr(e error) {
+	if e != nil {
+		// panic(e)
+		log.Println("Error : ", e.Error())
+	}
+}
+```
