@@ -1,46 +1,39 @@
 # Основные особенности сервера
 
 
-
-
-
 ```golang
 //******************************************************************** 
 // http://nesv.github.io/golang/2014/02/25/worker-queues-in-go.html
 //******************************************************************** 
 func main(){
 	
-	// Create Redis Client
-	redisUrl := getEnv("REDIS_URL",      "localhost:6379")
-	redisPwd := getEnv("REDIS_PASSWORD", "")
+   // Create Redis Client
+   redisUrl := getEnv("REDIS_URL",      "localhost:6379")
+   redisPwd := getEnv("REDIS_PASSWORD", "")
 
-	log.Printf("Connecting to Redis Url '%s'\n", redisUrl)
-	log.Printf("Password to '%s'\n",             redisPwd)
-    
+   log.Printf("Connecting to Redis Url '%s'\n", redisUrl)
+   log.Printf("Password to '%s'\n",             redisPwd)
 
-    http.HandleFunc("/",                            Startserv)                        // Регистрация в сервисе
-    http.HandleFunc("/api/1/",                      test)                             // Регистрация в сервисе
+   http.HandleFunc("/",                            Startserv)        // Регистрация в сервисе
+   http.HandleFunc("/api/1/",                      test)             // Регистрация в сервисе
 
-    // Ловитель жемчуга
-    // go Worker()
+   // Ловитель жемчуга
+   // go Worker()
 
-
-	srv := &http.Server{Addr:":8080", ReadTimeout:10*time.Second, WriteTimeout:10 * time.Second}
+   srv := &http.Server{Addr:":8080", ReadTimeout:10*time.Second, WriteTimeout:10 * time.Second}
 
     // Start Server
-	go func() {
-		log.Println("Starting Server")
-		if err := srv.ListenAndServe(); err != nil {
-			log.Fatal(err)
-		}
-	}()
+    go func() {
+ 	log.Println("Starting Server")
+	if err := srv.ListenAndServe(); err != nil {
+		log.Fatal(err)
+	}
+    }()
 
-	// Graceful Shutdown
-	waitForShutdown(srv)
+    // Graceful Shutdown
+    waitForShutdown(srv)
 }
 ```
-
-
 
 Остановка сервера
 
