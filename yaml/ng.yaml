@@ -1,0 +1,40 @@
+a:  Article
+s:  Stop programm
+l:  Location
+d:  Dynamics
+
+b:
+  e: Enable testing
+  a: ip address to bind
+
+x:
+  f: Focus to programm
+  j: Job name
+
+nam:
+  code: Codes sss         # Code for site and settings
+  lode: Loadssss          # Code for site and settings
+
+ios:
+  enabled:    false
+  key_path:   "key.pem"
+  key_base64: ""          # load iOS key from base64 input
+  key_type:   "pem"       # could be pem, p12 or p8 type
+  password:   "eee"       # certificate password, default as empty string.
+  production: false
+  max_retry:  0           # resend fail notification, default value zero is disabled
+  key_id:     ""          # KeyID from developer account (Certificates, Identifiers & Profiles -> Keys)
+  team_id:    ""          # TeamID from developer account (View Account -> Membership)
+
+grpc:
+  enabled: false # enabale gRPC server
+  port: 9000
+
+api:
+  push_uri:     "/api/push"
+  stat_go_uri:  "/api/stat/go"
+  stat_app_uri: "/api/stat/app"
+  config_uri:   "/api/config"
+  sys_stat_uri: "/sys/stats"
+  metric_uri:   "/metrics"
+  health_uri:   "/healthz"
