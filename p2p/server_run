@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+clear
+NOWF=$(date +"%d-%m-%Y %T")
+echo Time $NOWF
+echo "Текущий каталог " $PWD
+echo Time $NOWF>>log.txt
+
+export GOPATH=$PWD
+export GOROOT=$HOME/go
+export PATH=$PATH:$GOROOT/bin
+export CGO_ENABLED=0
+
+# get library
+# go get github.com/fatih/color
+# go get github.com/go-sql-driver/mysql
+# go get github.com/jmoiron/sqlx
+
+
+#echo Start GO programm
+# go build -o server
+
+go build -o server
+./server
