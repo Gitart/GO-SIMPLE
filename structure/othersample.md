@@ -1,5 +1,6 @@
 
-// https://www.callicoder.com/golang-maps/
+// https://www.callicoder.com/golang-maps/     
+
 func CretaeTab (){
      tb := make(map[int]string,5)
      tb[1]="sss"
