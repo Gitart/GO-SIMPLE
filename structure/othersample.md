@@ -22,17 +22,17 @@ func CretaeTab (){
 
 
      t3:=make(Mst,5)
-     t3["d1"]="ssss"
-     t3["d2"]="ssss"
-     t3["d3"]="ssss"
-     t3["d4"]="ssss"
-     t3["d5"]="ssss"
+     t3["d1"]="London"
+     t3["d2"]="Parise"
+     t3["d3"]="New York"
+     t3["d4"]="Bahdad"
+     t3["d5"]="Kyiev"
      t3["d6"]=1
      fmt.Println(t3)
 
      var Tl [5]Mst 
-     Tl[1]=Mst{"sss":"ssss"}
-     Tl[2]=Mst{"sss":"ssss", "Norm":"Tets Norm", "Nom":122.23}
+     Tl[1]=Mst{"Node":"ssss"}
+     Tl[2]=Mst{"Code":"ssss", "Norm":"Tets Norm", "Nom":122.23}
      Tl[3]=Mst{"Name":"hhh"}
      fmt.Println(Tl[2]["sss"])  
      fmt.Println(Tl[3])  
