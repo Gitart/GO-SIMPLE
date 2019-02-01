@@ -7,7 +7,7 @@ import (
 
 func main() {
 	// Set up authentication information.
-	auth := smtp.PlainAuth("", "alerc@meta.ua", "a123", "www.meta.ua")
+	auth := smtp.PlainAuth("", "al@meta.ua", "123", "www.meta.ua")
 
 
 	// Connect to the server, authenticate, set the sender and recipient,
