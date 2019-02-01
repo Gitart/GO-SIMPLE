@@ -3,7 +3,7 @@
 
 [Code example](https://www.callicoder.com/golang-maps/)
 
-
+```golang
 func CretaeTab (){
      tb := make(map[int]string,5)
      tb[1]="sss"
@@ -116,3 +116,4 @@ func CretaeTab (){
       fmt.Println("Результат ",S)              
       fmt.Println("Результат ",S[0]["Name"])              
 }
+```
