@@ -1,5 +1,8 @@
 
-// https://www.callicoder.com/golang-maps/     
+## Samples work with map
+
+[Code example](https://www.callicoder.com/golang-maps/)
+
 
 func CretaeTab (){
      tb := make(map[int]string,5)
