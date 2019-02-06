@@ -33,4 +33,48 @@ func Rep_plan(w http.ResponseWriter, r *http.Request){
     // tmpl.Execute(w, Dts)
     // RenderHtml("plan.html",Dts,w)
 }
+
+
+
+// 
+// Color from template
+// 
+func Clrs(Txt string) string{
+    if Txt=="Waiting"     {return "grey"}
+    if Txt=="Done"        {return "green"}
+    if Txt=="Progress"    {return "red"}
+	return "yellow"
+}
 ```
+
+### Template 
+Здесь используется обработка функций
+
+```html
+
+  <table id="tabledata" class='table table-sm table-striped table-hover'>
+      <thead>
+         <tr>
+            <th>Id</th>
+            <th>Tasks</th>
+            <th>Module</th>
+            <th>%</th>
+            <th>Status</th>
+         </tr>
+      </thead>
+
+      <tbody>
+         {{range .Dat}}
+              <tr >
+                 <td class="veral">{{.Id}}</td>
+                 <td><b style="color:#3E9C9C;">{{.Title}}</b><br>  <small>{{.Descript}}</small></td>
+                 <td class="veral">{{.Module}}</td>
+                 <td class="veral">{{.Percent}}</td>
+                 <td class="veral" style="color:{{.Status|Fad}}">{{.Status}}</td>
+              </tr>
+         {{end}}
+      </tbody>
+
+  </table>
+```
+
