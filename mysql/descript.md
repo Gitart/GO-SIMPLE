@@ -1,4 +1,4 @@
-# Пример Golang CRUD с использованием MySQL с нуля
+# [Пример Golang CRUD с использованием MySQL с нуля](http://www.golangprograms.com/advance-programs/example-of-golang-crud-using-mysql-from-scratch.html)
 
 В этом уроке мы увидим пример программы, чтобы узнать, как выполнять операции CRUD базы данных с использованием Golang и MySQL. CRUD - это аббревиатура для создания, чтения, обновления и удаления. Операции CRUD - это базовые операции с данными для базы данных. 
 
