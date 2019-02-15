@@ -135,7 +135,7 @@ func Ids() string{
 
 
 ## Конвертация Map to JSON
-```
+```golang
 package main
 
 import (
