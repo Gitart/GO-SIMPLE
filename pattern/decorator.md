@@ -128,3 +128,6 @@ fmt.Printf("#3 retrier.Fetch: %v\n", data)
 ### решение 
 Шаблон Decorator более удобен для добавления функциональных возможностей к объектам вместо целых структур 
 во время выполнения. С отделкой также можно динамически удалять добавленные функции.
+
+
+[Resource](http://blog.ralch.com/articles/network-programming-and-proxies-in-golang/)
