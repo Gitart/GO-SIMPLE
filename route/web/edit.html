@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Edt Product</title>
+    </head>
+    <body>
+        <h3>Edit Product</h3>
+        <form method="POST">
+            <input type="hidden" name="id" value="{{.Id}}" />
+            <label>Model</label><br>
+            <input type="text" name="model" value="{{.Model}}" /><br><br>
+            <label>Company</label><br>
+            <input type="text" name="company" value="{{.Company}}" /><br><br>
+            <label>Price</label><br>
+            <input type="number" name="price" value="{{.Price}}" /><br><br>
+            <input type="submit" value="Send" />
+        </form>
+    </body>
+</html>
