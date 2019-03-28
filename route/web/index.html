@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Products</title>
+    </head>
+    <body>
+        <table>
+            <thead><th>Id</th><th>Model</th><th>Company</th><th>Price</th></thead>
+            {{range . }}
+            <tr>
+                <td>{{.Id}}</td>
+                <td>{{.Model}}</td>
+                <td>{{.Company}}</td>
+                <td>{{.Price}}</td>
+            </tr>
+            {{end}}
+        </table>
+    </body>
+</html>
