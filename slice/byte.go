@@ -23,3 +23,8 @@ func main() {
 	fmt.Println(string(fp[:]))
 	fmt.Println(string(sp[:]))
 }
+
+
+// Output
+// 0123456789abcdef
+// fedcba9876543210
