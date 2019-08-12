@@ -10,7 +10,8 @@ import (
 // Чтение с гитарт Gitart
 
 func main() {
-    //resp, err := http.Get("https://api.github.com/repos/dotcloud/docker")
+    // https://github.com/Gitart/GO-SIMPLE/blob/master/setting.json
+    // resp, err := http.Get("https://api.github.com/repos/dotcloud/docker")
     resp, err := http.Get("https://raw.githubusercontent.com/Gitart/Projects/master/HeadOffice")
     
    
