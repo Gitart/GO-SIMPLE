@@ -1,6 +1,9 @@
 ## Поймать значения из Goroutines
 #### Самый естественный способ получить значение из программы - каналы. Каналы - это трубы, которые соединяют параллельные программы. Вы можете отправлять значения в каналы из одной процедуры и получать эти значения в другую процедуру или в синхронной функции.
+// https://www.golangprograms.com/catch-return-values-from-goroutines.html
 
+
+```golang
 package main
 
 import (
@@ -39,3 +42,5 @@ func main() {
 	wg.Wait()
 	close(nums) // Closes the channel
 }
+```
+
