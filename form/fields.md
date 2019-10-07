@@ -1,5 +1,7 @@
 ## Работа с полями формы
 ---
+Можно получить перечень полей от формы в виде массива полей  
+
 
 
 
@@ -53,7 +55,7 @@ func Company_add(rw http.ResponseWriter, req *http.Request){
 ```
 
 
-### Output
+### Output req.Form
 
 ```json
 
