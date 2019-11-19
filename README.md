@@ -4,8 +4,11 @@
 =========
 
 Samples for go language  
-Примеры использования языка GO   
-с готовыми примерами   
+Примеры использования языка GO с готовыми примерами   
+
+## Go Full
+https://dasarpemrogramangolang.novalagung.com/5-go-command.html
+
 
 ## Library
 https://github.com/golang/go/wiki/Projects
