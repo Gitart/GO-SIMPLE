@@ -15,13 +15,14 @@ go get -u github.com/jinzhu/gorm
 go get -u github.com/go-sql-driver/mysql
 ```
 
-развитие
+## Develop
 Теперь мы готовы к работе. Давайте создадим новую папку api внутри папки github.com . В папке api мы создадим наше приложение RESTful API.
 
 **src/github.com/api/app/model** follow the folder location and create two new folders **app** and **model**.
 
 Inside **model** create a file called **model.go** and add the following code:
 
+```golang
 package model
 
 import (
@@ -50,6 +51,7 @@ func DBMigrate(db \*gorm.DB) \*gorm.DB {
 	db.AutoMigrate(&Employee{})
 	return db
 }
+```
 
 ---
 
@@ -57,6 +59,7 @@ func DBMigrate(db \*gorm.DB) \*gorm.DB {
 
 Create a file called **common.go** and add the following code:
 
+```golang
 package handler
 
 import (
@@ -81,6 +84,7 @@ func respondJSON(w http.ResponseWriter, status int, payload interface{}) {
 func respondError(w http.ResponseWriter, code int, message string) {
 	respondJSON(w, code, map\[string\]string{"error": message})
 }
+```
 
 ---
 
@@ -88,6 +92,7 @@ func respondError(w http.ResponseWriter, code int, message string) {
 
 Create a file called **employees.go** and add the following code:
 
+```golang
 package handler
 
 import (
@@ -212,6 +217,7 @@ func getEmployeeOr404(db \*gorm.DB, name string, w http.ResponseWriter, r \*http
 	}
 	return &employee
 }
+```
 
 ---
 
@@ -219,6 +225,7 @@ func getEmployeeOr404(db \*gorm.DB, name string, w http.ResponseWriter, r \*http
 
 Create a file called **app.go** and add the following code:
 
+```golang
 package app
 
 import (
@@ -322,6 +329,7 @@ func (a \*App) EnableEmployee(w http.ResponseWriter, r \*http.Request) {
 func (a \*App) Run(host string) {
 	log.Fatal(http.ListenAndServe(host, a.Router))
 }
+```
 
 ---
 
@@ -329,6 +337,7 @@ func (a \*App) Run(host string) {
 
 Use your database connection credentials and create a file called **config.go** and add the following code:
 
+```golang
 package config
 
 type Config struct {
@@ -354,6 +363,7 @@ func GetConfig() \*Config {
 		},
 	}
 }
+```
 
 ---
 
@@ -361,6 +371,7 @@ Now create **src** at root location.
 
 Create a file called **main.go** and add the following code:
 
+```golang
 package main
 
 import (
@@ -375,6 +386,8 @@ func main() {
 	app.Initialize(config)
 	app.Run(":3000")
 }
+```
+
 
 #### Using command line or putty run command "go run main.go"
 
