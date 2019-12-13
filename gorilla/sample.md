@@ -89,3 +89,54 @@ func Search(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+## Full code
+```golang
+// main.go
+
+package main
+
+import (
+
+  "route/page"
+  "github.com/gorilla/mux"
+  "log"
+  "net/http"
+)
+
+func main() {
+
+    router := mux.NewRouter()
+    router.HandleFunc("/page", page.PreFlightHandler).Methods("OPTIONS")
+
+    router.HandleFunc("/page", page.Search).Methods("GET")
+
+    log.Fatal(http.ListenAndServe(":8000", router))
+
+}
+
+// route/page.go
+package page
+import (
+  "net/http"
+  "log"
+)
+
+func PreFlightHandler(w http.ResponseWriter, r *http.Request) {
+
+    w.Header().Set("Access-Control-Allow-Origin", "*")
+    w.Header().Set("Vary", "Origin")
+    w.Header().Set("Vary", "Access-Control-Request-Method")
+    w.Header().Set("Vary", "Access-Control-Request-Headers")
+    w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Origin, Accept, Authorization, Organization")
+    w.Header().Set("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
+    w.Header().Set("Access-Control-Allow-Credentials", "true")
+}
+func Search(w http.ResponseWriter, r *http.Request) {
+
+  log.Println(r.Header.Get("authorization"))
+
+  log.Println("Hello World")
+  w.Write([]byte("{}"))
+  return
+}
+```
