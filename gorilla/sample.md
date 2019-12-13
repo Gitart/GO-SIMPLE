@@ -1,4 +1,7 @@
-// main.go
+## Work wit Gorilla
+
+```golang
+main.go
 
 package main
 
@@ -39,3 +42,50 @@ func Search(w http.ResponseWriter, r *http.Request) {
   w.Write([]byte("{}"))
   return
 }
+```
+
+## Tes sample
+```golang
+// main.go
+package main
+
+import (
+
+  "route/page"
+  "github.com/gorilla/mux"
+  "github.com/gorilla/handlers"
+  "log"
+  "net/http"
+)
+
+func main() {
+
+    router := mux.NewRouter()
+
+    router.HandleFunc("/page", page.Search).Methods("GET")
+
+    headersOk := handlers.AllowedHeaders([]string{"Content-Type","Authorization","Organization"})
+    originsOk := handlers.AllowedOrigins([]string{"*"})
+    methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
+    log.Fatal(http.ListenAndServe(":8000", handlers.CORS(originsOk, headersOk, methodsOk)(router)))
+
+}
+
+// route/page.go
+package page
+import (
+  "net/http"
+  "log"
+)
+
+
+func Search(w http.ResponseWriter, r *http.Request) {
+
+  log.Println(r.Header.Get("authorization"))
+
+  log.Println("Hello World")
+  w.Write([]byte("{}"))
+  return
+}
+```
+
