@@ -1,5 +1,6 @@
 ## Error response
-[Error go play]("https://play.golang.org/p/_LxcVyD4-KG")
+
+[Error go play](https://play.golang.org/p/_LxcVyD4-KG)
 
 ```golang
 package main
