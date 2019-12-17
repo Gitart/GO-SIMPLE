@@ -55,6 +55,81 @@ function ShowBadAlert(Text){
 
 ## Html code
 ```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>{{.Title}}</title>
+     {{template "libs"}}
+
+
+        <style>
+            @media screen and (max-width: 767px) {.sidenav {height: auto; padding: 15px;}}
+           .row.content {height: 1500px}
+           .sidenav     {background-color: #f1f1f1; height: 100%;}
+           footer       {background-color: #555;color: white;padding: 15px;}
+           .veral       {vertical-align: middle !important;}
+           .form-row    {padding-bottom: 10px;}
+           .btn         {padding-right: 10px; margin-right: 10px;}
+           
+           .windowpopup {border: 2px #CCC solid; border-radius:1px; padding:10px; background-color: #FCFCFB; 
+                        
+                         -webkit-box-shadow: 10px 10px 22px 0px rgba(110,92,110,1);
+                         -moz-box-shadow: 10px 10px 22px 0px rgba(110,92,110,1);
+                          box-shadow: 10px 10px 22px 0px rgba(110,92,110,1);}
+
+           .cif       {color:red; background-color:#f3f3f3;padding:10px; marging:12px; font-weight:bold; border-radius:5px; }
+           .cifukr    {color:#F7DC6F; background-color:#2d3143;padding:10px; marging:12px; font-weight:bold; border-radius:5px; }
+           .clrhead   {color:#e64946;font-weight:bold; font-saize:30px;}
+
+        </style>
+
+
+<script type="text/javascript">
+
+// Insert 
+function Addnews(){
+                
+
+                $.ajax({type: 'POST',
+                        url:  '/reiting/add/',
+                        data: $('#formentry').serialize(),
+                        success:function(response){
+                                 Showalert(response);
+                                 $.notify(response);
+                                // $('#formentry').find('.formre').html(response);
+                                // $('#tabledata').load('/api/report/plan/ #tabledata tbody');
+                                // $('#formentry').hide();
+                        },
+                        error:function(error) { 
+                           // console.log(JSON.stringify(error));
+                           // alert(error.responseText); 
+                              Showalert("Неправильные или не полные данные.");
+                              $.notify(error.responseText);
+                        }
+
+
+                      });
+
+                  
+                  document.getElementById("formentry").reset();
+                 //Showalert("Рейтинг добавлен в базу данных");
+                                  
+}
+
+// Показ сообщения
+function Showalert(Text){
+       $('#sret').html(Text);
+       $('#myalert').show(100).delay(5000).hide(200);
+}
+
+// Показ сообщения
+function ShowBadAlert(Text){
+       $('#sret').html(Text);
+       $('#myalert').show(100).delay(5000).hide(200);
+}
+
+</script>
+</head>
 <body >
 
 <!--Body page-->
@@ -84,8 +159,8 @@ function ShowBadAlert(Text){
 
              <!--Notification add to database-->
              <div id="myalert" class="alert alert-success" style="display: none;">
-  	              <strong>Success!</strong> <span id="sret"><i class='far fa-paper-plane'>
-                  </i> Рейтинг добавлен в базу.</span>
+  	              <strong>Success!</strong> 
+                  <span id="sret"><i class='far fa-paper-plane'></i> Рейтинг добавлен в базу.</span>
     	       </div>
 
             <form  id="formentry" class="windowpopup" role="form" >
@@ -122,7 +197,9 @@ function ShowBadAlert(Text){
                         </div>
                    </div>
           </form>
+
 </div>
+</html>
 ```
 
 ## In GO function
