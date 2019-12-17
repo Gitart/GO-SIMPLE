@@ -233,6 +233,64 @@ func waitForShutdown(srv *http.Server) {
 ```
 
 
+## Request form with template
+```golang
+/*
+ * Форма для добавление рейтинга
+ * /reiting/
+ * Add_reiting
+ */
+func Add_reiting(w http.ResponseWriter, r *http.Request) {
+
+	idp   := r.URL.Path[len("/reiting/"):]
+	id    := Str2Int64(idp)      // 
+	Dat   := GetOneRating(id)    //
+	Alexa := GetOneRatingMax()   // Cвежий рейтинг сайта
+
+	// Дата
+	Dt := Mst{
+		"Title":       "Рейтинг Alexa & Ukraine",
+		"Description": "Добавление текущего ретинга сайта",
+		"Dat":         Dat,
+		"Tm":          time.Now().Format("02.01.2006 15:04:05"),
+		"Id":          idp,
+		"Alexa":       Alexa,
+	}
+
+
+    RenderHtml("addreiting.html",Dt,w)
+}
+
+
+/*
+ * Render html pages
+ */
+func RenderHtml(Template string, Data Mst, w http.ResponseWriter) {
+	// fp := path.Join("tmp/", Template)
+	tmpl, err := template.ParseFiles("tmp/"+Template, "tmp/main.html")
+
+	// Error
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	tmpl.Execute(w, Data)
+}
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
 ### Insert procedure
 ```golang
 package main
