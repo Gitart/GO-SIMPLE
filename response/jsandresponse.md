@@ -191,6 +191,13 @@ func Add_new_raiting(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+## Database SqLite
+
+```sql
+CREATE TABLE "ratings" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+                         `alexa` TEXT, `ukraine` TEXT, `date` TEXT, `descr` TEXT )
+```
+
 
 
 
