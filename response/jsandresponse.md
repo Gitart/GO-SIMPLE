@@ -124,6 +124,113 @@ function ShowBadAlert(Text){
 
 ## In GO function
 
+### Start programm
+```golang
+package main
+
+import (
+  "context"
+  "encoding/base64"
+  "flag"
+  "fmt"
+  "io/ioutil"
+  "log"
+  "net/http"
+  "os"
+  "os/signal"
+  "strings"
+  "syscall"
+  "time"
+ 
+  _ "github.com/jinzhu/gorm/dialects/sqlite"
+)
+
+// *******************************************************
+// Start main procedure
+// *******************************************************
+func main() {
+  // Restore in bad case
+  defer func() {
+    if r := recover(); r != nil {
+      fmt.Println("Recovered in f", r)
+    }
+  }()
+
+  // Set Logs
+  f, err := os.OpenFile("log/log.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+  if err != nil {
+    fmt.Printf("Error opening file: %v", err)
+  }
+
+  defer f.Close()
+  log.SetOutput(f)
+
+  // Flags
+  Port := flag.String("p", "1968", "Input Port") // Port by default
+  // View := flag.String("v", "y",    "Previe error")
+
+  flag.Parse()
+  
+  
+  // Рейтинг
+  http.HandleFunc("/reiting/",            Add_reiting)                // Форма       - Добавление рейтинга
+  http.HandleFunc("/reiting/add/",        Add_new_raiting)            // Процедура   - Добавление рейтинга
+  http.HandleFunc("/reiting/report/",     All_reitings)               // Отчет рейтингов
+
+
+
+  // log.Fatal(sr.ListenAndServe())
+  fmt.Printf(Pr, *Port, "2.003", Ct())
+
+  // log.Println(http.ListenAndServe(":1968", nil))
+  // Err(err, "Error start service.")
+
+  // Settings portal
+  srv := &http.Server{Addr:         ":" + *Port,
+                      IdleTimeout:  120 * time.Second,
+                      ReadTimeout:  10  * time.Second,
+                      WriteTimeout: 10  * time.Second,
+  }
+
+  // srv :=makeServerFromMux()
+  // Start Server
+  go func() {
+    FgGreen("\n        Start servers......")
+
+    if err := srv.ListenAndServe(); err != nil {
+      log.Fatal(err)
+    }
+  }()
+
+  // Graceful Shutdown
+  waitForShutdown(srv)
+}
+
+
+// ***************************************
+// Graceful Shutdown server
+// ***************************************
+func waitForShutdown(srv *http.Server) {
+
+  interruptChan := make(chan os.Signal, 1)
+  signal.Notify(interruptChan, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
+
+  // Block until we receive our signal.
+  <-interruptChan
+
+  // Create a deadline to wait for.
+  ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+  defer cancel()
+  srv.Shutdown(ctx)
+
+  // Notify shutdown server
+  FgRed("Shutting down server.....\n")
+  os.Exit(0)
+}
+```
+
+
+### Insert procedure
 ```golang
 package main
 import (	
