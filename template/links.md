@@ -1,5 +1,5 @@
 ## Usefull links
-Resourses relation with create temlate
+Resources links relation with create template
 ---
 
 https://echorand.me/posts/golang-templates/   
