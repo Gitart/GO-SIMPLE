@@ -25,7 +25,7 @@ func Creat_string(w http.ResponseWriter, r *http.Request) {
 
  
  
-    Dt:= Mst{"Title": "Поиск по сайту.", "Dat": "Test", "Dts":D, "Yes":"gg"}
+    Dt:= Mst{"Title": "Поиск по сайту.", "Dat": "Test", "Dts":D, "Yes":"status"}
 
     // Maping function
     funcMap := template.FuncMap{"Fad": Tmp_a, "Fsd": Tmp_c, "Fcc": Tmp_cc}
