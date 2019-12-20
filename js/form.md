@@ -167,4 +167,38 @@ script type="text/javascript">
 </div>
 ```
 
+## CSS
+
+```css
+   .table-condensed>tbody>tr>td, 
+   .table-condensed>tbody>tr>th, 
+   .table-condensed>tfoot>tr>td, 
+   .table-condensed>tfoot>tr>th, 
+   .table-condensed>thead>tr>td, 
+   .table-condensed>thead>tr>th {
+                                  padding: 2px; 
+				  font-size:14px; 
+				  margin:2px; 
+				  vertical-align:middle; 
+				  padding-left: 10px;}
+    .container-fluent{margin: 10px;}
+    .table-striped tbody tr:nth-of-type(odd) {background-color: #f0f3f5;}
+    table {border-collapse: collapse !important;} 
+    table.dataTable tbody th, 
+    table.dataTable tbody td {padding: 1px 10px;}
+	input[type=search]       {border: 1px solid #CCC; border-radius: 3px; font-weight: bold;}
+    
+    table.dataTable thead th, 
+    table.dataTable thead td {border-bottom: 3px solid #C2C4C5;}
+    body          {font-family:'Roboto'; font-size: 16px;}
+    h1            {color:#C70039;font-weight:bold;}
+    a             {color:#3D3C44;}
+    h5            {color:#2188DA; font-weight:bold;}
+                 
+   .card-header  {padding: 10px 0px 0px 50px !important;}
+   .card         {border: 2px solid #CCC; box-shadow: 10px -5px 10px #CCC;}
+   .form-control {line-height: 0px; border-radius: 2px;font-weight: bold; background-color: #FFFFF0 !important;}
+    tr:hover     {cursor: pointer;}
+   .form-group   {margin-bottom: 4px;}
+```		 
 
