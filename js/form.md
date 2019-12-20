@@ -12,19 +12,19 @@ $(document).ready(function() {
 
 ```js     
 function RefreshTable(){
-     	 $('#rls').DataTable({
-				          "language": {
-										"decimal":       ",",
-										"thousands":     ".",
-										"search":        "Пошук ",
-										"lengthMenu":    "Display _MENU_ records per page",
+    $('#rls').DataTable({
+	 "language": {
+	        "decimal":       ",",
+		"thousands":     ".",
+		"search":        "Пошук ",
+		"lengthMenu":    "Display _MENU_ records per page",
                                         "zeroRecords":   "Даних не знайдено",
                                         "info":          "Стр _PAGE_ з _PAGES_",
                                         "infoEmpty":     "Немаэ доступник записів",
                                         "infoFiltered":  "(filtered from _MAX_ total records)",
-									    "columnDefs":    [{"visible": false, "targets":2}]
-									},
-    				                    "scrollY":       "600px",
+			  	        "columnDefs":    [{"visible": false, "targets":2}]
+			},
+    				        "scrollY":       "600px",
                                         "scrollCollapse": true,
 				                        "paging":         false,
 				                        "ordering":       true,
@@ -34,8 +34,6 @@ function RefreshTable(){
 		});
      }
 ```
-
-
 
 
 ## Edit form
