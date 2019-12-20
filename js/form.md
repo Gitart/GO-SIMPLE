@@ -35,6 +35,58 @@ function RefreshTable(){
      }
 ```
 
+## Grouping in table
+
+```js
+ $(document).ready(function() {
+    $('#rls').DataTable({
+	"language": {
+	"decimal":       ",",
+	"thousands":     ".",
+	"search":        "Поиск ",
+	"lengthMenu":    "Display _MENU_ records per page",
+        "zeroRecords":   "Даних не знайдено",
+        "info":          "Стр _PAGE_ з _PAGES_",
+        "infoEmpty":     "Немаэ доступник записів",
+        "infoFiltered":  "(filtered from _MAX_ total records)",
+	"columnDefs":    [{"visible": false, "targets":2}],
+        "scrollY":       "650px"},
+	"drawCallback":   function (settings) {
+                var api  = this.api();
+                var rows = api.rows({page:'current'}).nodes();
+                var last = null;
+                api.column(2, {page:'current'} ).data().each(function(group,i) {
+                if (last !== group ) {
+                      $(rows).eq(i).before('<tr class="group"><td colspan="7"> <i class="fas fa-calendar-alt"></i> ' + group + '</td></tr>');
+                last   = group;
+                }
+                });
+                },
+                "scrollCollapse": true,
+		        "paging":         false,
+			"ordering":       true,
+			"info":           false,
+			"order":          [[2, "asc" ]],
+			"dom":            '<"toolbar">frtip'
+	 });
+
+
+					    
+	$('#rls tbody').on( 'click', 'tr.group', function () {
+	    var currentOrder = table.order()[0];
+
+	    if (currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+	        table.order([2,'desc']).draw();
+		}
+	    else {
+	        table.order([2,'asc']).draw();
+		}
+   });
+
+    $("div.toolbar").html('<h4> <i class="fas fa-calendar-alt"></i> Техн специалисти</h4><b>Техничні спеціалисти Дата:2019-12-20 19:07:41</b>');
+});
+```					
+
 
 ## Edit form
 
