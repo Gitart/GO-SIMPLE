@@ -202,3 +202,159 @@ script type="text/javascript">
    .form-group   {margin-bottom: 4px;}
 ```		 
 
+
+## Input mask
+```js
+<!--https://github.com/digitalBush/jquery.maskedinput-->
+<script>
+
+$(function($){
+    $("#Busscode").mask("99/99/9999",{placeholder:"99/99/9999"});
+    $("#Code").mask("?999999999999", {placeholder:"XXXXXXXXXXXX"});
+    $("#Country").mask("(999) 999-9999? x99999",{placeholder:"XXXXXXXXX"});
+    $("#Email").mask("(999) 999-9999? x99999",{placeholder:"XXXXXXXXX"});
+    $("#Street").mask("99/99/9999",{completed:function(){alert("You typed the following: "+this.val());}});
+});  
+```
+
+## Date Picker
+```js
+$(function() {
+   $("#datepickerss").datepicker();
+});
+```
+
+## Parse URL
+
+```js
+
+// Parse URL
+function ParseUrl(){
+  var url=window.location;
+  //alert(url.search.split("&")[1].split("=")[1]);
+  alert(getParameterByName("ID",url));
+  alert(getParameterByName("id",url));
+  alert(getParameterByName("er",url));
+  alert(getParameterByName("key",url));
+  alert(getParameterByName("mode",url));
+  alert(getParameterByName("type",url));
+  alert(getParameterByName("region",url));
+  alert(getParameterByName("ern",url));
+  var select = document.getElementById("Region"); 
+  select.selectedIndex=2;
+  select.onchange();
+}
+
+
+// ****************************************************************
+// Get url & parameters
+// ****************************************************************
+function getParameterByName(name, url) {
+	if (!url) url = window.location.href;
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+// ****************************************************************
+// Split parameter
+// ****************************************************************
+function Spl(Parser, Num){
+  return Parser.split("&")[Num].split("=")[1];
+}  
+```
+
+
+## Change Date Select
+
+```js
+function Changeregion(data){
+  //alert(data.value);
+  //alert(data.selectedIndex);
+
+  var select = document.getElementById("Area"); 
+  var idx=data.selectedIndex;
+  var options = ["02.Винницкая", "06.Житомирская", "03.Киевская", "04.Кировоградская", "05.Полтавская","06.Сумская","07.Черкасская","08.Черниговская"]; 
+					  
+// Центр
+if (idx==1) {
+   var options = ["02.Винницкая", "06.Житомирская", "10.Киевская", "12.Кировоградская", "17.Полтавская",  "19.Сумская", "24.Черкасская", "25.Черниговская"]; 
+}
+
+// Южный					  
+if (idx==2) {
+   options = ["01.АР Крым", "08.Запорожская", "15.Николаевская", "16.Одесская", "22.Херсонская", "27.Севастопольская"]; 
+}
+					  
+// Bосточный
+if (idx==3) {
+   options = ["04.Днепропетровськая", "05.Донецкая", "13.Луганськая", "21.Харківськая"]; 
+}
+					  
+// Западный      
+if (idx==4) {
+options = ["03.Волынскую", "07.Закарпатскую", "09.Ивано-Франковскую", "14.Львовскую", "18.Ровенскую", "20.Тернопольскую", "23.Хмельницкую", "26.Черновицкую"]; 
+}
+				
+// Optional: Clear all existing options first:
+select.innerHTML = "";
+					  
+// Populate list with options:
+for(var i = 0; i < options.length; i++) {
+    var opt = options[i].split(".");
+    var codereg = opt[0];  
+    var namereg = opt[1];
+    select.innerHTML += "<option value=\"" + codereg + "\">" + namereg + "</option>";
+ }
+}
+              
+```
+
+
+## HTML Select
+```html
+select id="Region" onchange="Changeregion(this)">
+	<option val="0">-- Выберите регион --</option>
+	<option val="1">Центральный</option>
+	<option val="2">Южный</option>
+	<option val="3">Западный</option>
+	<option val="4">Восточный</option>
+</select>   
+
+ <div>
+<label class="frm_label">Область</label>
+<select id="Area">
+        <option val="0">-- Выберите область --</option>
+        <option val="01">АР Крим</option>
+	<option val="02">Вінницька</option>
+	<option val="03">Волинська</option>
+	<option val="04">Дніпропетровська</option>
+	<option val="05">Донецька</option>
+	<option val="06">Житомирська</option>
+	<option val="07">Закарпатська</option>
+	<option val="08">Запорізька</option>
+	<option val="09">Івано-Франківська</option>
+	<option val="10">Київська</option>
+	<option val="11">Київ</option>
+	<option val="12">Кіровоградська</option>
+	<option val="13">Луганська</option>
+	<option val="14">Львівська</option>
+	<option val="15">Миколаївська</option>
+	<option val="16">Одеська</option>
+	<option val="17">Полтавська</option>
+	<option val="18">Рівненська</option>
+	<option val="19">Сумська</option>
+	<option val="20">Тернопільська</option>
+	<option val="21">Харківська</option>
+	<option val="22">Херсонська</option>
+	<option val="23">Хмельницька</option>
+	<option val="24">Черкаська</option>
+	<option val="25">Чернівецька</option>
+	<option val="26">Чернігівська</option>
+</select>         
+</div>                     
+```
+	                                     
