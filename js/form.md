@@ -94,3 +94,27 @@ function Deletet(Id){
           }});
 }
 ```
+
+
+## Current date
+```js
+script type="text/javascript">
+   var time = new Date();
+   var year = time.getFullYear();
+   $("#pyear").html("&copy " + year + " Unity-Bars");
+</script>
+```	 
+
+
+## Buttons
+```html
+<div class="panel-footer clearfix">
+   <div class="pull-right" style="text-align: right; padding: 20px;">
+      <button type="reset"   class="btn btn-info"     id="Reject"   onclick="Form_hide();">Вийти</button>
+      <button type="button"  class="btn btn-default"  id="Inform"   onclick="Information();">Довідка</button>
+      <button type="button"  class="btn btn-success"  id="Save"     onclick="Savecandidatform()">Зберегти</button>
+  </div>
+</div>
+```
+
+
