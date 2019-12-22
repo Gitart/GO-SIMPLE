@@ -5,10 +5,10 @@
 package main
 
 import (
-	"fmt"
-	"flag"
-	"os"
-	"runtime"
+  "fmt"
+  "flag"
+  "os"
+  "runtime"
   "github.com/fatih/color"
   "gopkg.in/yaml.v2"
   "log"
