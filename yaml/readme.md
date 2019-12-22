@@ -2,21 +2,12 @@
 
 
 ```golang
-package main
-
-import (
-  "fmt"
-  "flag"
-  "os"
-  "runtime"
-  "github.com/fatih/color"
-  "gopkg.in/yaml.v2"
-  "log"
-  "io/ioutil"
-  "strings"
-  "encoding/json"
-)
-
+//*****************************************
+// Main
+//*****************************************
+func main() {
+    Settings()
+}
 
 func Settings(){
     s:=Cor{}
@@ -29,7 +20,8 @@ func Settings(){
     yaml.Unmarshal([]byte(content), &s)
     fmt.Println ("Cored-adress........  ",  s.Core.Address)
     fmt.Println ("Cored-port..........  ",  s.Core.Port)
-    
+    fmt.Println ("Cored-pid...........  ",  s.Core.Pid.Enabled)
+
 }
 ```
 
@@ -40,13 +32,18 @@ type Cor struct{
         Port          string `yaml:"port"`
         Address       string `yaml:"address"`
         Enabled       string `yaml:"enabled"`
-        Worker:       string `yaml:"worker_num"`
-        Queue_num:    string `yaml:"queue_num"` 
-        Sync:         string `yaml:"sync"` 
-        Mode:         string `yaml:"mode"` 
-        Ssl:          string `yaml:"ssl"` 
-        Cert_path:    string `yaml:"cert_path"` 
-        Key_path:     string `yaml:"key_path"` 
+        Worker        string `yaml:"worker_num"`
+        Queue_num     string `yaml:"queue_num"` 
+        Sync          string `yaml:"sync"` 
+        Mode          string `yaml:"mode"` 
+        Ssl           string `yaml:"ssl"` 
+        Cert_path     string `yaml:"cert_path"` 
+        Key_path      string `yaml:"key_path"` 
+         Pid struct {
+                Enabled       string `yaml:"enabled"`
+                Path          string `yaml:"path"`
+                Override      string `yaml:"override"`
+        }
       }  
 }
 ```
@@ -66,4 +63,7 @@ core:
   ssl:        false
   cert_path:  "cert.pem"
   key_path:   "key.pem"
+  pid:
+    enabled:  true
+    
 ```  
