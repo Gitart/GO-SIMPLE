@@ -119,3 +119,7 @@ fmt.Println(user2.FirstName, user2.LastName, user2.Books)
 Получили результат аналогичный предыдущему.
 
 На этом основы работы с JSON можно и завершить. Поиграться с преобразование можно
+
+Link :
+
+https://play.golang.org/p/dqn5UdqFfJt
