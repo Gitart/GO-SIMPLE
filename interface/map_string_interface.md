@@ -31,7 +31,7 @@ type Person struct{
 
 func main() {
     // Первый вариант
-	var a Mst
+    var a Mst
     a = Mst{}
     a["test"] = 1
 
@@ -59,14 +59,14 @@ func main() {
     ss["sss"]="map-string-interface{}{}"
     fmt.Println("map[string]inetrface{}{}....  ", ss)
 
-    // V
+    // v:=
     v:= map[string]interface{}{}
     v["Name"]="sss"
     fmt.Println("[]Mst append ....  ", v)
 
     // Добавление в массив - первый вариант
-	var c []Mst
-	c=append(c,b)
+    var c []Mst
+    c=append(c,b)
     c=append(c,b)
 
     // Добавление в массив - второй вариант
