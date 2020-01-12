@@ -4,14 +4,14 @@ In Go, we iterate values in a map like this:
 
 for key, value := range mymap {}
 
-However, to transform key\-value pairs in our map into instances, I incorporate a counter variable to serve as a missing index in the loop:
+However, to transform key -value pairs in our map into instances, I incorporate a counter variable to serve as a missing index in the loop:
 
 ```golang
 type Person struct {
         Name string
         Age int
 }
-persons := map\[string\]int{
+persons := map [string ]int{
         "John"  : 35,
         "Jane"  : 23,
         "Mary"  : 12,
@@ -19,31 +19,31 @@ persons := map\[string\]int{
         "Phil"  : 87,
 }
 counter := 0
-pslice := make(\[\]\*Person, len(persons))
+pslice := make( [ ] *Person, len(persons))
 for k, v := range persons {
-        pslice\[counter\] = &Person{k, v}
+        pslice [counter ] = &Person{k, v}
         counter++
 }
 ```
 
-### This returns a slice filled with all the \*Person instances.
+### This returns a slice filled with all the  *Person instances.
 
-By using *Unmarshal* function in Go’s *json* package and an interface or struct, we can convert JSON to Go’s instances. To deal with JSON unpredictable structure, we introduce an empty interface that acts as an all\-purpose container to store the decoded data regardless of their types. The *json* package use the following map forms to store values from JSON bytes:
+By using *Unmarshal* function in Go’s *json* package and an interface or struct, we can convert JSON to Go’s instances. To deal with JSON unpredictable structure, we introduce an empty interface that acts as an all -purpose container to store the decoded data regardless of their types. The *json* package use the following map forms to store values from JSON bytes:
 
-map\[string\]interface{}
-\[\]interface{}
+map [string ]interface{}
+ [ ]interface{}
 
 Here is what you might do provided a JSON byte array:
 
 ```golang
 // JSON blob as an slice of bytes (char) in Go
-b := \[\]byte(\`{"Persons" :\[
+b :=  [ ]byte( `{"Persons" : [
                  {"Name": "John", "Age" : 35 },
                  {"Name": "Jane", "Age" : 23 },
                  {"Name": "Mary", "Age" : 12 },
                  {"Name": "Shane", "Age": 35 },
                  {"Name": "Phil", "Age" : 87 }
-        \]}\`)
+         ]} `)
 ```
 
 First, we declare an empty interface and store it in a variable that can be passed to *json.Unmarshal* function as a pointer.
@@ -59,18 +59,18 @@ fmt.Print(i)
 
 This is what you should see:
 
-map\[Persons:\[map\[Name:John Age:35\] map\[Name:Jane Age:23\] map\[Age:12 Name:Mary\] map\[Name:Shane Age:35\] map\[Name:Phil Age:87\]\]\]
+map [Persons: [map [Name:John Age:35 ] map [Name:Jane Age:23 ] map [Age:12 Name:Mary ] map [Name:Shane Age:35 ] map [Name:Phil Age:87 ] ] ]
 
 This is equivalent to assigning a map in this form:
 
 ```golang
-i := map\[string\]interface{}{
-        "Persons" : \[\]interface{}{
-                map\[string\]interface{}{"Name":"John", "Age": 35},
-                map\[string\]interface{}{"Name":"Jane", "Age": 23},
-                map\[string\]interface{}{"Name":"Mary", "Age": 12},
-                map\[string\]interface{}{"Name":"Shane", "Age":35},
-                map\[string\]interface{}{"Name":"Phil", "Age": 87},
+i := map [string ]interface{}{
+        "Persons" :  [ ]interface{}{
+                map [string ]interface{}{"Name":"John", "Age": 35},
+                map [string ]interface{}{"Name":"Jane", "Age": 23},
+                map [string ]interface{}{"Name":"Mary", "Age": 12},
+                map [string ]interface{}{"Name":"Shane", "Age":35},
+                map [string ]interface{}{"Name":"Phil", "Age": 87},
         },
 }
 ```
@@ -92,12 +92,12 @@ I did expect an assertion to return a bool type (true or false), but I thought t
 Now, to assert the type of our *i* interface, just use type assertion on the first level like so:
 
 ```golang
-p := i.(map\[string\]interface{})
+p := i.(map [string ]interface{})
 fmt.Println(p)  // This will prints exactly the same value as i,
                 // but with concrete type
 ```
 
-p is now a *map\[string\]interface{}* type, meaning we finally know (or Go does) that the first parent level is a map with key(s) of type string, and that’s it. The value(s) are still indeterminable as interface{}*,* which can be just about any type, even another interface.
+p is now a *map [string ]interface{}* type, meaning we finally know (or Go does) that the first parent level is a map with key(s) of type string, and that’s it. The value(s) are still indeterminable as interface{}*,* which can be just about any type, even another interface.
 Now, use type switch to dig into the structure and type assert the first level.
 
 ```golang
@@ -107,7 +107,7 @@ for k, v := range p {
                 fmt.Println(k, "is string", val)
         case int:
                 fmt.Println(k, "is int", val)
-        case \[\]interface{}:
+        case  [ ]interface{}:
                 fmt.Println(k, "is an array")
                 for i, v := range val {
                         fmt.Println(i, v)
@@ -122,23 +122,23 @@ Here we are just printing out to notify us of the assertion. If everything is ri
 
 Persons is an array:
 ```golang
-0 map\[Name:John Age:35\]
-1 map\[Name:Jane Age:23\]
-2 map\[Name:Mary Age:12\]
-3 map\[Name:Shane Age:35\]
-4 map\[Name:Phil Age:87\]
+0 map [Name:John Age:35 ]
+1 map [Name:Jane Age:23 ]
+2 map [Name:Mary Age:12 ]
+3 map [Name:Shane Age:35 ]
+4 map [Name:Phil Age:87 ]
 ```
 
 Which is exactly this:
 
-Persons := \[5\]map\[string\]interface{}
+Persons :=  [5 ]map [string ]interface{}
 
 Or more verbosely:
 
 ```golang
 Persons : [
-        map[string\]interface{}{"Name": "John", "Age": 35},
-        map[string\]interface{}{"Name": "Jane", "Age": 23},
+        map[string ]interface{}{"Name": "John", "Age": 35},
+        map[string ]interface{}{"Name": "Jane", "Age": 23},
         ...
         map[string]interface{}{"Name": "Phil", "Age": 87},
 ]
@@ -146,26 +146,26 @@ Persons : [
 
 I noticed that the maps each contains both a string value and integer value. Go let that because those values are still indetermined interfaces. Therefore, “John” and 35 are not yet recognized as a string and integer until they’re type asserted.
 
-My goal at this point was to convert the array of interfaces into a simple persons *map\[string\]int* like the first step (for the sake of my own education) so that I could create instances from it. Now I kept type asserting the next level:
+My goal at this point was to convert the array of interfaces into a simple persons *map [string ]int* like the first step (for the sake of my own education) so that I could create instances from it. Now I kept type asserting the next level:
 
 ```golang
 // Type assertion on the value of key "Persons"
 // which turns out to be an array of interface{}
-n := m\["Persons"\].(\[\]interface{})
+n := m ["Persons" ].( [ ]interface{})
 ```
 
 Try printing out *n*, I see the array under the key “Persons”.
-Now that *n* is an array of interface{}’s, which I knew at this point that each member is of type *map\[string\]interface{}*, i.e. *\[{“Name”: “John”, “Age”:35}, …\]*, I just jumped into creating instances at this level by chaining type assertions all in one go.
+Now that *n* is an array of interface{}’s, which I knew at this point that each member is of type *map [string ]interface{}*, i.e. * [{“Name”: “John”, “Age”:35}, … ]*, I just jumped into creating instances at this level by chaining type assertions all in one go.
 
-// Declare a slice to be filled with \*Person's instances
-persons := make(\[\]\*Person, len(n))
+// Declare a slice to be filled with  *Person's instances
+persons := make( [ ] *Person, len(n))
 
 ```golang
 // Iterate through the n array (or slice)
 for i := range n { // type assert on each member of n
-        name := n\[i\].(map\[string\]interface{})\["Name"\].(string)
-        age  := n\[i\].(map\[string\]interface{})\["Age"\].(float64) // Create an instance in every loop
-        persons\[i\] = &Person{name, int(age)}
+        name := n [i ].(map [string ]interface{}) ["Name" ].(string)
+        age  := n [i ].(map [string ]interface{}) ["Age" ].(float64) // Create an instance in every loop
+        persons [i ] = &Person{name, int(age)}
 }
 
 ```
