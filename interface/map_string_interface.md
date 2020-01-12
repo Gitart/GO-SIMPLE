@@ -1,9 +1,12 @@
+## Map String Interface sample
+
 // https://gist.github.com/jochasinga/0af0c5064e236aafff38
 // https://medium.com/code-zen/dynamically-creating-instances-from-key-value-pair-map-and-json-in-go-feef83ab9db2
 // https://ru.stackoverflow.com/questions/526069/golang-%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D1%8C-%D0%B2%D0%B8%D0%B4%D0%B0-mapstringinterface
 // https://ashirobokov.wordpress.com/2016/09/22/json-golang-cheat-sheet/..
 // https://medium.com/code-zen/dynamically-creating-instances-from-key-value-pair-map-and-json-in-go-feef83ab9db2
 
+```golang
 package main
 import "fmt"
 
@@ -78,3 +81,4 @@ func main() {
     fmt.Println("make(Mst)........  ", a,b)
     fmt.Println("make([]*Person)..  ", l)
 }
+```
