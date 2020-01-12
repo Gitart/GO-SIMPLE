@@ -79,7 +79,7 @@ func main() {
     d[1]["test"] = 1
 
     fmt.Println("[]Mst append ....  ", c)
-	fmt.Println("[]Mst ...........  ", d)
+    fmt.Println("[]Mst ...........  ", d)
     fmt.Println("Mst{} ...........  ", a,b)
     fmt.Println("make(Mst)........  ", a,b)
     fmt.Println("make([]*Person)..  ", l)
