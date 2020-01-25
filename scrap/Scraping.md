@@ -44,7 +44,6 @@ Also keep in mind that some websites do provide APIs. Check to see if an API is 
 ## Prerequisites
 
 *   [Go](https://golang.org) \- The Go programming language (tested with 1.6)
-
 *   [goquery](https://github.com/PuerkitoBio/goquery) (for some examples) \- Go version of jQuery for DOM parsing
 
 The only dependency, other than Go itself, is the goquery package. Goquery is not needed for every example, as the majority of examples rely only on the standard library. To install the **goquery** dependency, use **go get**:
@@ -59,8 +58,12 @@ If you have issues with your $GOPATH when using **go get**, be sure to read up a
 
 The first step to web scraping is being able to make an HTTP request. Let's look a very basic HTTP GET request and how to check the response code and view the content. Note the default timeout of an HTTP request using the default **transport** is forever.
 
-```
-// make_http_request.gopackage mainimport (    "io"    "log"    "net/http"    "os")func main() {    // Make HTTP GET request    response, err := http.Get("https://www.devdungeon.com/")    if err != nil {        log.Fatal(err)    }    defer response.Body.Close()    // Copy data from the response to standard output    n, err := io.Copy(os.Stdout, response.Body)    if err != nil {        log.Fatal(err)    }    log.Println("Number of bytes copied to STDOUT:", n)}
+```golang
+// make_http_request.gopackage main
+
+import (    "io"    "log"    "net/http"    "os")
+
+func main() {    // Make HTTP GET request    response, err := http.Get("https://www.devdungeon.com/")    if err != nil {        log.Fatal(err)    }    defer response.Body.Close()    // Copy data from the response to standard output    n, err := io.Copy(os.Stdout, response.Body)    if err != nil {        log.Fatal(err)    }    log.Println("Number of bytes copied to STDOUT:", n)}
 ```
 
 ## Make an HTTP GET request with timeout
