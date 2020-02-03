@@ -7,19 +7,12 @@ import (
 	"net/http"
 )
 
-
-
-
 func logging(f http.HandlerFunc) http.HandlerFunc {
-
-
 	return func(w http.ResponseWriter, r *http.Request) {
 		log.Println(r.URL.Path, r.Method)
 		f(w, r)
 	}
 }
-
-
 
 func foo(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "foo")
@@ -28,8 +21,6 @@ func foo(w http.ResponseWriter, r *http.Request) {
 func bar(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "bar")
 }
-
-
 
 func main() {
 	http.HandleFunc("/foo", logging(foo))
