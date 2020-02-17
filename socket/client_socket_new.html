@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+      
+
+
+
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+      <link rel="stylesheet" href="https://getbootstrap.com/docs/4.2/dist/css/bootstrap.min.css" >
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" ></script>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+      <script src="notify.js"></script>
+      <link rel="stylesheet" href="main.css" >
+
+
+
+      <style type="text/css">
+         .soob      {color:#CCC;}
+         .soobnew   {color:#03A9F4;}
+         .soobclose {color:#EE3006;}
+         .soobopen  {color:#3EEE06;}
+         .bul       {font-size: 50px; color: #CCC;}
+         .buln      {font-size: 50px; color: green;}
+      </style> 
+
+
+<script type="text/javascript">
+function WbS(){
+               var ws = new WebSocket("ws://localhost:4444/eh");
+
+               // Open socket
+               ws.onopen = function(){
+
+                 
+
+
+                  $("#soob").html("Cоединение открылось");
+                  $("#soob").switchClass("soob", "soobopen", 3000 );
+                  console.log("open connection...");
+               };
+
+               
+               // Get message
+               ws.onmessage = function (evt){
+                  var msg = evt.data;
+                  $.notify("Сервер : "+ msg.split("*")[0] + " " + msg.split("*")[1],"info");
+                  dv = "#td"+msg.split("*")[0];
+                  db = "#tb"+msg.split("*")[0];
+
+
+
+
+
+                  $(db).addClass("text-danger",100);
+                  $(dv).html(msg.split("*")[1]);
+                  
+                  $('#mytab tr:last').after('<tr> <td>'+msg.split("*")[0]+'</td><td> '+msg.split("*")[1] +'</td><td>Дополнительная запись</td></tr>'); 
+               };
+
+               // websocket is closed.
+               ws.onclose = function(){ 
+                  $( "#soob" ).switchClass("soobopen", "soobclose", 1000).delay(1000);   //.hide(2000);
+                  $.notify("Message is closed...");
+                  $("#soob").html("Cоединение закрылось.");
+               };
+      }
+
+
+
+
+
+
+
+
+         function WebSocketTest()
+         {
+            if ("WebSocket" in window)
+            {
+               alert("WebSocket is supported by your Browser!");
+               
+               // Let us open a web socket
+               var ws = new WebSocket("ws://localhost:4444/echo");
+				
+               ws.onopen = function()
+               {
+                  // Web Socket is connected, send data using send()
+                  ws.send("Message to send");
+                  alert("Message is sent...");
+               };
+				
+               ws.onmessage = function (evt) 
+               { 
+                  var received_msg = evt.data;
+                  alert("Message is received...");
+               };
+				
+               ws.onclose = function()
+               { 
+                  // websocket is closed.
+                  alert("Connection is closed..."); 
+               };
+            }
+            
+            else
+            {
+               // The browser doesn't support WebSocket
+               alert("WebSocket NOT supported by your Browser!");
+            }
+         }
+      </script>
+		
+   </head>
+   <body onload="WbS()">
+   
+
+   <div class="container">
+      <!-- <div id="sse">
+         <a href="javascript:WebSocketTest()">Run WebSocket</a>
+      </div> -->
+
+      
+      <h4 id="soob" class="soob"> Работа WEB Socket... </h4>
+      <br>
+
+      <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-4">
+                  <h2>Order <b>Details</b></h2>
+               </div>
+               <div class="col-sm-8">                 
+                  <a href="#" class="btn btn-primary"><i class="material-icons"></i> <span>Refresh List</span></a>
+                  <a href="#" class="btn btn-default"><i class="material-icons"></i> <span>Export to Excel</span></a>
+               </div>
+                </div>
+            </div>
+
+      <table  id="mytab" class="table table-striped table-hover table-sm" >
+              <tr>
+                  <th>Status</th>
+                  <th>Title</th>
+                  <th>Description</th>
+              </tr>
+        </thead> 
+        
+
+        <tbody>
+         <tr> <td id="tdd1"  ><span id="tb1"  class="status text-success">&bull;</span> </td> <td id="td1" ></td>  <td></td> </tr>
+         <tr> <td id="tdd2"  ><span id="tb2"  class="status text-success">&bull;</span> </td> <td id="td2" ></td>  <td></td> </tr>
+         <tr> <td id="tdd3"  ><span id="tb3"  class="status text-success">&bull;</span> </td> <td id="td3" ></td>  <td></td> </tr>
+         <tr> <td id="tdd4"  ><span id="tb4"  class="status text-success">&bull;</span> </td> <td id="td4" ></td>  <td></td> </tr>
+         <tr> <td id="tdd5"  ><span id="tb5"  class="status text-success">&bull;</span> </td> <td id="td5" ></td>  <td></td> </tr>
+         <tr> <td id="tdd6"  ><span id="tb6"  class="status text-success">&bull;</span> </td> <td id="td6" ></td>  <td></td> </tr>
+         <tr> <td id="tdd7"  ><span id="tb7"  class="status text-success">&bull;</span> </td> <td id="td7" ></td>  <td></td> </tr>
+         <tr> <td id="tdd8"  ><span id="tb8"  class="status text-success">&bull;</span> </td> <td id="td8" ></td>  <td></td> </tr>
+         <tr> <td id="tdd9"  ><span id="tb9"  class="status text-success">&bull;</span> </td> <td id="td9" ></td>  <td></td> </tr>
+         <tr> <td id="tdd10" ><span id="tb10" class="status text-success">&bull;</span> </td> <td id="td10"></td> <td></td> </tr>
+         <tr> <td id="tdd11" ><span id="tb11" class="status text-success">&bull;</span> </td> <td id="td11"></td> <td></td> </tr>
+         <tr> <td id="tdd12" ><span id="tb12" class="status text-success">&bull;</span> </td> <td id="td12"></td> <td></td> </tr>
+        </tbody> 
+      </table> 
+</div>
+
+   </body>
+</html>
