@@ -1,15 +1,7 @@
 ## Конвертация стринговой даты   
 Конвертация стринговую дату одного формата в стринговую дату другого формата
 
-
-
-### Пример
-https://play.golang.org/p/3NTKaMpqdPA
-
-### Описание
-https://yourbasic.org/golang/format-parse-string-time-date-example/
-
-Решение
+### Решение
 ```golang
 package main
 
@@ -45,3 +37,13 @@ func main() {
 ```
 
 
+## Link
+
+### Пример
+https://play.golang.org/p/3NTKaMpqdPA
+
+### Описание
+https://yourbasic.org/golang/format-parse-string-time-date-example/
+
+### Дискуссия
+https://stackoverflow.com/questions/37937794/string-date-to-date
