@@ -36,6 +36,30 @@ func main() {
 
 ```
 
+### Решение 2
+```golang
+package main
+
+import (
+    "bytes"
+    "fmt"
+    "time"
+)
+
+//2010-01-23 11:44:20 to Jan 23 '10 at 11:44
+func FormatDateTime(t time.Time) string {
+    var buffer bytes.Buffer
+    buffer.WriteString(t.Month().String()[:3])
+    buffer.WriteString(fmt.Sprintf(" %2d '%2d at %2d:%2d", t.Day(), t.Year()%100, t.Hour(), t.Minute()))
+    return buffer.String()
+}
+
+func main() {
+    t := time.Now()
+    str := FormatDateTime(t)
+    fmt.Println(str) //Apr 23 '16 at 11:50
+}
+```
 
 ## Link
 
