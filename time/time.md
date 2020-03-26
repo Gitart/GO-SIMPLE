@@ -66,6 +66,8 @@ func main() {
 
 ### Пример
 https://play.golang.org/p/3NTKaMpqdPA
+https://play.golang.org/p/rmivUs5Y8xW
+
 
 ### Описание
 https://yourbasic.org/golang/format-parse-string-time-date-example/
