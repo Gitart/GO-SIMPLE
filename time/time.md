@@ -28,7 +28,8 @@ func main() {
        if err!=nil{
           log.Println("JOURNAL: Ошибка парсинга даты.")
        }
-
+       
+       // Конечное преведение к нужному формату
        Finish := t.Format(format)
        fmt.Println(Finish)
 }
