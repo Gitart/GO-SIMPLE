@@ -28,15 +28,19 @@ Finally, the service should be part of the boot process, so that it automaticall
 
 Let’s start with a simple Go program that goes into an infinite loop, printing “hello world” to the terminal with a random sleep delay in between.  The real program logic is highlighted below, the rest is setup to catch any signals that are received.
 
+```golang
 package main import  (  "time"  "log"  "flag"  "math/rand"  "os"  "os/signal"  //"syscall"  ) func main()  {  // load command line arguments name := flag.String("name","world","name to print") flag.Parse() log.Printf("Starting sleepservice for %s",\*name)  // setup signal catching sigs := make(chan os.Signal,  1)  // catch all signals since not explicitly listing signal.Notify(sigs)  //signal.Notify(sigs,syscall.SIGQUIT)  // method invoked upon seeing signal go func()  { s :=  <\-sigs
           log.Printf("RECEIVED SIGNAL: %s",s)  AppCleanup() os.Exit(1)  }()  // infinite print loop  for  { log.Printf("hello %s",\*name)  // wait random number of milliseconds  Nsecs  := rand.Intn(3000) log.Printf("About to sleep %dms before looping again",Nsecs) time.Sleep(time.Millisecond  \* time.Duration(Nsecs))  }  } func AppCleanup()  { log.Println("CLEANUP APP BEFORE EXIT!!!")  }
+```
 
 First we will run it in the foreground as our current user.  Below are the commands for Linux:
 
+```
 $ mkdir \-p $GOPATH/src/sleepservice
 $ cd $GOPATH/src/sleepservice
 $ wget https://raw.githubusercontent.com/fabianlee/blogcode/master/golang/sleepservice/sleepservice.go $ go get $ go build
 $ ./sleepservice
+```
 
 Which should produce output that looks something like below that exits when you Control\-C out the execution:
 
