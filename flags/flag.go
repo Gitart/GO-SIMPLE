@@ -1,6 +1,7 @@
 // [_Флаги командной строки_](http://en.wikipedia.org/wiki/Command-line_interface#Command-line_option)
 // это популярный способ указывать опции для консольных программ.
 // К примеру, в команде `wc -l` `-l` является флагом командной строки.
+// https://play.golang.org/p/Us43rH1e1c
 
 package main
 
