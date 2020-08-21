@@ -57,8 +57,11 @@ func main() {
   <td></td>
   <td></td>
 </tr> 
+```
+
 Transactions are Money Transaction with TotalPrice DB Fields and I have 4 functions according Iris framework spec.
 
+```go
 tmpl.AddFunc("dec", func(num int, step int) int {
     return num - step
 })
