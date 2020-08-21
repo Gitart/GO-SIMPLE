@@ -36,6 +36,111 @@ func main() {
 }
 ```
 
+output:
+
+```
+{"age":28,"hobbies":"art","name":"kish","work":"engine"}
+map[name:kish work:engine age:28 hobbies:art]
+```
+
+
+### You want to Unmarshal it, so try this simple working example ([]byte(kpi.(string)):
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+)
+
+func main() {
+    var kpi interface{} = st
+    var a []Animal
+    err := json.Unmarshal([]byte(kpi.(string)), &a)
+    if err != nil {
+        fmt.Println("error:", err)
+    }
+    fmt.Println(a)
+}
+
+type Animal struct {
+    Name  string
+    Order string
+}
+
+var st = `[
+    {"Name": "Platypus", "Order": "Monotremata"},
+    {"Name": "Quoll",    "Order": "Dasyuromorphia"}
+]`
+```
+
+output:
+```
+[{Platypus Monotremata} {Quoll Dasyuromorphia}]
+Working example using ([]byte(*kpi.(*string))):
+```
+
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+)
+
+func main() {
+    var kpi interface{} = &st
+    var a []Animal
+    err := json.Unmarshal([]byte(*kpi.(*string)), &a)
+    if err != nil {
+        fmt.Println("error:", err)
+    }
+    fmt.Println(a)
+}
+
+type Animal struct {
+    Name  string
+    Order string
+}
+
+var st = `[
+    {"Name": "Platypus", "Order": "Monotremata"},
+    {"Name": "Quoll",    "Order": "Dasyuromorphia"}
+]`
+```
+
+### Marshal:
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+)
+
+func main() {
+    u := map[string]interface{}{}
+    u["1"] = "one"
+    b, err := json.Marshal(u)
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(string(b))
+}
+```
+
+output:
+
+```
+{"1":"one"}
+```
+
+
+
+
 ### Templates
 ```golang
 {{ $TotalPrice := 0.0 }}
