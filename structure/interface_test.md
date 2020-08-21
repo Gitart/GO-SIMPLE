@@ -81,6 +81,24 @@ tmpl.AddFunc("StrToFloat", func(s string) (float64, error) {
 ```
 
 
+# Sum 
+
+```go
+tmpl.AddFunc("sum", func(transactions []Transaction) float64 {
+    sum := 0.0
+    for _, t := range transactions {
+        if v, err := strconv.ParseFloat(t.TotalPrice, 64); err == nil {
+            sum += v
+        }
+    }
+    return sum
+})
+then use it in the template as:
+
+{{ $TotalPrice := sum .Transactions }}
+```
+
+
 
 
 
