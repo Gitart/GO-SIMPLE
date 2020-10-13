@@ -1,4 +1,5 @@
-//https://play.golang.org/p/zsJ8TdNhQeG
+// https://play.golang.org/p/zsJ8TdNhQeG
+// https://play.golang.org/p/XaI6wc9vWkr
 
 package main
 
