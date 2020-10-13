@@ -9,6 +9,6 @@ import (
 )
 
 func main() {
-        tag := reflect.StructTag(`species:"gopher" color:"bl" cor:"bue"`)
-        fmt.Println(tag.Get("color"), tag.Get("species"), tag.Get("cor"))
+        tag := reflect.StructTag(`species:"gopher" color:"bl" cor:"bue" tt:"eeer" tn:"222" om:"foo2,foo,omitempty,string"`)
+        fmt.Println(tag.Get("color"), tag.Get("species"), tag.Get("om") )
 }
