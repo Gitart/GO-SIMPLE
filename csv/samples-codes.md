@@ -35,7 +35,7 @@ func parseLocation(file string) (map[string]Point, error) {
 
 ## Go is a very verbose language, however you could use something like this:
 
-```
+```go
 // predeclare err
 func parseLocation(file string) (locations map[string]*Point, err error) {
     f, err := os.Open(file)
@@ -69,7 +69,7 @@ func parseLocation(file string) (locations map[string]*Point, err error) {
 
 ## A more efficient and proper version
 
-```
+```go
 func parseLocation(file string) (map[string]*Point, error) {
     f, err := os.Open(file)
     if err != nil {
@@ -106,7 +106,7 @@ func parseLocation(file string) (map[string]*Point, error) {
 Go now has a csv package for this. Its is `encoding/csv`. You can find the docs here: [https://golang.org/pkg/encoding/csv/](https://golang.org/pkg/encoding/csv/)
 There are a couple of good examples in the docs. Here is a helper method I created to read a csv file and returns its records.
 
-```
+```go
 package main
 
 import (
@@ -143,7 +143,7 @@ func main() {
 
 ## Show activity on this post.
 
-```
+```go
 import (
     "bufio"
     "encoding/csv"
@@ -183,7 +183,7 @@ func ReadCsvFile(filePath string)  {
 
 ## Show activity on this post.
 
-```
+```go
 package main
 import "encoding/csv"
 import "io"
@@ -221,7 +221,7 @@ func (o Scanner) Text(s string) string {
 
 ### Example:
 
-```
+```go
 package main
 import "strings"
 
@@ -249,7 +249,7 @@ You can also read contents of a directory to load all the CSV files. And then re
 
 ### `main.go` file:
 
-```
+```go
 const sourcePath string = "./source"
 
 func main() {
@@ -292,7 +292,7 @@ batch01.csv
 
 ###  Below example with the `Invoice struct`
 
-```
+```go
 func main() {
     dir, _ := os.Open(sourcePath)
     files, _ := dir.Readdir(-1)
