@@ -1,5 +1,6 @@
 # Convert specific UTC date time to PST, HST, MST and SGT
 
+```go
 package main
 
 import (
@@ -60,6 +61,7 @@ func main() {
     fmt.Println(t.Format(time.RFC822))
 
 }
+```
 
 C:\\golang\\time>go run t7.go
 2015\-11\-11 16:50:00 +0000 UTC
