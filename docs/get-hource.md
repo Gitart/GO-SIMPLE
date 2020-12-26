@@ -1,5 +1,6 @@
 # Get Hours, Days, Minutes and Seconds difference between two dates \[Future and Past\]
 
+```go
 package main
 
 import (
@@ -49,9 +50,10 @@ days = int(diff.Hours() / 24)
 fmt.Printf("Diffrence in days : %d days\\n", days)
 
 }
+```
 
 C:\\golang\\time>go run t3.go
-
+```
 Today : UTC Time : 2017\-08\-27 05:15:53.7106215 +0000 UTC
 
 Past : UTC Time : 2015\-05\-21 23:10:52.000000211 +0000 UTC
@@ -68,5 +70,6 @@ Diffrence in Hours : 15185 Hours
 Diffrence in Minutes : 911154 Minutes
 Diffrence in Seconds : 54669298 Seconds
 Diffrence in days : 632 days
+```
 
 C:\\golang\\time>
