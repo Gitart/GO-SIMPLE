@@ -62,7 +62,7 @@ func main() {
 
 }
 ```
-
+```
 C:\\golang\\time>go run t7.go
 2015\-11\-11 16:50:00 +0000 UTC
 America/Los\_Angeles
@@ -75,5 +75,6 @@ EST
 11 Nov 15 11:50 EST
 MST
 11 Nov 15 09:50 MST
+```
 
 C:\\golang\\time>
