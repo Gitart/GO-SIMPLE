@@ -1,7 +1,7 @@
 # Regular expression to extract date(YYYY\-MM\-DD) from string
 
 //Regular expression to extract date(YYYY\-MM\-DD) from string
-
+```go
 package main
 
 import (
@@ -23,3 +23,4 @@ func main() {
 		fmt.Println(element)
 	}
 }
+```
