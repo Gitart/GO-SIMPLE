@@ -8,6 +8,7 @@ An array is a data structure that consists of a collection of elements of a sing
 
 To declare an array you need to specify the number of elements it holds in square brackets (\[\]), followed by the type of elements the array holds.
 
+```go
 package main
 
 import (
@@ -22,6 +23,7 @@ func main() {
 	fmt.Println(reflect.ValueOf(intArray).Kind())
 	fmt.Println(reflect.ValueOf(strArray).Kind())
 }
+```
 
 array
 array
@@ -32,6 +34,7 @@ array
 
 You access or assign the array elements by referring to the index number. The index is specified in square brackets.
 
+```go
 package main
 
 import "fmt"
@@ -46,6 +49,7 @@ func main() {
 	fmt.Println(theArray\[1\]) // Access the second element valu
 	fmt.Println(theArray\[2\]) // Access the third element valu
 }
+```
 
 India
 Canada
@@ -57,8 +61,8 @@ Japan
 
 You can initialize an array with pre\-defined values using an array literal. An array literal have the number of elements it will hold in square brackets, followed by the type of its elements. This is followed by a list of initial values separated by commas of each element inside the curly braces.
 
+```go
 package main
-
 import "fmt"
 
 func main() {
@@ -68,6 +72,7 @@ func main() {
 	fmt.Println(x)
 	fmt.Println(y)
 }
+```
 
 \[10 20 30 40 50\]
 \[10 20 30 0 0\]
@@ -77,7 +82,7 @@ func main() {
 ## Initializing an Array with ellipses in Go
 
 When we use ... instead of specifying the length. The compiler can identify the length of an array, based on the elements specified in the array declaration.
-
+```go
 package main
 
 import (
@@ -91,6 +96,7 @@ func main() {
 	fmt.Println(reflect.ValueOf(x).Kind())
 	fmt.Println(len(x))
 }
+```
 
 array
 3
@@ -103,14 +109,15 @@ When an array declare using an array literal, values can be initialize for speci
 
 A value of 10 is assigned to the second element (index 1) and a value of 30 is assigned to the fourth element (index 3).
 
+```go
 package main
-
 import "fmt"
 
 func main() {
 	x := \[5\]int{1: 10, 3: 30}
 	fmt.Println(x)
 }
+```
 
 \[0 10 0 30 0\]
 
@@ -120,8 +127,8 @@ func main() {
 
 You can loop through an array elements by using a for loop.
 
+```go
 package main
-
 import "fmt"
 
 func main() {
@@ -150,6 +157,7 @@ func main() {
 		j++
 	}
 }
+```
 
 ---
 
@@ -159,8 +167,8 @@ You can create copy of an array, by assigning an array to a new variable either 
 
 package main
 
+```go
 import "fmt"
-
 func main() {
 
 	strArray1 := \[3\]string{"Japan", "Australia", "Germany"}
@@ -176,6 +184,7 @@ func main() {
 	fmt.Printf("strArray2: %v\\n", strArray2)
 	fmt.Printf("\*strArray3: %v\\n", \*strArray3)
 }
+```
 
 strArray1: \[Japan Australia Germany\]
 strArray2: \[Japan Australia Germany\]
@@ -189,6 +198,7 @@ strArray2: \[Japan Australia Germany\]
 
 To determine if a specific element exist in an array, we need to iterate each array element using for loop and check using if condition.
 
+```go
 package main
 
 import (
@@ -217,6 +227,7 @@ func itemExists(arrayType interface{}, item interface{}) bool {
 
 	return false
 }
+```
 
 true
 false
@@ -228,7 +239,7 @@ false
 You can filter array element using : as shown below
 
 A value of 10 is assigned to the second element (index 1) and a value of 30 is assigned to the fourth element (index 3).
-
+```go
 package main
 
 import "fmt"
@@ -237,26 +248,19 @@ func main() {
 	countries := \[...\]string{"India", "Canada", "Japan", "Germany", "Italy"}
 
 	fmt.Printf("Countries: %v\\n", countries)
-
 	fmt.Printf(":2 %v\\n", countries\[:2\])
-
 	fmt.Printf("1:3 %v\\n", countries\[1:3\])
-
 	fmt.Printf("2: %v\\n", countries\[2:\])
-
 	fmt.Printf("2:5 %v\\n", countries\[2:5\])
-
 	fmt.Printf("0:3 %v\\n", countries\[0:3\])
-
 	fmt.Printf("Last element: %v\\n", countries\[len(countries)\-1\])
-
 	fmt.Printf("All elements: %v\\n", countries\[0:len(countries)\])
         fmt.Println(countries\[:\])
 	fmt.Println(countries\[0:\])
 	fmt.Println(countries\[0:len(countries)\])
-
 	fmt.Printf("Last two elements: %v\\n", countries\[len(countries)\-2:len(countries)\])
 }
+```
 
 Countries: \[India Canada Japan Germany Italy\]
 :2 \[India Canada\]
