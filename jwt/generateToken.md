@@ -1,3 +1,5 @@
+
+```go
 package main
 
 import (
@@ -41,3 +43,5 @@ func generateTokenPair() (map[string]string, error) {
 		"refresh_token": rt,
 	}, nil
 }
+```
+
