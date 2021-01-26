@@ -1,5 +1,5 @@
 # Sample work with YAML
-
+// https://play.golang.org/p/QN69Y-w4GZJ
 
 ```golang
 package main
