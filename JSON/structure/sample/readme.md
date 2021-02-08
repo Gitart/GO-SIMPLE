@@ -6,3 +6,4 @@
 1. Необходимо преобразовать его согласно нашей структуре   
 2. Необходимо вернуть данные согласно так же нашей структуре     
 
+https://github.com/Gitart/GO-SIMPLE/blob/master/JSON/structure/sample/Json-encoding.png
