@@ -1,0 +1,55 @@
+{
+    "status": "success",
+    "message": "find_products response",
+    "data": {
+        "api": "ats",
+        "action": "find_products",
+        "result": [
+            {
+                "product_id": "7877725",
+                "product_code": "34119804735",
+                "product_title": "Ersatzteile",
+                "product_weight": "0",
+                "product_land_code": "DE",
+                "product_customs_number": "87083091",
+                "product_pack_min": "",
+                "producer_id": "1",
+                "producer_name": "BMW",
+                "discount_group_name": "50",
+                "price_id": "12360",
+                "price_comment": "NO MOTO! delivery time 7 days  (02.2021)",
+                "net_price": "66.82"
+            },
+            {
+                "product_id": "7877725",
+                "product_code": "34119804735",
+                "product_title": "Ersatzteile",
+                "product_weight": "0",
+                "product_land_code": "DE",
+                "product_customs_number": "87083091",
+                "product_pack_min": "",
+                "producer_id": "1",
+                "producer_name": "BMW",
+                "discount_group_name": "50",
+                "price_id": "138777",
+                "price_comment": "Delivery time 2-3 days, 02.2021",
+                "net_price": "79.34"
+            },
+            {
+                "product_id": "7877725",
+                "product_code": "34119804735",
+                "product_title": "Ersatzteile",
+                "product_weight": "0",
+                "product_land_code": "DE",
+                "product_customs_number": "87083091",
+                "product_pack_min": "",
+                "producer_id": "1",
+                "producer_name": "BMW",
+                "discount_group_name": "50",
+                "price_id": "187511",
+                "price_comment": "PREPAYMENT! Price 02.2021",
+                "net_price": "61.62"
+            }
+        ]
+    }
+}
