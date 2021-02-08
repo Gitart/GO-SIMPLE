@@ -2,6 +2,8 @@
 // WARNING - All numbers have string type !!!
 // Need convert to number
 // ______________________________________________________________________________________
+
+```go
 type AtsProduct struct{
      Cart_id                 string       `json"cart_id"`
      Product_id              string       `json"product_id"`            
@@ -54,3 +56,4 @@ type AtsCard struct{
     Message     string                    `json: "message"`          
     Data        AtsData                   `json: "data"`
 }
+```
