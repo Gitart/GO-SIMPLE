@@ -88,15 +88,12 @@ func Articles_new(w http.ResponseWriter, r *http.Request) {
                   <p>Давайте подключим датчик движения. Перед подключением его необходимо настроить. Ставим перемычку на букву L, и тогда он будет слать одиночные импульсы. Первый потенциометр ставьте на минимум, чтобы импульсы были короткие (нам важно засечь движение). А второй потенциометр — это дальность срабатыватывания. Советую сразу ставить на максимум.</p>
                   <p>Теперь подключите все по схеме на картинке. Светодиод необязательный, но подключив его, удобно видеть срабатывание датчика.</p>                  
                   <p>Бывает, что нужно обеспечить автономное питание проекта, т.е. вдали от розетки, давайте рассмотрим варианты. Также для этих целей пригодится <a href="https://alexgyver.ru/lessons/power-sleep/" target="_blank" rel="noopener noreferrer">урок по энергосбережению</a>    и режимам сна микроконтроллера.</p>
-
                   `
 
-
-    contents := ArtTiclesStr(D, "article")
-   // contents :="ddddddddd"
-
-   ArtTicles(D, "article", "news", contents, contentard, w)                 
-   // fmt.Println(ArtTiclesStr(D, "article"))
+    // Формирование стрингового контента на основании шаблона
+    contents := ArtTiclesStr(D, "vid")
+   
+    ArtTicles(D, "article", "news", contents, contentard, w)                 
 }
 
 
@@ -157,10 +154,11 @@ func ArtTicles(txt, tmplfile, outfile, content, contentard  string, w http.Respo
    
    // Control
    //  s := tpl.String()
-     fmt.Println("ok")
+    fmt.Println("Ready...")
 
    // // ut.Writfile(File, r)    
 }
+
 
 // *********************************************************
 // Получение в строковом виде на основании шаблона
@@ -183,7 +181,7 @@ func ArtTiclesStr(txt, tmplfile string) string {
 
     // Основной шаблон с темплейтами 
     // tmpl, err := template.ParseFiles(fp, "tmp/main.html")         
-    tmpl, err := template.ParseFiles("tmpl/vid.html")         
+    tmpl, err := template.ParseFiles("tmpl/" + tmplfile + ".html")         
     ut.Err(err, "Error template execute.")
 
     // Выввод в текстовую строку
