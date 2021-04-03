@@ -27,6 +27,29 @@ func StaticPage(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+
+## Public
+```go
+/*
+ *
+ *   Статические странички
+ *   c установкой разрешений и доступов на операции
+ *
+ *   http.HandleFunc("/static/", func(w http.ResponseWriter, r *http.Request) {http.ServeFile(w, r, r.URL.Path[1:])})
+ *   http.HandleFunc("/static/", func(w http.ResponseWriter, r *http.Request) {http.FileServer(http.Dir("/static/"))})
+ *   /static/....
+ *
+ */
+func PublicPage(w http.ResponseWriter, r *http.Request) {
+	// Allows
+	w.Header().Set("Access-Control-Allow-Origin", "*") 
+
+	//  File static page
+	http.ServeFile(w, r, r.URL.Path[1:])
+}
+```
+
+
 ## Вывод в разные форматы
 ```go
 package main
