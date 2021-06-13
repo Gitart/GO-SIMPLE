@@ -44,3 +44,7 @@ https://play.golang.org/p/1GVI37tisG
 https://github.com/wgliang/goappmonitor
 
 
+## Sublime setting 
+https://www.alexedwards.net/blog/streamline-your-sublime-text-and-go-workflow
+
+
