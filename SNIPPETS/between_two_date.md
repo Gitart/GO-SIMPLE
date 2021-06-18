@@ -12,7 +12,7 @@
 |-10 | -3 | Акция закончилась 3 дня назад а началась 10 дней назад|
 | 10 | 20 | Акция начнется через 10 дней закончится через 20 |
 
-    
+```go    
 // Активна или нет промоакция
 func PromoIsActive(start, finish time.Time) bool {
    s,e:= DaysPromo(start, finish)
@@ -39,3 +39,4 @@ func DaysDate(date time.Time) float64 {
      hrs  := fx(today.Sub(date).Hours()/24,0)
      return hrs*-1
 }
+```
