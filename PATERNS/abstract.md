@@ -1,258 +1,273 @@
-# **Абстрактная фабрика** на Go
+# ПАТТЕРНЫ ПРОЕКТИРОВАНИЯ на Go
 
-**Абстрактная фабрика** — это порождающий паттерн проектирования, который решает проблему создания целых семейств связанных продуктов, без указания конкретных классов продуктов.
+## Каталог **Go**\-примеров
 
-Абстрактная фабрика задаёт интерфейс создания всех доступных типов продуктов, а каждая конкретная реализация фабрики порождает продукты одной из вариаций. Клиентский код вызывает методы фабрики для получения продуктов, вместо самостоятельного создания с помощью оператора `new`. При этом фабрика сама следит за тем, чтобы создать продукт нужной вариации.
+#### Порождающие паттерны
 
-[Подробней об Абстрактной фабрике](https://refactoring.guru/ru/design-patterns/abstract-factory)
+![Абстрактная фабрика](https://refactoring.guru/images/patterns/cards/abstract-factory-mini.png?id=4c3927c446313a38ce77)
 
-Навигация
+#### Абстрактная фабрика
 
- [Интро](#)
+Abstract Factory
 
- [Концептуальный пример](#example-0)
+Позволяет создавать семейства связанных объектов, не привязываясь к конкретным классам создаваемых объектов.
 
- [i­Sports­Factory](#example-0--iSportsFactory-go)
+[Главный раздел](https://refactoring.guru/ru/design-patterns/abstract-factory)
 
- [adidas](#example-0--adidas-go)
+[Пример кода](https://refactoring.guru/ru/design-patterns/abstract-factory/go/example#example-0)
 
- [nike](#example-0--nike-go)
+![Строитель](https://refactoring.guru/images/patterns/cards/builder-mini.png?id=19b95fd05e6469679752)
 
- [i­Shoe](#example-0--iShoe-go)
+#### Строитель
 
- [adidas­Shoe](#example-0--adidasShoe-go)
+Builder
 
- [nike­Shoe](#example-0--nikeShoe-go)
+Позволяет создавать сложные объекты пошагово. Строитель даёт возможность использовать один и тот же код строительства для получения разных представлений объектов.
 
- [i­Shirt](#example-0--iShirt-go)
+[Главный раздел](https://refactoring.guru/ru/design-patterns/builder)
 
- [adidas­Shirt](#example-0--adidasShirt-go)
+[Пример кода](https://refactoring.guru/ru/design-patterns/builder/go/example#example-0)
 
- [nike­Shirt](#example-0--nikeShirt-go)
+![Фабричный метод](https://refactoring.guru/images/patterns/cards/factory-method-mini.png?id=72619e9527893374b98a)
 
- [main](#example-0--main-go)
+#### Фабричный метод
 
- [output](#example-0--output-txt)
+Factory Method
 
-## Концептуальный пример
+Определяет общий интерфейс для создания объектов в суперклассе, позволяя подклассам изменять тип создаваемых объектов.
 
-Представим, что вам нужно купить спортивную форму, состоящую из двух разных вещей: пара обуви и футболка. Вы хотите приобрести полный набор от одного бренда, чтобы вещи сочитались между собой.
+[Главный раздел](https://refactoring.guru/ru/design-patterns/factory-method)
 
-Переводя вышесказаное в код, абстрактная фабрика поможет нам создавать наборы продуктов, которые всегда будут подходить друг к другу.
+[Пример кода](https://refactoring.guru/ru/design-patterns/factory-method/go/example#example-0)
 
-#### [](#example-0--iSportsFactory-go)**iSportsFactory.go:** Интерфейс абстрактной фабрики
+![Прототип](https://refactoring.guru/images/patterns/cards/prototype-mini.png?id=bc3046bb39ff36574c08)
 
-package main
+#### Прототип
 
-import "fmt"
+Prototype
 
-type iSportsFactory interface {
-    makeShoe() iShoe
-    makeShirt() iShirt
-}
+Позволяет копировать объекты, не вдаваясь в подробности их реализации.
 
-func getSportsFactory(brand string) (iSportsFactory, error) {
-    if brand \== "adidas" {
-        return &adidas{}, nil
-    }
+[Главный раздел](https://refactoring.guru/ru/design-patterns/prototype)
 
-    if brand \== "nike" {
-        return &nike{}, nil
-    }
+[Пример кода](https://refactoring.guru/ru/design-patterns/prototype/go/example#example-0)
 
-    return nil, fmt.Errorf("Wrong brand type passed")
-}
+![Одиночка](https://refactoring.guru/images/patterns/cards/singleton-mini.png?id=914e1565dfdf15f240e7)
 
-#### [](#example-0--adidas-go)**adidas.go:** Конкретная фабрика
+#### Одиночка
 
-package main
+Singleton
 
-type adidas struct {
-}
+Гарантирует, что у класса есть только один экземпляр, и предоставляет к нему глобальную точку доступа.
 
-func (a \*adidas) makeShoe() iShoe {
-    return &adidasShoe{
-        shoe: shoe{
-            logo: "adidas",
-            size: 14,
-        },
-    }
-}
+[Главный раздел](https://refactoring.guru/ru/design-patterns/singleton)
 
-func (a \*adidas) makeShirt() iShirt {
-    return &adidasShirt{
-        shirt: shirt{
-            logo: "adidas",
-            size: 14,
-        },
-    }
-}
+[Наивный Одиночка](https://refactoring.guru/ru/design-patterns/singleton/go/example#example-0)
 
-#### [](#example-0--nike-go)**nike.go:** Конкретная фабрика
+[Многопоточный Одиночка](https://refactoring.guru/ru/design-patterns/singleton/go/example#example-1)
 
-package main
+#### Структурные паттерны
 
-type nike struct {
-}
+![Адаптер](https://refactoring.guru/images/patterns/cards/adapter-mini.png?id=b2ee4f681fb589be5a06)
 
-func (n \*nike) makeShoe() iShoe {
-    return &nikeShoe{
-        shoe: shoe{
-            logo: "nike",
-            size: 14,
-        },
-    }
-}
+#### Адаптер
 
-func (n \*nike) makeShirt() iShirt {
-    return &nikeShirt{
-        shirt: shirt{
-            logo: "nike",
-            size: 14,
-        },
-    }
-}
+Adapter
 
-#### [](#example-0--iShoe-go)**iShoe.go:** Абстрактный продукт
+Позволяет объектам с несовместимыми интерфейсами работать вместе.
 
-package main
+[Главный раздел](https://refactoring.guru/ru/design-patterns/adapter)
 
-type iShoe interface {
-    setLogo(logo string)
-    setSize(size int)
-    getLogo() string
-    getSize() int
-}
+[Пример кода](https://refactoring.guru/ru/design-patterns/adapter/go/example#example-0)
 
-type shoe struct {
-    logo string
-    size int
-}
+![Мост](https://refactoring.guru/images/patterns/cards/bridge-mini.png?id=b389101d8ee8e23ffa1b)
 
-func (s \*shoe) setLogo(logo string) {
-    s.logo \= logo
-}
+#### Мост
 
-func (s \*shoe) getLogo() string {
-    return s.logo
-}
+Bridge
 
-func (s \*shoe) setSize(size int) {
-    s.size \= size
-}
+Разделяет один или несколько классов на две отдельные иерархии — абстракцию и реализацию, позволяя изменять их независимо друг от друга.
 
-func (s \*shoe) getSize() int {
-    return s.size
-}
+[Главный раздел](https://refactoring.guru/ru/design-patterns/bridge)
 
-#### [](#example-0--adidasShoe-go)**adidasShoe.go:** Конкретный продукт
+[Пример кода](https://refactoring.guru/ru/design-patterns/bridge/go/example#example-0)
 
-package main
+![Компоновщик](https://refactoring.guru/images/patterns/cards/composite-mini.png?id=a369d98d18b417f255d0)
 
-type adidasShoe struct {
-    shoe
-}
+#### Компоновщик
 
-#### [](#example-0--nikeShoe-go)**nikeShoe.go:** Конкретный продукт
+Composite
 
-package main
+Позволяет сгруппировать объекты в древовидную структуру, а затем работать с ними так, как будто это единичный объект.
 
-type nikeShoe struct {
-    shoe
-}
+[Главный раздел](https://refactoring.guru/ru/design-patterns/composite)
 
-#### [](#example-0--iShirt-go)**iShirt.go:** Абстрактный продукт
+[Пример кода](https://refactoring.guru/ru/design-patterns/composite/go/example#example-0)
 
-package main
+![Декоратор](https://refactoring.guru/images/patterns/cards/decorator-mini.png?id=d30458908e315af195cb)
 
-type iShirt interface {
-    setLogo(logo string)
-    setSize(size int)
-    getLogo() string
-    getSize() int
-}
+#### Декоратор
 
-type shirt struct {
-    logo string
-    size int
-}
+Decorator
 
-func (s \*shirt) setLogo(logo string) {
-    s.logo \= logo
-}
+Позволяет динамически добавлять объектам новую функциональность, оборачивая их в полезные «обёртки».
 
-func (s \*shirt) getLogo() string {
-    return s.logo
-}
+[Главный раздел](https://refactoring.guru/ru/design-patterns/decorator)
 
-func (s \*shirt) setSize(size int) {
-    s.size \= size
-}
+[Пример кода](https://refactoring.guru/ru/design-patterns/decorator/go/example#example-0)
 
-func (s \*shirt) getSize() int {
-    return s.size
-}
+![Фасад](https://refactoring.guru/images/patterns/cards/facade-mini.png?id=71ad6fa98b168c11cb3a)
 
-#### [](#example-0--adidasShirt-go)**adidasShirt.go:** Конкретный продукт
+#### Фасад
 
-package main
+Facade
 
-type adidasShirt struct {
-    shirt
-}
+Предоставляет простой интерфейс к сложной системе классов, библиотеке или фреймворку.
 
-#### [](#example-0--nikeShirt-go)**nikeShirt.go:** Конкретный продукт
+[Главный раздел](https://refactoring.guru/ru/design-patterns/facade)
 
-package main
+[Пример кода](https://refactoring.guru/ru/design-patterns/facade/go/example#example-0)
 
-type nikeShirt struct {
-    shirt
-}
+![Легковес](https://refactoring.guru/images/patterns/cards/flyweight-mini.png?id=422ca8d2f90614dce810)
 
-#### [](#example-0--main-go)**main.go:** Клиентский код
+#### Легковес
 
-package main
+Flyweight
 
-import "fmt"
+Позволяет вместить бóльшее количество объектов в отведённую оперативную память. Легковес экономит память, разделяя общее состояние объектов между собой, вместо хранения одинаковых данных в каждом объекте.
 
-func main() {
-    adidasFactory, \_ :\= getSportsFactory("adidas")
-    nikeFactory, \_ :\= getSportsFactory("nike")
+[Главный раздел](https://refactoring.guru/ru/design-patterns/flyweight)
 
-    nikeShoe :\= nikeFactory.makeShoe()
-    nikeShirt :\= nikeFactory.makeShirt()
+[Пример кода](https://refactoring.guru/ru/design-patterns/flyweight/go/example#example-0)
 
-    adidasShoe :\= adidasFactory.makeShoe()
-    adidasShirt :\= adidasFactory.makeShirt()
+![Заместитель](https://refactoring.guru/images/patterns/cards/proxy-mini.png?id=25890b11e7dc5af29625)
 
-    printShoeDetails(nikeShoe)
-    printShirtDetails(nikeShirt)
+#### Заместитель
 
-    printShoeDetails(adidasShoe)
-    printShirtDetails(adidasShirt)
-}
+Proxy
 
-func printShoeDetails(s iShoe) {
-    fmt.Printf("Logo: %s", s.getLogo())
-    fmt.Println()
-    fmt.Printf("Size: %d", s.getSize())
-    fmt.Println()
-}
+Позволяет подставлять вместо реальных объектов специальные объекты-заменители. Эти объекты перехватывают вызовы к оригинальному объекту, позволяя сделать что-то до или после передачи вызова оригиналу.
 
-func printShirtDetails(s iShirt) {
-    fmt.Printf("Logo: %s", s.getLogo())
-    fmt.Println()
-    fmt.Printf("Size: %d", s.getSize())
-    fmt.Println()
-}
+[Главный раздел](https://refactoring.guru/ru/design-patterns/proxy)
 
-#### [](#example-0--output-txt)**output.txt:** Результат выполнения
+[Пример кода](https://refactoring.guru/ru/design-patterns/proxy/go/example#example-0)
 
-Logo: nike
-Size: 14
-Logo: nike
-Size: 14
-Logo: adidas
-Size: 14
-Logo: adidas
-Size: 14
+#### Поведенческие паттерны
+
+![Цепочка обязанностей](https://refactoring.guru/images/patterns/cards/chain-of-responsibility-mini.png?id=36d85eba8d14986f0531)
+
+#### Цепочка обязанностей
+
+Chain of Responsibility
+
+Позволяет передавать запросы последовательно по цепочке обработчиков. Каждый последующий обработчик решает, может ли он обработать запрос сам и стоит ли передавать запрос дальше по цепи.
+
+[Главный раздел](https://refactoring.guru/ru/design-patterns/chain-of-responsibility)
+
+[Пример кода](https://refactoring.guru/ru/design-patterns/chain-of-responsibility/go/example#example-0)
+
+![Команда](https://refactoring.guru/images/patterns/cards/command-mini.png?id=b149eda017c0583c1e92)
+
+#### Команда
+
+Command
+
+Превращает запросы в объекты, позволяя передавать их как аргументы при вызове методов, ставить запросы в очередь, логировать их, а также поддерживать отмену операций.
+
+[Главный раздел](https://refactoring.guru/ru/design-patterns/command)
+
+[Пример кода](https://refactoring.guru/ru/design-patterns/command/go/example#example-0)
+
+![Итератор](https://refactoring.guru/images/patterns/cards/iterator-mini.png?id=76c28bb48f997b369659)
+
+#### Итератор
+
+Iterator
+
+Даёт возможность последовательно обходить элементы составных объектов, не раскрывая их внутреннего представления.
+
+[Главный раздел](https://refactoring.guru/ru/design-patterns/iterator)
+
+[Пример кода](https://refactoring.guru/ru/design-patterns/iterator/go/example#example-0)
+
+![Посредник](https://refactoring.guru/images/patterns/cards/mediator-mini.png?id=a7e43ee8e17e4474737b)
+
+#### Посредник
+
+Mediator
+
+Позволяет уменьшить связанность множества классов между собой, благодаря перемещению этих связей в один класс-посредник.
+
+[Главный раздел](https://refactoring.guru/ru/design-patterns/mediator)
+
+[Пример кода](https://refactoring.guru/ru/design-patterns/mediator/go/example#example-0)
+
+![Снимок](https://refactoring.guru/images/patterns/cards/memento-mini.png?id=8b2ea4dc2c5d15775a65)
+
+#### Снимок
+
+Memento
+
+Позволяет делать снимки состояния объектов, не раскрывая подробностей их реализации. Затем снимки можно использовать, чтобы восстановить прошлое состояние объектов.
+
+[Главный раздел](https://refactoring.guru/ru/design-patterns/memento)
+
+[Пример кода](https://refactoring.guru/ru/design-patterns/memento/go/example#example-0)
+
+![Наблюдатель](https://refactoring.guru/images/patterns/cards/observer-mini.png?id=fd2081ab1cff29c60b49)
+
+#### Наблюдатель
+
+Observer
+
+Создаёт механизм подписки, позволяющий одним объектам следить и реагировать на события, происходящие в других объектах.
+
+[Главный раздел](https://refactoring.guru/ru/design-patterns/observer)
+
+[Пример кода](https://refactoring.guru/ru/design-patterns/observer/go/example#example-0)
+
+![Состояние](https://refactoring.guru/images/patterns/cards/state-mini.png?id=f4018837e0641d1dade7)
+
+#### Состояние
+
+State
+
+Позволяет объектам менять поведение в зависимости от своего состояния. Извне создаётся впечатление, что изменился класс объекта.
+
+[Главный раздел](https://refactoring.guru/ru/design-patterns/state)
+
+[Пример кода](https://refactoring.guru/ru/design-patterns/state/go/example#example-0)
+
+![Стратегия](https://refactoring.guru/images/patterns/cards/strategy-mini.png?id=d38abee4fb6f2aed909d)
+
+#### Стратегия
+
+Strategy
+
+Определяет семейство схожих алгоритмов и помещает каждый из них в собственный класс, после чего алгоритмы можно взаимозаменять прямо во время исполнения программы.
+
+[Главный раздел](https://refactoring.guru/ru/design-patterns/strategy)
+
+[Пример кода](https://refactoring.guru/ru/design-patterns/strategy/go/example#example-0)
+
+![Шаблонный метод](https://refactoring.guru/images/patterns/cards/template-method-mini.png?id=9f200248d88026d8e79d)
+
+#### Шаблонный метод
+
+Template Method
+
+Определяет скелет алгоритма, перекладывая ответственность за некоторые его шаги на подклассы. Паттерн позволяет подклассам переопределять шаги алгоритма, не меняя его общей структуры.
+
+[Главный раздел](https://refactoring.guru/ru/design-patterns/template-method)
+
+[Пример кода](https://refactoring.guru/ru/design-patterns/template-method/go/example#example-0)
+
+![Посетитель](https://refactoring.guru/images/patterns/cards/visitor-mini.png?id=854a35a62963bec1d75e)
+
+#### Посетитель
+
+Visitor
+
+Позволяет создавать новые операции, не меняя классы объектов, над которыми эти операции могут выполняться.
+
+[Главный раздел](https://refactoring.guru/ru/design-patterns/visitor)
