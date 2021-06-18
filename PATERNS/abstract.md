@@ -3,6 +3,7 @@
 
 https://refactoring.guru/ru/design-patterns/go   
 https://golangbyexample.com/all-design-patterns-golang/  
+https://golangbyexample.com/tag/golang/  
 
 ## Каталог **Go**\-примеров
 
