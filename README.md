@@ -31,6 +31,34 @@ https://mmcgrana.github.io/2012/09/go-by-example-timers-and-tickers.html
 http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/   
 https://nanxiao.gitbooks.io/golang-101-hacks/content/posts/unbuffered-and-buffered-channels.html  
 
+## Other samples
+https://golangify.com/today-date   
+https://yourbasic.org/golang/days-between-dates/  
+https://play.golang.org/p/63p-T9uFcZo   
+
+## Days between two date
+https://golang-blog.blogspot.com/2020/04/number-of-days-between-dates-in-golang.html  
+https://golangify.com/today-date  
+https://golangify.com/difference-dates-sub-since-until  
+https://www.geeksforgeeks.org/how-to-compare-times-in-golang/   
+
+## Work with date  
+https://www.programmersought.com/article/5604990010/  
+https://yourbasic.org/golang/days-between-dates/  
+https://www.socketloop.com/tutorials/golang-how-to-check-if-a-date-is-within-certain-range  
+https://www.tutorialspoint.com/barefoot_skiing/barefoot_skiing_starting_the_race.htm  
+https://yourbasic.org/golang/create-error/  
+
+## Templates 
+https://gowebexamples.com/templates/  
+
+
+## Paterns  
+https://refactoring.guru/ru/design-patterns/go  
+https://golangbyexample.com/add-or-subtract-to-time-go/   
+
+
+
 ## Push server
 https://github.com/sharewind/push-server/tree/v3/broker
 
