@@ -1,5 +1,8 @@
 # ПАТТЕРНЫ ПРОЕКТИРОВАНИЯ на Go
-https://refactoring.guru/ru/design-patterns/go
+
+
+https://refactoring.guru/ru/design-patterns/go   
+https://golangbyexample.com/all-design-patterns-golang/  
 
 ## Каталог **Go**\-примеров
 
