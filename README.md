@@ -47,7 +47,10 @@ https://www.programmersought.com/article/5604990010/
 https://yourbasic.org/golang/days-between-dates/  
 https://www.socketloop.com/tutorials/golang-how-to-check-if-a-date-is-within-certain-range  
 https://www.tutorialspoint.com/barefoot_skiing/barefoot_skiing_starting_the_race.htm  
-https://yourbasic.org/golang/create-error/  
+https://yourbasic.org/golang/create-error/ 
+
+## Parsing Date   
+https://tutorialedge.net/golang/snippets/parsing-date-strings-in-go/  
 
 ## Templates 
 https://gowebexamples.com/templates/  
