@@ -1,4 +1,5 @@
 # ПАТТЕРНЫ ПРОЕКТИРОВАНИЯ на Go
+https://refactoring.guru/ru/design-patterns/go
 
 ## Каталог **Go**\-примеров
 
