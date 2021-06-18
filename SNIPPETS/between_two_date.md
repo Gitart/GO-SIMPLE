@@ -40,3 +40,29 @@ func DaysDate(date time.Time) float64 {
      return hrs*-1
 }
 ```
+
+## Округление
+```go
+
+// *****************************************************************
+// Округление до N знаков
+// Библиотека с высокой точностьюdecimal.Decimal
+// *****************************************************************
+func ToFixedNum(num float64, precision int32)  decimal.Decimal {
+     sumd:= decimal.NewFromFloat(num).Round(precision)
+     return sumd
+ }
+
+// *****************************************************************
+// Округление до N знаков
+// *****************************************************************
+func ToFixed(num float64, precision int) float64 {
+     output := math.Pow(10, float64(precision))
+     return float64(round(num * output)) / output
+}
+
+func round(num float64) int {
+     return int(num + math.Copysign(0.5, num))
+}
+```
+
