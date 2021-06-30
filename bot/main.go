@@ -88,7 +88,7 @@ func main() {
 
 		// свитч на обработку комманд комманда - сообщение, начинающееся с "/"
 		switch update.Message.Command() {
-		case "start":		reply = "Добрый день! Я Unity-Bars бот. Я знаю все о Ваших заявках. Введите номер заявки в Jire. Например: COBUMMFO-5112 или COBUMMFO-5113."
+		case "start":		reply = "Добрый день! Я Bars бот. Я знаю все о Ваших заявках. Введите номер заявки в Jire. Например:  COMBO5113."
 		case "hello":		reply = "world"
 		case "аccount":		reply = "26220"
 		case "rls":  		reply = "Текущий релиз № 68 В него вошли 45678-34568 изменения"
