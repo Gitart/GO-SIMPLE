@@ -39,4 +39,18 @@ As a special case, it is legal to append a string to a byte slice, like this:
 slice = append([]byte("hello "), "world"...)
 ```
 
+## Append Slice operator
+```go
+package main
 
+import (
+    "fmt"
+)
+
+func main() {
+    x := []int{1, 2, 3}
+    y := []int{4, 5, 6}
+    z := append([]int{}, append(x, y...)...)
+    fmt.Println(z)
+}
+```
