@@ -146,6 +146,8 @@ func main() {
 ```
 
 # Serialize
+https://play.golang.org/p/7nk5ZEbVLw
+
 ```go
 package main
 
