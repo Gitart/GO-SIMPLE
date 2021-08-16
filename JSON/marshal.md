@@ -1,6 +1,9 @@
 ## Переопределение стандартных методов 
+https://play.golang.org/p/7g5i-53SVz7
+
 * UnmarshalJSON()  вызывается автоматически
 * MarshalJSON() в ручном варианте
+
 
 
 ## Sample
