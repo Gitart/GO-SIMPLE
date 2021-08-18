@@ -188,3 +188,38 @@ func myAPI(w http.ResponseWriter, r *http.Request) {
 	w.Write(payloadBytes)
 }
 ```
+
+
+## get multi
+
+```go
+package main
+import (
+    "fmt"
+    "github.com/bradfitz/gomemcache/memcache"
+)
+func main() {
+    // Connect to our memcache instance
+    mc := memcache.New("127.0.0.1:11211")
+    // Set some values
+    mc.Set(&memcache.Item{Key: "key_one", Value: []byte("michael")})
+    mc.Set(&memcache.Item{Key: "key_two", Value: []byte("programming")})
+    // Get a single value
+    val, err := mc.Get("key_one")
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Printf("-- %s", val.Value)
+    // Get multiple values
+    it, err := mc.GetMulti([]string{"key_one", "key_two"})
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    // It's important to note here that `range` iterates in a *random* order
+    for k, v := range it {
+        fmt.Printf("## %s => %s\n", k, v.Value)
+    }
+}
+```
