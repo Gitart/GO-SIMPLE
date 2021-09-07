@@ -22,4 +22,7 @@ func DefaultAuthScopes() []string {
 }
 ```
 
+```go
+ s := runtime.Version()
+```
 
