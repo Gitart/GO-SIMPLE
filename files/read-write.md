@@ -1,4 +1,5 @@
 
+```go
 // Retrieves a token from a local file.
 func tokenFromFile(file string) (*oauth2.Token, error) {
         f, err := os.Open(file)
@@ -21,3 +22,5 @@ func saveToken(path string, token *oauth2.Token) {
         defer f.Close()
         json.NewEncoder(f).Encode(token)
 }
+```
+
