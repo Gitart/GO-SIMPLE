@@ -1,3 +1,5 @@
+
+```go
 package main
 import "fmt"
  
@@ -41,3 +43,4 @@ func main() {
     fmt.Println(DOC_TYPES[1]["ff"])      
       
 }
+```
