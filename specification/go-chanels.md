@@ -1,4 +1,6 @@
 ## Go Chanels
+https://itnext.io/explain-to-me-go-concurrency-worker-pool-pattern-like-im-five-e5f1be71e2b0
+
 
 ![image](https://user-images.githubusercontent.com/3950155/134639099-55319ca1-e199-4c37-aa63-d5a5bfb05d10.png)
 
