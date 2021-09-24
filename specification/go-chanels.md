@@ -42,6 +42,30 @@ func (j Job) execute(ctx context.Context) Result {
 
 It is a buffered channel (workers count capped) that once it’s filled up any further attempt to write will block the current goroutine (in this case the stream’s generator goroutine from 1). At any moment, if any `Job` is present on the channel will be consumed by a `Worker` function for later execution. In this way, the channel will be unblocked for new `Job` writes flowing from the `generator` from the previous point.
 
+```go
+// ... [omitted for brevity]
+
+func worker(ctx context.Context, wg *sync.WaitGroup, jobs <-chan Job, results chan<- Result) {
+	defer wg.Done()
+	for {
+		select {
+		case job, ok := <-jobs:
+			if !ok {
+				return
+			}
+			// fan-in job execution multiplexing results into the results channel
+			results <- job.execute(ctx)
+		case <-ctx.Done():
+			fmt.Printf("cancelled worker. Error detail: %v\n", ctx.Err())
+			results <- Result{
+				Err: ctx.Err(),
+			}
+			return
+		}
+	}
+}
+```
+
 ## 3\. WorkerPool
 
 This is the main piece of the puzzle, this entity is composed of `Result`s, `Job`s and `Done` channel, plus the number of `Worker`s the pool will host. It will spawn as many `Worker`s on different goroutines as the worker count indicates, AKA ***fanning-out***.
@@ -49,6 +73,43 @@ This is the main piece of the puzzle, this entity is composed of `Result`s, `Job
 The `Worker`s themselves will be responsible for taking `Job`s from the channel when available. Then they execute the `Job` and publishing it `Result` onto the `Result` s channel. As long as the `cancel()` function is not invoked upon `Context`, the `Worker` would do the previous mentioned. Otherwise, the loop brakes and `WaitGroup` is marked as `Done()`. This is quite similar to think of *“killing the* `*Worker*`*“*.
 
 After all the available `Job`s have been drawn from their channel, the `WorkerPool` will finish its execution by closing its own `Done` and `Result`s channels.
+
+
+```go
+... [omitted for brevity]
+
+type WorkerPool struct {
+	workersCount int
+	jobs         chan Job
+	results      chan Result
+	Done         chan struct{}
+}
+
+func New(wcount int) WorkerPool {
+	return WorkerPool{
+		workersCount: wcount,
+		jobs:         make(chan Job, wcount),
+		results:      make(chan Result, wcount),
+		Done:         make(chan struct{}),
+	}
+}
+
+func (wp WorkerPool) Run(ctx context.Context) {
+	var wg sync.WaitGroup
+
+	for i := 0; i < wp.workersCount; i++ {
+		wg.Add(1)
+		// fan out worker goroutines
+		//reading from jobs channel and
+		//pushing calcs into results channel
+		go worker(ctx, &wg, wp.jobs, wp.results)
+	}
+
+	wg.Wait()
+	close(wp.Done)
+	close(wp.results)
+}
+```
 
 ## 4\. Results Channel
 
