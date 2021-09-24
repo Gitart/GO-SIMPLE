@@ -44,6 +44,42 @@ This pattern could be hard to grasp at first glimpse. But, take your time to dig
 
 One thing that could help is to think of channels as pipes, where data flows from one side to the other and the amount of data that could fit is limited. So if we want to inject more data, we just need to make some extra room for it by taking some data out first whilst we wait. On the other way around, if we want to consume from the pipe there has to be something, otherwise, we wait till that happens. In that way, we use these pipes to communicate and share data across `goroutines`.
 
+// ... [omitted for brevity]
+
+```go
+func TestWorkerPool(t *testing.T) {
+	wp := New(workerCount)
+
+	ctx, cancel := context.WithCancel(context.TODO())
+	defer cancel()
+
+	go wp.GenerateFrom(testJobs())
+
+	go wp.Run(ctx)
+
+	for {
+		select {
+		case r, ok := <-wp.Results():
+			if !ok {
+				continue
+			}
+
+			i, err := strconv.ParseInt(string(r.Descriptor.ID), 10, 64)
+			if err != nil {
+				t.Fatalf("unexpected error: %v", err)
+			}
+
+			val := r.Value.(int)
+			if val != int(i)*2 {
+				t.Fatalf("wrong value %v; expected %v", val, int(i)*2)
+			}
+		case <-wp.Done:
+			return
+		default:
+		}
+	}
+}
+```
 # Resources
 
 **\[Implementation\]** A full implementation for this pattern in this [***GitHub repo***](https://github.com/godoylucase/workers-pool)***.***
