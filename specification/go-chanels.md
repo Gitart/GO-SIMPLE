@@ -8,6 +8,34 @@ I created a minimal work unit called `Job`, composed of an `ExecutionFn` that wo
 
 As the second step, I used the `generator` concurrency pattern to stream all the `Job`s into the `WorkerPool`. What is this about? Generating a stream from ranging over some client’s defined `Job`s slice pushing each of them into a channel, the `Job`s channel. Which will be used to feed concurrently the `WorkerPool`.
 
+
+```go
+... [omitted for brevity]
+
+type jobMetadata map[string]interface{}
+
+type Job struct {
+	Descriptor JobDescriptor
+	ExecFn     ExecutionFn
+	Args       interface{}
+}
+
+func (j Job) execute(ctx context.Context) Result {
+	value, err := j.ExecFn(ctx, j.Args)
+	if err != nil {
+		return Result{
+			Err:        err,
+			Descriptor: j.Descriptor,
+		}
+	}
+
+	return Result{
+		Value:      value,
+		Descriptor: j.Descriptor,
+	}
+}
+```
+
 ## 2\. Job’s channel
 
 It is a buffered channel (workers count capped) that once it’s filled up any further attempt to write will block the current goroutine (in this case the stream’s generator goroutine from 1). At any moment, if any `Job` is present on the channel will be consumed by a `Worker` function for later execution. In this way, the channel will be unblocked for new `Job` writes flowing from the `generator` from the previous point.
