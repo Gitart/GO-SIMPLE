@@ -1,7 +1,8 @@
 
 
 ## GO-SIMPLE
-=========
+![image](https://user-images.githubusercontent.com/3950155/134782350-669472ab-bf59-4dbb-91d7-e85458794217.png)
+
 
 Samples for go language  
 Примеры использования языка GO с готовыми примерами   
