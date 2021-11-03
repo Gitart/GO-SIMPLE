@@ -1,5 +1,7 @@
 # Short instruction for usage go mod in golang
 
+Note: **go mod** usage in go version more **>1.15**  
+
 1. Create folder for yuor app    
 2. Execute **go mod init nameapp**   
 3. Set variable **export GOCACHE=package**  
