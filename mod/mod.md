@@ -1,6 +1,17 @@
 # Create go mode
 
+## Basic steps for used go mod
 
+```txt
+1. Cretae directory 
+2. go mod init nameyorapp
+3. export GOMODCACHE=$PWD/package
+4. go mod tidy
+5. go build -o appname
+```
+
+
+### runmode
 ```sh
 #!/bin/bash
 
