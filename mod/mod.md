@@ -32,6 +32,7 @@ echo start build process ...
 
 export GOMODCACHE=$PWD/package
 export GO111MODULE=auto
+go mod tidy 
 
 go build -o nats
 ./nats
