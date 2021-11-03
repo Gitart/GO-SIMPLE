@@ -1,4 +1,4 @@
-# A quick guide to using go mod in golang   
+# A quick guide to using go mod in golang  
 
 Note: **go mod** usage in go version more **>1.15**    
 Check version: **go version**    
