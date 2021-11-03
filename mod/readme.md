@@ -1,6 +1,7 @@
 # Short instruction for usage go mod in golang
 
-Note: **go mod** usage in go version more **>1.15**  
+Note: **go mod** usage in go version more **>1.15** 
+Check version: **go version**  
 
 1. Create folder for yuor app    
 2. Execute **go mod init nameapp**   
