@@ -1,21 +1,18 @@
-Примитивы синхронизации в Go
-German Gorelkin
-German Gorelkin
-Feb 9, 2020 · 5 min read
+## Примитивы синхронизации в Go
 
 Продолжаем серию статей о проблемах многопоточности, параллелизме, concurrency и других интересных штуках.
 
-    Race condition и Data Race
-    Deadlocks, Livelocks и Starvation
-    Примитивы синхронизации в Go
-    Безопасная работа с каналами в Go
-    Goroutine Leaks
+    Race condition и Data Race  
+    Deadlocks, Livelocks и Starvation  
+    Примитивы синхронизации в Go  
+    Безопасная работа с каналами в Go  
+    Goroutine Leaks   
 
     Пакет sync содержит примитивы, которые наиболее полезны для низкоуровневой синхронизации доступа к памяти.
 
-WaitGroup
+## WaitGroup
 
-    WaitGroup — это отличный способ дождаться завершения набора одновременных операций.
+**WaitGroup** — это отличный способ дождаться завершения набора одновременных операций.
 
 Запустим несколько goroutine и дождемся завершения их работы:
 
