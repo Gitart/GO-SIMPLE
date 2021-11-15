@@ -1,5 +1,8 @@
 ## Context sample
 
+https://play.golang.org/p/yTY_iJUIQBT
+
+
 ```go
 package main
 
