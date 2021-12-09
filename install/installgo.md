@@ -3,9 +3,9 @@
 В этом документе по установке предполагается Ubuntu 16.04+ на платформе x86-64.       
 
 **Установить Git**
-копия$ sudo apt-get install git 
-Установить Go 1.11+
-Загрузите Go 1.10+ с https://golang.org/dl/ .
+копия$ sudo apt-get install git             
+Установить Go 1.11+           
+Загрузите Go 1.10+ с https://golang.org/dl/ .          
 
 
 копия$ wget https://dl.google.com/go/go1.11.1.linux-amd64.tar.gz
