@@ -1,3 +1,5 @@
+// Custom scalars with user defined types
+
 package mypkg
 
 import (
