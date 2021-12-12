@@ -1,3 +1,5 @@
+// https://go.dev/play/p/GPu6gq0fVEB
+
 import (
 	"container/list"
 	"fmt"
