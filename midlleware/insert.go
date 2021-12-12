@@ -1,3 +1,4 @@
+// https://gqlgen.com/reference/dataloaders/
 
 const loadersKey = "dataloaders"
 
