@@ -10,6 +10,9 @@ Samples for go language
 ## Go Full
 https://dasarpemrogramangolang.novalagung.com/5-go-command.html
 
+## Other samples
+https://www.golangprograms.com
+https://golangexample.com
 
 ## Library
 https://github.com/golang/go/wiki/Projects
