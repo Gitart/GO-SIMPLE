@@ -1,10 +1,5 @@
 # Data Science in Go: How Much To Tip
 
-![Author image](https://www.ardanlabs.com/images/avatar-miki-tebeka.jpg)
-
-Miki Tebeka
-
-July 27, 2021
 
 ### The Question
 
