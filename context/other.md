@@ -1,6 +1,6 @@
 # Sample
 
-```
+```go
 Secret message
 func secretMessageHandler(w http.ResponseWriter, r *http.Request) {
     io.WriteString(w, "42")
@@ -26,7 +26,7 @@ We were hard-coding the key, but your boss says now we need to check Redis.
 
 Let's just make our Redis connection a global variable for now...
 
-```
+```go
 var redisDB *redis.Client
 
 func main() {
@@ -48,6 +48,7 @@ func requireKeyRedis(h http.HandlerFunc) http.HandlerFunc {
 ust one quick addition...
 We need to issue temporary session tokens for some use cases, so we need to check if either a key or a session is provided.
 
+```go
 func requireKeyOrSession(h http.HandlerFunc) http.HandlerFunc {
     return func(w http.ResponseWriter, r *http.Request) {
         key := r.FormValue("key")
@@ -68,8 +69,9 @@ func requireKeyOrSession(h http.HandlerFunc) http.HandlerFunc {
         h(w, r)
     }
 }
+```
 
-By the way...
+### By the way...
 Your boss also asks:
 
 Can we also check the X-API-Key header?
@@ -77,6 +79,7 @@ Can we restrict certain keys to certain IP addresses?
 Can we ...?
 There's too much to shove into one middleware: so we make an auth package.
 
+```go
 package auth
 
 type Auth struct {
@@ -88,12 +91,14 @@ type Auth struct {
 func Check(r *http.Request) (auth Auth, ok bool) {
     // lots of complicated checks
 }
+```
 
-What about Redis?
+### What about Redis?
 We need to reference the DB from our new auth package as well.
 
 Should we pass the connection to Check?
 
+```go
 func Check(redisDB *redis.Client, r *http.Request) (Auth, bool) { ... }
 What happens we need to check MySQL as well?
 
@@ -140,6 +145,8 @@ func requireKeyOrSession(h http.HandlerFunc) http.HandlerFunc {
         ...
     }
 }
+```
+
 Should work, but will our *http.Requests leak? We need to make sure to clean them up. 
 What happens when we need to keep track of more than just Auth? 
 How do we coordinate this data across packages? What about concurrency? 
@@ -152,6 +159,7 @@ c.Env is a map[interface{}]interface{} for storing arbitrary data — perfect fo
 
 Let's rewrite our auth middleware for Goji:
 
+```go
 func requiresKey(c *web.C, h http.Handler) http.Handler {
     fn := func(w http.ResponseWriter, r *http.Request) {
         a := c.Env["auth"]
@@ -163,9 +171,12 @@ func requiresKey(c *web.C, h http.Handler) http.Handler {
     }
     return http.HandlerFunc(fn)
 }
+```
+
 Goji groups
 We can set up groups of routes:
 
+```go
 package main
 
 import (
@@ -181,6 +192,8 @@ func main() {
     goji.Handle("/secret/*", secretGroup)
     goji.Serve()
 }
+```
+
 This will run our checkAuth for all routes under /secret/.
 
 Downside: Goji-flavored context
@@ -188,21 +201,27 @@ Let's say we want to re-use our auth package elsewhere, like a batch process.
 
 Do we want to put our database connections in web.C, even if we're not running a web server? Should all of our internal packages be importing Goji?
 
+```go
 package auth
 func Check(c web.C, session, key string) bool {
     // How do we call this if we're not using goji?
     redisDB, _ := c.Env["redis"].(*redis.Client) // kind of ugly...
 }
+```
+
 Having to do a type assertion every time we use this DB is annoying. Also, what happens when some other library wants to use this "redis" key?
 
 Downside: Groups need to be set up once, in main.go
 Defining middleware for a group is tricky. What happens if you have code like...
 
+```go
 package addon
 
 func init() {
     goji.Get("/secret/addon", addonHandler) // will secretGroup handle this?
 }
+```
+
 Everything works will if your entire app is set up in main.go, but in my experience it's very finicky and hard to reason about handlers that are set up in other ways.
 
 Attempt #3: kami & x/net/context
@@ -218,12 +237,16 @@ blog.golang.org/context
 
 Quick example:
 
+```go
 ctx := context.Background() // blank context
 ctx = context.WithValue(ctx, "my_key", "my_value")
 fmt.Println(ctx.Value("my_key").(string)) // "my_value"
+```
+
 kami
 kami is a mix of HttpRouter, x/net/context, and Goji, with a very simple middleware system included.
 
+```go
 package main
 
 import (
@@ -267,12 +290,14 @@ func hello(ctx context.Context, w http.ResponseWriter, r *http.Request) {
         Scan(&greeting)
     fmt.Fprintf(w, "Hello, %s!", greeting)
 }
+```
 
-Tests
+### Tests
 For tests, you can put a mock DB connection in your context.
 
 main_test.go:
 
+```go
 import _ "github.com/mycompany/testhelper"
 testhelper/testhelper.go:
 
@@ -288,9 +313,12 @@ func init() {
     ctx = db.OpenSQL("main", "mogi", "")
     kami.Context = ctx
 }
-How does it work?
+```
+
+### How does it work?
 Because context.Value() takes an interface{}, we can use unexported type as the key to "protect" it. This way, other packages can't screw with your data. In order to interact with a database, you have to use the exported functions like OpenSQL, and Close.
 
+```go
 package db
 
 import (
@@ -305,9 +333,11 @@ func SQL(ctx context.Context, name string) *sql.DB {
     db, _ := ctx.Value(sqlkey(name)).(*sql.DB)
     return db
 }
+```
+
 BTW: This is why Goji switched its web.C from a map[string]interface{} to map[interface{}]interface{}.
 
-Graceful
+### Graceful
 This is the "Goji" part of kami. Literally copy and pasted from Goji.
 
 kami.Serve() // works *exactly* like goji.Serve()
