@@ -26,20 +26,6 @@ Russian (Pусский) translation by [Masha Kolesnikova](https://tutsplus.com/
 
 Вот весь интерфейс Context:
 
-|
-
-1
-
-2
-
-3
-
-4
-
-5
-
- |
-
 `type Context` `interface` `{`
 
 `Deadline() (deadline time.Time, ok` `bool``)`
@@ -69,42 +55,6 @@ Done() возвращает канал, который закрыт, когда 
 *   Функция context.WithTimeout() обеспечивает закрытие канала Done по истечении времени ожидания.
 
 Done может быть использовано в операторах выбора:
-
-|
-
-01
-
-02
-
-03
-
-04
-
-05
-
-06
-
-07
-
-08
-
-09
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
- |
 
 `// Stream generates values with DoSomething and sends them`
 
@@ -150,19 +100,7 @@ Err() возвращает nil, пока открыт канал Done. Он во
 
 |
 
-1
 
-2
-
-3
-
-4
-
-5
-
-6
-
-7
 
  |
 
@@ -208,43 +146,7 @@ Advertisement
 
 Давайте рассмотрим пример. Во-первых, здесь есть функция contextDemo() с именем и контекстом. Она работает в бесконечном цикле, выводя на консоль свое имя и крайний срок контекста, если таковой имеется. Затем он просто секунду спит.
 
-|
 
-01
-
-02
-
-03
-
-04
-
-05
-
-06
-
-07
-
-08
-
-09
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
 
  |
 
@@ -292,69 +194,7 @@ Advertisement
 
 Затем основная функция ожидает отмены программы с тайм-аутом timeoutCancel чтением из канала Done() (блокируется, пока не закроется). Когда время ожидания истекает через три секунды, main() вызывает метод cancelFunc(), которая отменяет выполнение процедуры с помощью cancelContext, а также последнюю процедуру с производным контекстом предельного срока, равным четырем часам.
 
-|
 
-01
-
-02
-
-03
-
-04
-
-05
-
-06
-
-07
-
-08
-
-09
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
-25
-
-26
-
-27
-
-28
-
-29
-
-30
-
- |
 
 `func main() {`
 
@@ -408,91 +248,28 @@ Advertisement
 
 Вот вывод:
 
-|
 
-01
-
-02
-
-03
-
-04
-
-05
-
-06
-
-07
-
-08
-
-09
-
-10
-
-11
-
-12
 
  |
 
 `[cancelContext] has no deadline`
-
 `[deadlineContext] will expire at: 2017-07-29 09:06:02.34260363`
-
 `[timeoutContext] will expire at: 2017-07-29 05:06:05.342603759`
-
 `[cancelContext] has no deadline`
-
 `[timeoutContext] will expire at: 2017-07-29 05:06:05.342603759`
-
 `[deadlineContext] will expire at: 2017-07-29 09:06:02.34260363`
-
 `[cancelContext] has no deadline`
-
 `[timeoutContext] will expire at: 2017-07-29 05:06:05.342603759`
-
 `[deadlineContext] will expire at: 2017-07-29 09:06:02.34260363`
-
 `Cancelling the cancel context...`
 
 `The cancel context has been cancelled...`
-
 `The deadline context has been cancelled...`
 
- |
 
 ## Передача значений в контексте
 
 Вы можете прикрепить значения к контексту, используя функцию WithValue(). Обратите внимание, что возвращается исходный контекст, а *не* производный контекст. Вы можете прочитать значения из контекста, используя метод Value(). Давайте изменим нашу демонстрационную функцию, чтобы получить ее имя из контекста вместо передачи ее в качестве параметра:
-
-|
-
-01
-
-02
-
-03
-
-04
-
-05
-
-06
-
-07
-
-08
-
-09
-
-10
-
-11
-
-12
-
- |
 
 `func contextDemo(ctx context.Context) {`
 
@@ -522,35 +299,12 @@ Advertisement
 
 А давайте изменим функцию main, добавив имя через WithValue():
 
-|
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
- |
-
 `go contextDemo(context.WithValue(`
-
 `timeOutContext, "name", "[timeoutContext]"))`
-
 `go contextDemo(context.WithValue(`
-
 `cancelContext, "name", "[cancelContext]"))`
-
 `go contextDemo(context.WithValue(`
-
 `deadlineContext, "name", "[deadlineContext]"))`
-
- |
 
 Вывод остается прежним. См. раздел «Лучшие практики», где приведены рекомендации по правильному использованию значений контекста.
 
@@ -569,134 +323,33 @@ Advertisement
 
 Одним из наиболее полезных вариантов использования для контекстов является передача информации вместе с HTTP-запросом. Эта информация может включать идентификатор запроса, учетные данные для аутентификации и многое другое. В Go 1.7 стандартный пакет net/http воспользовался тем, что пакет контекста стал «стандартизированным», и добавил поддержку контекста непосредственно в объект запроса:
 
-|
-
-1
-
-2
-
- |
 
 `func (r *Request) Context() context.Context`
-
 `func (r *Request) WithContext(ctx context.Context) *Request`
-
- |
 
 Теперь можно прикрепить идентификатор запроса из заголовков к конечному обработчику стандартным способом. Функция обработчика WithRequestID() извлекает идентификатор запроса из заголовка «X-Request-ID» и генерирует новый контекст с идентификатором запроса из существующего контекста, который он использует. Затем он передает его следующему обработчику в цепочке. Открытая функция GetRequestID() предоставляет доступ к обработчикам, которые могут быть определены в других пакетах.
 
-|
-
-01
-
-02
-
-03
-
-04
-
-05
-
-06
-
-07
-
-08
-
-09
-
-10
-
-11
-
-12
-
-13
-
-14
-
-15
-
-16
-
-17
-
-18
-
-19
-
-20
-
-21
-
-22
-
-23
-
-24
-
-25
-
-26
-
-27
-
-28
-
-29
-
-30
-
-31
-
-32
-
-33
-
-34
-
-35
-
- |
-
 `const requestIDKey int = 0`
-
 `func WithRequestID(next http.Handler) http.Handler {`
-
 `return http.HandlerFunc(`
-
 `func(rw http.ResponseWriter, req *http.Request) {`
 
 `// Extract request ID from request header`
-
 `reqID := req.Header.Get("X-Request-ID")`
-
 `// Create new context from request context with`
-
 `// the request ID`
-
 `ctx := context.WithValue(`
-
 `req.Context(), requestIDKey, reqID)`
-
 `// Create new request with the new context`
-
 `req = req.WithContext(ctx)`
-
 `// Let the next handler in the chain take over.`
-
 `next.ServeHTTP(rw, req)`
-
 `}`
-
 `)`
-
 `}`
 
 `func GetRequestID(ctx context.Context) string {`
-
 `ctx.Value(requestIDKey).(string)`
-
 `}`
 
 `func Handle(rw http.ResponseWriter, req *http.Request) {`
