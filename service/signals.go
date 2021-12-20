@@ -39,15 +39,19 @@ func init() {
 }
 
 
-func grab() <-chan string { //функция вернет канал, из которого мы будем читать данные типа string
+//функция вернет канал, из которого мы будем читать данные типа string
+func grab() <-chan string { 
      c := make(chan string)
-     for i := 0; i < WORKERS; i++ { //в цикле создадим нужное нам количество гоурутин - worker'oв
+     
+     //в цикле создадим нужное нам количество гоурутин - worker'oв
+     for i := 0; i < WORKERS; i++ { 
           go func() {
-               for { //в вечном цикле собираем данные
+                //в вечном цикле собираем данные
+               for {
                     x, err := goquery.ParseUrl("http://vpustotu.ru/moderation/")
                     if err == nil {
                          if s := strings.TrimSpace(x.Find(".fi_text").Text()); s != "" {
-                              c <- s //и отправляем их в канал
+                              c <- s //отправлениме в канал
                          }
                     }
                     time.Sleep(100 * time.Millisecond)
