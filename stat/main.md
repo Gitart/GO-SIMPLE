@@ -17,7 +17,7 @@ We’re searching for the answer to our question, we’ll be focused on producti
 
 To simplify working with the input, we’ll pass the input file in the standard input. We’ll have several stages of exploring the data and each will have a corresponding command line switch. In the `main` function we have the following line:
 
-```
+```go
 r := bzip2.NewReader(os.Stdin)
 
 ```
@@ -30,7 +30,7 @@ Before you start working with data, it’s important to have a quick look at it 
 
 **Listing 1: First Look**
 
-```
+```go
 19 func firstLook(r io.Reader) error {
 20     var numLines, numBytes int
 21     s := bufio.NewScanner(r)
@@ -57,7 +57,7 @@ Listing 1 shows the first look on the data. On line 21, we create a `bufio.Scann
 
 **Listing 2: Running First Look**
 
-```
+```go
 $ go run taxi.go -first_look < taxi-01-2020-sample.csv.bz2
 VendorID,tpep_pickup_datetime,tpep_dropoff_datetime,passenger_count,trip_distance,RatecodeID,store_and_fwd_flag,PULocationID,DOLocationID,payment_type,fare_amount,extra,mta_tax,tip_amount,tolls_amount,improvement_surcharge,total_amount,congestion_surcharge
 2,2003-01-01 00:07:17,2003-01-01 14:16:59,1.0,0.0,1.0,N,193,193,2.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
@@ -79,7 +79,7 @@ Once the initial look aligns with your assumptions, you can load the data. We’
 
 **Listing 3: Imports**
 
-```
+```go
 14     "github.com/jszwec/csvutil"
 15     "gonum.org/v1/gonum/floats"
 16     "gonum.org/v1/gonum/stat"
@@ -90,7 +90,7 @@ Listing 3 shows the external imports in our code. On line 14, we import `csvutil
 
 **Listing 4: Load Data**
 
-```
+```go
 62 type Row struct {
 63     Tip   float64 `csv:"tip_amount"`
 64     Total float64 `csv:"total_amount"`
@@ -128,7 +128,7 @@ Listing 4 shows how we load the data. On lines 62-65, we define a `Row` struct w
 
 **Listing 5: Statistics**
 
-```
+```go
 39 func statistics(r io.Reader) error {
 40     tip, total, err := loadData(r)
 41     if err != nil {
@@ -173,7 +173,7 @@ In any real life dataset you will have bad values, and you need to decide what t
 
 **Listing 7: Load Filtered Data**
 
-```
+```go
 114 func loadDataFiltered(r io.Reader) ([]float64, []float64, error) {
 115     var tip, total []float64
 116     dec, err := csvutil.NewDecoder(csv.NewReader(r))
@@ -212,7 +212,7 @@ Now we can calculate the tip we want to pay. We’d like to be on the generous s
 
 **Listing 8: Desired Tip**
 
-```
+```go
 93  func desiredTip(r io.Reader) error {
 94      tip, total, err := loadDataFiltered(r)
 95      if err != nil {
@@ -240,7 +240,7 @@ Listing 8 shows the `desiredTip` function. On line 94, we load the filtered data
 
 **Listing 9: Running Desired Tip**
 
-```
+```go
 $ go run taxi.go -tip < taxi-01-2020-sample.csv.bz2
 716422 filtered values
 0.75 quantile tip: 0.20
@@ -253,7 +253,7 @@ But wait! Maybe we should tip more on the weekend? Let’s have a look:
 
 **Listing 10: Loading Data With Time**
 
-```
+```go
 145 func unmarshalTime(data []byte, t *time.Time) error {
 146     var err error
 147     *t, err = time.Parse("2006-01-02 15:04:05", string(data))
@@ -305,7 +305,7 @@ Listing 10 shows how to load the data with time. On lines 145-149, we write an `
 
 **Listing 11: Tip by Weekday**
 
-```
+```go
 190 func weekdayTip(r io.Reader) error {
 191     times, tip, total, err := loadDataWithTime(r)
 192     if err != nil {
