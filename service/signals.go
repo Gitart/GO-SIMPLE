@@ -11,7 +11,7 @@ import (
      "io"
      "os"
      "os/signal"
-     //А вот эти - для высчитывания хешей:
+     //высчитывания хешей:
      "crypto/md5"
      "encoding/hex"
 )
