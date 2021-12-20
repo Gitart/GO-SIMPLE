@@ -31,25 +31,25 @@ Before you start working with data, it’s important to have a quick look at it 
 **Listing 1: First Look**
 
 ```go
-19 func firstLook(r io.Reader) error {
-20     var numLines, numBytes int
-21     s := bufio.NewScanner(r)
-22     for s.Scan() {
-23         if numLines < 5 {
-24             fmt.Println(s.Text())
-25         }
-26         numBytes += len(s.Text())
-27         numLines++
-28     }
-29
-30     if err := s.Err(); err != nil {
-31         return err
-32     }
-33
-34     fmt.Printf("size: %.2fMB\n", float64(numBytes)/1_000_000)
-35     fmt.Printf("lines: %d\n", numLines)
-36     return nil
-37 }
+ func firstLook(r io.Reader) error {
+     var numLines, numBytes int
+     s := bufio.NewScanner(r)
+     for s.Scan() {
+         if numLines < 5 {
+             fmt.Println(s.Text())
+         }
+         numBytes += len(s.Text())
+         numLines++
+     }
+
+     if err := s.Err(); err != nil {
+         return err
+     }
+
+     fmt.Printf("size: %.2fMB\n", float64(numBytes)/1_000_000)
+     fmt.Printf("lines: %d\n", numLines)
+     return nil
+ }
 
 ```
 
