@@ -1,3 +1,5 @@
+// https://www.golangprograms.com/how-to-get-struct-variable-information-using-reflect-package.html
+
 package main
 
 import (
