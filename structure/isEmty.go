@@ -1,5 +1,7 @@
 // You can edit this code!
 // Click here and start typing.
+// https://www.codegrepper.com/code-examples/go/struct+is+not+nil+golang
+
 package main
 
 import (
