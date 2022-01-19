@@ -43,3 +43,7 @@ func SentToCahnel(){
   GlobalChan<-GlobalCountDbConnect
   }
 ```     
+
+
+# Other sample
+https://golangbot.com/channels/  
