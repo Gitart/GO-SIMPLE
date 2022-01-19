@@ -32,6 +32,8 @@ for{
 
 ## Send to chanel
 ```go
+func SentToCahnel(){
   GlobalCountDbConnect ++
   GlobalChan<-GlobalCountDbConnect
+  }
 ```     
