@@ -44,6 +44,12 @@ func SentToCahnel(){
   }
 ```     
 
-
 # Other sample
-https://golangbot.com/channels/  
+https://golangbot.com/channels/      
+https://hackthedeveloper.com/golang-channel-syntax/     
+https://golangexample.com/a-simple-cli-tool-to-switch-the-context-of-your-kubeconfig-file/      
+https://golangexample.com/    
+
+
+
+
