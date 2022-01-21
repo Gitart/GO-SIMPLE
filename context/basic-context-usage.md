@@ -1,3 +1,6 @@
+## Context
+
+```go
 func main() {
 
 	ctx := context.Background()
@@ -21,3 +24,4 @@ func main() {
 	doSomethingAwesome(ctx)
 
 }
+```
