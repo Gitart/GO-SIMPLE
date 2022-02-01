@@ -4,7 +4,7 @@
 
 Сначала мы добавим их в `main()`:
 
-```
+```go
 func main() {
     http.HandleFunc("/view/", viewHandler)
     http.HandleFunc("/edit/", editHandler)
@@ -16,7 +16,7 @@ func main() {
 
 Функция `editHandler` загружает страницу (или, если он не существует, создает пустую структуру `Page`), и отображает HTML форму.
 
-```
+```go
 func editHandler(w http.ResponseWriter, r *http.Request) {
     title := r.URL.Path[len("/edit/"):]
     p, err := loadPage(title)
@@ -41,7 +41,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 
 Во-первых, мы должны добавить `html/template` в список импорта. Мы также не будем больше использовать `fmt`, поэтому мы должны удалить его.
 
-```
+```go
 import (
     "html/template"
     "io/ioutil"
@@ -52,7 +52,7 @@ import (
 
 Давайте создадим файл шаблона, содержащий HTML форму. Откройте новый файл с именем `edit.html`и добавьте следующие строки:
 
-```
+```go
 <h1>Editing {{.Title}}</h1>
 
 <form action="/save/{{.Title}}" method="POST">
@@ -66,7 +66,7 @@ import (
 
 Измените `editHandler`, чтобы использовать шаблон вместо жестко заданного HTML кода:
 
-```
+```go
 func editHandler(w http.ResponseWriter, r *http.Request) {
     title := r.URL.Path[len("/edit/"):]
     p, err := loadPage(title)
@@ -87,7 +87,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 
 Поскольку сейчас мы работаем с шаблонами, давайте создадим шаблон для нашего `viewHandler` называемый `view.html`:
 
-```
+```go
 <h1>{{.Title}}</h1>
 
 <p>[<a href="/edit/{{.Title}}">edit</a>]</p>
@@ -97,7 +97,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 
 Измените `viewHandler` соответственно:
 
-```
+```go
 func viewHandler(w http.ResponseWriter, r *http.Request) {
     title := r.URL.Path[len("/view/"):]
     p, _ := loadPage(title)
@@ -109,7 +109,7 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 
 Обратите внимание, что мы использовали почти одинаковый шаблонный код в обоих обработчиках. Давайте удалим это дублирование, переместив шаблонный код в свою собственную функцию:
 
-```
+```go
 func renderTemplate(w http.ResponseWriter,
                     tmpl string, p *Page) {
     t, _ := template.ParseFiles(tmpl + ".html")
@@ -120,7 +120,7 @@ func renderTemplate(w http.ResponseWriter,
 
 И измените обработчики для использования этой функции:
 
-```
+```go
 func viewHandler(w http.ResponseWriter, r *http.Request) {
     title := r.URL.Path[len("/view/"):]
     p, _ := loadPage(title)
@@ -139,7 +139,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 
 Если мы закомментируем регистрацию нашего невыполненного обработчика сохранения в `main`, мы можем еще раз собрать и протестировать нашу программу. Взглянем на весь код, который мы уже написали.
 
-```
+```go
 package main
 
 import (
