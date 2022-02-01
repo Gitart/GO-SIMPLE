@@ -1,3 +1,10 @@
+// https://www.geeksforgeeks.org/function-as-a-field-in-golang-structure/
+// Go program to illustrate the function
+// as a field in Go structure
+// Included structures in structures
+// Including structure to functions
+// Structure reurn from function structures
+
 package main
 
 import "fmt"
@@ -21,9 +28,24 @@ type System struct {
        Date  string
 }
 
+
+// Total
 type Total struct {
        Title string
        Date  string
+       In    int
+       Out   int 
+       Ha    int
+       Dats  func() string 
+       Fnc   func(int, int) int 
+       Sal   Finalsalary 
+}
+
+type Finalsalary func(int, int) int
+
+
+func Test() string {
+      return "test... "
 }
 
 // BASIC
@@ -89,6 +111,7 @@ type Solo struct {
 // main
 func main(){
      var Dat Sett
+     var Tt  Total
      
      Dat.Title                                   = "Seting your system"
      Dat.System.Title                            = "System: Title"
@@ -102,6 +125,22 @@ func main(){
      cashSetting.System.Title                    = "Cash: sysytem title"
      cashSetting.Basic.Incapsule.Date            = "Cash Date setting"
 
+    // Work with function
+     Tt.In  = 123
+     Tt.Out = 1668
+     Tt.Ha  = 2000
+     Tt.Fnc = func(Ta int, Pa int) int {return Ta + Pa}
+     fmt.Println("Calculation in function: ", Tt.Fnc(Tt.In, Tt.Out))
+
+     // Формула без ограничений
+     // Ручная настройка
+     Tt.Dats =  func() string {return "Test string return"}
+     fmt.Println("Calculation in maanual function: ", Tt.Dats())     
+     
+     Tt.Sal = func(Ta int, Pa int) int {return Ta + Pa}
+     fmt.Println("Salary function: ", Tt.Fnc(Tt.In, Tt.Out))     
+
+
      fmt.Println(Dat)
      fmt.Println(Dat.Basic.Long())
      fmt.Println(Dat.Basic.Title)
@@ -113,8 +152,5 @@ func main(){
      fmt.Println("FUNCTION DATA:", Dat.Basic.Incs().Rsub().Teradata().Titles())
 
      Dat.Basic.Incs().Rsub().Teradata().ShowJSONStatistics()
-
      fmt.Println(cashSetting.Basic.Incapsule.Date)
-     
-
 }
