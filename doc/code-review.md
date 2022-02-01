@@ -1,0 +1,28 @@
+### Go Code Review Comments
+
+В подборке статей **Go Code Review Comments** собраны рекомендации по написанию кода от разработчиков Go сообщества, которые проводили code review неоднократно и сформировали советы по написанию идиоматичного Go кода.
+
+1.  [Go Code Review Comments: введение, gofmt](https://golang-blog.blogspot.com/2019/02/go-code-review-comments-gofmt.html)
+2.  [Go Code Review Comments: комментируйте предложениями](https://golang-blog.blogspot.com/2019/02/go-code-review-comments.html)
+3.  [Go Code Review Comments: контексты](https://golang-blog.blogspot.com/2019/02/go-code-review-comments-contexts.html)
+4.  [Go Code Review Comments: копирование](https://golang-blog.blogspot.com/2019/02/go-code-review-comments-copying.html)
+5.  [Go Code Review Comments: определение пустых срезов](https://golang-blog.blogspot.com/2019/02/go-code-review-comments-declaring-empty-slices.html)
+6.  [Go Code Review Comments: Пакет Crypto Rand](https://golang-blog.blogspot.com/2019/02/go-code-review-comments-crypto-rand.html)
+7.  [Go Code Review Comments: комментарии к документу, panic, строки ошибок, примеры](https://golang-blog.blogspot.com/2019/02/go-code-review-comments-panic-errors-examples.html)
+8.  [Go Code Review Comments: Время жизни goroutine](https://golang-blog.blogspot.com/2019/02/go-code-review-comments-goroutine-live-time.html)
+9.  [Go Code Review Comments: импорт](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-import.html)
+10.  [Go Code Review Comments: пустой импорт, импорт точки](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-empty-import.html)
+11.  [Go Code Review Comments: Внутренние ошибки](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-in-band-errors.html)
+12.  [Go Code Review Comments: Отступы в ответвлениях ошибок](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-error-clauses.html)
+13.  [Go Code Review Comments: Инициализмы](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-initialisms.html)
+14.  [Go Code Review Comments: Интерфейсы](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-interfaces.html)
+15.  [Go Code Review Comments: Длина строки кода](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-line-length.html)
+16.  [Go Code Review Comments: Именованные параметры результата](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-named-result.html)
+17.  [Go Code Review Comments: Комментарии к пакету](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-godoc.html)
+18.  [Go Code Review Comments: Имена пакетов](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-packages.html)
+19.  [Go Code Review Comments: Передаваемые значения](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-pass-values.html)
+20.  [Go Code Review Comments: Имена получателей](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-receiver-name.html)
+21.  [Go Code Review Comments: Синхронные функции](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-synchronous-functions.html)
+22.  [Go Code Review Comments: Тип получателя (Receiver Type)](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-receiver-type.html)
+23.  [Go Code Review Comments: Полезные падения тестов](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-usefull-tests.html)
+24.  [Go Code Review Comments: Имена переменных](https://golang-blog.blogspot.com/2019/03/go-code-review-comments-variable-name.html)
