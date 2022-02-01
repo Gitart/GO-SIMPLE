@@ -196,3 +196,6 @@ func main() {
   log.Fatal(http.ListenAndServe(":8080", nil))
 }
 ```
+
+
+[Template description](https://golang-blog.blogspot.com/2019/02/go-web-app-html-template.html)
