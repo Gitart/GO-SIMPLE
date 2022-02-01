@@ -9,6 +9,8 @@ package main
 
 import "fmt"
 import "encoding/json"
+import "github.com/mgutz/ansi"
+
 
 var (
       cashSetting = Sett{}
@@ -110,8 +112,14 @@ type Solo struct {
 
 // main
 func main(){
+      fmt.Printf( "\n\n %s\n %s \n %s\n\n",
+                  ansi.Color("A new release of gh is available:", "yellow"),
+                  ansi.Color("Test service", "cyan"),
+                  ansi.Color("v.01.01", "cyan"))
+
      var Dat Sett
      var Tt  Total
+     
      
      Dat.Title                                   = "Seting your system"
      Dat.System.Title                            = "System: Title"
@@ -153,4 +161,7 @@ func main(){
 
      Dat.Basic.Incs().Rsub().Teradata().ShowJSONStatistics()
      fmt.Println(cashSetting.Basic.Incapsule.Date)
+
+
+     
 }
