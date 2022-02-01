@@ -1,4 +1,5 @@
 ## Наполнение Bytes 
+[String byte Go Palygraond](https://go.dev/play/p/Rhx9-WuSqdy)
 
 ```go
 package main
