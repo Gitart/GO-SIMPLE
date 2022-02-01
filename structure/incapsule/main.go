@@ -3,6 +3,11 @@ package main
 import "fmt"
 import "encoding/json"
 
+var (
+      cashSetting = Sett{}
+)
+
+
 // SETT
 type Sett struct {
        Title      string
@@ -64,12 +69,22 @@ func (t Terra) Titles() string {
       return "TITLE TERRA DATA :" + t.Title
 }
 
+// func (t Terra) Dats() Solo {
+//       return  t.Date
+// }
+
 // Terra show json
 func (m Terra) ShowJSONStatistics() {
       data, _ := json.MarshalIndent(m, "", "  ")
       fmt.Printf("Terra data : %s\n", string(data))
 }
 
+
+// SOLO
+type Solo struct {
+     Title string
+     Date  string
+}
 
 // main
 func main(){
@@ -83,6 +98,10 @@ func main(){
      Dat.Basic.Incapsule.Subcapsule.Title        = "SUBCAPSULA: TItle в инкапсуле"
      Dat.Basic.Incapsule.Subcapsule.Terra.Title  = "TerraDATA:  TItle в инкапсуле"
 
+     // Cash setting
+     cashSetting.System.Title                    = "Cash: sysytem title"
+     cashSetting.Basic.Incapsule.Date            = "Cash Date setting"
+
      fmt.Println(Dat)
      fmt.Println(Dat.Basic.Long())
      fmt.Println(Dat.Basic.Title)
@@ -94,4 +113,8 @@ func main(){
      fmt.Println("FUNCTION DATA:", Dat.Basic.Incs().Rsub().Teradata().Titles())
 
      Dat.Basic.Incs().Rsub().Teradata().ShowJSONStatistics()
+
+     fmt.Println(cashSetting.Basic.Incapsule.Date)
+     
+
 }
