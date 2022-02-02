@@ -34,6 +34,7 @@ http://openmymind.net/Introduction-To-Go-Channels/
 https://mmcgrana.github.io/2012/09/go-by-example-timers-and-tickers.html  
 http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/   
 https://nanxiao.gitbooks.io/golang-101-hacks/content/posts/unbuffered-and-buffered-channels.html  
+https://www.golangprograms.com/go-slice-map-filter.html   
 
 ## Other samples
 https://golangify.com/today-date   
