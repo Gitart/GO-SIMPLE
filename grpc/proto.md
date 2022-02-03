@@ -1,6 +1,6 @@
 # Основы буфера протокола: Go
 
-*   On this page
+*   **On this page**
 *   [Why use protocol buffers?](https://developers.google.com/protocol-buffers/docs/gotutorial#why-use-protocol-buffers)
 *   [Where to find the example code](https://developers.google.com/protocol-buffers/docs/gotutorial#where-to-find-the-example-code)
 *   [Defining your protocol format](https://developers.google.com/protocol-buffers/docs/gotutorial#defining-your-protocol-format)
@@ -42,17 +42,18 @@
 
 Файл `.proto` начинается с объявления пакета, что помогает предотвратить конфликты имен между разными проектами.
 
+```
 syntax \=  "proto3";
 package tutorial;
-
 import  "google/protobuf/timestamp.proto";
+```
 
 Опция `go_package` определяет путь импорта пакета, который будет содержать весь сгенерированный код для этого файла. Имя пакета Go будет последним компонентом пути импорта. Например, в нашем примере будет использоваться имя пакета «tutorialpb».
 
 option go\_package \=  "github.com/protocolbuffers/protobuf/examples/go/tutorialpb";
 
 Далее у вас есть определения сообщений. Сообщение — это просто агрегат, содержащий набор типизированных полей. Многие стандартные простые типы данных доступны как типы полей, включая `bool` , `int32` , `float` , `double` и `string` . Вы также можете добавить дополнительную структуру к своим сообщениям, используя другие типы сообщений в качестве типов полей.
-
+```
 message Person  { string name \=  1;int32 id \=  2; // Unique ID number for this person. string email \=  3; enum  PhoneType  {MOBILE \=  0;HOME \=  1;WORK \=  2; }message PhoneNumber  { string number \=  1; PhoneType type \=  2; }repeated PhoneNumber phones \=  4;
 
   google.protobuf.Timestamp last\_updated \=  5;
@@ -60,6 +61,7 @@ message Person  { string name \=  1;int32 id \=  2; // Unique ID number for this
 
 // Our address book file is just one of these.message AddressBook  {repeated Person people \=  1;
 }
+```
 
 В приведенном выше примере `Person` сообщение содержит `PhoneNumber` сообщения, а `AddressBook` сообщение содержит `Person` сообщения. Вы даже можете определить типы сообщений, вложенные в другие сообщения — как видите, `PhoneNumber` тип определен внутри `Person` . Вы также можете определить `enum` типы, если хотите, чтобы одно из ваших полей имело одно из предопределенного списка значений — здесь вы хотите указать, что номер телефона может быть одним из `MOBILE` , `HOME` , или `WORK` .
 
@@ -82,9 +84,9 @@ message Person  { string name \=  1;int32 id \=  2; // Unique ID number for this
 
     Плагин компилятора `protoc-gen-go` будет установлен `$GOBIN` в `$GOPATH/bin` . Он должен быть у вас `$PATH` , чтобы компилятор протокола `protoc` его нашел.
 3.  Теперь запустите компилятор, указав исходный каталог (где находится исходный код вашего приложения — текущий каталог используется, если вы не укажете значение), целевой каталог (куда вы хотите отправить сгенерированный код; часто то же самое, что и `$SRC_DIR` ) , и путь к вашему `.proto` . В этом случае вы должны вызвать:
-
+```
     protoc -I=$SRC\_DIR --go\_out=$DST\_DIR $SRC\_DIR/addressbook.proto
-
+```
     Поскольку вам нужен код Go, вы используете эту `--go_out` опцию — аналогичные опции предусмотрены для других поддерживаемых языков.
 
 Это генерируется `github.com/protocolbuffers/protobuf/examples/go/tutorialpb/addressbook.pb.go` в указанном вами каталоге назначения.
@@ -101,14 +103,15 @@ message Person  { string name \=  1;int32 id \=  2; // Unique ID number for this
 Подробнее о том, что именно генерируется, вы можете прочитать в руководстве [Go Generated Code](https://developers.google.com/protocol-buffers/docs/reference/go-generated) , но по большей части вы можете обращаться с ними как с совершенно обычными типами Go.
 
 Вот пример из [`list_people` модульных тестов](https://github.com/protocolbuffers/protobuf/blob/master/examples/list_people_test.go) команды того, как вы можете создать экземпляр Person:
-
+```
 p := pb.Person{ Id: 1234, Name: "John Doe", Email:  "jdoe@example.com", Phones:  \[\]\*pb.Person\_PhoneNumber{ {Number:  "555-4321",  Type: pb.Person\_HOME}, },
 }
+```
 
 ## Написание сообщения
 
 Вся цель использования буферов протоколов состоит в том, чтобы сериализовать ваши данные, чтобы их можно было анализировать в другом месте. В Go вы используете `proto` библиотечную функцию [Marshal](https://pkg.go.dev/google.golang.org/protobuf/proto?tab=doc#Marshal) для сериализации данных буфера вашего протокола. Указатель на сообщение буфера протокола `struct` реализует `proto.Message` интерфейс. Вызов `proto.Marshal` возвращает буфер протокола, закодированный в его проводном формате. Например, мы используем эту функцию в [`add_person` команде](https://github.com/protocolbuffers/protobuf/blob/master/examples/add_person.go) :
-
+```
 book :=  &pb.AddressBook{}
 // ...
 
@@ -120,11 +123,13 @@ if err !=  nil  {
 if err := ioutil.WriteFile(fname,  out,  0644); err !=  nil  {
         log.Fatalln("Failed to write address book:", err)
 }
+```
 
 ## Чтение сообщения
 
 Чтобы разобрать закодированное сообщение, вы используете `proto` библиотечную функцию [Unmarshal](https://pkg.go.dev/google.golang.org/protobuf/proto?tab=doc#Unmarshal) . Вызов этого анализирует данные `in` как буфер протокола и помещает результат в `book` . Итак, чтобы разобрать файл в [`list_people` команде](https://github.com/protocolbuffers/protobuf/blob/master/examples/list_people.go) , мы используем:
 
+```
 // Read the existing address book.
 in, err := ioutil.ReadFile(fname)
 if err !=  nil  {
@@ -133,6 +138,7 @@ if err !=  nil  {
 if err := proto.Unmarshal(in, book); err !=  nil  {
         log.Fatalln("Failed to parse address book:", err)
 }
+```
 
 ## Расширение буфера протокола
 
