@@ -33,6 +33,8 @@
 
 
 ## Sample code
+[Samples](https://go.dev/play/p/WCgYEaoyRWe)
+
 ```go
 package main
 import "fmt"
