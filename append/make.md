@@ -1,6 +1,9 @@
 
 # :m: MAKE 
 
+[Slice description](https://go.dev/blog/slices)
+
+
 ```go
  make([]string, 10, 12)
 ```
