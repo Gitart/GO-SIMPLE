@@ -18,6 +18,8 @@ https://golangexample.com
 https://github.com/golang/go/wiki/Projects
 https://libs.garden/go/protocols?page=3
 
+## Description other oportunity
+https://checkmarx.gitbooks.io/go-scp/content/output-encoding/cross-site-scripting.html
 
 ## Samples   
 https://www.youtube.com/watch?v=53WkeeUVoTY  
