@@ -1,4 +1,5 @@
 ## Список возможных статусов билетов [#](http://dev.timepad.ru/api/hooks/#spisok-vozmozhnyh-statusov-biletov)
+https://api.timepad.ru/doc/interactive/
 
 Поля `status:name`/`status_raw` в запросе могут содержать следующие значения (в скобках указаны соответствующие значения поля `status:title`/`status`)
 
