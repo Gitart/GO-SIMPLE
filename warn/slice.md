@@ -1,5 +1,6 @@
 
 ## Slice
+https://go.dev/play/p/odCW5Gym1uD
 
 ```go
 package main
