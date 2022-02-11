@@ -20,7 +20,7 @@ func main() {
 
 func Settings(){
     s:=Cor{}
-    content, err := ioutil.ReadFile("./set.yaml")
+    content, err := ioutil.ReadFile("./setting.yaml")
     
     if err != nil {
       log.Fatal(err)
