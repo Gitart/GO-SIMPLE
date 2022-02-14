@@ -145,11 +145,10 @@ func main() {
 	newGenericFunc(testAge)
 	newGenericFunc(testAge2)
 }
-*/
+```
 
 
 ## variant 5
-
 ```golang
 package main
 import "fmt"
