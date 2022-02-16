@@ -1,3 +1,29 @@
+## Sample
+```
+// curl -v -F "should_be_bound=test" -F "ShouldNotBeBound=nope" http://localhost:8080/
+func main() {
+	e := echo.New()
+
+	e.POST("/", func(c echo.Context) error {
+		type Thing struct {
+			ShouldBeBound    string `form:"should_be_bound"`
+			ShouldNotBeBound string // `form:"-"`
+		}
+
+		fields := Thing{}
+		if err := c.Bind(&fields); err != nil {
+			return err
+		}
+
+		log.Printf("%+v\n", fields)
+		return c.String(http.StatusOK, "OK\n")
+	})
+
+	log.Fatal(e.Start(":8080"))
+}
+```
+
+## Sample
 ```go
 c.Bind() binds query params along with body only with get/delete methods. Documentations mentions that https://echo.labstack.com/guide/binding/
 
