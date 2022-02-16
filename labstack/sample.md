@@ -1,5 +1,5 @@
 ## Sample
-```
+```golang
 // curl -v -F "should_be_bound=test" -F "ShouldNotBeBound=nope" http://localhost:8080/
 func main() {
 	e := echo.New()
