@@ -75,6 +75,21 @@ func isAlphaNum(c uint8) bool {
 }
 ```
 
+
+## Samples
+```go
+func IsWordBreak(i rune) bool {
+	switch {
+	case i >= 'a' && i <= 'z':
+	case i >= 'A' && i <= 'Z':
+	case i >= '0' && i <= '9':
+	default:
+		return true
+	}
+	return false
+}
+```
+
 ## Полный пример
 ```go
 // You can edit this code!
