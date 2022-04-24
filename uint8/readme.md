@@ -125,7 +125,36 @@ func isShellSpecialVar(c uint8) bool {
 }
 ```
 
+// Sample
+```go
+package main
 
+import "fmt"
+
+func main() {
+	var htmlNospaceReplacementTable = []string{
+		0:    "&#xfffd;",
+		'\t': "&#9;",
+		'\n': "&#10;",
+		'\v': "&#11;",
+		'\f': "&#12;",
+		'\r': "&#13;",
+		' ':  "&#32;",
+		'"':  "&#34;",
+		'&':  "&amp;",
+		'\'': "&#39;",
+		'+':  "&#43;",
+		'<':  "&lt;",
+		'=':  "&#61;",
+		'>':  "&gt;",
+		// A parse error in the attribute value (unquoted) and
+		// before attribute value states.
+		// Treated as a quoting character by IE.
+		'`': "&#96;",
+	}
+	fmt.Println(htmlNospaceReplacementTable['\t'])
+}
+```
 ## Примеры
 [Пример использования](https://go.dev/play/p/YgXj4xzaGZL)   
 [Пример](https://www.socketloop.com/tutorials/golang-convert-cast-string-to-uint8-type-and-back-to-string)   
