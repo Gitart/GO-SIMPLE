@@ -1,3 +1,6 @@
+// Use rune
+// https://github.com/chzyer/readline/tree/master/runes
+
 // translate Esc[X
 func escapeExKey(key *escapeKeyPair) rune {
 	var r rune
