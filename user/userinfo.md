@@ -1,6 +1,6 @@
 ## Oпределение информации о пользователе
 
-'''go
+'''golang
  package main 
 
 import (
