@@ -4,11 +4,9 @@
  package main 
 
 import (
-	// "os"
     "os/user"
     "fmt"
  )
-
 
  func ChekUser(){
  	user, err := user.Current()
