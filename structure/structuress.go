@@ -19,13 +19,20 @@ t:=[]struct{
             Other     string
             Tg        Y 
            }{
-              {"Kiev",     "Kievskaya",     "Структура 1", "Address 1",  Y{"Jonh",   "Kolobov", []string{"Arts",  "Traveling"}} }, 
-              {"Kotlova",  "Obolon",        "Structur 2",  "Address 2",  Y{"Inecca", "Deeva",   []string{"Photos", "Reading", "Other Hoobyt"}}},
-              {"август",   "Pechorsk",      "Structur 3",  "Address 3",  Y{"Inecca", "Deeva",   []string{"Photos", "Reading", "Other Hoobyt","Flyting", "Productive"}}},
-              {"Киев",     "одинадцять",    "Structur 4",  "Address 4",  Y{"Inecca", "Deeva",   []string{"Photos", "Reading", "Other Hoobyt","Flyting", "Productive"}}},
+              {"Kiev",     "Kievskaya",  "Структура 1", "Address 1",  Y{"Jonh",   "Kolobov", []string{"Arts",  "Traveling"}} }, 
+              {"Kotlova",  "Obolon",     "Structur 2",  "Address 2",  Y{"Inecca", "Deeva",   []string{"Photos", "Reading", "Other Hoobyt"}}},
+              {"август",   "Pechorsk",   "Structur 3",  "Address 3",  Y{"Inecca", "Deeva",   []string{"Photos", "Reading", "Other Hoobyt","Flyting", "Productive"}}},
+              {"Киев",     "одинадцять", "Structur 4",  "Address 4",  Y{"Inecca", "Deeva",   []string{"Photos", "Reading", "Other Hoobyt","Flyting", "Productive"}}},
            }
 
-          fmt.Println("Other [1] : ",t[1].Other)
+
+          // Добавление тегов в первый элемент
+          fmt.Println("Other [1] : ", t[1].Other)
+          t[1].Tg.Tags = append(t[1].Tg.Tags, "Обновление Системный тег для первого")
+          fmt.Println("Other [1] : ", t[1])
+          addsrtring := []string{"Составный тег", "Ghrtytytytrytr0304435","sdfdsffdsfdsfdrty", "Норвегия","Бургундия"}
+
+
 
 // Обход структуры	
 for _, tt:=range(t){
@@ -33,7 +40,7 @@ for _, tt:=range(t){
          
          // Добавление тега в массив
          tt.Tg.Tags = append(tt.Tg.Tags, "Добавленный тег")
-         tt.Tg.Tags = append(tt.Tg.Tags, "Составный тег ")
+         tt.Tg.Tags = append(tt.Tg.Tags, "Составный тег", "Ghrtytytytrytr0304435","sdfdsffdsfdsfdrty")
          tt.Tg.Tags = append(tt.Tg.Tags, "Новый тег ")
          tt.Tg.Tags = append(tt.Tg.Tags, "Интеграционный тег ")
          tt.Tg.Tags = append(tt.Tg.Tags, "Компаудный тег ")
