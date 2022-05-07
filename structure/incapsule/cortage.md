@@ -5,7 +5,6 @@
 2. Дополнять поля с уже существующими данными если это []
 3. Управлять полями 
 
-
 ## Sample 
 ```go
 package main
@@ -37,7 +36,6 @@ type search struct {
    ignoreOrderQuery bool
 }
 
-
 func (s *search) Where(query interface{}, values ...interface{}) *search {
    s.whereConditions = append(s.whereConditions, 
                               map[string]interface{}{"query": query, "args": values})
@@ -53,7 +51,6 @@ func (s *search) Omit(columns ...string) *search {
    s.omits = columns
    return s
 }
-
 
 func (s *search) Grp (column string) *search {
       s.group = column
