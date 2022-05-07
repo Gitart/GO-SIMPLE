@@ -1,5 +1,4 @@
 // Генерация файлов на основе структур данных
-
 package main
 
 import "os"
@@ -13,17 +12,22 @@ func main(){
      StructuresView()
 }
 
-// Прокурутка структуры
+// Прокурутка полей структуры
 func StructuresView(){
-     filename := "work.txt"
-     book := Companies{}
-	 e    := reflect.ValueOf(&book).Elem()
 
+     filename := "work.txt"
+     book     := Companies{}
+	 e        := reflect.ValueOf(&book).Elem()
+
+    // Прокрутка полей структуры
 	for i := 0; i < e.NumField(); i++ {
-		varName  := e.Type().Field(i).Name
-		varType  := e.Type().Field(i).Type
-		varValue := e.Field(i).Interface()
-		fmt.Printf("%v %v %v\n", varName, varType, varValue)
+
+		varTag   := e.Type().Field(i).Tag      // Tag 
+		varName  := e.Type().Field(i).Name     // Name field
+		varType  := e.Type().Field(i).Type     // Type field
+		varValue := e.Field(i).Interface()     // Value
+
+		fmt.Printf("%-15s %v %v %v \n", varName, varType, varValue, varTag)
 		sfd := fmt.Sprintf(ajxfield, varName)
 		Wrfile(filename, sfd)
 	}
@@ -56,7 +60,6 @@ func Wrfile(filename, text string) {
     }
 
     defer f.Close()
-
     if _, err = f.WriteString(text); err != nil {
        panic(err)
     } 
