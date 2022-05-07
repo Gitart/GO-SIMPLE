@@ -7,7 +7,7 @@ https://www.geeksforgeeks.org/function-as-a-field-in-golang-structure/
 type Companies struct {
   Id            int64  `json:"id"`            // Id records 
   Title         string `json:"title"`         // Наименвоание компании
-  Pending       func(int, int) int
+  Pending       func(int, int) int            // Опредление функции в структуре
 }
 ```
 
