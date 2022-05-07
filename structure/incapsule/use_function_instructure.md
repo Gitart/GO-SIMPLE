@@ -12,6 +12,8 @@ type Companies struct {
 
 Ее использование
 '''go
+
+func testFunctionInstructure(){
      book     := Companies{}
      book.Pending = func(Ta int, Pa int) int {
             return Ta - Pa
@@ -24,5 +26,6 @@ type Companies struct {
            }
 
        fmt.Println("Pending articles: ", book.Pending(145,2))
+  }
 '''
 
