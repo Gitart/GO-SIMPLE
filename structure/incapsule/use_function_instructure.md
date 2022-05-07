@@ -11,7 +11,7 @@ type Companies struct {
 ```
 
 Ее использование
-'''go
+```go
 
 func testFunctionInstructure(){
      book     := Companies{}
@@ -27,5 +27,5 @@ func testFunctionInstructure(){
 
        fmt.Println("Pending articles: ", book.Pending(145,2))
   }
-'''
+```
 
