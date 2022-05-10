@@ -3,7 +3,6 @@
 ## GO-SIMPLE
 ![image](https://user-images.githubusercontent.com/3950155/134782350-669472ab-bf59-4dbb-91d7-e85458794217.png)
 
-
 Samples for go language  
 Примеры использования языка GO с готовыми примерами   
 
@@ -39,6 +38,7 @@ http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/
 https://nanxiao.gitbooks.io/golang-101-hacks/content/posts/unbuffered-and-buffered-channels.html  
 https://www.golangprograms.com/go-slice-map-filter.html   
 https://learningprogramming.net/golang/gorm/fetch-data-using-many-to-many-relationship-in-gorm/
+https://www.golangprograms.com/go-language/slices-in-golang-programming.html 
 
 ## Other samples
 https://golangify.com/today-date   
@@ -64,12 +64,9 @@ https://tutorialedge.net/golang/snippets/parsing-date-strings-in-go/
 ## Templates 
 https://gowebexamples.com/templates/  
 
-
 ## Paterns  
 https://refactoring.guru/ru/design-patterns/go  
 https://golangbyexample.com/add-or-subtract-to-time-go/   
-
-
 
 ## Push server
 https://github.com/sharewind/push-server/tree/v3/broker
@@ -82,7 +79,6 @@ https://play.golang.org/p/1GVI37tisG
 
 ## Monitoring
 https://github.com/wgliang/goappmonitor
-
 
 ## Sublime setting 
 https://www.alexedwards.net/blog/streamline-your-sublime-text-and-go-workflow
