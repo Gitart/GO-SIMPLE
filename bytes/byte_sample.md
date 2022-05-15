@@ -42,6 +42,7 @@ func main() {
 ```
 
 
+```go
 package main
 
 import (
@@ -74,6 +75,8 @@ func main() {
      fmt.Println(data5)
      fmt.Println(string(data5))
 }
+```
+
 
 The example joins byte slices with Join, repeats a byte slice with Repeat, and trims byte slices of the specified byte with Trim.
 
@@ -125,4 +128,46 @@ $ go run buffer.go
 a old cactus  🌵
 ```
 
+
+### read_binary.go
+
+```go
+package main
+
+import (
+     "bufio"
+     "encoding/hex"
+     "fmt"
+     "io"
+     "log"
+     "os"
+)
+
+func main() {
+
+     f, err := os.Open("favicon.ico")
+
+     if err != nil {
+          log.Fatal(err)
+     }
+
+     defer f.Close()
+
+     reader := bufio.NewReader(f)
+     buf := make([]byte, 256)
+
+     for {
+          _, err := reader.Read(buf)
+
+          if err != nil {
+               if err != io.EOF {
+                    fmt.Println(err)
+               }
+               break
+          }
+
+          fmt.Printf("%s", hex.Dump(buf))
+     }
+}
+```
 
