@@ -1,27 +1,20 @@
-Chapter 32: Templates
+# Chapter 32: Templates
+https://www.practical-go-lessons.com/chap-32-templates
 
 Templates
-1 What will you learn in this chapter?
-
+### 1 What will you learn in this chapter?
     What is a template?
-
     How to create a template.
-
     How to inject dynamic data into templates.
-
     How to print items from a collection (slice, array, map).
-
     How to embed a template file into your Go binary.
 
-2 Technical concepts covered
-
+### 2 Technical concepts covered
     template
-
     nesting / nested
-
     binary
 
-3 What is a web page template
+### 3 What is a web page template
 
 A template is the skeleton of a web page. It defines its layout and where dynamic data will be injected when a user sends a request to the web server.
 
@@ -30,9 +23,7 @@ To better understand this definition, we will take the example of an e-commerce 
 Imagine now that the marketing guy comes to you ten months later and announces that they will introduce 100 new products to the catalog. You are asked to develop the pages for the products.
 
 You have two options :
-
     You code manually 100 pages
-
     You use some kind of automatism
 
 The first solution will take a lot of time for you and the whole team, whereas the second solution seems smarter.
@@ -54,9 +45,7 @@ The paper and the digital edition of this book are available! More info here.
 5 Two template packages
 
 Go has two main packages for handling templating :
-
     text/template
-
     html/template
 
 The first one can be used for text output when there is no injection risk. You can use the second one for formatting HTML pages. In the second one, Go provides a protection mechanism against bad users that will inject code into their input to attack your website.
@@ -67,10 +56,10 @@ Note also that you should always validate data injected into templates. You shou
 6 Getting started with templates.
 
 In the next section, we will take the example of an e-commerce website with a database of thousands of products.
-
 The first thing to do is to create the template. Firstly, we will look at a standard HTML page for a product page.
-6.1 View
 
+## 6.1 View
+```go
 <!--views/product.html-->
 <!DOCTYPE html>
 <html>
@@ -91,18 +80,20 @@ The first thing to do is to create the template. Firstly, we will look at a stan
 </body>
 
 </html>
+```
 
 This page contains details about our product. We have the product name, description, price, and delivery options. We will store this file in the directory “views”. This name is common in the web industry (it makes an implicit reference to the MVC model: Model View Controller).
 
 Take a close look at the line :
-
+```
 <h3>This was a {{.}}</h3>
+```
 
 The notation you see (the double curly braces) refers to a template variable. We will see in the next sect how go handles it.
-6.2 Web server
+## 6.2 Web server
 
 Let’s create the web server of our website :
-
+```go
 // template/basic/main.go 
 
 func main() {
@@ -111,12 +102,14 @@ func main() {
         panic(err)
     }
 }
+```
 
 We will listen to incoming connexions on the localhost on port 8080.
-6.3 Request handler
+## 6.3 Request handler
 
 If we receive a request to the route /red-tea-pot the redTeaPotHandler function will be launched :
 
+```go
 // template/basic/main.go 
 func redTeaPotHandler(w http.ResponseWriter, r *http.Request) {
     tmpl, err := template.ParseFiles("./views/product.html")
@@ -128,6 +121,7 @@ func redTeaPotHandler(w http.ResponseWriter, r *http.Request) {
     err = tmpl.Execute(w, "test")
     // handle error
 }
+```
 
 We have defined a request handler for our server in the last code snippet. It takes as argument a http.ResponseWriter and a pointer to a http.Request.
 
@@ -137,27 +131,23 @@ It’s a classical HTTP handler. If you want to get more information about how t
 The first operation to do is to load the template file and parse it. For this operation, we will use the function template.ParseFiles. This function can take as argument more than one file path. In the example, we only take a single file path "./views/product.html". The method returns a pointer to a variable of type template.Template.
 
 For each of the file paths in arguments, the function template.ParseFiles will :
-
     Load the file from the filesystem (it uses ioutil.ReadFile)
-
     Generate the name of the template based on the last element of its path. In our case, the name will be “product.html”
-
     Allocate the new HTML Template
-
     The template will then be parsed
 
 Then once we have loaded and parsed our template, we will call the methodExecute. It takes to arguments an io.Writer and a second one which represents the data to inject into the template.
 
 We have nothing to inject in our example because our template is not dynamic; every element is fixed.
-7 Template actions
+## 7 Template actions
 
 In a template, you can add “actions” that will indicate to the system to do something. The official definition of actions are “data evaluations or control structures”.
-
 All actions are delimited by double curly braces.
-
 Let’s take an example of the simplest action inside a template:
 
+```go
 <h3>This was a {{.}}</h3>
+```
 
 Here we are asking the templating engine to print the value of the second argument of the template.Execute method. {{ . }} is a template directive. The template engine defines a pseudo-scripting language. You will see that this scripting language is very close to Go.
 The paper and the digital edition of this book are available! More info here.
@@ -165,60 +155,66 @@ The paper and the digital edition of this book are available! More info here.
 
 The dot sign represents the data passed to the template. To access a property, you just have to write a dot then the property’s name. For instance, if I want to access to the property Price from the data passed to the template, I use the following syntax :
 
+```
 {{.Price}}
-
+```
 In this configuration with the dot notation, we are using the global context. This is not always true. When you use the dot inside an iteration, the dot do NOT represent the global context, but the iteration context. Let’s take an example you will understand immediately.
 
 If you have defined the property Price, you can access it from everywhere in the template like this :
-
+```go
 <p>{{ .Price }}</p>
 <<!-- Equivalent notation -->
 <p>{{ $.Price }}</p>
+```
 
 We have two notations .Price and $.Price point to the same value. The dot gives you access to the global data context of the template.
 
 Inside an iteration, the dot is equal to the current iteration value :
-
+```go
 {{range  .ShippingOptions}}
    <li>{{ . }}</li>
 {{end}}
+```
 
 Here the dot is equal for the first iteration to "Extra Priority" then to "Normal" and finally to "Low Priority". The template engine will output :
-
+```go
 <li>Extra Priority</li>
 <li>Normal</li>
 <li>Low Priority</li>
-
+```
 But what if you want to access the property Price (which is in the global context)? With the $ sign you can access the global context
-
+```go
 {{range  .ShippingOptions}}
     <li>Product Price : {{ $.Price}} : {{ . }}</li>
 {{end}}
+```
 
 The previous template will output :
-
+```
 <li>Product Price : 100 : Extra Priority</li>
 <li>Product Price : 100 : Normal</li>
 <li>Product Price : 100 : Low Priority</li>
+```
 
-9 Print text
+## 9 Print text
 
 This is the main usage of a template. The backend gives you a dataset, and you have to inject it into an HTML file.
 
 The first thing to do is to define a type struct that will structure the data :
-
+```go
 type Product struct {
     Name        string
     Price       string
     Description string
 }
+```
 
 We have a very simple type struct with three text fields. Then we create a variable of this type :
-
+```go
 teaPot := Product{Name: "Red Tea Pot 250ml", Description: "Test", Price: "19.99"}
-
+```
 The variable teaPot contains all the data necessary to fill a product page :
-
+```
 <!DOCTYPE html>
 <html>
 <head>
@@ -235,84 +231,89 @@ The variable teaPot contains all the data necessary to fill a product page :
     <li>Normal</li>
 </ul>
 </body>
-
 </html>
+```
 
 Note that each action begins with a point ".". We will inject the property Name into the HTML tag title.Name is also injected into the tag h1.
 
 To inject the value of the property Foo we just have to use the following action :
-
+```
 {{.Foo}}
-
+```
 Once our view and the data variable are ready, we just have to pass them to the Execute method :
-
+```
 err = tmpl.Execute(w, teaPot)
-
+```
 You can see the template execution result in the figure 1.
 Template execution result (web view)[fig:Template-execution-result]
 Template execution result (web view)[fig:Template-execution-result]
-9.0.1 Remove white spaces before and after any directive
+## 9.0.1 Remove white spaces before and after any directive
 
 If you want to remove white spaces (space, horizontal tab, carriage return, and newline) in the test that exactly precede your template directive, you can use the syntax :
-
+```
 {{- .MyVar}}
-
+```
 To remove white spaces in what follows your directive, use this syntax :
-
+```
 {{.MyVar -}}
-
+```
 Note that it will not trim the variable MyVar but the text surrounding the action.
 
 Let’s take an example :
-
+```
 <p>42 {{"hello !"}}</p>
-
+```
 Will output : “42 hello !”. But :
-
+```
 <p>42 {{- "hello !"}}</p>
-
+```
 Will output “42hello !”
-10 Print dates
+### 10 Print dates
 
 Dates are very common on web pages. You can pass a time.Time value to a template. Let’s add the field ShippingDate to our type struct :
-
+```
 type Product struct {
     Name         string
     Price        string
     Description  string
     ShippingDate time.Time
 }
+```
 
 Next, we add it to the teaPot variable :
-
+```
 teaPot := Product{Name: "Red Tea Pot 250ml", Description: "Test", Price: "19.99", ShippingDate: time.Now()}
-
+```
 We can use it in our template with the following syntax :
-
+```
 <p>Shipping Date : {{.ShippingDate}}</p>
-
+```
 But when the template got executed, the following string appears :
 
+```
 Shipping Date : 2018-12-20 13:00:02.338064 +0100 CET m=+20.349586416
+```
 
 This is not a very user-friendly way of format a date! With templates you can call the Format method :
-
+```
 <p>Shipping Date : {{.ShippingDate.Format "2006-01-02"}}</p>
+```
 
 This action will output the following line :
-
+```
 Shipping Date: 2018-12-20
+```
 
 Here "2006-01-02" is the date layout. You can adapt it for your needs.
-11 Nested templates
+## 11 Nested templates
 
 If your site has more than 1 page, you might consider using nested templates. Why? To avoid repeating yourself when coding templates. For instance, on each page of your website, you will have (practically) the same header, the same footer, the same navbar.
 
 If you choose to copy-paste the code of the navbar on each page of the site you miss one of the most interesting features of a templating engine : nested templates (also called “partials” on some publications).
-11.0.0.1 Define a template
+## 11.0.0.1 Define a template
 
 It is possible to load a template into another template with a specific syntax. Let’s define two templates: the footer template and the header template. The first defines the header of the HTML page, with the head tag, its title, and the opening body tag :
-
+```
 // views/header.html
 {{ define "header" }}
     <!DOCTYPE html>
@@ -322,26 +323,28 @@ It is possible to load a template into another template with a specific syntax. 
     </head>
     <body>
 {{ end }}
+```
 
 The footer template is closing the body tag and closing the HTML tag :
-
+```
 {{ define "footer" }}
     </body>
     </html>
 {{end}}
-
+```
 Note that we used a new action : define. With it, you can define the contents of a named template :
-
+```
 {{ define "X" }}
     <!--Content of the template named X -->
 {{ end }}
+```
 
-11.0.0.2 Call a template
+### 11.0.0.2 Call a template
 
 Once we have defined the header and footer, it’s time to call them into our main template. As you can see in figure 2 the page comprises three sections: the header section, the product section , and the footer section.
 Nested templates[fig:Nested-templates]
 Nested templates[fig:Nested-templates]
-
+```
 // views/product.html
 {{ template "header" . }}
 <h1>{{.Name}}</h1>
@@ -355,61 +358,66 @@ Nested templates[fig:Nested-templates]
     <li>Normal</li>
 </ul>
 {{ template "footer" . }}
-
+```
 To call a specific template (by its name), we are using the following action syntax :
-
+```
 {{ template "header" . }}
+```
 
 Where we are calling the template named "header" and we are giving it the dot context. This way the “header” template can have access to all variables that are defined in this context. The product page is defined afterward. At the end of the page, we are calling the “footer” template with a similar syntax.
 11.0.0.3 Backend
 
 In the backend, do not forget to load and parse the three templates to make this works :
-
+```
 // template/nested/main.go 
 // ...
 
+
 tmpl, err := template.ParseFiles("./views/product.html","./views/header.html","./views/footer.html")
+```
 
 Note that here we are loading the product template first. If you load one of the two others first, you will end up will a blank page if you use the following syntax into your handler :
 
+```
 err = tmpl.Execute(w, teaPot)
+```
 
 If you want to specify which template to execute (to avoid the blank page error), use this syntax instead :
-
+```
 err = tmpl.ExecuteTemplate(w,"product.html", teaPot)
+```
 
 Here we are telling go to execute the template named "product.html" (the default name of a template is the last part of its path).
 The paper and the digital edition of this book are available! More info here.
 12 Variables
 
 Sometimes it’s useful to store something in a variable for future use. Variable names start with the dollar sign "$". You can use the short assignment statement to create a variable :
-
+```
 {{ $myVar := .Name }}
-
+```
 In the previous code snippet, we created the variable $myVar and assigned to it the value contained in .Name. The left part of the assignment can be more complex. In the official documentation, we name the left part of the assignment a “pipeline”.
 
 You can change the value of an existing variable using the following syntax :
-
+```
 {{ $myVar = .Price }}
-
+```
 Here we are assigning to $myVar a float value.
-12.0.0.1 Scope (how to use a variable)
+## 12.0.0.1 Scope (how to use a variable)
 
 Any variable is defined inside a scope. The scope represents the lifetime of a variable. When the scope ends, the variable no longer exists.
-
     By default, a variable is defined inside the scope of the template.
-
     If you define a variable inside a complex structure (for instance, an if statement) then the variable exists only inside the scope of that structure :
-
+```
 {{ if .Price}}
     {{ $var2 := .Name}}
     // $var2 exists
 {{ end}}
 // $var2 no longer exists
 <p>{{ $var2 }}</p>
+```
 
 Here we define the variable $var2 “inside” an if statement. The variable $var2 only exists in the scope of the if statement. After the {{end}} the variable cannot be used.
-13 Call a method
+## 13 Call a method
 
 We can call methods into templates. Not all methods can be called :
 
@@ -417,7 +425,7 @@ We can call methods into templates. Not all methods can be called :
         If two values are returned, the second one must be of type error.
 
 Let’s take an example. We will define the methods Foo and Bar with a Product receiver :
-
+```
 // template/method-call/main.go 
 //...
 
@@ -442,8 +450,9 @@ When the template is executed, it will output :
 
 <p>FOO</p>
 <p>Bar : lol</p>
+```
 
-14 Predefined global functions
+### 14 Predefined global functions
 
 The template engine has builtin functions that we can use:
 
@@ -453,23 +462,18 @@ This is a variadic function. It will check the “boolean” value of each argum
 The answer is not obvious. The function and for instance, will check the boolean value of each of its argument.True means :
 
     An Array, a Map, a Slice a String not empty (length > 0)
-
     A complex number not equal to 0
-
     A function, a channel, a pointer, an interface that is not nil
-
     An integer (signed or unsigned) that is not equal to 0.
-
     A float not equal to 0
-
     A struct (struct are always true)
 
-14.0.0.2 Example:
+## 14.0.0.2 Example:
 
 Let’s add the property Sale (bool) and SaleImagePath (slice of strings) to the data struct type (Product). The idea is to add an image to the page if the product is on sale and if we have at least an image to display.
 
 We will initialize the value of the property Sale to true and the property SaleImagePath with a slice of strings containing one string. The function call :
-
+```
 and .Sale .SaleImagePath
 
 Will return .SaleImagePath because :
@@ -477,18 +481,19 @@ Will return .SaleImagePath because :
     .Sale is true
 
     .SaleImagePath is not an empty slice.
-
+```
 We can use and .Sale .SaleImagePath in an if statement
-
+```
 {{ if and .Sale .SaleImagePath}}
     <p>My super image</p>
     <!--Add image here-->
 {{ end }}
+```
 
 The first argument of this function is... a function/method name. Call allows you to use a function directly inside the template. There are some limitations to the function. It must return one or two values (if two, the second argument must be an error). The function can have as many arguments as you want.
 
 For example, we define the function Bar :
-
+```
 // template/functions/main.go 
 
 func Bar(a string, b string) string {
@@ -496,9 +501,10 @@ func Bar(a string, b string) string {
     buf.WriteString(b)
     return buf.String()
 }
+```
 
 This function concatenates to string (with a bytes.Buffer). If we want to call it inside our template, we must modify our data struct and add the function to it.
-
+```
 // template/functions/main.go 
 
 type Product struct {
@@ -511,21 +517,20 @@ We name this property MyFunc. Then we create a new instance of Product, and we a
     teaPot := Product{
         //...
         MyFunc:Bar}
+```
 
 Then inside the template, we can call it :
-
+```
 <p>{{call .MyFunc "first" "second"}}</p>
-
+```
 Which outputs :
-
+```
 <p>firstsecond</p>
+```
 
 Will return the index of an element in a map
-
 Allow you to escape javascript code
-
 Will return the length of a slice, array, map...
-
 Can be used to print something; the functions called behind are the ones from the fmt package (fmt.Sprint, fmt.Sprintf, fmt.Sprintln).
 
 This function takes a variable number of arguments. It will build a string from those arguments and then make a call to a function of the package url : QueryEscape. This function allows you to build complex query parts of URLs directly into your template
@@ -534,7 +539,7 @@ The complete list of builtin function can be found here:
 
     https://golang.org/pkg/text/template/#hdr-Functions
 
-15 Custom template functions
+### 15 Custom template functions
 
 The template package provides you the ability to use custom functions inside your template. You have to create your functions first, then pass them to the template before parsing and execution.
 
@@ -545,32 +550,36 @@ var capitalizeFirstLetter = func(text string)string{return strings.Title(text)}
 Here we create an anonymous function that will wrap the function string.Title (which capitalize the first letter of every word of a sentence). The function is stored into a variable named capitalizeFirstLetter.
 
 Then we add the function to the map :
-
+```
 funcs := template.FuncMap{"capitalizeFirstLetter": capitalizeFirstLetter}
+```
 
 The key of this map is the name that will be exposed into the template, the second argument is the function itself. We can not directly call ParseFiles, because the functions have to be added to the template before parsing :
 
+```
 // template/custom-functions/main.go 
 //...
 
 tmpl, err := template.New("product-dynamic.html").Funcs(funcs).ParseFiles("./views/product-dynamic.html")
 // check error...
+```
 
 Then we can use the function inside the template :
-
+```
 <p>{{capitalizeFirstLetter "test"}}</p>
+```
 
 Will output :
 
 Test
 
 The paper and the digital edition of this book are available! More info here.
-16 Conditionnals
+## 16 Conditionnals
 
 You can use conditional structures (if, then else).
 
 Let’s take an example: In our previous product example, we will add a field to the type struct Product :
-
+```
 type Product struct {
     Name         string
     Price        string
@@ -578,35 +587,32 @@ type Product struct {
     ShippingDate time.Time
     Sale         bool
 }
+```
 
 The field is named Sale. It’s a boolean that will flag a product if it’s on sale. We want to display something special on our page for this occasion, but only if the product is on sale :
-
+```
 {{ if .Sale }}
     <h3>Exclusive Sale Today !</h3>
 {{ end }}
+```
 
 When the template is executed, the engine will check if the value of Sale is not empty. The “empty” condition covers the following case :
-
     false
-
     0
-
     a nil pointer
-
     an interface value
-
     array, slice, map, or string of length zero.
 
 The “if” can be completed with an “else” action :
-
+```
 {{ if .Sale }}
     <h3>Exclusive Sale Today !</h3>
 {{ else }}
     <p>Not in sale, sorry</p>
 {{ end }}
-
+```
 For more complex comparisons, you can use the eleseif action :
-
+```
 {{ if .Sale }}
     //...
 {{ elseif .ExtraDiscount }}
@@ -614,9 +620,9 @@ For more complex comparisons, you can use the eleseif action :
 {{ else }}
     //...
 {{ end }}
+```
 
-17 Comparison operators
-Comparison syntax and binary operators
+## 17 Comparison operators
 Comparison syntax and binary operators
 
 You can compare two variables together by using the six existing operators. The syntax is not usual for comparisons. You first specify the comparison operators, and then you specify the two operands. For instance, if you want to compare .Price and 100.00 together the syntax is eq .Price 100.00:
@@ -629,7 +635,7 @@ You can compare two variables together by using the six existing operators. The 
 ```
 
 Those comparisons will return boolean values that can be used safely with conditionals statements.
-17.0.0.1 Warning !
+### 17.0.0.1 Warning !
 
     It’s better to compare variables that have only the same type. The package allows comparing variables that have not the same type. I do not recommend that because it can lead to errors :
 
@@ -642,33 +648,23 @@ Let’s take a concrete example : .Price is of type float64 (defined in our data
     The comparison operands may have the following types :
 
         bool
-
         int, int8, int16, int64
-
         uint, uint8, uint16, uint64
-
         uintptr
-
         float32, float64
-
         complex64, complex128
-
         string
-
     We can use named types in comparisons.
 
 type LogLevel int
 
 You can define a variable of type LogLevel and use it in your template to make comparisons
-18 Iteration
-
+## 18 Iteration
 Comments, reviews, delivery options... etc. Data to display in a template often comes in the form of lists. The Go template engine has actions dedicated to iteration.
-
 For instance, let’s add the property ShippingOptions to our Product type struct (the data that we will pass to the template) :
 
 ```go
 // template/iteration/main.go 
-
 //...
 
 type Product struct {
@@ -690,7 +686,6 @@ ShippingOptions is a slice of strings. Then in our template, we can iterate thro
     {{end}}
 </ul>
 ```
-
 
 The range action will launch an iteration over the elements of ShippingOptions. After range, you have to provide two variables names; the first is for the index ($index), the second is for the element under that index ($element).
 
