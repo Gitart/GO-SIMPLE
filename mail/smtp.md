@@ -1,20 +1,6 @@
 
-ZetCode
-All Go Python C# Java JavaScript Subscribe
-Ebooks
+## Go email
 
-    PyQt5 ebook
-    Tkinter ebook
-    SQLite Python
-    wxPython ebook
-    Windows API ebook
-    Java Swing ebook
-    Java games ebook
-    MySQL Java ebook
-
-Go email
-
-last modified January 26, 2022
 
 Go email tutorial shows how to send emails in Golang with smtp package. In our examples, we use the Mailtrap service.
 SMTP
@@ -629,4 +615,6 @@ for _, user := range users {
 We go over the borrowers and generate a email message for each of them. The Execute function applies a parsed template to the specified data object. After the message is generated, it is sent with SendMail.
 
 In this tutorial, we have worked with emails in Go with the smtp package.
+https://zetcode.com/golang/email-smtp/
+
 
