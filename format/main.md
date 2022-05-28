@@ -1,18 +1,5 @@
 
-ZetCode
-All Go Python C# Java JavaScript Subscribe
-Ebooks
-
-    PyQt5 ebook
-    Tkinter ebook
-    SQLite Python
-    wxPython ebook
-    Windows API ebook
-    Java Swing ebook
-    Java games ebook
-    MySQL Java ebook
-
-Go string format
+# Go string format
 
 last modified January 26, 2022
 
