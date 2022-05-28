@@ -103,7 +103,7 @@ func main() {
     vals := []int{1, 2, 3, 4, 5}
     ctrs := map[string]string{
         "sk": "Slovakia",
-        "ru": "Russia",
+        "lo": "London",
         "de": "Germany",
         "no": "Norway",
     }
