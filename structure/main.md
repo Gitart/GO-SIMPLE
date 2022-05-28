@@ -7,7 +7,6 @@
 // Title   : Status production for customer
 // Created : 23/02/2018 11:00
 // Change  : 23/02/2018 13:19
-// Author  : Savchenko Arthur
 // Usage   : n:=Rls_status(2)["Id"] n:=Rls_status(2); -> n[id], n["Title"]
 // Company : 
 // 
