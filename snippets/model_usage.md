@@ -1,3 +1,4 @@
+```go
 package main
 
 import "fmt"
@@ -13,3 +14,4 @@ func main() {
     result := (Arith).Multiply(Arith{}, 15, 25)
     fmt.Println(result)
 }
+```
