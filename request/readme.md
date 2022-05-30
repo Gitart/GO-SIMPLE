@@ -1,5 +1,6 @@
 ## Параметры не очень понятны, поэтому на этот раз я запомню их как следует.
 
+```
 Метод #Method (POST, GET, PUT, DELETE, HEAD, PATCH, OPTIONS)
 	 POST
  URL # имя API
@@ -47,3 +48,4 @@ TLS
 Response
 	 <nil>
 &{map[Method:POST] {"aaa":"bbb"}} 
+```
