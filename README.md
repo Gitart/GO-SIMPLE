@@ -86,6 +86,12 @@ https://go.dev/play/p/MSmQSaT02Fc
 ## Sublime setting 
 https://www.alexedwards.net/blog/streamline-your-sublime-text-and-go-workflow
 
+
+## Tutorial Series: How To Code in Go
+
+Go (or GoLang) is a modern programming language originally developed by Google that uses high-level syntax similar to scripting languages. It is popular for its minimal syntax and innovative handling of concurrency, as well as for the tools it provides for building native binaries on foreign platforms.
+
+
 ## Browse Series: 52 articles
 
 *   [1/52 How To Code in Go eBook](https://www.digitalocean.com/community/books/how-to-code-in-go-ebook)
