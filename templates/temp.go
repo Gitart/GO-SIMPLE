@@ -1,3 +1,5 @@
+// https://go.dev/play/p/EX1Aut_ULD
+
 package main
 
 import (
