@@ -33,7 +33,19 @@ func main(){
      ParseToken(ky,"keysecret")
      
      // Standard method
+     
      fmt.Println("\n\nStandard method ----------------------------")
+
+     // Стандартный метод подписывается с ключом  - "keysecret2"
+     // Потом вычитывается с тем же ключом 
+     // Если ключ был изменен то при проверке генерируется ощибка
+     // "token signature is invalid"
+     // Но при этом все данные зашитые в токене можно прочитать
+     // из структуры в которую были зашиты данные или кастомные
+     // или стандартные
+     // Просроченный ключ тоже выдает ошибку если его использовать
+     // позже указанного срока: "token is expired by 5.044608s"
+
      ks:=JwtStandardCreate("keysecret")
      fmt.Println(ks)
      ParseToken(ks,"keysecret")
@@ -137,7 +149,6 @@ func JwtStandardCreate(keysalat string) string {
 	              	IssuedAt:    jwt.At(time.Now().Add(expire)),      
 	              	Subject:     "Description Waiting",
 	          },
-
 	)
 
 	// Sign and get the complete encoded 
@@ -182,3 +193,38 @@ func JwtCreate(keysalat string) string {
 
 	return tokenString
 }
+
+
+/*
+token := jwt.New(jwt.SigningMethodHS512)
+claims := make(jwt.MapClaims)
+
+claims["sub"] = "5"
+claims["name"] = "dylan"
+
+token.Claims = claims
+signature := []byte("string")
+fmt.Println("signature : ", signature)
+tokenString, err := token.SignedString(signature)
+*/
+
+/*
+
+Expected
+Интересная проверка 
+https://github.com/square/go-jose/blob/v2/jwt/validation_test.go#L47
+
+invalid := []struct {
+		Expected Expected
+		Error    error
+	}{
+		{Expected{Issuer: "invalid-issuer"}, ErrInvalidIssuer},
+		{Expected{Subject: "invalid-subject"}, ErrInvalidSubject},
+		{Expected{Audience: Audience{"invalid-audience"}}, ErrInvalidAudience},
+		{Expected{ID: "invalid-id"}, ErrInvalidID},
+	}
+
+	for _, v := range invalid {
+		assert.Equal(t, v.Error, c.Validate(v.Expected))
+	}
+	*/
