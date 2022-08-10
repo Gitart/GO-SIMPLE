@@ -64,15 +64,16 @@ func main() {
 }
 
 We send a simple email to the Mailtrap service.
-
+```go
 import (
     "fmt"
     "log"
     "net/smtp"
 )
-
+```
 We import the net/smtp package.
 
+```go
 from := "john.doe@example.com"
 
 This is the email sender.
@@ -85,26 +86,33 @@ We ge the username and password from the Mailtrap account.
 to := []string{
     "roger.roe@example.com",
 }
+```
 
 We store the recipients in the to slice.
-
+```go
 addr := "smtp.mailtrap.io:2525"
 host := "smtp.mailtrap.io"
-
+```
 The address is the host name and the port. Mailtrap listens on port 2525.
 
+```go
 msg := []byte("From: john.doe@example.com\r\n" +
     "To: roger.roe@example.com\r\n" +
     "Subject: Test mail\r\n\r\n" +
     "Email body\r\n")
+```
 
 We build the email message. The message lines are separated with CRLF characters.
 
+```go
 auth := smtp.PlainAuth("", user, password, host)
+```
 
 The PlainAuth function begins an authentication with a server; it returns an authentication object that implements the plain authentication mechanism. It will only send the credentials if the connection is using TLS or is connected to localhost.
 
+```go
 err := smtp.SendMail(addr, auth, from, to, msg)
+```
 
 The email message is sent with the SendMail function. WE pass the function the address, the authentication object, the sender, the recipients and the message.
 Go smtp HTML message
@@ -112,6 +120,7 @@ Go smtp HTML message
 The following example sends an email with a body message in HTML.
 send_html.go
 
+```go
 package main
 
 import (
@@ -172,6 +181,7 @@ func BuildMessage(mail Mail) string {
 
     return msg
 }
+```
 
 In the message body, we use HTML tags. The content type of the message is set to text/html.
 Go email carbon copy/blind carbon copy
@@ -179,6 +189,7 @@ Go email carbon copy/blind carbon copy
 Carbon copy (CC) recipients are visible to all other recipients while Blind Carbon Copy (BCC) recipients are not visible to anyone. CC recipiens are included in the to parameter and the CC msg field. Sending BCC messages is accomplished by including an email address in the to parameter but not including it in the msg headers.
 cc_bc.go
 
+```go
 package main
 
 import (
@@ -265,34 +276,39 @@ func BuildMessage(mail Mail) string {
 
     return msg
 }
+```
 
 In the examle, we send an emails to multiple recipiens. Some of them are included CC and BCC recipiens.
-
+```go
 to := []string{
     "roger.roe@example.com",
     "adam.smith@example.com",
     "thomas.wayne@example.com",
     "oliver.holmes@example.com",
 }
-
+```
 The email is sent to all these emails.
 
+```go
 cc := []string{
     "adam.smith@example.com",
     "thomas.wayne@example.com",
 }
+```
 
 These two emails will be carbon copied; that is, their email addresses will be visible to anyone.
-
+```go
 if len(mail.To) > 0 {
     msg += fmt.Sprintf("To: %s\r\n", mail.To[0])
 }
-
+```
 The first email address is displayed in the To field.
 
+```go
 if len(mail.Cc) > 0 {
     msg += fmt.Sprintf("Cc: %s\r\n", strings.Join(mail.Cc, ";"))
 }
+```
 
 Here we build the Cc message header field. Bcc emails are not included in the message headers; therefore, they are not visible to others.
 Go email attachment
@@ -301,16 +317,17 @@ In the next example, we send an attachment with the email. An email attachment i
 
 Modern email systems use the MIME standard; a message and all its attachments are encapsulated in a single multipart message, with base64 encoding used to convert binary into 7-bit ASCII text.
 words.txt
-
+```
 sky
 blud
 rock
 water
 poem
+```
 
 We send this text file in the attachment.
 attachment.go
-
+```go
 package main
 
 import (
@@ -409,16 +426,19 @@ func readFile(fileName string) []byte {
 
     return data
 }
+```
 
 In the code example, we attach a text file to email.
 
+```go
 boundary := "my-boundary-779"
 buf.WriteString("MIME-Version: 1.0\r\n")
 buf.WriteString(fmt.Sprintf("Content-Type: multipart/mixed; boundary=%s\n", 
     boundary))
-
+```
 A multipart/mixed MIME message is composed of a mix of different data types. Each body part is delineated by a boundary. The boundary parameter is a text string used to delineate one part of the message body from another.
 
+```go
 buf.WriteString(fmt.Sprintf("\r\n--%s\r\n", boundary))
 buf.WriteString("Content-Type: text/plain; charset=\"utf-8\"\r\n")
 buf.WriteString(fmt.Sprintf("\r\n%s", mail.Body))
@@ -443,9 +463,11 @@ buf.Write(b)
 buf.WriteString(fmt.Sprintf("\r\n--%s", boundary))
 
 buf.WriteString("--")
+```
 
 We write the base64 encoded data into the buffer. The last boundary is ended with two dash characters.
 
+```go
 From: john.doe@example.com
 To: roger.roe@example.com
 Subject: testing mail with attachment
@@ -464,29 +486,30 @@ Content-ID: <words.txt>
 
 c2t5CmJsdWQKcm9jawp3YXRlcgpwb2VtCg==
 --my-boundary-779--
-
+```
 This is how the raw email looks like.
-
+```
 $ echo c2t5CmJsdWQKcm9jawp3YXRlcgpwb2VtCg== | base64 -d
 sky
 blud
 rock
 water
 poem
-
+```
 We can decode the attachment with the base64 command.
 Go email templates
 
 In the following example, we use an email template to generate emails for multiple users.
-
+```
 $ mkdir template
 $ cd template 
 $ go mod init com/zetcode.TemplateEmail
 $ go get github.com/shopspring/decimal 
+```
 
 We initiate the project and add the external github.com/shopspring/decimal package.
 template.go
-
+```go
 package main
 
 import (
@@ -570,22 +593,26 @@ func BuildMessage(mail Mail) string {
 
     return msg
 }
+```
 
 The example sends emails to multiple users to remind them about their debt. The text/template package is used to create an email template.
 
+```go
 var users = []User{
     {"Roger Roe", "roger.roe@example.com", decimal.NewFromFloat(890.50)},
     {"Peter Smith", "peter.smith@example.com", decimal.NewFromFloat(350)},
     {"Lucia Green", "lucia.green@example.com", decimal.NewFromFloat(120.80)},
 }
+```
 
 These are the borrowers.
-
+```go
 var template_data = `
     Dear {{ .Name }}, your debt amount is ${{ .Debt }}.`
-
+```
 This is the template; it contains a generic message in which the .Name and .Debt placeholders are replaced with actual values.
 
+```go
 for _, user := range users {
 
     t := template.Must(template.New("template_data").Parse(template_data))
@@ -611,6 +638,7 @@ for _, user := range users {
         log.Fatal(err)
     }
 }
+```
 
 We go over the borrowers and generate a email message for each of them. The Execute function applies a parsed template to the specified data object. After the message is generated, it is sent with SendMail.
 
