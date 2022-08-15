@@ -40,6 +40,14 @@ https://www.golangprograms.com/go-slice-map-filter.html
 https://learningprogramming.net/golang/gorm/fetch-data-using-many-to-many-relationship-in-gorm/
 https://www.golangprograms.com/go-language/slices-in-golang-programming.html 
 
+## Samples for learning
+*   [https://gobyexample.com/channels](https://gobyexample.com/channels)
+*   [https://tour.golang.org/concurrency/2](https://tour.golang.org/concurrency/2)
+*   [http://guzalexander.com/2013/12/06/golang-channels-tutorial.html](http://guzalexander.com/2013/12/06/golang-channels-tutorial.html)
+*   [https://www.golang-book.com/books/intro/10](https://www.golang-book.com/books/intro/10)
+*   [https://www.goinggo.net/2014/02/the-nature-of-channels-in-go.html](https://www.goinggo.net/2014/02/the-nature-of-channels-in-go.html)
+*   [Goroutines vs Green threads (Сравнение гоурутин и «зеленых» потоков)](https://softwareengineering.stackexchange.com/questions/222642/are-go-langs-goroutine-pools-just-green-threads)
+
 ## Other samples
 https://golangify.com/today-date   
 https://yourbasic.org/golang/days-between-dates/  
