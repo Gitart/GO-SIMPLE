@@ -1,26 +1,57 @@
 ## Sample branch
 ```mermaid
-%%{init: { 'logLevel': 'debug', 'theme': 'base', 'gitGraph': {'showBranches': true, 'showCommitLabel':true,'mainBranchName': 'MetroLine1'}} }%%
+%%{init: { 'logLevel': 'debug', 'theme': 'base', 'gitGraph': {'showBranches': true, 'showCommitLabel':true,'mainBranchName': 'Test'}} }%%
       gitGraph
-        commit id:"NewYork"
-        commit id:"Dallas"
-        branch MetroLine2
+        commit id:"Пример"
+        commit id:"Прочее"
+        commit id:"Разработка"
+        commit id:"Проверка"
+        commit id:"Тестирование"
+        commit id:"Исправление"
+         
+        
+      branch Mainproc
         commit id:"LosAngeles"
         commit id:"Chicago"
         commit id:"Houston"
-        branch MetroLine3
+      
+      branch Other
         commit id:"Phoenix"
         commit type: HIGHLIGHT id:"Denver"
         commit id:"Boston"
-        checkout MetroLine1
+        checkout Test
         commit id:"Atlanta"
-        merge MetroLine3
+        merge Other
         commit id:"Miami"
         commit id:"Washington"
-        merge MetroLine2 tag:"MY JUNCTION"
+        merge Mainproc tag:"MY JUNCTION"
         commit id:"Boston"
         commit id:"Detroit"
         commit type:REVERSE id:"SanFrancisco"
+        
+      branch FIX
+        commit id:"Detroit"
+        commit id:"Detroit2"
+         
+        
+      branch Futures
+        commit id:"Works"
+        commit id:"Det"
+        commit id:"Dets"
+        merge Other
+        
+     branch Production
+        commit id:"Works"
+        commit id:"Det"
+        commit id:"Dets"
+        
+     branch Support
+        commit id:"Call"
+        commit id:"Supports"
+        commit id:"Other"
+        
+        
+        
 ```        
 
 ## Sample branch other
