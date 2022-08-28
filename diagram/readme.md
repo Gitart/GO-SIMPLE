@@ -1,9 +1,8 @@
 ## Plan and Craph
 
-https://mermaid-js.github.io/mermaid/#/gantt
-https://mermaid-js.github.io/mermaid/#/Tutorials
-https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams
-
+* https://mermaid-js.github.io/mermaid/#/gantt  
+* https://mermaid-js.github.io/mermaid/#/Tutorials   
+* https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams   
 
 
 ```mermaid
