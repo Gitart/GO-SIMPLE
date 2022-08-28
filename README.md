@@ -43,6 +43,9 @@ https://www.golangprograms.com/go-language/slices-in-golang-programming.html
 https://www.golangprograms.com/remove-duplicate-values-from-slice.html    
 https://gosamples.dev/string-byte-slice/
 
+## 🏖️  Req Expr
+https://yourbasic.org/golang/regexp-cheat-sheet/
+
 
 ## Samples for learning
 *   [https://gobyexample.com/channels](https://gobyexample.com/channels)
