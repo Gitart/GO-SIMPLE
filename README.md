@@ -39,7 +39,10 @@ http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/
 https://nanxiao.gitbooks.io/golang-101-hacks/content/posts/unbuffered-and-buffered-channels.html  
 https://www.golangprograms.com/go-slice-map-filter.html   
 https://learningprogramming.net/golang/gorm/fetch-data-using-many-to-many-relationship-in-gorm/
-https://www.golangprograms.com/go-language/slices-in-golang-programming.html 
+https://www.golangprograms.com/go-language/slices-in-golang-programming.html
+https://www.golangprograms.com/remove-duplicate-values-from-slice.html    
+https://gosamples.dev/string-byte-slice/
+
 
 ## Samples for learning
 *   [https://gobyexample.com/channels](https://gobyexample.com/channels)
