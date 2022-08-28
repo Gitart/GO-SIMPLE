@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
     participant web as Web Browser
     participant blog as Blog Service
@@ -26,3 +27,4 @@ sequenceDiagram
             blog-->>-web: Successfully posted
         end
     end
+```
