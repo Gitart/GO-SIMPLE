@@ -10,18 +10,18 @@ Samples for go language
 ## Go Full
 https://dasarpemrogramangolang.novalagung.com/5-go-command.html
 
-## Other samples
+## 🪗 Other samples
 https://www.golangprograms.com
 https://golangexample.com
 
-## Library
+## 📘 Library
 https://github.com/golang/go/wiki/Projects
 https://libs.garden/go/protocols?page=3
 
-## Description other oportunity
+## 🔄 Description other oportunity
 https://checkmarx.gitbooks.io/go-scp/content/output-encoding/cross-site-scripting.html
 
-## Samples   
+## 🥇 Samples   
 https://www.youtube.com/watch?v=53WkeeUVoTY  
 https://github.com/Rhymond/go-money  
 https://golang.org/doc/effective_go.html#init   
@@ -55,7 +55,7 @@ https://yourbasic.org/golang/regexp-cheat-sheet/
 *   [https://www.goinggo.net/2014/02/the-nature-of-channels-in-go.html](https://www.goinggo.net/2014/02/the-nature-of-channels-in-go.html)
 *   [Goroutines vs Green threads (Сравнение гоурутин и «зеленых» потоков)](https://softwareengineering.stackexchange.com/questions/222642/are-go-langs-goroutine-pools-just-green-threads)
 
-## Other samples
+## 🧮 Other samples
 https://golangify.com/today-date   
 https://yourbasic.org/golang/days-between-dates/  
 https://play.golang.org/p/63p-T9uFcZo   
