@@ -1,5 +1,42 @@
 ## Sample branch
 ```mermaid
+      gitGraph
+        commit id:"Пример"
+        commit id:"Прочее"
+        commit id:"Разработка"
+        commit id:"Проверка"
+        commit id:"Тестирование"
+        commit id:"Исправление"
+         
+      
+      branch Mainproc
+        commit id:"LosAngeles2"
+        commit id:"Chicago2"
+        commit id:"Housto2n"
+        commit id:"Imp"
+     
+     
+     branch Mainprocs
+        commit id:"LosAngeles"
+        commit id:"Chicago"
+        commit id:"Houston"
+      
+      branch Fixed
+        commit id:"Lo"
+        commit id:"Ch"
+        commit id:"Ho"
+
+       branch Printed
+        commit id:"LosAngelesц"
+        commit id:"Chicagoц"
+        commit id:"Houstoцn"
+        
+
+
+```        
+
+
+```mermaid
 %%{init: { 'logLevel': 'debug', 'theme': 'base', 'gitGraph': {'showBranches': true, 'showCommitLabel':true,'mainBranchName': 'Test'}} }%%
       gitGraph
         commit id:"Пример"
