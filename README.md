@@ -40,6 +40,8 @@ https://www.golangprograms.com/remove-duplicate-values-from-slice.html
 https://www.golangprograms.com/go-language/channels.html
 https://learningprogramming.net/golang/gorm/fetch-data-using-many-to-many-relationship-in-gorm/
 https://gosamples.dev/string-byte-slice/
+https://www.newthinktank.com/2015/02/go-programming-tutorial/   
+
 
 ## 🏖️  Req Expr
 https://yourbasic.org/golang/regexp-cheat-sheet/
