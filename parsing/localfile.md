@@ -4,6 +4,7 @@ We can scrape files on a local disk.
 
 words.html
 
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,11 +28,12 @@ words.html
 <footer>footer for words</footer>
 </body>
 </html>
-
+```
 We have this HTML file.
 
 local.go
 
+```go
 package main
 
 import (
@@ -61,10 +63,12 @@ func main() {
         fmt.Printf("%s\\n", p)
     }
 }
-
+```
 To scrape local files, we must register a file protocol. We scrape all the words from the list.
 
 $ go run local.go
+
+```
 dark
 smart
 war
@@ -75,3 +79,4 @@ worm
 water
 rock
 warm
+```
