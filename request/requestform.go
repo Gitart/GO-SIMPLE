@@ -1,5 +1,5 @@
-Making a POST Request
-Similarly, we can also make a POST request with body params to create a post using the API.
+// Making a POST Request
+// Similarly, we can also make a POST request with body params to create a post using the API.
 
 package main
 import (
