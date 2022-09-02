@@ -35,13 +35,34 @@ package mainimport "fmt"var num int = 10var numx2, numx3 intfunc main() {	numx2,
 5\. Пробел используется для сопоставления некоторых нежелательных значений, а затем отбрасывается.
 
 ```Go
-package mainimport "fmt"func main() {	var i1 int	var f1 float32	i1, _, f1 = ThreeValues()	fmt.Printf("The int: %d, the float: %f \n", i1, f1)}func ThreeValues() (int, int, float32) {	return 5, 6, 7.5}
+package mainimport "fmt"
+
+func main() {
+    var i1 int	
+    var f1 float32	i1, _, 
+    f1 = ThreeValues()	
+    fmt.Printf("The int: %d, the float: %f \n", i1, f1)
+  }
+    
+    func ThreeValues() (int, int, float32) {	
+    return 5, 6, 7.5
+    }
 ```
 
 6\. Передача указателя на функцию не только экономит память (потому что нет копии значения переменной), но также дает функции возможность напрямую изменять внешние переменные, так что измененной переменной больше не нужно использовать возврат для возврата.
 
 ```Go
-package mainimport (	"fmt")// this function changes reply:func Multiply(a, b int, reply *int) {	*reply = a * b}func main() {	n := 0	reply := &n	Multiply(10, 5, reply)	fmt.Println("Multiply:", *reply) // Multiply: 50}
+package main
+import ("fmt")
+// this function changes reply:
+func Multiply(a, b int, reply *int) {	*reply = a * b}
+func main() {	
+  n := 0	
+  reply := &n	
+  Multiply(10, 5, reply)	
+  fmt.Println("Multiply:", *reply) 
+  // Multiply: 50
+}
 ```
 
 3\. Передайте параметры переменной длины.
@@ -55,13 +76,37 @@ func myFunc(a, b, arg ...int)
 2\. Функция принимает параметр, аналогичный определенному типу среза, который может повторяться через структуру цикла for. Если параметр хранится в переменной срезе типа среза, вы можете передать параметр в форме среза ... и вызвать вариативную функцию.
 
 ```Go
-package mainimport "fmt"func main() {	x: = min (1, 3, 2, 0) // аналогично slice [] int {1, 3, 2, 0}	fmt.Printf("The minimum is: %d\n", x)	 slice: = [] int {7,9,3,5,1} // Если вы передаете срез, вам нужно вызвать срез ...	x = min(slice...)	fmt.Printf("The minimum in the slice is: %d", x)}func min(s ...int) int {	if len(s)==0 {		return 0	}	min := s[0]	for _, v := range s {		if v < min {			min = v		}	}	return min}
+package main
+import "fmt"
+func main() {
+     x: = min (1, 3, 2, 0) // аналогично slice 
+     [] int {1, 3, 2, 0}	
+     fmt.Printf("The minimum is: %d\n", x)	 
+     slice: = [] int {7,9,3,5,1} // Если вы передаете срез, вам нужно вызвать срез ...	x = min(slice...)	
+     fmt.Printf("The minimum in the slice is: %d", x)
+     }
+     
+     func min(s ...int) int {	
+     if len(s)==0 {	return 0	}	
+     min := s[0]	for _, v := range s {		
+         if v < min {			
+             min = v		
+             }	
+            }	
+            return min
+         }
 ```
 
 3\. Функция, которая принимает параметр переменной длины, может передавать этот параметр как параметр других функций, то есть параметр переменной длины может передаваться дважды как соответствующий тип среза:
 
 ```Go
-func F1(s ...string) {F2(s...)F3(s)}func F2(s ...string) { }func F3(s []string) { }
+func F1(s ...string) {
+     F2(s...)
+     F3(s)
+     }
+     
+     func F2(s ...string) { }
+     func F3(s []string) { }
 ```
 
 4\. Если типы параметров переменной длины не совпадают, вы можете использовать структуру или пустой интерфейс.
@@ -69,6 +114,7 @@ func F1(s ...string) {F2(s...)F3(s)}func F2(s ...string) { }func F3(s []string) 
 Четыре, отсрочка и отслеживание
 
 1\. Ключевое слово defer позволяет нам отложить выполнение оператора или функции до момента, когда функция вернется (или после того, как оператор return будет выполнен где-либо). Обычно оно используется для высвобождения некоторых выделенных ресурсов. Операторы, использующие defer, также могут принимать параметры. Когда зарегистрировано несколько вариантов поведения defer, они будут выполняться в обратном порядке (аналогично стеку, то есть последний пришел - первый ушел). Разумное использование операторов defer может сделать код более кратким. Закройте файловый поток, разблокируйте заблокированный ресурс, распечатайте окончательный отчет, закройте ссылку на базу данных и т. Д.
+```go
 // open a file
 defer file.Close()
 
@@ -80,15 +126,58 @@ defer printFooter()
 
 // open a database connection
 defer disconnectFromDB()
+```
 
 ```Go
-package mainimport "fmt"func main() {	doDBOperations()}func connectToDB() {	fmt.Println("ok, connected to db")}func disconnectFromDB() {	fmt.Println("ok, disconnected from db")}func doDBOperations() {	connectToDB()	fmt.Println("Defering the database disconnect.")	defer disconnectFromDB() //function called here with defer	fmt.Println("Doing some DB operations ...")	fmt.Println("Oops! some crash or network error ...")	fmt.Println("Returning from function here!")	return //terminate the program	// deferred function executed here just before actually returning, even if	// there is a return or abnormal termination before}
+package main
+import "fmt"func main() {	
+doDBOperations()}
+
+func connectToDB() {	
+      fmt.Println("ok, connected to db")
+}
+
+func disconnectFromDB() {	
+      fmt.Println("ok, disconnected from db")
+}
+
+func doDBOperations() {	
+  connectToDB()	
+  fmt.Println("Defering the database disconnect.")	
+  defer disconnectFromDB() 
+  //function called here with 
+  defer	fmt.Println("Doing some DB operations ...")	
+  fmt.Println("Oops! some crash or network error ...")	
+  fmt.Println("Returning from function here!")	
+  return 
+  
+  //terminate the program	
+  // deferred function executed here just before actually returning, even if	
+  // there is a return or abnormal termination before}
 ```
 
 2\. Используйте оператор defer для реализации отслеживания кода. Базовый, но очень практичный способ реализовать отслеживание выполнения кода - это распечатать связанные сообщения при входе в функцию и выходе из нее:
 
 ```Go
-package mainimport "fmt"func trace(s string) string {	fmt.Println("entering:", s)	return s}func un(s string) {	fmt.Println("leaving:", s)}func a() {	defer un(trace("a"))	fmt.Println("in a")}func b() {	defer un(trace("b"))	fmt.Println("in b")	a()}func main() {	b()}
+package main
+import "fmt"
+func trace(s string) string {	
+fmt.Println("entering:", s)	return s}
+
+func un(s string) {	
+       fmt.Println("leaving:", s)
+}
+
+func a() {	
+defer un(trace("a"))	
+fmt.Println("in a")
+}
+
+func b() {	
+defer un(trace("b"))	
+fmt.Println("in b")	a()
+}
+func main() {	b()}
 ```
 
 Вывод:
@@ -100,39 +189,84 @@ entering: bin bentering: ain aleaving: aleaving: b
 3\. Используйте оператор defer для записи параметров и возвращаемых значений функции.
 
 ```Go
-package mainimport ("io""log")func func1(s string) (n int, err error) {defer func() {log.Printf("func1(%q) = %d, %v", s, n, err)}()return 7, io.EOF}func main() {func1("Go")}
+package main
+import ("io""log")
+func func1(s string) (n int, err error) {
+defer func() {
+log.Printf("func1(%q) = %d, %v", s, n, err)
+}()
+return 7, io.EOF}
+
+func main() {
+func1("Go")
+}
 ```
 
-Пять встроенных функций
+### Пять встроенных функций
 
 1\. В языке Go есть несколько встроенных функций, которые можно использовать без операций импорта. Иногда они могут работать с разными типами, такими как len, cap и append, или должны использоваться для операций системного уровня, таких как panic. Следовательно, они должны напрямую поддерживаться компилятором.
 
 2.len используется для возврата длины или числа определенного типа (строка, массив, фрагмент, карта и канал); cap означает емкость, используемую для возврата максимальной емкости определенного типа (только для фрагментов и карт) ；
-
 3\. copy и append используются для копирования и соединения срезов;
-
 4\. И паника, и восстановление используются для механизма обработки ошибок;
-
 5\. print, println bottom print функции, рекомендуется использовать пакет fmt в среде развертывания;
-
 6\. сложные и реальные изображения используются для создания и управления комплексными числами;
-
 7.close используется для трубопроводной коммуникации;
 
 8\. Как new, так и make используются для выделения памяти: new используется для типов значений и определяемых пользователем типов, таких как настраиваемые структуры, а make используется для встроенных ссылочных типов (фрагментов, карт и каналов). Их использование аналогично функциям. Но тип как параметр: new (тип), make (тип). new (T) выделяет нулевое значение типа T и возвращает его адрес, который является указателем на тип T. Его также можно использовать для основных типов: v: = new (int). make (T) возвращает инициализированное значение типа T, поэтому он выполняет больше работы, чем new, new () - это функция, не забывайте о скобках.
 
-Шесть, рекурсивная функция
+### Шесть, рекурсивная функция
 
 1\. Когда функция вызывает себя в теле функции, это называется рекурсией. Самый классический пример - вычисление последовательности Фибоначчи, то есть первые два числа равны 1, а каждое число из третьего числа представляет собой сумму первых двух чисел. Важной проблемой, часто встречающейся при использовании рекурсивных функций, является переполнение стека: обычно это происходит, когда большое количество рекурсивных вызовов приводит к исчерпанию памяти стека программ. Эту проблему можно решить с помощью техники, называемой ленивым вычислением. В языке Go мы можем использовать каналы и горутины.
 
 ```Go
-package mainimport "fmt"func main() {	result := 0	for i := 0; i <= 15; i++ {		result = fibonacci(i)		fmt.Printf("fibonacci(%d) is: %d\n", i, result)	}}func fibonacci(n int) (res int) {	if n <= 1 {		res = 1	} else {		res = fibonacci(n-1) + fibonacci(n-2)	}	return}
+      package main
+      import "fmt"
+      
+      func main() {	
+           result := 0	
+           for i := 0; i <= 15; i++ {		
+                 result = fibonacci(i)		
+                 fmt.Printf("fibonacci(%d) is: %d\n", i, result)	}}
+       
+func fibonacci(n int) (res int) {	
+       if n <= 1 {
+             res = 1	} 
+             else {		
+             res = fibonacci(n-1) + fibonacci(n-2)	
+             }	return
+}
 ```
 
 2\. Рекурсивные функции, которые вызывают друг друга, также могут использоваться в языке Go: несколько функций вызывают друг друга, образуя замкнутый цикл. Из-за особенностей компилятора языка Go порядок объявления этих функций может быть произвольным.
 
 ```
-// Решение о четностиpackage mainimport ("fmt")func main() { fmt.Printf ("% d четное: is% t \ n", 16, even (16)) // 16 четное число: верноfmt.Printf("%d is odd: is %t\n", 17, odd(17))// 17 is odd: is truefmt.Printf("%d is odd: is %t\n", 18, odd(18))// 18 is odd: is false}func even(nr int) bool {if nr == 0 {return true}return odd(RevSign(nr) - 1)}func odd(nr int) bool {if nr == 0 {return false}return even(RevSign(nr) - 1)}func RevSign(nr int) int {if nr < 0 {return -nr}return nr}
+// Решение о четности
+package main
+import ("fmt")
+
+func main() { 
+fmt.Printf ("% d четное: is% t \ n", 16, even (16)) 
+// 16 четное число: верно
+
+fmt.Printf("%d is odd: is %t\n", 17, odd(17))
+
+// 17 is odd: is truefmt.Printf("%d is odd: is %t\n", 18, odd(18))
+// 18 is odd: is false}
+
+func even(nr int) bool {
+      if nr == 0 {return true}
+      return odd(RevSign(nr) - 1)
+     }
+
+func odd(nr int) bool {
+  if nr == 0 {return false}
+  return even(RevSign(nr) - 1)
+ }
+ 
+ func RevSign(nr int) int {
+ if nr < 0 {return -nr}return nr
+ }
 ```
 
 Семь, функция как параметр
@@ -140,10 +274,23 @@ package mainimport "fmt"func main() {	result := 0	for i := 0; i <= 15; i++ {		re
 Функции можно передавать как параметры других функций, а затем вызывать и выполнять в других функциях, обычно называемых обратными вызовами.
 
 ```Go
-package mainimport ("fmt")func main() {callback(1, Add)}func Add(a, b int) {fmt.Printf("The sum of %d and %d is: %d\n", a, b, a+b)}func callback(y int, f func(int, int)) {f(y, 2) // this becomes Add(1, 2)}
+package main
+import ("fmt")
+func main() {
+      callback(1, Add)
+ }
+ 
+ func Add(a, b int) {
+       fmt.Printf("The sum of %d and %d is: %d\n", a, b, a+b)
+  }
+
+func callback(y int, f func(int, int)) {
+f(y, 2)
+// this becomes Add(1, 2)
+}
 ```
 
-Восемь, закрытие
+### 8 закрытие
 
 1\. Если мы не хотим называть функцию, мы можем использовать анонимную функцию, например: func (x, y int) int {return x + y}, а затем присвоить переменной, то есть сохранить адрес функции в переменной : Fplus: = func (x, y int) int {return x + y}, а затем вызовите функцию по имени переменной: fplus (3,4). Конечно, вы можете вызвать анонимную функцию напрямую: func (x, y int) int {return x + y} (3, 4).
 
@@ -157,7 +304,20 @@ func() {sum := 0for i := 1; i <= 1e6; i++ {sum += i}}()
 3\. Назначьте анонимную функцию переменной и вызовите ее. Мы видим, что переменная g представляет функцию func (int), а значение переменной является адресом памяти. Итак, на самом деле у нас есть значение функции: анонимные функции могут быть присвоены переменным и использоваться в качестве значений.
 
 ```Go
-package mainimport "fmt"func main() {f()}func f() {for i := 0; i < 4; i++ { g: = func (i int) {fmt.Printf ("% d", i)} // Этот пример просто демонстрирует, что анонимные функции могут выделять разные адреса памяти. При реальной разработке эту часть информации не следует помещать в В петле.g(i)fmt.Printf(" - g is of type %T and has value %v\n", g, g)}}
+package main
+import "fmt"
+
+func main() {
+    f()
+  }
+
+func f() {
+      for i := 0; i < 4; i++ { 
+              g: = func (i int) {
+                     fmt.Printf ("% d", i)
+                     } 
+                     
+                     // Этот пример просто демонстрирует, что анонимные функции могут выделять разные адреса памяти. При реальной разработке эту часть информации не следует помещать в В петле.g(i)fmt.Printf(" - g is of type %T and has value %v\n", g, g)}}
 ```
 
 4\. Анонимные функции могут принимать или не принимать параметры, как и все функции. В следующем примере показано, как передать параметры анонимной функции:
@@ -169,7 +329,17 @@ func (u string) {fmt.Println(u)…}(v)
 5\. Ключевое слово defer часто используется с анонимными функциями. Его можно использовать для изменения именованного возвращаемого значения функции. Анонимные функции также могут использоваться как горутины с ключевым словом go. Значение переменной ret равно 2, потому что ret ++ возникает после выполнения оператора return 1. Это можно использовать при изменении возвращаемой ошибки после оператора return.
 
 ```Go
-package mainimport "fmt"func f() (ret int) {defer func() {ret++}()return 1}func main() {fmt.Println(f())}
+package main
+import "fmt"
+func f() (ret int) {
+       defer func() {
+        ret++}()
+        return 1
+}
+
+func main() {
+  fmt.Println(f())
+}
 ```
 
 6\. Анонимные функции также называются замыканиями (в терминах функционального языка): им разрешено вызывать переменные, определенные в других средах. Замыкания позволяют функции захватывать некоторое внешнее состояние, например, состояние при создании функции. Другой способ выразить это: замыкание наследует область действия объявления функции. Это состояние (переменные в области видимости) совместно используется в среде закрытия, поэтому этими переменными можно управлять при закрытии, пока они не будут уничтожены.
@@ -179,7 +349,22 @@ package mainimport "fmt"func f() (ret int) {defer func() {ret++}()return 1}func 
 1\. Пример: функция Adder () теперь присвоена переменной f (тип - func (int) int). Значение переменной delta в функции Adder () во время трех вызовов функции f: 1, 20 и 300 соответственно. Мы можем видеть, что при нескольких вызовах значение переменной x сохраняется, то есть 0 + 1 = 1, затем 1 + 20 = 21 и, наконец, 21 + 300 = 321. Функция закрытия сохраняет и накапливает значения переменных в ней, независимо от того, завершается внешняя функция или нет, она может продолжать работу с локальными переменными во внешней функции.
 
 ```Go
-package mainimport "fmt"func main() {	var f = Adder()	fmt.Print(f(1), " - ")	fmt.Print(f(20), " - ")	fmt.Print(f(300))}func Adder() func(int) int {	var x int	return func(delta int) int {		 x + = delta // Если закрытие закрыто, код закрытия будет выполняться до тех пор, пока закрытие не закончится, и переменные среды не будут одинаковыми		return x	}}
+package main
+
+import "fmt"
+func main() {	
+var f = Adder()	
+fmt.Print(f(1), " - ")	
+fmt.Print(f(20), " - ")	
+fmt.Print(f(300))
+
+}
+
+func Adder() func(int) int {	
+var x int	return func(delta int) int {		 
+x + = delta 
+// Если закрытие закрыто, код закрытия будет выполняться до тех пор, пока закрытие не закончится, и переменные среды не будут одинаковыми		
+return x	}}
 ```
 
 2\. Переменные, используемые в замыкании, могут быть объявлены в теле функции замыкания или во внешней функции.Функция замыкания может применяться к элементам всей коллекции и изменять их значения. Затем эти переменные можно использовать для представления или расчета глобальных или средних значений.
@@ -235,7 +420,36 @@ start := time.Now()longCalculation()end := time.Now()delta := end.Sub(start)fmt.
 При выполнении большого количества вычислений один из самых прямых и эффективных способов повышения производительности - избегать двойных вычислений. Кэширование и повторное использование одних и тех же результатов вычислений в памяти называется кэшированием памяти. Самый очевидный пример - программа, которая генерирует последовательность Фибоначчи. Что нам нужно сделать, так это сохранить значение n-го числа в массиве под индексом n, а затем найти в массиве, было ли оно вычислено, и, если оно не найдено, выполнить вычисление.
 
 ```Go
-package mainimport ("fmt""time")const LIM = 41var fibs [LIM]uint64func main() {var result uint64 = 0start := time.Now()for i := 0; i < LIM; i++ {result = fibonacci(i)fmt.Printf("fibonacci(%d) is: %d\n", i, result)}end := time.Now()delta := end.Sub(start)fmt.Printf("longCalculation took this amount of time: %s\n", delta)}func fibonacci(n int) (res uint64) {// memoization: check if fibonacci(n) is already known in array:if fibs[n] != 0 {res = fibs[n]return}if n <= 1 {res = 1} else {res = fibonacci(n-1) + fibonacci(n-2)}fibs[n] = resreturn}
+package main
+import (
+"fmt"
+"time")
+const LIM = 41var fibs [LIM]uint64func 
+main() {
+var result uint64 = 0
+start := time.Now()
+for i := 0; i < LIM; i++ {
+result = fibonacci(i)
+fmt.Printf("fibonacci(%d) is: %d\n", i, result)
+}
+end := time.Now()
+delta := end.Sub(start)
+fmt.Printf("longCalculation took this amount of time: %s\n", delta)
+
+}
+
+func fibonacci(n int) (
+res uint64) 
+{
+// memoization: check if fibonacci(n) is already known in array:
+
+if fibs[n] != 0 {
+res = fibs[n]return}
+if n <= 1 {res = 1
+} else {
+res = fibonacci(n-1) + fibonacci(n-2)}
+fibs[n] = resreturn
+}
 ```
 
 На основе этого принципа ниже приводится сравнение производительности, рассчитанное до 40-й цифры:
