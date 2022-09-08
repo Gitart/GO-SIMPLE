@@ -1,15 +1,21 @@
 # GO SIMPLE SAMPLES
 ![изображение](https://user-images.githubusercontent.com/3950155/185607076-18fcc1fc-5a6e-4261-8e1f-28df4ce0bc57.png)
 
+
 Samples for go language  
 Примеры использования языка GO 
 
-## Go Full
+## 👌 Go Full
 https://dasarpemrogramangolang.novalagung.com/5-go-command.html
 
-## 🪗 Other samples
+
+## 👍  Other samples
 https://www.golangprograms.com
 https://golangexample.com
+https://www.geeksforgeeks.org/atomic-variable-in-golang       
+https://www.educba.com/golang-atomic    
+https://golangdocs.com/atomic-operations-in-golang-atomic-package    
+
 
 ## 📘 Library
 https://github.com/golang/go/wiki/Projects
@@ -44,7 +50,7 @@ https://www.newthinktank.com/2015/02/go-programming-tutorial/
 https://riptutorial.com/go/example/13468/logging-to-syslog   
 
 
-# Go - Awesome Tutorial
+# 💡 Go - Awesome Tutorial
 
 *   [50 Shades of Go](http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/index.html)
 *   [A Tour of Go](https://tour.golang.org/welcome/1)
@@ -81,13 +87,13 @@ https://golangify.com/today-date
 https://yourbasic.org/golang/days-between-dates/  
 https://play.golang.org/p/63p-T9uFcZo   
 
-## Days between two date
+## ⏰ Days between two date
 https://golang-blog.blogspot.com/2020/04/number-of-days-between-dates-in-golang.html  
 https://golangify.com/today-date  
 https://golangify.com/difference-dates-sub-since-until  
 https://www.geeksforgeeks.org/how-to-compare-times-in-golang/   
 
-## Work with date  
+## 🐱‍🏍 Work with date  
 https://www.programmersought.com/article/5604990010/  
 https://yourbasic.org/golang/days-between-dates/  
 https://www.socketloop.com/tutorials/golang-how-to-check-if-a-date-is-within-certain-range  
@@ -97,38 +103,38 @@ https://yourbasic.org/golang/create-error/
 ## Parsing Date   
 https://tutorialedge.net/golang/snippets/parsing-date-strings-in-go/  
 
-## Templates 
+## 🐱‍💻 Templates 
 https://gowebexamples.com/templates/  
 
-## Paterns  
+## 🎶 Paterns  
 https://refactoring.guru/ru/design-patterns/go  
 https://golangbyexample.com/add-or-subtract-to-time-go/   
 
-## Push server
+## 🏈 Push server
 https://github.com/sharewind/push-server/tree/v3/broker
 
-## Sample
+## 💖  Sample
 https://play.golang.org/p/M972dltae2   
 https://play.golang.org/p/7M14RbGvU8   
 https://play.golang.org/p/vLIKNdSrpU   
 https://play.golang.org/p/1GVI37tisG 
 
-## Monitoring
+##🥽 Monitoring
 https://github.com/wgliang/goappmonitor
 
-## Go routine
+## 🍬 Go routine
 https://go.dev/play/p/MSmQSaT02Fc 
 
-## Sublime setting 
+## 🥟 Sublime setting 
 https://www.alexedwards.net/blog/streamline-your-sublime-text-and-go-workflow
 
 
-## Tutorial Series: How To Code in Go
+## 😎 Tutorial Series: How To Code in Go
 
 Go (or GoLang) is a modern programming language originally developed by Google that uses high-level syntax similar to scripting languages. It is popular for its minimal syntax and innovative handling of concurrency, as well as for the tools it provides for building native binaries on foreign platforms.
 
 
-## Browse Series: 52 articles
+## 🥧 Browse Series: 52 articles
 
 *   [1/52 How To Code in Go eBook](https://www.digitalocean.com/community/books/how-to-code-in-go-ebook)
 *   [2/52 How To Install Go and Set Up a Local Programming Environment on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-go-and-set-up-a-local-programming-environment-on-ubuntu-18-04)
