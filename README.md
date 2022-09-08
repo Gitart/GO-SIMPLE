@@ -1,4 +1,4 @@
-# GO SIMPLE SAMPLES
+# ☝ GO SIMPLE SAMPLES
 ![изображение](https://user-images.githubusercontent.com/3950155/185607076-18fcc1fc-5a6e-4261-8e1f-28df4ce0bc57.png)
 
 
@@ -15,7 +15,7 @@ https://golangexample.com
 https://www.geeksforgeeks.org/atomic-variable-in-golang       
 https://www.educba.com/golang-atomic    
 https://golangdocs.com/atomic-operations-in-golang-atomic-package    
-
+https://www.geeksforgeeks.org/variadic-functions-in-go/    
 
 ## 📘 Library
 https://github.com/golang/go/wiki/Projects
