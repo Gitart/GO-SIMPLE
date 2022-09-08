@@ -11,7 +11,36 @@ waitgroup.Wait()
 ```
 
 
+### Example 1
+```go
+package main
+ 
+import (
+    "fmt"
+    "sync"
+    "sync/atomic"
+)
+ 
+func f(v *uint32, wg *sync.WaitGroup) {
+    for i := 0; i < 3000; i++ {
+        atomic.AddUint32(v, 1)
+    }
+    wg.Done()
+}
+ 
+func main() {
+    var v uint32 = 42
+    var wg sync.WaitGroup
+    wg.Add(2)
+    go f(&v, &wg)
+    go f(&v, &wg)
+    wg.Wait()
+ 
+    fmt.Println(v)
+}
+```
 
+### Example 2
 ```go
 package main
  
@@ -40,7 +69,7 @@ func main() {
 }
 ```
 
-
+### Example 3
 ```go
 package main
 import (
@@ -81,7 +110,7 @@ runtime.Gosched()
 }
 ```
 
-### Example 3
+### Example 4
 
 ```go
 package main
