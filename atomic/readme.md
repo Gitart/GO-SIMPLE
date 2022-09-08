@@ -141,3 +141,55 @@ waitgroup.Wait()
 fmt.Println("The value of the val is:", val)
 }
 ```
+
+```go
+// Golang program to illustrate the usage of
+// AfterFunc() function
+
+// Including main package
+package main
+
+// Importing sync/atomic, fmt,
+// and sync
+import (
+	"fmt"
+	"sync"
+	"sync/atomic"
+)
+
+// Calling main
+func main() {
+
+	// Declaring atomic variable
+	var atmvar uint32
+
+	// Using sync.WaitGroup in order to
+	// wait for a collection of
+	// goroutines to finish
+	var wait sync.WaitGroup
+
+	// For loop
+	for i := 0; i < 30; i += 2 {
+
+		// Calling Add method
+		wait.Add(1)
+
+		// Calling AddUint32 method under
+		// go function
+		go func() {
+			atomic.AddUint32(&atmvar, 2)
+
+			// Wait completed
+			wait.Done()
+		}()
+	}
+
+	// Calling wait method
+	wait.Wait()
+
+	// Prints atomic variables value
+	fmt.Println("atmvar:", atmvar)
+}
+```
+
+
