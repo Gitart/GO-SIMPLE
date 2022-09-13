@@ -51,12 +51,12 @@ https://riptutorial.com/go/example/13468/logging-to-syslog
 
 
 # Blogs 
-* ## English
-
+* ## English   
+* [Go](https://github.com/golang/go)
 * [The official Go Blog](https://go.dev/blog) - For in depth posts by the Go team
 * [Gopher Academy Blog](http://blog.gopheracademy.com/)
 * [Dave Cheney's Blog](http://dave.cheney.net)
-  * [Dave Cheney's Resources for Go Programmers](http://dave.cheney.net/resources-for-new-go-programmers)
+* [Dave Cheney's Resources for Go Programmers](http://dave.cheney.net/resources-for-new-go-programmers)
 * [spf13's Blog](http://spf13.com/post/)
 * [Mat Ryer's Medium Blog](https://medium.com/@matryer)
 * [Matt Aimonetti's Blog](http://matt.aimonetti.net/)
@@ -78,8 +78,7 @@ https://riptutorial.com/go/example/13468/logging-to-syslog
 * [Timo Savola's Go Posts](http://savo.la/go)
 * [Packt Hub](https://hub.packtpub.com/)
 * [GoCenter Community Blog](https://jfrog.com/resource-center/?src=gocenter) - Blogs from GoCenter.io about Go modules and community.
-
-
+* [Basic](https://yourbasic.org/golang/append-explained/)
 
 
 # 💡 Go - Awesome Tutorial
