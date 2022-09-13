@@ -15,7 +15,10 @@ https://golangexample.com
 https://www.geeksforgeeks.org/atomic-variable-in-golang       
 https://www.educba.com/golang-atomic    
 https://golangdocs.com/atomic-operations-in-golang-atomic-package    
-https://www.geeksforgeeks.org/variadic-functions-in-go/    
+https://www.geeksforgeeks.org/variadic-functions-in-go/
+
+## 👍  Golang samples
+https://github.com/golang/go/wiki#using-the-go-toolchain
 
 ## 📘 Library
 https://github.com/golang/go/wiki/Projects
