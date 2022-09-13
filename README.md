@@ -50,6 +50,38 @@ https://www.newthinktank.com/2015/02/go-programming-tutorial/
 https://riptutorial.com/go/example/13468/logging-to-syslog   
 
 
+# Blogs 
+* ## English
+
+* [The official Go Blog](https://go.dev/blog) - For in depth posts by the Go team
+* [Gopher Academy Blog](http://blog.gopheracademy.com/)
+* [Dave Cheney's Blog](http://dave.cheney.net)
+  * [Dave Cheney's Resources for Go Programmers](http://dave.cheney.net/resources-for-new-go-programmers)
+* [spf13's Blog](http://spf13.com/post/)
+* [Mat Ryer's Medium Blog](https://medium.com/@matryer)
+* [Matt Aimonetti's Blog](http://matt.aimonetti.net/)
+* [Marcio.io](http://marcio.io/)
+* [Carlos Becker's Blog](http://carlosbecker.com/)
+* [Ardan Labs](https://www.ardanlabs.com/blog/)
+* [The Golang Weekly](http://golangweekly.com/)
+* [Alex Edward's Go Posts](http://www.alexedwards.net/blog/category/golang)
+* [GoLang Tutorials](http://golangtutorials.blogspot.com/)
+* [Mathias Lafeldt's Blog](https://mlafeldt.github.io/)
+* [Marcelo Magallon's Blog](http://blog.ksub.org/bytes/)
+* [Mina Andrawos's Go Posts](http://www.minaandrawos.com/category/golang-2/)
+* [Aliaksandr Pliutau's Blog](http://pliutau.com/)
+* [Johan Brandhorst's Blog](https://jbrandhorst.com)
+* [Christoph Berger's Applied Go Blog](https://appliedgo.net)
+* [Jon Calhoun's Blog](https://www.calhoun.io/)
+* [Inanc Gumus's Learn Go Programming Blog](https://blog.learngoprogramming.com)
+* [Elliot Forbes - TutorialEdge.net Go Tutorials](https://tutorialedge.net/course/golang/)
+* [Timo Savola's Go Posts](http://savo.la/go)
+* [Packt Hub](https://hub.packtpub.com/)
+* [GoCenter Community Blog](https://jfrog.com/resource-center/?src=gocenter) - Blogs from GoCenter.io about Go modules and community.
+
+
+
+
 # 💡 Go - Awesome Tutorial
 
 *   [50 Shades of Go](http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/index.html)
