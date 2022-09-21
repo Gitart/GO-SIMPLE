@@ -85,7 +85,14 @@ https://riptutorial.com/go/example/13468/logging-to-syslog
 
 
 # 💡 Go - Awesome Tutorial
-
+*   [Go pattern](https://github.com/tmrts/go-patterns)
+*   [Go wit test](https://github.com/quii/learn-go-with-tests)
+*   [Go Traning](https://github.com/ardanlabs/gotraining)
+*   [A Huge Number of Go Examples, Exercises and Quizzes](https://github.com/inancgumus/learngo)
+*   [Learn Go & Quez](https://github.com/inancgumus/learngo)
+*   [Epi](https://github.com/mrekucci/epi)
+*   [Project layout](https://github.com/golang-standards/project-layout)
+*   [Go Awesome](https://github.com/avelino/awesome-go)
 *   [Socket loop](https://socketloop.com/tutorials/read-parse-xml-file-go)
 *   [50 Shades of Go](http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/index.html)
 *   [A Tour of Go](https://tour.golang.org/welcome/1)
