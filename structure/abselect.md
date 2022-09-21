@@ -1,3 +1,6 @@
+## Sample visit structure
+
+```go
 package main
 
 import (
@@ -29,3 +32,4 @@ func main() {
 	}
 	fmt.Printf("Uniques: %v\nMaps:%v\n", unique, uniqueMap)
 }
+```
