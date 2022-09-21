@@ -185,9 +185,14 @@ func BasicMiddelware(next echo.HandlerFunc) echo.HandlerFunc {
 func Pause(secondsleep time.Duration){
    time.Sleep(time.Second*secondsleep)
 }
+```
 
 
-      
+
+
+## Sample
+
+```go      
 /*
 ...
   mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
