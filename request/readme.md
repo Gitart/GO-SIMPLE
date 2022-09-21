@@ -1,4 +1,4 @@
-## Параметры не очень понятны, поэтому на этот раз я запомню их как следует.
+## Parameters
 
 ```
 Метод #Method (POST, GET, PUT, DELETE, HEAD, PATCH, OPTIONS)
