@@ -86,6 +86,7 @@ https://riptutorial.com/go/example/13468/logging-to-syslog
 
 # 💡 Go - Awesome Tutorial
 
+*   [Socket loop](https://socketloop.com/tutorials/read-parse-xml-file-go)
 *   [50 Shades of Go](http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/index.html)
 *   [A Tour of Go](https://tour.golang.org/welcome/1)
 *   [Go Bootcamp](http://www.golangbootcamp.com/book)
