@@ -106,6 +106,7 @@ https://riptutorial.com/go/example/13468/logging-to-syslog
 
 ## 🏖️  Req Expr
 https://yourbasic.org/golang/regexp-cheat-sheet/
+[Limit exec program](https://golangify.com/code-timeout)
 
 
 ## Samples for learning
