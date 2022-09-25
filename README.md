@@ -233,3 +233,16 @@ Go (or GoLang) is a modern programming language originally developed by Google t
 *   [52/52 How To Use Generics in Go](https://www.digitalocean.com/community/tutorials/how-to-use-generics-in-go)
 
 
+
+
+| Repository | Stars | Converts `byte != 0` to `bool`? |
+| --- | --: | --- |
+| [golang/go](https://github.com/golang/go) | 19,683 | No |
+| [hybridgroup/gobot](https://github.com/hybridgroup/gobot) | 2,278 | [Yes](https://sourcegraph.com/github.com/hybridgroup/gobot@fe057ba6bf2b3061f440f82f6231e3ca9493cbdd/-/info/GoPackage/github.com/hybridgroup/gobot/platforms/bebop/client/-/bool2int8) |
+| [streadway/amqp](https://github.com/streadway/amqp) | 933 | [Yes](https://sourcegraph.com/github.com/streadway/amqp/-/blob/read.go#L174-179) |
+| [vishvananda/netlink](https://github.com/vishvananda/netlink) | 216 | No |
+| [GoBelieveIO/im\_service](https://github.com/GoBelieveIO/im_service) | 170 | No |
+| [zeromq/zproto](https://github.com/zeromq/zproto) | 114 | No |
+| [istreamdata/orientgo](https://github.com/istreamdata/orientgo) | 98 | [Yes](https://sourcegraph.com/gopkg.in/istreamdata/orientgo.v2/-/blob/obinary/rw/reader.go#L124-129) |
+| [mitchellh/go-vnc](https://github.com/mitchellh/go-vnc) | 93 | [Yes](https://sourcegraph.com/github.com/mitchellh/go-vnc/-/blob/client.go#L169-181) |
+
