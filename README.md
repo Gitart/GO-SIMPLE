@@ -51,6 +51,10 @@ https://learningprogramming.net/golang/gorm/fetch-data-using-many-to-many-relati
 https://gosamples.dev/string-byte-slice/
 https://www.newthinktank.com/2015/02/go-programming-tutorial/  
 https://riptutorial.com/go/example/13468/logging-to-syslog   
+https://yourbasic.org/golang/    
+https://www.geeksforgeeks.org/data-types-in-go/   
+https://golangbot.com/custom-errors/   
+
 
 
 # Blogs 
