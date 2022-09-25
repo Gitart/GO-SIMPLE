@@ -55,9 +55,7 @@ https://yourbasic.org/golang/
 https://www.geeksforgeeks.org/data-types-in-go/   
 https://golangbot.com/custom-errors/   
 https://www.cosmiclearn.com/go/functions.php   
-
-
-
+https://aahansingh.com/data-structures-with-go-a1894b001940  
 
 # Blogs 
 * ## English   
