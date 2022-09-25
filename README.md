@@ -54,6 +54,8 @@ https://riptutorial.com/go/example/13468/logging-to-syslog
 https://yourbasic.org/golang/    
 https://www.geeksforgeeks.org/data-types-in-go/   
 https://golangbot.com/custom-errors/   
+https://www.cosmiclearn.com/go/functions.php   
+
 
 
 
