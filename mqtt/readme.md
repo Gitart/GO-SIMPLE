@@ -1,5 +1,7 @@
 ## Example work with MQTT 
-![image](https://user-images.githubusercontent.com/3950155/192477476-0b3a5374-8c37-40ed-89e5-9dc42345b97e.png)
+
+![image](https://user-images.githubusercontent.com/3950155/192479182-7a6d98ae-2e40-4835-a9bf-7ab84c80a3ac.png)
+
 
 ---
 1. ClientId must be different in other clients (**Important**)
