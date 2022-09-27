@@ -8,3 +8,7 @@
 4. Run **publish** client 
 
 
+## Useful links
+* Github driver  github.com/eclipse/paho.mqtt.golang   
+* Usage protocol https://github.com/eclipse/paho.mqtt.golang/blob/master/cmd/docker/subscriber/main.go   
+* Sample usage https://randomnerdtutorials.com/esp8266-nodemcu-websocket-server-arduino/   
