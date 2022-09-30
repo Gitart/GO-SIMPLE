@@ -10,8 +10,6 @@ import (
 func main() {
  s := []int{1, 2, 3}
  a := [3]int{4, 5, 6}
-Пока мы только создали и инициализировали срез с именем s и массив с именем a.
-Вторая часть appendArrayToSlice.go выглядит так:
  ref := a[:]
  fmt.Println("Existing array:\t", ref)
  t := append(s, ref...)
