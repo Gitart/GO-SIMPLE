@@ -1,5 +1,5 @@
-// You can edit this code!
-// Click here and start typing.
+// https://go.dev/play/p/KU82WDAjuJr
+
 package main
 
 import "fmt"
