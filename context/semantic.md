@@ -10,7 +10,7 @@
 
 **Листинг 1**
 
-```
+```go
  75 // Handle is our mechanism for mounting Handlers for a given HTTP verb and path
  76 // pair, this makes for really easy, convenient routing.
  77 func (a *App) Handle(verb, path string, handler Handler, mw ...Middleware) {
@@ -33,7 +33,7 @@
 **Листинг 2**
 [https://golang.org/pkg/context/#Background](https://golang.org/pkg/context/#Background)
 
-```
+```go
 87         ctx := context.Background()
 88         ctx, span := trace.StartSpan(ctx, "internal.platform.web")
 89         defer span.End()
@@ -49,7 +49,7 @@
 **Листинг 3**
 [https://golang.org/pkg/context/#Context](https://golang.org/pkg/context/#Context)
 
-```
+```go
 type Context interface {
     Deadline() (deadline time.Time, ok bool)
     Done() <-chan struct{}
@@ -68,7 +68,7 @@ type Context interface {
 **Листинг 4**
 [https://play.golang.org/p/9x4kBKO-Y6q](https://play.golang.org/p/9x4kBKO-Y6q)
 
-```
+```go
 06 package main
 07
 08 import (
@@ -134,7 +134,7 @@ type Context interface {
 
 **Листинг 5**
 
-```
+```go
 23 // List returns all the existing users in the system.
 24 func (u *User) List(ctx context.Context, w http.ResponseWriter, r *http.Request, params map[string]string) error {
 25     ctx, span := trace.StartSpan(ctx, "handlers.User.List")
@@ -156,7 +156,7 @@ type Context interface {
 
 **Листинг 6**
 
-```
+```go
 33 // List retrieves a list of existing users from the database.
 34 func List(ctx context.Context, db *sqlx.DB) ([]User, error) {
 35     ctx, span := trace.StartSpan(ctx, "internal.user.List")
@@ -183,7 +183,7 @@ type Context interface {
 **Листинг 7**
 [https://play.golang.org/p/8RdBXtfDv1w](https://play.golang.org/p/8RdBXtfDv1w)
 
-```
+```go
 18 func main() {
 19
 20     // Set a duration.
@@ -232,7 +232,7 @@ type Context interface {
 **Листинг 8**
 [https://play.golang.org/p/PmhTXiCZUP1](https://play.golang.org/p/PmhTXiCZUP1)
 
-```
+```go
 20 func main() {
 21
 22     // Create a Context that can be cancelled.
@@ -314,7 +314,7 @@ type Context interface {
 
 **Листинг 10**
 
-```
+```go
 15 // User represents the User API method handler set.
 16 type User struct {
 17     db            *sqlx.DB
@@ -329,7 +329,7 @@ type Context interface {
 
 **Листинг 11**
 
-```
+```go
 14 // API constructs an http.Handler with all application routes defined.
 15 func API(shutdown chan os.Signal, log *log.Logger, db *sqlx.DB, authenticator *auth.Authenticator) http.Handler {
 16
@@ -352,7 +352,7 @@ type Context interface {
 
 **Листинг 12**
 
-```
+```go
 23 // Values represent state for each request.
 24 type Values struct {
 25     TraceID    string
@@ -366,7 +366,7 @@ type Context interface {
 
 **Листинг 13**
 
-```
+```go
 75 // Handle is our mechanism for mounting Handlers for a given HTTP verb and path
 76 // pair, this makes for really easy, convenient routing.
 77 func (a *App) Handle(verb, path string, handler Handler, mw ...Middleware) {
@@ -389,7 +389,7 @@ type Context interface {
 
 **Листинг 14**
 
-```
+```go
 20 // Create the handler that will be attached in the middleware chain.
 21 h := func(ctx context.Context, w http.ResponseWriter, r *http.Request, params map[string]string) error {
 ...
