@@ -1,4 +1,6 @@
 # Семантика контекстных пакетов в Go
+https://www.ardanlabs.com/blog/2019/09/context-package-semantics-in-go.html
+
 
 ### Введение
 
