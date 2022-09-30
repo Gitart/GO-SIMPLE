@@ -2,14 +2,6 @@
 
 ## Learn how to leverage the power of interfaces
 
-[![Yair Fernando](https://miro.medium.com/fit/c/48/48/0*RyyNAe-8KRVc832N.jpg)](https://yairfernando.medium.com/?source=post_page-----51a3b7f527b4--------------------------------)
-
-[Yair Fernando](https://yairfernando.medium.com/?source=post_page-----51a3b7f527b4--------------------------------)
-
-Follow
-
-[Feb 22](https://medium.com/better-programming/implementing-interfaces-with-golang-51a3b7f527b4?source=post_page-----51a3b7f527b4--------------------------------) · 7 min read
-
 ![Image for post](https://miro.medium.com/max/30/1*t5KNabwstG5jM4DuB3N7rQ.png?q=20)
 
 ![Image for post](https://miro.medium.com/max/1200/1*t5KNabwstG5jM4DuB3N7rQ.png)
@@ -35,10 +27,11 @@ In Go, we can automatically infer that a struct (object) implements an interface
 # Defining a Simple Interface in Go
 
 Let’s define an interface in Go and start playing around to discover its power.
-
+```go
 type Printer interface {
   Print()
 }
+```
 
 This is a really simple interface that defines a method called `Print()`. This method represents the action or behavior that other objects can implement.
 
@@ -62,12 +55,14 @@ This function takes as an argument any object that implements this interface. So
 
 In the main function, we can write the following to print the details of each object:
 
+```go
 func main() {
   u := User{name: "John", age: 24, lastName: "Smith"}
   doc := Document{name: "doc.csv", documentType: "csv", date: time.Now()}
   Process(u)
   Process(doc)
 }
+```
 
 The output of this code looks like this:
 
