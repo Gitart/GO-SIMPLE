@@ -262,3 +262,16 @@ Go (or GoLang) is a modern programming language originally developed by Google t
 *   [Firmata](https://github.com/firmata/protocol), как протокол для взаимодействия с ESP8266
 *   [Gobot](https://github.com/hybridgroup/gobot), как фреймворк для работы с Firmata
 
+## [README](https://github.com/VyacheslavGoryunov/remote-relay-gobot/tree/master/firmware/test#readme)
+
+This directory is intended for PlatformIO Unit Testing and project tests.
+
+Unit Testing is a software testing method by which individual units of
+source code, sets of one or more MCU program modules together with associated
+control data, usage procedures, and operating procedures, are tested to
+determine whether they are fit for use. Unit testing finds problems early
+in the development cycle.
+
+More information about PlatformIO Unit Testing:
+- [https://docs.platformio.org/page/plus/unit-testing.html](https://docs.platformio.org/page/plus/unit-testing.html)
+- 
