@@ -259,5 +259,6 @@ Go (or GoLang) is a modern programming language originally developed by Google t
 *   Парсинг User-Agent через [mssola/user\_agent](https://github.com/mssola/user_agent)
 *   Взаимодействие с GeoIP через [oschwald/geoip2-golang](https://github.com/oschwald/geoip2-golang)
 *   Быстрый - замена стандартному парсеру  github.com/json-iterator/go
-
+*   [Firmata](https://github.com/firmata/protocol), как протокол для взаимодействия с ESP8266
+*   [Gobot](https://github.com/hybridgroup/gobot), как фреймворк для работы с Firmata
 
