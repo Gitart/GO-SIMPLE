@@ -252,3 +252,12 @@ Go (or GoLang) is a modern programming language originally developed by Google t
 | [istreamdata/orientgo](https://github.com/istreamdata/orientgo) | 98 | [Yes](https://sourcegraph.com/gopkg.in/istreamdata/orientgo.v2/-/blob/obinary/rw/reader.go#L124-129) |
 | [mitchellh/go-vnc](https://github.com/mitchellh/go-vnc) | 93 | [Yes](https://sourcegraph.com/github.com/mitchellh/go-vnc/-/blob/client.go#L169-181) |
 
+
+## Useful library
+
+*   Быстрый HTTP сервер с использованием [valyala/fasthttp](https://github.com/valyala/fasthttp)
+*   Парсинг User-Agent через [mssola/user\_agent](https://github.com/mssola/user_agent)
+*   Взаимодействие с GeoIP через [oschwald/geoip2-golang](https://github.com/oschwald/geoip2-golang)
+*   Быстрый - замена стандартному парсеру  github.com/json-iterator/go
+
+
