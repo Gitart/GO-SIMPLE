@@ -117,6 +117,24 @@ https://www.techieindoor.com/golang-tutorial/
 *   [Learning Go tutorial](https://blog.learngoprogramming.com/)
 *   [Master Go](https://appliedgo.com/p/mastergo/)
 
+# Go - Awesome Tutorial Part 2
+
+*   [50 Shades of Go](http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/index.html)
+*   [A Tour of Go](https://tour.golang.org/welcome/1)
+*   [Go Bootcamp](http://www.golangbootcamp.com/book)
+*   [Go by Example](https://gobyexample.com/)
+*   [Go Programming Language: An Introductory Golang Tutorial](https://www.toptal.com/go/go-programming-a-step-by-step-introductory-tutorial)
+*   [Go Resources](http://www.golang-book.com/)
+*   [Go Tutorial](https://www.tutorialspoint.com/go/)
+*   [Go Web Examples](https://gowebexamples.com/)
+*   [Golang Basic](http://www.golangprograms.com/advance-programs.html)
+*   [Golang Code](https://golangcode.com/)
+*   [Golang tutorial for beginners](https://golangbot.com/)
+*   [Golang Tutorials](http://golangtutorials.blogspot.com/2011/05/table-of-contents.html)
+*   [Gophercises](https://gophercises.com/)
+*   [Learning Go](https://miek.nl/go/)
+*   [Learning Go tutorial](https://blog.learngoprogramming.com/)
+*   [Master Go](https://appliedgo.com/p/mastergo/)
 
 ## 🏖️  Req Expr
 https://yourbasic.org/golang/regexp-cheat-sheet/
