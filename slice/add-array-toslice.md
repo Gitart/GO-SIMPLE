@@ -23,7 +23,7 @@ func main() {
 
 
 ## Samples
-``go
+```go
 package main
 
 import (
