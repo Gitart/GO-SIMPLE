@@ -57,6 +57,8 @@ https://golangbot.com/custom-errors/
 https://www.cosmiclearn.com/go/functions.php   
 https://aahansingh.com/data-structures-with-go-a1894b001940  
 https://www.techieindoor.com/golang-tutorial/  
+https://www.geeksforgeeks.org/golang-program-that-uses-func-with-variable-argument-list/    
+
 
 ## Frameworks 
 https://entgo.io/docs/crud/    
