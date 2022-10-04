@@ -58,6 +58,7 @@ https://www.cosmiclearn.com/go/functions.php
 https://aahansingh.com/data-structures-with-go-a1894b001940  
 https://www.techieindoor.com/golang-tutorial/  
 https://www.geeksforgeeks.org/golang-program-that-uses-func-with-variable-argument-list/    
+https://riptutorial.com/go/example/27479/how-to-encode-data-and-write-to-file-with-gob-   
 
 
 ## Frameworks 
