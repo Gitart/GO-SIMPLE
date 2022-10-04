@@ -1,3 +1,5 @@
+// https://go.dev/play/p/l1aMHYtz7G
+
 package main
 
 import (
