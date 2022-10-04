@@ -85,3 +85,18 @@ func main() {
     fmt.Println("make([]*Person)..  ", l)
 }
 ```
+
+
+
+# Sample 2
+```go
+ // Da:= map[string]interface{}{}
+    Da:= make(map[string]interface{})
+
+    Da["sss"]=111
+    Da["sss2"]=111333
+    Da["sss3"]="111"
+    Da["sss4"]="sss"
+    Da["sss4"]=false
+    fmt.Println("Otvet: ",Da) 
+ ```
