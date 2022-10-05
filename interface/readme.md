@@ -76,6 +76,9 @@ func main() {
 ```
 
 ## With show 
+https://go.dev/play/p/lfRKOP5_ER2
+
+
 ```go
 package main
 import "fmt"
