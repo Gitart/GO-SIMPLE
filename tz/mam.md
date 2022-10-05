@@ -61,30 +61,16 @@ ___
 <h4>ssss</h4>
 <table>
   <tbody>
-    <tr>
-      <td align="center">
-          		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/learnmore-1.png">
-          </a>
-      </td>
-      <td>
-          <a href="https://mdbootstrap.com/docs/standard/bootstrap-5-tutorial/#section-beginner" alt="Bootstrap 5" rel="dofollow">
-          		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/cover-bootstrap-5-1.png">
-          </a>
-      </td>
-    </tr>
+      
      <tr>
         <td align="center">
-          <p align="center"><b>Start to Code</b></p>
-          <a href="https://mdbootstrap.com/docs/standard/bootstrap-5-tutorial/#section-beginner" alt="Bootstrap 5" rel="dofollow">
-          		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/Screenshot_26.png">
-          </a>
+          ssssssssssssssssss
          </td>
         <td align="center">
           ddddd
          </td>
       </tr>
-      
-      
+         
            
       
    </tbody>
