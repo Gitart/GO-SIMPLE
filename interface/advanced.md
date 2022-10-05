@@ -1,4 +1,6 @@
 # Golang Interface
+![image](https://user-images.githubusercontent.com/3950155/194111296-b0337c30-d9a2-4c40-91c4-9c4ee4f5d7b9.png)
+
 ![image](https://user-images.githubusercontent.com/3950155/194110230-fa8a5bc7-c14f-4cb0-9a2d-e7d552831cb5.png)
 
 ---
