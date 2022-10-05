@@ -3,6 +3,8 @@
 Теги:  [mock](https://russianblogs.com/tag/mock/ "mock")  [httpserver](https://russianblogs.com/tag/httpserver/ "httpserver")
 
 Исходный код от[https://github.com/deis/mock-http-server](https://github.com/deis/mock-http-server)
+https://russianblogs.com/article/31142138776/
+
 
 Основная роль - открыть HTTP-сервер локального порта прослушивателя 8080, который может распечатать запрос клиента, который удобен для отладки.
 
