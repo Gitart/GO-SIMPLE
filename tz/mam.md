@@ -1,4 +1,4 @@
-# Magazine template for Bootstrap 5
+# TZ
 <a href="" ><img src="https://img.shields.io/github/downloads/gitart/GO-SIMPLE/total?style=flat-square"></a>
 <img height="25" src="https://mdbootstrap.com/img/Marketing/general/logo/medium/mdb-r.png">  
 [![GitHub Stars](https://img.shields.io/github/stars/gitart/GO-SIMPLE?label=Star%20now&style=social)](https://github.com/mdbootstrap/mdb-ui-kit/)
