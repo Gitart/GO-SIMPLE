@@ -1,6 +1,10 @@
 ## Calculate with subtotal sum
 ![image](https://user-images.githubusercontent.com/3950155/194041223-35e6cf22-e171-403b-a133-b5016863dc0d.png)
 
+## Output
+![image](https://user-images.githubusercontent.com/3950155/194041589-e34f288e-6ceb-43f6-92cf-a26c4aadb2d0.png)
+
+
 ```go
 package main
 
