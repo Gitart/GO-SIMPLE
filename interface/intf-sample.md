@@ -1,3 +1,5 @@
+## Sample interface
+https://go.dev/play/p/KYSCLpzeZMg
 
 ```go
 package main
