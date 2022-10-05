@@ -1,4 +1,5 @@
 ## Calculate with subtotal sum
+![image](https://user-images.githubusercontent.com/3950155/194041223-35e6cf22-e171-403b-a133-b5016863dc0d.png)
 
 ```go
 package main
