@@ -58,32 +58,3 @@ ___
 
 **[>> Click here for a written tutorial](https://mdbootstrap.com/docs/standard/getting-started/quick-start/)**
 
-___
-<h4>ssss</h4>
-<table>
-  <tbody>
-      
-     <tr>
-        <td align="center">
-          ssssssssssssssssss
-         </td>
-        <td align="center">
-          ddddd
-         </td>
-      </tr>
-           <tr>
-        <td align="center">
-          ssssssssssssssssss
-         </td>
-        <td align="center">
-          ddddd
-         </td>
-      </tr>
-   
-           
-      
-   </tbody>
-</table>
-
-
-___
