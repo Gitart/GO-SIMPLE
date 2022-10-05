@@ -17,6 +17,8 @@
 
 // My samples
 // https://go.dev/play/p/KU82WDAjuJr
+// https://go.dev/play/p/KYSCLpzeZMg
+
 package main
 
 import (
