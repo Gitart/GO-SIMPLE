@@ -61,7 +61,7 @@ func main() {
 }
 ```
 
-## output
+## ✨ output
 ```
 Product Pointer: Kayak Price: 275
 Product: Lifejacket Price: 48.95
