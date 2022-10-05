@@ -1,4 +1,5 @@
-# ☝ GO SIMPLE SAMPLES
+# ![image](https://user-images.githubusercontent.com/3950155/194109961-c0e6e1d2-8666-495d-8a38-efb4cb3c1b31.png)
+ GO SIMPLE SAMPLES
 ![изображение](https://user-images.githubusercontent.com/3950155/185607076-18fcc1fc-5a6e-4261-8e1f-28df4ce0bc57.png)
 
 
