@@ -92,7 +92,9 @@ func (group ProductGroup) TotalPrice(category string, ) (total float64) {
 }
 ```
 
-# Calculate from chanels
+# Calculate from chanels 
+## Receiving a Result Using a Channel
+
 ```go
 package main
 
@@ -139,7 +141,9 @@ func main() {
 
  // fmt.Println(Products)
  CalcStoreTotal(Products)
- time.Sleep(time.Second * 1)
+
+ // Remove before goroutine 
+ // time.Sleep(time.Second * 1)
 }
 
 //-------------------------------------------------------
@@ -184,6 +188,9 @@ func (group ProductGroup) TotalPrice(category string, resultChannel chan float64
      resultChannel <- total
      // return
 }
+
+
+
 ```
 
 
