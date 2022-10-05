@@ -1,6 +1,9 @@
 # Calculate with subtotal sum
 
-### Schem
+### Figure
+For the example application, this means that the map of products is processed sequentially so that each
+product category is processed in turn, and, within each category, each product is processed, as illustrated by
+
 ![image](https://user-images.githubusercontent.com/3950155/194041223-35e6cf22-e171-403b-a133-b5016863dc0d.png)
 
 ## Output
