@@ -2,7 +2,7 @@
 
 В этом подразделе продемонстрирована работа пакета container/list на примере Go-кода из файла conList.go, который мы разделим на три части.
 
-**Внимание!** В пакете container/list реализован двусвязный список.
+![image](https://user-images.githubusercontent.com/3950155/194109666-bedbe585-26ad-4fb6-8c58-c2172605cf67.png)
 
 
 ```go 
