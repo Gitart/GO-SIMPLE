@@ -85,32 +85,7 @@ ___
       </tr>
       
       
-      
-       <tr>
-        <td align="center">
-          <p align="center"><b>Start to Code</b></p>
-          <a href="https://mdbootstrap.com/docs/standard/bootstrap-5-tutorial/#section-beginner" alt="Bootstrap 5" rel="dofollow">
-          		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/Screenshot_26.png">
-          </a>
-         </td>
-        <td align="center">
-          ddddd
-         </td>
-      </tr>
-      
-      
-       <tr>
-        <td align="center">
-          <p align="center"><b>Cvcccccccccccccccc</b></p>
-          <a href="https://mdbootstrap.com/docs/standard/bootstrap-5-tutorial/#section-beginner" alt="Bootstrap 5" rel="dofollow">
-          		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/Screenshot_26.png">
-          </a>
-         </td>
-        <td align="center">
-          ddddd
-         </td>
-      </tr>
-      
+           
       
    </tbody>
 </table>
