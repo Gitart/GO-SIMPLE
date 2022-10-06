@@ -372,3 +372,227 @@ An overview of tools that will help improve your Go code
 *   [godepgraph](http://github.com/kisielk/godepgraph) - A tool for generating dependency graphs of Go code.
 
 
+## Course videos
+
+### [](https://github.com/techschool/simplebank#section-1-working-with-database-postgres)Section 1: Working with database \[Postgres\]
+
+*   Lecture #1: [Design DB schema and generate SQL code with dbdiagram.io](https://www.youtube.com/watch?v=rx6CPDK_5mU&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=1)
+*   Lecture #2: [Install & use Docker + Postgres + TablePlus to create DB schema](https://www.youtube.com/watch?v=Q9ipbLeqmQo&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=2)
+*   Lecture #3: [How to write & run database migration in Golang](https://www.youtube.com/watch?v=0CYkrGIJkpw&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=3)
+*   Lecture #4: [Generate CRUD Golang code from SQL | Compare db/sql, gorm, sqlx & sqlc](https://www.youtube.com/watch?v=prh0hTyI1sU&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=4)
+*   Lecture #5: [Write unit tests for database CRUD with random data in Golang](https://www.youtube.com/watch?v=phHDfOHB2PU&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=5)
+*   Lecture #6: [A clean way to implement database transaction in Golang](https://www.youtube.com/watch?v=gBh__1eFwVI&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=6)
+*   Lecture #7: [DB transaction lock & How to handle deadlock in Golang](https://www.youtube.com/watch?v=G2aggv_3Bbg&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=7)
+*   Lecture #8: [How to avoid deadlock in DB transaction? Queries order matters!](https://www.youtube.com/watch?v=qn3-5wdOfoA&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=8)
+*   Lecture #9: [Deeply understand transaction isolation levels & read phenomena in MySQL & PostgreSQL](https://www.youtube.com/watch?v=4EajrPgJAk0&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=9)
+*   Lecture #10: [Setup Github Actions for Golang + Postgres to run automated tests](https://www.youtube.com/watch?v=3mzQRJY1GVE&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=10)
+
+### [](https://github.com/techschool/simplebank#section-2-building-restful-http-json-api-gin)Section 2: Building RESTful HTTP JSON API \[Gin\]
+
+*   Lecture #11: [Implement RESTful HTTP API in Go using Gin](https://www.youtube.com/watch?v=n_Y_YisgqTw&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=11)
+*   Lecture #12: [Load config from file & environment variables in Go with Viper](https://www.youtube.com/watch?v=n5p8HkO6bnE&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=12)
+*   Lecture #13: [Mock DB for testing HTTP API in Go and achieve 100% coverage](https://www.youtube.com/watch?v=rL0aeMutoJ0&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=13)
+*   Lecture #14: [Implement transfer money API with a custom params validator](https://www.youtube.com/watch?v=5q_wsashJZA&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=14)
+*   Lecture #15: [Add users table with unique & foreign key constraints in PostgreSQL](https://www.youtube.com/watch?v=D4VtNC3vQUs&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=15)
+*   Lecture #16: [How to handle DB errors in Golang correctly](https://www.youtube.com/watch?v=mJ8b5GcvoxQ&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=16)
+*   Lecture #17: [How to securely store passwords? Hash password in Go with Bcrypt!](https://www.youtube.com/watch?v=B3xnJI2lHmc&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=17)
+*   Lecture #18: [How to write stronger unit tests with a custom gomock matcher](https://www.youtube.com/watch?v=DuzBE0jKOgE&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=18)
+*   Lecture #19: [Why PASETO is better than JWT for token-based authentication?](https://www.youtube.com/watch?v=nBGx-q52KAY&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=19)
+*   Lecture #20: [How to create and verify JWT & PASETO token in Golang](https://www.youtube.com/watch?v=Oi4FHDGILuY&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=20)
+*   Lecture #21: [Implement login user API that returns PASETO or JWT access token in Go](https://www.youtube.com/watch?v=lnHbZ9GOGAs&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=21)
+*   Lecture #22: [Implement authentication middleware and authorization rules in Golang using Gin](https://www.youtube.com/watch?v=Pw8fVBRS4jA&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=22)
+
+### [](https://github.com/techschool/simplebank#section-3-deploying-the-application-to-production-kubernetes--aws)Section 3: Deploying the application to production \[Kubernetes + AWS\]
+
+*   Lecture #23: [Build a minimal Golang Docker image with a multistage Dockerfile](https://www.youtube.com/watch?v=p1dwLKAxUxA&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=23)
+*   Lecture #24: [How to use docker network to connect 2 stand-alone containers](https://www.youtube.com/watch?v=VcFnqQarpjI&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=24)
+*   Lecture #25: [How to write docker-compose file and control service start-up orders with wait-for.sh](https://www.youtube.com/watch?v=jf6sQsz0M1M&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=25)
+*   Lecture #26: [How to create a free tier AWS account](https://www.youtube.com/watch?v=4UqN1P8pIkM&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=26)
+*   Lecture #27: [Auto build & push docker image to AWS ECR with Github Actions](https://www.youtube.com/watch?v=3M4MPmSWt9E&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=27)
+*   Lecture #28: [How to create a production DB on AWS RDS](https://www.youtube.com/watch?v=0EaG3T4Q5fQ&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=28)
+*   Lecture #29: [Store & retrieve production secrets with AWS secrets manager](https://www.youtube.com/watch?v=3i1mQ_Ye8jE&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=29)
+*   Lecture #30: [Kubernetes architecture & How to create an EKS cluster on AWS](https://www.youtube.com/watch?v=TxnCMhYhqRU&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=30)
+*   Lecture #31: [How to use kubectl & k9s to connect to a kubernetes cluster on AWS EKS](https://www.youtube.com/watch?v=hwMevai3_wQ&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=31)
+*   Lecture #32: [How to deploy a web app to Kubernetes cluster on AWS EKS](https://www.youtube.com/watch?v=PH-Mcd0Rs1w&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=32)
+*   Lecture #33: [Register a domain name & set up A-record using Route53](https://www.youtube.com/watch?v=-JF2ukmW3i8&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=33)
+*   Lecture #34: [How to use Ingress to route traffics to different services in Kubernetes](https://www.youtube.com/watch?v=lBrqP6FkNsU&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=34)
+*   Lecture #35: [Automatic issue TLS certificates in Kubernetes with Let's Encrypt](https://www.youtube.com/watch?v=nU4FTjrgSKI&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=35)
+*   Lecture #36: [Automatic deploy to Kubernetes with Github Action](https://www.youtube.com/watch?v=GVY-zze0V_U&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=36)
+
+### [](https://github.com/techschool/simplebank#section-4-advanced-backend-topics-grpc)Section 4: Advanced Backend Topics \[gRPC\]
+
+*   Lecture #37: [How to manage user session with refresh token - Golang](https://www.youtube.com/watch?v=rT20ylRLm5U&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=37)
+*   Lecture #38: [Generate DB documentation page and schema SQL dump from DBML](https://www.youtube.com/watch?v=dGfVwsPr-IU&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=38)
+*   Lecture #39: [Introduction to gRPC](https://www.youtube.com/watch?v=mRGnA3wPxMM&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=39)
+*   Lecture #40: [Define gRPC API and generate Go code with protobuf](https://www.youtube.com/watch?v=mVWgEmyAhvM&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=40)
+*   Lecture #41: [How to run a golang gRPC server and call its API](https://www.youtube.com/watch?v=BkfBJIS0_ro&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=41)
+*   Lecture #42: [Implement gRPC API to create and login users in Go](https://www.youtube.com/watch?v=7xiWqyZW9lE&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=42)
+*   Lecture #43: [Write code once, serve both gRPC & HTTP requests](https://www.youtube.com/watch?v=3FfDH3d0aHs&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=43)
+*   Lecture #44: [How to extract info from gRPC metadata](https://www.youtube.com/watch?v=Sno10WQ21Zs&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=44)
+*   Lecture #45: [Automatic generate & serve Swagger docs from Go server](https://www.youtube.com/watch?v=Uwkxxee7tvk&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=45)
+*   Lecture #46: [Embed static frontend files inside Golang backend server's binary](https://www.youtube.com/watch?v=xNgOIm86N5Q&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=46)
+*   Lecture #47: [Validate gRPC parameters and send human/machine friendly response](https://www.youtube.com/watch?v=CxZ9hMtmZtc&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=47)
+*   Lecture #48: [Run DB migrations directly inside Golang code](https://www.youtube.com/watch?v=TG43cMpaxlI&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=48)
+*   Lecture #49: [Partial update DB record with SQLC nullable parameters](https://www.youtube.com/watch?v=I2sbw1PzzW0&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=50)
+*   Lecture #50: [Build gRPC update API with optional parameters](https://www.youtube.com/watch?v=ygqSHIEc8sc&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=51)
+*   Lecture #51: [Add authorization to protect gRPC API](https://www.youtube.com/watch?v=_jqNs3d99ps&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=52)
+
+## [](https://github.com/techschool/simplebank#simple-bank-service)Simple bank service
+
+The service that we’re going to build is a simple bank. It will provide APIs for the frontend to do following things:
+
+1.  Create and manage bank accounts, which are composed of owner’s name, balance, and currency.
+2.  Record all balance changes to each of the account. So every time some money is added to or subtracted from the account, an account entry record will be created.
+3.  Perform a money transfer between 2 accounts. This should happen within a transaction, so that either both accounts’ balance are updated successfully or none of them are.
+
+## [](https://github.com/techschool/simplebank#setup-local-development)Setup local development
+
+### [](https://github.com/techschool/simplebank#install-tools)Install tools
+
+*   [Docker desktop](https://www.docker.com/products/docker-desktop)
+
+*   [TablePlus](https://tableplus.com/)
+
+*   [Golang](https://golang.org/)
+
+*   [Homebrew](https://brew.sh/)
+
+*   [Migrate](https://github.com/golang-migrate/migrate/tree/master/cmd/migrate)
+
+    ```shell
+    brew install golang-migrate
+    ```
+
+*   [DB Docs](https://dbdocs.io/docs)
+
+    ```shell
+    npm install -g dbdocs
+    dbdocs login
+    ```
+
+*   [DBML CLI](https://www.dbml.org/cli/#installation)
+
+    ```shell
+    npm install -g @dbml/cli
+    dbml2sql --version
+    ```
+
+*   [Sqlc](https://github.com/kyleconroy/sqlc#installation)
+
+    ```shell
+    brew install sqlc
+    ```
+
+*   [Gomock](https://github.com/golang/mock)
+
+    ```shell
+    go install github.com/golang/mock/mockgen@v1.6.0
+    ```
+
+### [](https://github.com/techschool/simplebank#setup-infrastructure)Setup infrastructure
+
+*   Create the bank-network
+
+    ```shell
+    make network
+    ```
+
+*   Start postgres container:
+
+    ```shell
+    make postgres
+    ```
+
+*   Create simple\_bank database:
+
+    ```shell
+    make createdb
+    ```
+
+*   Run db migration up all versions:
+
+    ```shell
+    make migrateup
+    ```
+
+*   Run db migration up 1 version:
+
+    ```shell
+    make migrateup1
+    ```
+
+*   Run db migration down all versions:
+
+    ```shell
+    make migratedown
+    ```
+
+*   Run db migration down 1 version:
+
+    ```shell
+    make migratedown1
+    ```
+
+### [](https://github.com/techschool/simplebank#documentation)Documentation
+
+*   Generate DB documentation:
+
+    ```shell
+    make db_docs
+    ```
+
+*   Access the DB documentation at [this address](https://dbdocs.io/techschool.guru/simple_bank). Password: `secret`
+
+### [](https://github.com/techschool/simplebank#how-to-generate-code)How to generate code
+
+*   Generate schema SQL file with DBML:
+
+    ```shell
+    make db_schema
+    ```
+
+*   Generate SQL CRUD with sqlc:
+
+    ```shell
+    make sqlc
+    ```
+
+*   Generate DB mock with gomock:
+
+    ```shell
+    make mock
+    ```
+
+*   Create a new db migration:
+
+    ```shell
+    migrate create -ext sql -dir db/migration -seq <migration_name>
+    ```
+
+### [](https://github.com/techschool/simplebank#how-to-run)How to run
+
+*   Run server:
+
+    ```shell
+    make server
+    ```
+
+*   Run test:
+
+    ```shell
+    make test
+    ```
+
+## [](https://github.com/techschool/simplebank#deploy-to-kubernetes-cluster)Deploy to kubernetes cluster
+
+*   [Install nginx ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/#aws):
+
+    ```shell
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.48.1/deploy/static/provider/aws/deploy.yaml
+    ```
+
+*   [Install cert-manager](https://cert-manager.io/docs/installation/kubernetes/):
+
+    ```shell
+    kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.4.0/cert-manager.yaml
+    ```
