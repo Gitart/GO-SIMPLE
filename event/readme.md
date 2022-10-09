@@ -1,5 +1,5 @@
 # Events 
-### Send & Subscibe 
+### Send & Subscribe 
 
 **Links**  
 github.com/nuttech/bell   
