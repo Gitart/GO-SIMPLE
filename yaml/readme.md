@@ -1,14 +1,14 @@
 # Sample work with YAML
 // https://play.golang.org/p/QN69Y-w4GZJ
 
-```golang
+```go
 package main
 
 import (
     "fmt"
     "log"
     "io/ioutil"
-    "gopkg.in/yaml.v2"
+    "gopkg.in/yaml.v3"
 )
 
 //*****************************************
@@ -16,6 +16,7 @@ import (
 //*****************************************
 func main() {
      Settings()
+      Marsh()
 }
 
 type Cor struct{
@@ -67,38 +68,32 @@ func Settings(){
     fmt.Println ("Cored-pid...........  ",  s.Core.Pid.Other.Enabled)
     fmt.Println ("Sysyte:Password.....  ",  s.System.Password)
     fmt.Println ("Sysyte:Googlekey....  ",  s.System.Googlekey)
-    
-
 }
-```
 
 
-## setting.yaml
-```yaml
+// Marshal to string
+func Marsh(){
+
+data:=`
 core:
   enabled:    true                    # enabale httpd server
   address:    "192.168.10.11"         # ip address to bind (default: any)
   port:       "8088"                  # ignore this port number if auto_tls is enabled (listen 443).
-  worker_num: 0                       # default worker number is runtime.NumCPU()
-  queue_num:  0                       # default queue number is 8192
-  max_notification: 100
-  sync:       false                   # set true if you need get error message from fail push notification in API response.
-  mode:       "release"
-  ssl:        false
-  cert_path:  "cert.pem"
-  key_path:   "key.pem"
-  pid:
-    enabled:    true
-    path:       "c:/out"
-    override:   "c:/in"
-    other: 
-      enabled:  "lddldlldldlldldl:ssssssssss:sssssd:sssssss:ssssss:kskkskks"
-system:
-  path:      "inputpast"
-  password:  "stttstsdpassWord001" 
-  name:      "Timeran"
-  googlekey: "KN-1002233" 
+`
 
+     // m := make(map[interface{}]interface{})
+     t:= Cor{}
 
+      err := yaml.Unmarshal([]byte(data), &t)
+        if err != nil {
+                log.Fatalf("error: %v", err)
+        }
     
-```  
+    d, err := yaml.Marshal(&t)
+        if err != nil {
+           log.Fatalf("error: %v", err)
+        }
+     
+    fmt.Printf("--- m dump:\n%s\n\n", string(d))
+}
+```
