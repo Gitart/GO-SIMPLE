@@ -1,4 +1,5 @@
 # All Design Patterns in Go (Golang)
+![image](https://user-images.githubusercontent.com/3950155/198539344-097ae52d-d453-49c9-810c-52efbc56eb16.png)
 
 Posted on [November 30, 2019May 27, 2021](https://golangbyexample.com/all-design-patterns-golang/) by [admin](https://golangbyexample.com/author/admin/)
 
