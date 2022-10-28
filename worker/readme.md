@@ -1,4 +1,4 @@
-## The Master-Worker Design Pattern
+## 🥧 The Master-Worker Design Pattern
 
 ```go
 package main
