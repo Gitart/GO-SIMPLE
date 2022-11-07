@@ -3,6 +3,10 @@
 Documentattion   
 https://golangci-lint.run/usage/install/   
 
+## Install
+```go
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.50.1
+```
 
 ## GitHub Actions
 We recommend using our GitHub Action for running golangci-lint in CI for GitHub projects. It's fast and uses smart caching inside and it can be much faster than the simple binary installation
@@ -11,9 +15,10 @@ We recommend using our GitHub Action for running golangci-lint in CI for GitHub 
 There are the following golangci-lint execution steps:  
 https://golangci-lint.run/contributing/architecture/   
 
-```go
-go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.50.1
-```
+## Workflow
+https://golangci-lint.run/contributing/workflow/
+
+
 
 ## Usage 
 ```go
