@@ -1,5 +1,8 @@
 # go vet vs go fmt vs go lint
 
+Link : 
+https://golangci-lint.run/contributing/architecture/
+
 11-25-20 [Bryan Braun](https://sparkbox.com/foundry/author/bryan_braun)
 
 Know the differences and learn how to use go vet, gofmt, and golint to check your code in the Go programming language.
