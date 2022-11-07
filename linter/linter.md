@@ -1,7 +1,10 @@
+![image](https://user-images.githubusercontent.com/3950155/200340883-64ad4700-f9d9-483b-9a8d-c526ed987e4c.png)
+
 # LINTER
 **Install linter**   
 Documentattion   
-https://golangci-lint.run/usage/install/   
+https://golangci-lint.run/usage/install/     
+https://sparkbox.com/foundry/go_vet_gofmt_golint_to_code_check_in_Go   
 
 ## Install
 ```go
