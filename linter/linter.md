@@ -1,5 +1,12 @@
 # LINTER
 **Install linter**
+Documentattion 
+https://golangci-lint.run/usage/install/   
+
+
+## GitHub Actions
+We recommend using our GitHub Action for running golangci-lint in CI for GitHub projects. It's fast and uses smart caching inside and it can be much faster than the simple binary installation
+
 
 ```go
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.50.1
