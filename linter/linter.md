@@ -1,6 +1,6 @@
 # LINTER
-**Install linter**
-Documentattion 
+**Install linter**   
+Documentattion   
 https://golangci-lint.run/usage/install/   
 
 
