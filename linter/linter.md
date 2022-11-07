@@ -2,8 +2,9 @@
 
 # LINTER
 **Install linter**   
-Documentattion   
 https://golangci-lint.run/usage/install/     
+
+**Documentattion**
 https://sparkbox.com/foundry/go_vet_gofmt_golint_to_code_check_in_Go   
 
 ## Install
