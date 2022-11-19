@@ -66,3 +66,17 @@ func ReadCfg() Config {
 }
 
 ```
+
+## .env 
+```
+APPLICATION_NAME="TEST SERVICE"
+VERSION=122
+ENVIRONMENT="Env"
+SECRETFILE=secret001 
+BONDFILE=Band
+MAIN=http://main.home.com
+HOST=127.0.0.1
+PORT=8000
+ENV=dev
+```
+
