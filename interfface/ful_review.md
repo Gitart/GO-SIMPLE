@@ -131,7 +131,7 @@ func (c *Routing) Update() string {
 	return c.Title
 }
 func (c *Routing) Structure() []string {
-	return []string{"London", "Dnepropetrovsk", "Paris", "Area", "Libain", "Rome"}
+	return []string{"London", "Dnepropetrovsk", "Paris", "Area", "Libya", "Rome"}
 }
 
 func PrintInterface(b Basic) {
@@ -226,7 +226,7 @@ func EmptyTypes() {
 	fmt.Println(manyType)
 
 	printType("Go programming language")
-	var countries = []string{"india", "japan", "canada", "australia", "russia"}
+	var countries = []string{"india", "japan", "canada", "australia", "Libya"}
 	printType(countries)
 
 	var employee = map[string]int{"Mark": 10, "Sandy": 20}
