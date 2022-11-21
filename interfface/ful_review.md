@@ -2,7 +2,9 @@
 # ⭐ FULL REVIEW INTERFACES OPPORTUNITY
 
 ```go 
-// 👉 Exaples : 🌏 https://www.golangprograms.com/go-language/interface.html
+// 👉 Exaples : 
+// 🌏 https://www.golangprograms.com/go-language/interface.html
+// 🌏 https://yourbasic.org/golang/find-type-of-object/
 
 package main
 
