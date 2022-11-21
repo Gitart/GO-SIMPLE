@@ -2,20 +2,22 @@
 # ⭐ FULL OVERVIEW OF INTERFACE CAPABILITIES
 
 ```go 
-// 👉 Exaples : 
+// 👉 Exaples :
 // 🌏 https://www.golangprograms.com/go-language/interface.html
-// 🌏 https://yourbasic.org/golang/find-type-of-object/  
-// 🌏 https://www.digitalocean.com/community/tutorials/how-to-use-interfaces-in-go
 
 package main
 
 import (
 	"fmt"
 	"time"
+
+	"memos/memo"
 )
 
 // Define types and interfaces
 type (
+	Stack []interface{}
+
 	Note interface {
 		Info() string
 	}
@@ -139,8 +141,11 @@ func WorkerInterface(b Basic) {
 
 // Main
 func main() {
+	// Push Pop
+	PushPopup()
+
 	// Empty types
-	EmptyTypes()
+	//EmptyTypes()
 
 	// Interface Embedding
 	// NoteEmbedding()
@@ -151,6 +156,30 @@ func main() {
 	// SecondUsage()
 
 	// DefineType()
+}
+
+func PushPopup() {
+	var mStack memo.Stack
+	mStack.Push("Say")
+	mStack.Push("Other World")
+	mStack.Push("Hi All People")
+	mStack.Push("I Glad to see you")
+	mStack.Push(92)
+
+	itm, _ := mStack.Pop()
+	fmt.Println("-->", itm)
+	itm, _ = mStack.Pop()
+	fmt.Println("-->", itm)
+
+	for {
+		item, err := mStack.Pop()
+		if err != nil {
+			//fmt.Println(err.Error())
+			break
+		}
+		fmt.Println(item)
+	}
+
 }
 
 // Print type
@@ -194,7 +223,7 @@ func EmptyTypes() {
 	fmt.Println(manyType)
 
 	printType("Go programming language")
-	var countries = []string{"india", "japan", "canada", "australia", "ukraine"}
+	var countries = []string{"india", "japan", "canada", "australia", "russia"}
 	printType(countries)
 
 	var employee = map[string]int{"Mark": 10, "Sandy": 20}
