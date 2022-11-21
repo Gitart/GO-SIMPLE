@@ -4,7 +4,8 @@
 ```go 
 // 👉 Exaples : 
 // 🌏 https://www.golangprograms.com/go-language/interface.html
-// 🌏 https://yourbasic.org/golang/find-type-of-object/
+// 🌏 https://yourbasic.org/golang/find-type-of-object/  
+// 🌏 https://www.digitalocean.com/community/tutorials/how-to-use-interfaces-in-go
 
 package main
 
@@ -193,7 +194,7 @@ func EmptyTypes() {
 	fmt.Println(manyType)
 
 	printType("Go programming language")
-	var countries = []string{"india", "japan", "canada", "australia", "russia"}
+	var countries = []string{"india", "japan", "canada", "australia", "ukraine"}
 	printType(countries)
 
 	var employee = map[string]int{"Mark": 10, "Sandy": 20}
