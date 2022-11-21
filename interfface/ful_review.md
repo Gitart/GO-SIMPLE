@@ -4,6 +4,9 @@
 ```go 
 // 👉 Exaples :
 // 🌏 https://www.golangprograms.com/go-language/interface.html
+// 🌏 https://go.dev/play/p/T8WOs9sSw8p
+// 🌏 https://yourbasic.org/golang/find-type-of-object/  
+// 🌏 https://www.digitalocean.com/community/tutorials/how-to-use-interfaces-in-go
 
 package main
 
