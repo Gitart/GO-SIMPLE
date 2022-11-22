@@ -44,7 +44,6 @@ https://github.com/burrowers/garble
 Инструмент разработан командой RedHunt Labs. Свою результативность он уже доказал, найдя 1 676 634 секретов в результате двух этапов глубокого тестирования.            
 
 
-
 ## 🔄 Description other oportunity
 https://checkmarx.gitbooks.io/go-scp/content/output-encoding/cross-site-scripting.html
 
@@ -81,13 +80,15 @@ https://www.techieindoor.com/golang-tutorial/
 https://www.geeksforgeeks.org/golang-program-that-uses-func-with-variable-argument-list/    
 https://riptutorial.com/go/example/27479/how-to-encode-data-and-write-to-file-with-gob-   
 https://blog.carlmjohnson.net/post/2016-11-27-how-to-use-go-generate/    
+http://fabien-d.github.io/alertify.js/
+https://alertifyjs.com/
+http://wisembly.github.io/basil.js/
 
-
-## Frameworks 
+## 🌏 Frameworks 
 https://entgo.io/docs/crud/    
 
 
-# Blogs 
+# 🧑 Blogs 
 * ## English   
 * [Go](https://github.com/golang/go)
 * [The official Go Blog](https://go.dev/blog) - For in depth posts by the Go team
@@ -145,7 +146,7 @@ https://entgo.io/docs/crud/
 *   [Learning Go tutorial](https://blog.learngoprogramming.com/)
 *   [Master Go](https://appliedgo.com/p/mastergo/)
 
-# Go - Awesome Tutorial Part 2
+# Go - 💡 Awesome Tutorial Part 2
 
 *   [50 Shades of Go](http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/index.html)
 *   [A Tour of Go](https://tour.golang.org/welcome/1)
@@ -169,7 +170,7 @@ https://yourbasic.org/golang/regexp-cheat-sheet/
 [Limit exec program](https://golangify.com/code-timeout)
 
 
-## Samples for learning
+## 🍬 Samples for learning
 *   [https://gobyexample.com/channels](https://gobyexample.com/channels)
 *   [https://tour.golang.org/concurrency/2](https://tour.golang.org/concurrency/2)
 *   [http://guzalexander.com/2013/12/06/golang-channels-tutorial.html](http://guzalexander.com/2013/12/06/golang-channels-tutorial.html)
@@ -195,7 +196,7 @@ https://www.socketloop.com/tutorials/golang-how-to-check-if-a-date-is-within-cer
 https://www.tutorialspoint.com/barefoot_skiing/barefoot_skiing_starting_the_race.htm  
 https://yourbasic.org/golang/create-error/ 
 
-## Parsing Date   
+## 📆 Parsing Date   
 https://tutorialedge.net/golang/snippets/parsing-date-strings-in-go/  
 
 ## 🐱‍💻 Templates 
@@ -225,12 +226,10 @@ https://www.alexedwards.net/blog/streamline-your-sublime-text-and-go-workflow
 
 
 ## 😎 Tutorial Series: How To Code in Go
-
 Go (or GoLang) is a modern programming language originally developed by Google that uses high-level syntax similar to scripting languages. It is popular for its minimal syntax and innovative handling of concurrency, as well as for the tools it provides for building native binaries on foreign platforms.
 
 
 ## 🥧 Browse Series: 52 articles
-
 *   [1/52 How To Code in Go eBook](https://www.digitalocean.com/community/books/how-to-code-in-go-ebook)
 *   [2/52 How To Install Go and Set Up a Local Programming Environment on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-go-and-set-up-a-local-programming-environment-on-ubuntu-18-04)
 *   [3/52 How To Install Go and Set Up a Local Programming Environment on macOS](https://www.digitalocean.com/community/tutorials/how-to-install-go-and-set-up-a-local-programming-environment-on-macos)
@@ -299,7 +298,7 @@ Go (or GoLang) is a modern programming language originally developed by Google t
 | [mitchellh/go-vnc](https://github.com/mitchellh/go-vnc) | 93 | [Yes](https://sourcegraph.com/github.com/mitchellh/go-vnc/-/blob/client.go#L169-181) |
 
 
-## Useful library
+## 🚩 Useful library
 
 *   Быстрый HTTP сервер с использованием [valyala/fasthttp](https://github.com/valyala/fasthttp)
 *   Парсинг User-Agent через [mssola/user\_agent](https://github.com/mssola/user_agent)
@@ -391,7 +390,7 @@ An overview of tools that will help improve your Go code
 *   [godepgraph](http://github.com/kisielk/godepgraph) - A tool for generating dependency graphs of Go code.
 
 
-## Course videos
+## 💎 Course videos
 
 ### [](https://github.com/techschool/simplebank#section-1-working-with-database-postgres)Section 1: Working with database \[Postgres\]
 
@@ -469,13 +468,9 @@ The service that we’re going to build is a simple bank. It will provide APIs f
 ### [](https://github.com/techschool/simplebank#install-tools)Install tools
 
 *   [Docker desktop](https://www.docker.com/products/docker-desktop)
-
 *   [TablePlus](https://tableplus.com/)
-
 *   [Golang](https://golang.org/)
-
 *   [Homebrew](https://brew.sh/)
-
 *   [Migrate](https://github.com/golang-migrate/migrate/tree/master/cmd/migrate)
 
     ```shell
@@ -497,13 +492,11 @@ The service that we’re going to build is a simple bank. It will provide APIs f
     ```
 
 *   [Sqlc](https://github.com/kyleconroy/sqlc#installation)
-
     ```shell
     brew install sqlc
     ```
 
 *   [Gomock](https://github.com/golang/mock)
-
     ```shell
     go install github.com/golang/mock/mockgen@v1.6.0
     ```
@@ -511,43 +504,36 @@ The service that we’re going to build is a simple bank. It will provide APIs f
 ### [](https://github.com/techschool/simplebank#setup-infrastructure)Setup infrastructure
 
 *   Create the bank-network
-
     ```shell
     make network
     ```
 
 *   Start postgres container:
-
     ```shell
     make postgres
     ```
 
 *   Create simple\_bank database:
-
     ```shell
     make createdb
     ```
 
 *   Run db migration up all versions:
-
     ```shell
     make migrateup
     ```
 
 *   Run db migration up 1 version:
-
     ```shell
     make migrateup1
     ```
 
 *   Run db migration down all versions:
-
     ```shell
     make migratedown
     ```
 
 *   Run db migration down 1 version:
-
     ```shell
     make migratedown1
     ```
@@ -555,7 +541,6 @@ The service that we’re going to build is a simple bank. It will provide APIs f
 ### [](https://github.com/techschool/simplebank#documentation)Documentation
 
 *   Generate DB documentation:
-
     ```shell
     make db_docs
     ```
@@ -565,19 +550,16 @@ The service that we’re going to build is a simple bank. It will provide APIs f
 ### [](https://github.com/techschool/simplebank#how-to-generate-code)How to generate code
 
 *   Generate schema SQL file with DBML:
-
     ```shell
     make db_schema
     ```
 
 *   Generate SQL CRUD with sqlc:
-
     ```shell
     make sqlc
     ```
 
 *   Generate DB mock with gomock:
-
     ```shell
     make mock
     ```
@@ -591,13 +573,11 @@ The service that we’re going to build is a simple bank. It will provide APIs f
 ### [](https://github.com/techschool/simplebank#how-to-run)How to run
 
 *   Run server:
-
     ```shell
     make server
     ```
 
 *   Run test:
-
     ```shell
     make test
     ```
@@ -622,7 +602,7 @@ The service that we’re going to build is a simple bank. It will provide APIs f
 
 Posted on [November 22, 2020June 15, 2021](https://golangbyexample.com/golang-comprehensive-tutorial/) by [admin](https://golangbyexample.com/author/admin/)
 
-Table of Contents
+### ⚙ Table of Contents
 
 *   [Overview](https://golangbyexample.com/golang-comprehensive-tutorial/#Overview "Overview")
 *   [Golang Basic Tutorial](https://golangbyexample.com/golang-comprehensive-tutorial/#Golang_Basic_Tutorial "Golang Basic Tutorial")
