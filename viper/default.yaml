@@ -26,37 +26,3 @@ nats:
          key:     "k-290903993-222"
      setting:
          port:     ":1233"
-
-
-
-
-
-
-app:
-  name:           "New ststistics"
-  vers:           "2.001"
-  type:           "draft"
-  date:           "25-11-2021"
-  pass:           "P_215$000$"
-  login:          "appadmin"
-  env:            "development"
-  host:           "localhost"
-  port:           ":1257"
-  user:           "postgres"
-  consumerbroker: "first.example.com:9092"
-  producerbroker: "second.example.com:9092"
-  #linetoken:     "sdjfnasklJBS8asdnas83rq2mSJKnadfdmGFVJGSHBd3845ulzdmnfvsd"
-  token:          "ssdffggg"
-db:
-   name: "work"
-   host: "localhost"
-   pass: "P000$$$"
-   conn: "coonnect"
-   port: ":1275"
-nats:
-     app:
-         test:    "Test nats"
-         topic:   "wrkstat"
-         key:     "k-290903993-222"
-     setting:
-         port:     ":1233"
