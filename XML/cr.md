@@ -1,3 +1,4 @@
+```go
 package main
 
 import (
@@ -29,3 +30,4 @@ func main() {
 		log.Fatalln(err)
 	}
 }
+```
