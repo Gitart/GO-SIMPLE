@@ -111,8 +111,6 @@ Now, open [this URL](https://en.wikipedia.org/wiki/Web_scraping) in your browser
 
 ![Wikipedia in Dev Tools](https://www.scrapingbee.com/blog/web-scraping-go/30ihmtB.png)
 
-![Wikipedia in Dev Tools](https://www.scrapingbee.com/blog/web-scraping-go/30ihmtB.png)
-
 This div element contains the body of the page. Targeting the links inside this div will provide all the links used inside the article.
 
 Next, you will use the `OnHTML` method. Here is the remaining code for the scraper:
