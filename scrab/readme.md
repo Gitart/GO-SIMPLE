@@ -1,7 +1,9 @@
 # Web Scraping With Go
 
-[Colly](http://go-colly.org/docs/examples/random_delay)
-[Go Query](https://github.com/PuerkitoBio/goquery?ref=morioh.com&utm_source=morioh.com#examples)
+----
+[Colly](http://go-colly.org/docs/examples/random_delay)     
+[Go Query](https://github.com/PuerkitoBio/goquery?ref=morioh.com&utm_source=morioh.com#examples)    
+
 
 
 Web scraping is an essential tool that every developer uses at some point in their career. Hence, it is essential for developers to understand what a web scraper is, as well as how to build one. [Wikipedia](https://en.wikipedia.org) defines *[web scraping](https://en.wikipedia.org/wiki/Web_scraping)* as follows:
