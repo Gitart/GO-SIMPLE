@@ -87,10 +87,30 @@ func AddUser(e echo.Context) error {
 
 **POST: http://localhost:1323/adduser**
 
+### Add new user
 ```json
 {
    "user_name":"{{$randomFullName}}",
-   "user_id2":3,
+   "login":"{{$randomEmail}}",
+   "payments":[
+             {"operation":"{{$randomTransactionType}}", "amount":123},
+             {"operation":"{{$randomTransactionType}}", "amount":123334 }
+       ],
+    "infos":[
+             {"name":"{{$randomTransactionType}}", "value":"{{$randomVerb}}"},
+             {"name":"{{$randomTransactionType}}", "value":"{{$randomVerb}}"},
+             {"name":"{{$randomTransactionType}}", "value":"{{$randomVerb}}"},
+             {"name":"{{$randomTransactionType}}", "value":"{{$randomVerb}}"}
+    ]   
+}
+```
+
+### Update exists user
+
+```json
+{
+   "user_name":"{{$randomFullName}}",
+   "user_id":3,
    "login":"{{$randomEmail}}",
    "payments":[
              {"operation":"{{$randomTransactionType}}", "amount":123},
