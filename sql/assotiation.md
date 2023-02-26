@@ -1,6 +1,6 @@
 ## Assitiation in GORM
 
-1. Create table in database 
+1. Created tables in database in my case Sqlite
 2. Set right assotiation in models
 
 ## Craeted tables
