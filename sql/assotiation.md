@@ -33,7 +33,7 @@ CREATE TABLE "infos" (
 ```
 
 
-## Describe models
+## Description models
 ```go
 
 //  Users
