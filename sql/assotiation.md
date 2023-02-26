@@ -3,7 +3,7 @@
 1. Create table in database 
 2. Set right assotiation in models
 
-## Sql
+## Craeted tables
 ```sql
 CREATE TABLE "users" (
 	"user_id"	INTEGER,
