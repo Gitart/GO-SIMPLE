@@ -88,7 +88,7 @@ func AddUser(e echo.Context) error {
 }
 ```
 
-## Check for helped postman
+## 💡 Check with Postman
 
 **POST: http://localhost:1323/adduser**
 
