@@ -59,6 +59,11 @@ type Info struct {
 	Value   string `json:"value"`
 }
 ```
+## ☝ IIFY (Important Information for your) 
+In description Foreign keys used camelCase
+![image](https://user-images.githubusercontent.com/3950155/221424076-4a84ff8b-1bdc-43db-84c4-78f6cf74b43a.png)
+
+
 
 ## Add - Update 
 ```go
