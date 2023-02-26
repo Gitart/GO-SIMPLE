@@ -79,9 +79,6 @@ func AddUser(e echo.Context) error {
 		println("Upd")
 	}
 
-	//dbs.Debug().Model(u).Association("Payment").Append(Payment{Name: "ssss"})
-	//dbs.Create(u)
-
 	return e.JSON(200, u)
 }
 ```
