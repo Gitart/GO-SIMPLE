@@ -1,9 +1,12 @@
 ## Sub
 
 ```go
-url := os.Getenv("NATS_URL")
+u
+func Subb() {
+	nnc := 0
+
+	url := os.Getenv("NATS_URL")
 	if url == "" {
-		fmt.Printf("Two sub")
 		url = nats.DefaultURL
 	}
 
@@ -12,10 +15,18 @@ url := os.Getenv("NATS_URL")
 		fmt.Printf(eer.Error())
 	}
 
-	nc.Subscribe("greet", func(msg *nats.Msg) {
-	
-		fmt.Println("Two:", string(msg.Data))
+	// Scrube to ID
+	nc.Subscribe("greet.Id", func(msg *nats.Msg) {
+
+		fmt.Println("Id", string(msg.Data))
 	})
+
+	// Scribe to name
+	nc.Subscribe("greet.Name", func(msg *nats.Msg) {
+		nnc++
+		AddDb(msg.Data)
+	})
+}
   ```
   
   
