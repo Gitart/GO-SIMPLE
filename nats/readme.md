@@ -1,4 +1,3 @@
-# NATS
 ![image](https://user-images.githubusercontent.com/3950155/222965403-17633055-4bc2-477e-990d-34c391c24ddf.png)
 
 ```
