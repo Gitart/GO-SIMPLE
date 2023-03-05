@@ -24,7 +24,6 @@ url := os.Getenv("NATS_URL")
   ```go
   url := os.Getenv("NATS_URL")
 	if url == "" {
-		fmt.Printf("dddddddddd")
 		url = nats.DefaultURL
 	}
 
