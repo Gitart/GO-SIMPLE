@@ -4,6 +4,8 @@
 nats-server -V -m 8222 
 ```
 
+## Architecture
+![image](https://user-images.githubusercontent.com/3950155/222965666-1b1736e5-1aaa-44a3-9cf3-6039fb3edb6f.png)
 
 ## Sub
 
