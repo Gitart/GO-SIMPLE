@@ -36,7 +36,23 @@ url := os.Getenv("NATS_URL")
 	nc.Publish("greet.Id", []byte("Послал сообщение"))
   ```
   
-  
+  ## Sub & create to db
+  ```go
+  func AddDb(b []byte) {
+
+	dat := Projects{}
+	err := json.Unmarshal(b, &dat)
+	if err != nil {
+		fmt.Println("ERROR JSON: ", err.Error)
+	}
+
+	res := DB.Create(&dat)
+	if res.Error != nil {
+		fmt.Println("ERROR DB: ", res.Error)
+	}
+}
+```
+
   
   
   
