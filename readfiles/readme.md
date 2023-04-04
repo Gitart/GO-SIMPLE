@@ -20,13 +20,14 @@ course of three days, during the second Persian invasion of Greece.
 
 We use this text file in some examples.
 
-## AdvertisementsGo read file into string
+# Advertisements
+## Go read file into string
 
 The `ioutil.ReafFile` function reads the whole file into a string. This function is convenient but should not be used with very large files.
 
 read\_file.go
 
-```
+```go
 package main
 
 import (
@@ -62,7 +63,7 @@ The `Scanner` provides a convenient interface for reading data such as a file of
 
 read\_line\_by\_line.go
 
-```
+```go
 package main
 
 import (
@@ -124,13 +125,13 @@ for scanner.Scan() {
 
 The `Scan` advances the Scanner to the next token, which will then be available through the `Bytes` or `Text` function.
 
-## AdvertisementsGo read file by words
+## Go read file by words
 
 The default split function of a scanner is `ScanLines`. With `SplitWords`, we split the content by words.
 
 read\_by\_word.go
 
-```
+```go
 package main
 
 import (
@@ -181,9 +182,8 @@ between
 
 We can read files in chunks of data.
 
-read\_in\_chunks.go
 
-```
+```go
 package main
 
 import (
@@ -255,13 +255,13 @@ for {
 
 In the for loop, we read data into the buffer with `Read`, and print the array buffer to the console with `Print`.
 
-## AdvertisementsGo read binary file
+## Go read binary file
 
 The `hex` package implements hexadecimal encoding and decoding.
 
 read\_binary\_file.go
 
-```
+```go
 package main
 
 import (  
