@@ -20,7 +20,6 @@ course of three days, during the second Persian invasion of Greece.
 
 We use this text file in some examples.
 
-# Advertisements
 ## Go read file into string
 
 The `ioutil.ReafFile` function reads the whole file into a string. This function is convenient but should not be used with very large files.
