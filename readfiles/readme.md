@@ -1,6 +1,5 @@
 # Go read file
 
-last modified January 9, 2023
 
 Go read file tutorial shows how to read files in Golang. We read text and binary files. Learn how to write to files in Go in [Go write file](/golang/writefile/).
 
@@ -8,8 +7,6 @@ Go read file tutorial shows how to read files in Golang. We read text and binary
 $ go version
 go version go1.18.1 linux/amd64
 ```
-
-We use Go version 1.18.
 
 To read files in Go, we use the `os`, `ioutil`, `io`, and `bufio` packages.
 
