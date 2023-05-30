@@ -1,6 +1,7 @@
 ## Work with choice from
 
-![image](https://github.com/Gitart/GO-SIMPLE/assets/3950155/03b4a0a7-fa6d-4990-ac8e-e7c8467126ac)
+![image](https://github.com/Gitart/GO-SIMPLE/assets/3950155/34e3302f-ce61-44c6-b834-159974ce7a7b)
+
 
 ## We have list - select
 ```html
