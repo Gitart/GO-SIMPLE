@@ -1,4 +1,6 @@
-## Work with choice from
+## Work with choice in web from
+
+We have task get all choice element in "slectet" and after catch elements in backend.
 
 ![image](https://github.com/Gitart/GO-SIMPLE/assets/3950155/34e3302f-ce61-44c6-b834-159974ce7a7b)
 
