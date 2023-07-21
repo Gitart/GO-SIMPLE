@@ -250,37 +250,38 @@ func ValidateToken(token string) (*jwt.Token, error) {
 
 
 ### Generate user token custom
+```go
+
 type SystemClaims struct {
 	Login string `json:"login"`
 	Role  string `json:"role"`
 	jwt.StandardClaims
 }
 
-```go
-
-func JwtCreate1(e echo.Context) error {
+func JwtCreate(e echo.Context) error {
 	mySigningKey := []byte(JWTSecret)
 
 	// Create the Claims
-	//claims := SystemClaims{
-	//	"bar",
-	//	"sddd",
-	//	jwt.StandardClaims{
-	//		ExpiresAt: 15000,
-	//		Issuer:    "test",
-	//		Audience:  "users",
-	//		Subject:   "more",
-	//	},
-	//}
+	claims := SystemClaims{
+		"bar",
+		"sddd",
+		jwt.StandardClaims{
+			ExpiresAt: 15000,
+			Issuer:    "test",
+			Audience:  "users",
+			Subject:   "more",
+		},
+	}
 
 	// Create the Claims
+/*
 	claims := jwt.StandardClaims{
 		Issuer:    "test",
 		Audience:  "users",
 		Subject:   "more",
 		ExpiresAt: system.CurUnixTime(),
 	}
-
+*/
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	token.SignedString("123344555")
 	ss, err := token.SignedString(mySigningKey)
