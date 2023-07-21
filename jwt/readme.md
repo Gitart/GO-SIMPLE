@@ -170,6 +170,131 @@ func ReadJwtClaim(e echo.Context) error {
 }
 ```
 
+## Generate claim and valid 
+
+```go
+
+package jwt
+
+import (
+	"fmt"
+	"github.com/golang-jwt/jwt"
+	"time"
+)
+
+var (
+
+	// Секретное слово для всех генераций ключа
+	// в последующем можно вынести в настройки ресурса
+	// или в переменные среды
+
+	JWTSecret string = "MainSecretJWT"
+)
+
+// GenerateToken
+// -> generates token -
+
+// Пример :
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+// eyJleHAiOjE2ODI1OTg3ODAsImlhdCI6MTY4MjU4N
+// zk4MCwicm9sZSI6IkFETUlOIiwidXNlcklEIjoxMjJ9.
+// -CXYmwuOw38K6Rx4IfcdStJASJ1drUq9eSfnW119pIU
+
+func GenerateToken(userid uint, role string) string {
+
+	// CLAIM (PAYLOAD)
+	// составной клейм из наших любых полей
+	// любое количество, которые потом можно прочитать
+	// из клаима
+	claims := jwt.MapClaims{
+		"exp":     time.Now().Add(time.Hour * 24 * 30).Unix(),
+		"iat":     time.Now().Unix(),
+		"role":    role,
+		"user_id": userid,
+		"name":    "Abram",
+	}
+
+	// Метод шифрования
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+	// Секрет
+	// t, _ := token.SignedString([]byte(os.Getenv("JWT_SECRET")))
+	t, _ := token.SignedString([]byte(JWTSecret))
+
+	return t
+}
+```
+
+
+### ValidateToken
+```go
+// Проверка токена на валидность
+// --> validate the given token
+// 2nd arg function return secret key after checking
+// if the signing method is HMAC and returned
+// key is used by 'Parse' to decode the token)
+
+func ValidateToken(token string) (*jwt.Token, error) {
+
+	return jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			// nil secret key
+			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+		}
+
+		// return []byte(os.Getenv("JWT_SECRET")), nil
+		return []byte(JWTSecret), nil
+	})
+}
+
+
+
+### Generate user token custom
+type SystemClaims struct {
+	Login string `json:"login"`
+	Role  string `json:"role"`
+	jwt.StandardClaims
+}
+
+```go
+
+func JwtCreate1(e echo.Context) error {
+	mySigningKey := []byte(JWTSecret)
+
+	// Create the Claims
+	//claims := SystemClaims{
+	//	"bar",
+	//	"sddd",
+	//	jwt.StandardClaims{
+	//		ExpiresAt: 15000,
+	//		Issuer:    "test",
+	//		Audience:  "users",
+	//		Subject:   "more",
+	//	},
+	//}
+
+	// Create the Claims
+	claims := jwt.StandardClaims{
+		Issuer:    "test",
+		Audience:  "users",
+		Subject:   "more",
+		ExpiresAt: system.CurUnixTime(),
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	token.SignedString("123344555")
+	ss, err := token.SignedString(mySigningKey)
+
+	dat := echo.Map{
+		"sign":  ss,
+		"err":   err,
+		"token": token,
+	}
+
+	return e.JSON(200, dat)
+
+}
+```
 
 
 
