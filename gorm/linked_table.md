@@ -2,6 +2,10 @@
 
 ![image](https://github.com/Gitart/GO-SIMPLE/assets/3950155/1d742da1-d760-482c-ad98-a8b46c9af45a)
 
+> [!WARNING]
+> Critical content demanding immediate user attention due to potential risks.
+
+
 ## Table relations
 ```sql
 CREATE TABLE `m_acts` (
