@@ -89,3 +89,14 @@ node6  -->  locations : location_id:id
 users  -->  roles : role_id:id
 ```
 
+
+
+
+
+
+
+
+
+
+
+
