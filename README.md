@@ -1,5 +1,7 @@
 
  # 💎 GO SIMPLE SAMPLES
+[![GitHub Streak](http://github-readme-streak-stats.herokuapp.com?user=Savage&theme=radical&hide_border=true&date_format=M%20j%5B%2C%20Y%5D&mode=weekly&card_width=700)](https://git.io/streak-stats)
+
 ![изображение](https://user-images.githubusercontent.com/3950155/185607076-18fcc1fc-5a6e-4261-8e1f-28df4ce0bc57.png)
 
 ![image](https://user-images.githubusercontent.com/3950155/194109961-c0e6e1d2-8666-495d-8a38-efb4cb3c1b31.png)
