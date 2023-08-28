@@ -1,4 +1,4 @@
-## No Save empty field in GORM
+## 👆 No Save empty field in GORM
 
 ```go
 // UpdateProduct
@@ -10,4 +10,13 @@
 func UpdateProduct(contact *Products) error {
 	return db.DB.Save(contact).Error
 }
+```
+
+## No save
+👆 **No Save Check Box !!!**
+
+```go
+db.DB.Model(Products{}).
+Where("id=?", f.Id).
+Updates(&f)
 ```
