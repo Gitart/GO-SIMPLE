@@ -1,4 +1,5 @@
 ## 👆 No Save empty field in GORM
+Where used field CheckBox in form, after save to procedure in GO! 
 
 ```go
 // UpdateProduct
