@@ -78,27 +78,5 @@ func ProductionsAdd(e echo.Context) error {
 
 	return e.JSON(200, dats)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
 
