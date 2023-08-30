@@ -5,11 +5,11 @@
 # Table 
 ```sql
 CREATE TABLE `products` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `create_at` datetime DEFAULT NULL,
-  `cod` varchar(20) DEFAULT NULL COMMENT 'Код продукта',
-  `title` varchar(100) DEFAULT NULL COMMENT 'Название продукта короткое для форм',
-  `**productions**` json DEFAULT NULL,
+  id             int NOT NULL AUTO_INCREMENT,
+  create_at      datetime DEFAULT NULL,
+  cod            varchar(20) DEFAULT NULL ,
+  title        varchar(100) DEFAULT NULL,
+  productions    json DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `title_UNIQUE` (`title`)
 ) ;
