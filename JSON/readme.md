@@ -16,12 +16,14 @@ CREATE TABLE `products` (
 ```
 
 ## Structure
+Type Field for JSON - **json.RawMessage**
+
 ```go
 type Products struct {
 	Id            int64           `json:"id"`             // Id
 	CreateAt      time.Time       `json:"create_at"`      // Created date
 	Title         string          `json:"title"`          // Name
-	Productions   **json.RawMessage **`json:"productions"`    // Settings
+	Productions   json.RawMessage `json:"productions"`    // Settings
 }
 ```
 
