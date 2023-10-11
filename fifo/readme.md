@@ -1,4 +1,5 @@
 # FIFO
+![image](https://github.com/Gitart/GO-SIMPLE/assets/3950155/1d0d7cff-7f5e-4b12-bebf-a0d0a1314dad)
 
 Есть массив который надо выбрать суммой по очереди пока не закончится суммма
 Массив склада
