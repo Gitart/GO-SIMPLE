@@ -25,15 +25,7 @@ func StockFifo(stockId, productId int64, qty float64) []stock.Stocks {
 			fmt.Println("2:", qty-currentSum)
 			break
 		}
-
-		//
-		//if ost == 0 {
-		//	fmt.Println("=0", qty, skl.Qty, ost, math.Abs(ost))
-		//} else if ost > 0 {
-		//	fmt.Println(">0", qty, skl.Qty, ost, math.Abs(ost))
-		//} else {
-		//	fmt.Println("<0", qty, skl.Qty, ost, math.Abs(ost))
-		//}
+	
 	}
 
 	fmt.Println(result)
