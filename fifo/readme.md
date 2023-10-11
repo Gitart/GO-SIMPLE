@@ -1,10 +1,17 @@
 # FIFO
 
 Есть массив который надо выбрать суммой по очереди пока не закончится суммма
+Массив склада
+
+```go
+stock.ListByIdAndProduct()
+```
+
+###  Снятие со склада количества и перброска на другой склад
 
 ```go
 
-// Снятие со склада количества и перброска на другой склад
+
 func StockFifo(stockId, productId int64, qty float64) []stock.Stocks {
 
 	dat := stock.ListByIdAndProduct(stockId, productId)
