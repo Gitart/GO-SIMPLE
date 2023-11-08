@@ -1,4 +1,3 @@
-
 ## Context 
 
 ```go
@@ -56,3 +55,34 @@ Response from https://api.example.com/users: 200
 Response from https://api.example.com/products: 200
 Response from https://api.example.com/orders: 200
 ```
+
+## Context
+```go
+package main
+
+import (
+ "context"
+ "fmt"
+ "time"
+)
+
+func main() {
+ ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+ defer cancel()
+
+ go performTask(ctx)
+
+ select {
+ case <-ctx.Done():
+  fmt.Println("Task timed out")
+ }
+}
+
+func performTask(ctx context.Context) {
+ select {
+ case <-time.After(5 * time.Second):
+  fmt.Println("Task completed successfully")
+ }
+}
+```
+
