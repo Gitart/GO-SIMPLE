@@ -1,5 +1,5 @@
 https://play.golang.org/p/4BjFKiMiVHO
-
+```go
 package main
 
 import (
@@ -38,3 +38,4 @@ func main() {
 	}
 	log.Printf("%+v", c)
 }
+```
