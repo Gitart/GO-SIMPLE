@@ -4,6 +4,9 @@
 
 ![image](https://user-images.githubusercontent.com/3950155/194109961-c0e6e1d2-8666-495d-8a38-efb4cb3c1b31.png)
 
+[![pages-build-deployment](https://github.com/Gitart/GO-SIMPLE/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Gitart/GO-SIMPLE/actions/workflows/pages/pages-build-deployment)
+
+
 Samples for go language  
 Примеры использования языка GO 
 
