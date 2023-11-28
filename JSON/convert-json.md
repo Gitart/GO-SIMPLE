@@ -1,4 +1,4 @@
-## Convert 
+## Convert To Company
 
 ```go
 package main
