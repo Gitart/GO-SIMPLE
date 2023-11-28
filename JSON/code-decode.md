@@ -1,4 +1,7 @@
+# code
+
 https://play.golang.org/p/4BjFKiMiVHO
+
 ```go
 package main
 
