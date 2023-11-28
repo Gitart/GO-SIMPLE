@@ -1,4 +1,4 @@
-# code experement
+# code experement for code
 
 https://play.golang.org/p/4BjFKiMiVHO
 
