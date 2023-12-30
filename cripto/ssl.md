@@ -1,0 +1,1 @@
+openssl req -newkey rsa:4096 -nodes -keyout server-key.pem -out server-req.pem -subj "/C=TR/ST=ASIA/L=ISTANBUL/O=DEV/OU=BLOG/CN=*.mertkimyonsenblog.com/emailAddress=info@mertkimyonsenblog.com"
