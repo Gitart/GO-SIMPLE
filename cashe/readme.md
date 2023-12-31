@@ -12,7 +12,8 @@ When your application is a single binary running on a single machine, a simple, 
 
 If you want to persist data for the lifetime of the running application (or until you deliberately delete the data), you can create a generic `Cache` type like this:
 
-`package cache
+```go
+package cache
 
 import (
     "sync"
@@ -72,11 +73,12 @@ func (c *Cache[K, V]) Pop(key K) (V, bool) {
 
     return value, found
 }
-`
+```
 
 And you can use it like this:
 
-`package main
+```go
+package main
 
 import (
 	"fmt"
@@ -121,13 +123,14 @@ func main() {
 		fmt.Println("Key 'one' not found in the cache (after removal)")
 	}
 }
-`
+```
 
 ## Expiring cache
 
 You can extend this idea to associate an expiry time with every value in the cache, and launch a background goroutine to periodically remove expired entries. Like so:
 
-`package cache
+```go
+package cache
 
 import (
     "sync"
@@ -242,11 +245,12 @@ func (c *TTLCache[K, V]) Pop(key K) (V, bool) {
     // Otherwise return the value and true.
     return item.value, true
 }
-`
+```
 
 And you can use this in much the same way:
 
-`package main
+```go
+package main
 
 import (
 	"fmt"
@@ -293,4 +297,6 @@ func main() {
 
 	// Remove a key from the cache
 	myTTLCache.Remove("three")
-}`
+}
+```
+
