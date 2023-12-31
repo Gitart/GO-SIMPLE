@@ -1,6 +1,8 @@
+![image](https://github.com/Gitart/GO-SIMPLE/assets/3950155/9e6eda9b-068a-410d-95c1-b73171e5265d)
+
 # Quick tip: Implementing an in-memory cache in Go
 
-**Published on:** December 22nd, 2023
+
 
 In almost all web applications that I build, I end up needing to persist some data – either for a short period of time (such as caching the result of an expensive database query), or for the lifetime of the running application until it is restarted.
 
