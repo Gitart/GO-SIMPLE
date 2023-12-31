@@ -1,4 +1,5 @@
-![image](https://github.com/Gitart/GO-SIMPLE/assets/3950155/9e6eda9b-068a-410d-95c1-b73171e5265d)
+
+![image](https://github.com/Gitart/GO-SIMPLE/assets/3950155/caef3ccc-8d12-4dfd-aba1-70f15d7d684d)
 
 # Quick tip: Implementing an in-memory cache in Go
 
