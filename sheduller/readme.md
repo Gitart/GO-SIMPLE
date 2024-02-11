@@ -6,7 +6,7 @@
 
 **NOTE:** The helper constants `time.Second`, `time.Minute` and `time.Hour` are all of type [`time.Duration`](https://golang.org/pkg/time/#Duration). So if we have to supply a duration, we can multiply these constants by a number (e.g. `time.Second * 5`) and the expression returns a [`time.Duration`](https://golang.org/pkg/time/#Duration).
 
-```
+```go
 package main
 
 import (
@@ -31,7 +31,7 @@ func main() {
 
 So, to do that we use a [`time.Ticker`](https://golang.org/pkg/time/#Ticker). For most use cases, we can use the helper function [`time.Tick()`](https://golang.org/pkg/time/#Tick) to create a ticker. For example:
 
-```
+```go
 package main
 
 import (
@@ -74,7 +74,7 @@ There are several things we can't easily do with [`time.Ticker`](https://golang.
 
 To overcome the limitations of [`time.Tick()`](https://golang.org/pkg/time/#Tick), I've created a helper function which I use in my projects.
 
-```
+```go
 func cron(ctx context.Context, startTime time.Time, delay time.Duration) <-chan time.Time {
     // Create the channel which we will return
     stream := make(chan time.Time, 1)
@@ -131,7 +131,7 @@ The function receives 3 parameters.
 
 **Run on Tuesdays by 2pm**
 
-```
+```go
 ctx := context.Background()
 
 startTime, err := time.Parse(
@@ -152,7 +152,7 @@ for t := range cron(ctx, startTime, delay) {
 
 **Run every hour, on the hour**
 
-```
+```go
 ctx := context.Background()
 
 startTime, err := time.Parse(
@@ -173,7 +173,7 @@ for t := range cron(ctx, startTime, delay) {
 
 **Run every 10 minutes, starting in a week**
 
-```
+```go
 ctx := context.Background()
 
 startTime, err := time.Now().AddDate(0, 0, 7) // see https://golang.org/pkg/time/#Time.AddDate
