@@ -1,4 +1,6 @@
 ## Generic
+Generic type constraints
+Assume you have a generic function that has many type parameters, sayint, int8 , int26, int32, int64, float32, float64. Our function signature will be very long and undesirable to the eye. It is possible to put all these type parameters into one type using an interface.Essentially , we are moving the union from the function declaration into a new type constraint.
 
 ```go
 package main
