@@ -33,3 +33,37 @@
 //If we have library data, it will go here.
  {{end}}
 ```
+## Example
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{.Name}} - Library</title>
+</head>
+<body>
+    <h1>{{.Name}}</h1>
+    <p><strong>Address:</strong> {{.Address}}</p>
+    <h2>Materials</h2>
+    <ul>
+        {{range .Materials}}
+        <li>
+            <strong>ID:</strong> {{.ID}}, <strong>Name:</strong> {{.Name}}, <strong>Year:</strong> {{.Year}},
+            <strong>Category:</strong> {{.Category}}
+            <ul>
+                {{range .Books}}
+                <li>
+                    <strong>Book Information:</strong> ISBN: {{.ISBN}}, Title: {{.Title}}, Author: {{.Author}}
+                </li>
+                {{end}}
+                {{range .Magazines}}
+                <li>
+                    <strong>Magazine Information:</strong> ISSN: {{.ISSN}}, Title: {{.Title}}, Publisher: {{.Publisher}}
+                </li>
+                {{end}}
+            </ul>
+        </li>
+        {{end}}
+    </ul>
+</body>
+</html>
+```
