@@ -207,6 +207,8 @@ Some sites have captchas or JavaScript challenges to block scrapers. Handling th
 
 Ensure that your scraping activities comply with the website's `robots.txt` file, terms of service, and legal regulations.
 
+
+
 ### Conclusion
 
 When troubleshooting Colly, the key is to gather as much information as possible about the issue you're facing. Use the debugging techniques mentioned above, inspect the responses thoroughly, and make sure you're adhering to the site's scraping policies. If you're still stuck, consider reaching out to the community or checking the official Colly documentation for more insights.
