@@ -212,3 +212,47 @@ Ensure that your scraping activities comply with the website's `robots.txt` file
 ### Conclusion
 
 When troubleshooting Colly, the key is to gather as much information as possible about the issue you're facing. Use the debugging techniques mentioned above, inspect the responses thoroughly, and make sure you're adhering to the site's scraping policies. If you're still stuck, consider reaching out to the community or checking the official Colly documentation for more insights.
+
+
+
+
+
+# Rate limit
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/gocolly/colly"
+	"github.com/gocolly/colly/debug"
+)
+
+func main() {
+	url := "https://httpbin.org/delay/2"
+
+	// Instantiate default collector
+	c := colly.NewCollector(
+		// Turn on asynchronous requests
+		colly.Async(true),
+		// Attach a debugger to the collector
+		colly.Debugger(&debug.LogDebugger{}),
+	)
+
+	// Limit the number of threads started by colly to two
+	// when visiting links which domains' matches "*httpbin.*" glob
+	c.Limit(&colly.LimitRule{
+		DomainGlob:  "*httpbin.*",
+		Parallelism: 2,
+		//Delay:      5 * time.Second,
+	})
+
+	// Start scraping in five threads on https://httpbin.org/delay/2
+	for i := 0; i < 5; i++ {
+		c.Visit(fmt.Sprintf("%s?n=%d", url, i))
+	}
+	// Wait until threads are finished
+	c.Wait()
+}
+```
