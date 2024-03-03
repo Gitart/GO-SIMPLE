@@ -1,3 +1,83 @@
+# How do I limit the rate of requests in Colly to avoid being blocked?
+
+In web scraping, it's important to respect the server's resources and adhere to the website's terms of service. One way to do this is by limiting the rate of your requests to avoid overwhelming the server and reduce the chances of being blocked. Colly, a popular web scraping framework for Go (Golang), provides options to adjust the rate of your requests.
+
+Here's how you can limit the rate of requests in Colly:
+
+1. **Set the `Limit` rule**: You can limit the number of simultaneous requests to a domain and also introduce a delay between requests.
+
+Copy
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/gocolly/colly/v2"
+    "github.com/gocolly/colly/v2/queue"
+    "log"
+    "time"
+)
+
+func main() {
+    // Instantiate the collector
+    c := colly.NewCollector(
+        // You may set other options as needed
+    )
+
+    // Create a request queue with a concurrency of 2
+    // This means Colly will only make 2 simultaneous requests to the domain
+    q, _ := queue.New(
+        2, // Number of consumer threads
+        &queue.InMemoryQueueStorage{MaxSize: 10000}, // Use default queue storage
+    )
+
+    // Set the delay between requests to 1 second
+    // This means after each request Colly will wait for 1 second before making another request
+    c.Limit(&colly.LimitRule{
+        DomainGlob:  "*",
+        Delay:       1 * time.Second,
+        RandomDelay: 1 * time.Second, // Add some randomness to the delay
+    })
+
+    // On every a element which has href attribute call callback
+    c.OnHTML("a[href]", func(e *colly.HTMLElement) {
+        link := e.Attr("href")
+        // Add link found on the page to the queue
+        err := q.AddURL(link)
+        if err != nil {
+            log.Printf("Error adding URL to the queue: %s", err)
+        }
+    })
+
+    // Start scraping on the website
+    err := q.AddURL("http://example.com")
+    if err != nil {
+        log.Printf("Error adding URL to the queue: %s", err)
+    }
+
+    // Consume URLs
+    q.Run(c)
+
+    fmt.Println("Scraping finished.")
+}
+```
+
+In the example above, the `LimitRule` is set with a `Delay` of 1 second between requests and a `RandomDelay` which adds up to 1 second of random delay to the `Delay` time. This helps to make the scraping process appear more human-like.
+
+Remember, it's important to read the website's `robots.txt` file and comply with it, as well as with the website's terms of service.
+
+Lastly, it's also a good practice to identify yourself by setting a custom `User-Agent` and providing contact information through the `From` field in case the website owner needs to reach you:
+
+Copy
+
+```go
+c.UserAgent = "YourCustomUserAgent/1.0"
+c.From = "your_email@example.com"
+```
+
+By setting a `User-Agent`, you let the server know which client is making the request, and providing a contact email is a courteous way to enable communication in case your scraping activities cause any issues.
+
 # How do I troubleshoot common issues when using Colly?
 
 Colly is a popular scraping framework for Golang, designed to simplify the process of extracting data from websites. When using Colly, you might encounter various issues, such as unexpected errors, blocked requests, or incomplete data extraction. Here are some common troubleshooting steps to help you address these issues:
