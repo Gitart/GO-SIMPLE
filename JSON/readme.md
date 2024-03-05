@@ -1,5 +1,5 @@
 ## 🤚🏻 Tutorial with JSON files
-Json formt 
+Json format and work
 ![image](https://github.com/Gitart/GO-SIMPLE/assets/3950155/76a69b5d-7966-4a66-88d8-85a764123d35)
 
 
