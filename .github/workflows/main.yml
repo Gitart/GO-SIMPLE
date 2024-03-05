@@ -1,3 +1,5 @@
+name: Start main process
+
 on:
   push:
     branches: 
