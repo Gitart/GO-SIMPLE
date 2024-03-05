@@ -9,8 +9,8 @@ on:
 jobs:
   hello:
     runs-on: ubuntu-latest
-      steps:
+    steps:
         - name: hello start
-            run: echo "run start"
-            shell: bash 
+          run: echo "run start"
+          shell: bash 
         
