@@ -15,4 +15,10 @@ jobs:
         - name: hello start
           run: echo "run start"
           shell: bash 
+  byby:
+    runs-on: ubuntu-latest
+    steps:
+      - name: byby
+        run: echo "ended process"
+        shell: bash
         
