@@ -1,4 +1,5 @@
 ## Repository
+[Repository](https://go.dev/play/p/EKQK1iBrfch)
 
 ```go
 package main
