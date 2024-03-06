@@ -1,4 +1,4 @@
-## Pus List
+## Queue List
 ```go
 func PushArra(ctx echo.Context) error {
 
