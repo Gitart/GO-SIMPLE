@@ -1,4 +1,4 @@
-## Repository USers
+## 😀 Repository Users
 
 ```go
 type HistoryRegistrationUsers struct {
