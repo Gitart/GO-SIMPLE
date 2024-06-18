@@ -1,7 +1,9 @@
 # Use convert  date in template
 
 ```go
-// Structura report by matrials & works
+
+// Structure report by matrials & works
+
 type ProductionDataJson struct {
 	Id        int64   `json:"id"`
 	Num       string  `json:"num"`
