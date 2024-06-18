@@ -22,7 +22,7 @@ type ProductionDataJson struct {
 
 
 ### Used in template
-** {{.TtnDate | .FormatDate }} **
+<kbd> {{.TtnDate | .FormatDate }} </kbd>
 
 ```go
 func (p *ProductionDataJson) FormatDate(d time.Time) string {
