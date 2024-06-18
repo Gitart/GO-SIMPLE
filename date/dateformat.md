@@ -1,3 +1,4 @@
+```go
 // Structura report by matrials & works
 type ProductionDataJson struct {
 	Id        int64   `json:"id"`
@@ -15,9 +16,21 @@ type ProductionDataJson struct {
 	Works     []OrderWorks     `json:"works"`
 	Materials []OrderMaterials `json:"materials"`
 }
+```
+
 
 // Used
 // {{.TtnDate | .FormatDate }}
+
+```go
 func (p *ProductionDataJson) FormatDate(d time.Time) string {
 	return d.Format("02-01-2006")
 }
+```
+
+## Html
+```html
+    {{.TtnDate | .FormatDate }}
+```
+
+
