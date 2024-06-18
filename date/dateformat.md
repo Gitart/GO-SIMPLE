@@ -1,3 +1,5 @@
+# Use convert  date in template
+
 ```go
 // Structura report by matrials & works
 type ProductionDataJson struct {
@@ -19,8 +21,8 @@ type ProductionDataJson struct {
 ```
 
 
-// Used
-// {{.TtnDate | .FormatDate }}
+### Used in template
+** {{.TtnDate | .FormatDate }} **
 
 ```go
 func (p *ProductionDataJson) FormatDate(d time.Time) string {
