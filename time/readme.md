@@ -1,26 +1,20 @@
-How to format time in Go/Golang
-Viewed: 70738 times
+# How to format time in Go/Golang
+
 Go uses a special "magic" reference time that might seem weird at first:
-
 The Magic Reference Time is:
-
-01/02 03:04:05PM 2006 MST
-
 Or put another way:
-
 January 2, 2006 at 3:04:05 PM MST
-
 Here's the genius part - the numbers in this date line up in order:
 
-Month: 1
-Day: 2
-Hour: 3
-Minute: 4
-Second: 5
-Year: 6
+Month: 1 
+Day: 2  
+Hour: 3 
+Minute: 4  
+Second: 5 
+Year: 6 
 Let me show you with a super simple cheat sheet:
 
-
+```go
 package main
 
 import (
@@ -71,14 +65,16 @@ func main() {
         fmt.Printf("%s: %s\n", name, now.Format(format))
     }
 }
+```
+
             
-The trick to remember:
+# The trick to remember:
 
 It's all based on one specific time: January 2, 2006 at 3:04:05 PM
 Just write the date/time exactly how you want it to look, but use the reference time's numbers
 Some easy examples:
 
-
+```go
 // Need just the month and day?
 "01-02"                 // => "03-27"
 
@@ -90,8 +86,9 @@ Some easy examples:
 
 // Need everything?
 "2006-01-02 15:04:05"   // => "2024-03-27 13:45:30"
+```
                 
-Pro Tips:
+## Pro Tips:
 
 Need 24-hour time? Use "15" for hours
 Need 12-hour time? Use "3" for hours
@@ -102,7 +99,7 @@ Think of it like a template - you're just showing Go how you want the date to lo
 Now let's see how to handle timezones:
 If we don't pay attention to the timezones, we can easily get wrong results.
 
-
+```go
 package main
 
 import (
@@ -166,31 +163,34 @@ func main() {
         fmt.Printf("%s: %s\n", name, now.Format(pattern))
     }
 }
+```
         
 Here are the GOLDEN RULES for server timezone handling:
 
-1. ALWAYS Store in UTC:
+## 1. ALWAYS Store in UTC:
 
-
+```go
 // RIGHT WAY - Store this in your database
 timestamp := time.Now().UTC()
 
 // WRONG WAY - Don't store local time
 timestamp := time.Now() // Dangerous! Server timezone might change!
-        
-2. ALWAYS Parse Without Timezone as UTC:
+```
 
+## 2. ALWAYS Parse Without Timezone as UTC:
 
+```go
 // RIGHT WAY - Parse times without timezone
 timeStr := "2024-03-27 15:04:05"
 safeTime, _ := time.Parse("2006-01-02 15:04:05", timeStr) // Assumes UTC
 
 // WRONG WAY - Don't use ParseInLocation unless you specifically need a timezone
 dangerousTime, _ := time.ParseInLocation("2006-01-02 15:04:05", timeStr, time.Local)
+```
         
-3. ALWAYS Use RFC3339 for APIs:
+## 3. ALWAYS Use RFC3339 for APIs:
 
-
+```go
 // RIGHT WAY - Use RFC3339 for API responses
 type APIResponse struct {
     Timestamp string `json:"timestamp"`
@@ -200,10 +200,11 @@ response := APIResponse{
     Timestamp: time.Now().UTC().Format(time.RFC3339),
 }
 // Will output something like: "2024-03-27T15:04:05Z"
-        
-4. Converting to User's Timezone (when needed):
+```
 
+## 4. Converting to User's Timezone (when needed):
 
+```go
 // RIGHT WAY - Convert UTC to user's timezone only for display
 func GetUserTime(utcTime time.Time, userTimezone string) (time.Time, error) {
     location, err := time.LoadLocation(userTimezone)
@@ -219,21 +220,24 @@ userTime, err := GetUserTime(utcTime, "Asia/Baku")
 if err != nil {
     log.Printf("Invalid timezone: %v", err)
 }
+```
         
-Common Timezone Formats:
+### Common Timezone Formats:
 
-
+```go
 // Common formats with timezone information
 formats := map[string]string{
     "UTC ISO8601": time.RFC3339,                // "2024-03-27T15:04:05Z"
     "With Zone":   "2006-01-02 15:04:05 MST",   // "2024-03-27 15:04:05 UTC"
     "With Offset": "2006-01-02 15:04:05 -0700", // "2024-03-27 15:04:05 +0000"
 }
+```
         
-IMPORTANT TIPS:
+### IMPORTANT TIPS:
 
-Always store UTC in your database
-Always use UTC for internal server operations
-Only convert to specific timezones when displaying to users
-Use RFC3339 for API responses
-Be explicit about timezone in logs
+Always store UTC in your database   
+Always use UTC for internal server operations  
+Only convert to specific timezones when displaying to users  
+Use RFC3339 for API responses   
+Be explicit about timezone in logs   
+
