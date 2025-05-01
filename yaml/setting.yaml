@@ -1,0 +1,25 @@
+core:
+  port: "8080"
+  address: "127.0.0.1"
+  enabled: "true"
+  worker_num: "4"
+  queue_num: "100"
+  sync: "true"
+  mode: "production"
+  ssl: "false"
+  cert_path: "/path/to/cert.pem"
+  key_path: "/path/to/key.pem"
+  pid:
+    enabled: "true"
+    path: "/var/run/app.pid"
+    override: "false"
+    other:
+      enabled: "false"
+
+system:
+  path: "/app/data"
+  password: "supersecret"
+  name: "MyApp"
+  title: "Awesome App"
+  key: "abc123"
+  googlekey: "AIzaSyD-some-key"
