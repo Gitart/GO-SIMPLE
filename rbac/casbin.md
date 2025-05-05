@@ -39,6 +39,8 @@ func Rbac(e echo.Context) error {
 
 ```
 ## rbac_model.conf
+https://casbin.org/docs/supported-models
+
 
 ```
 [request_definition]
