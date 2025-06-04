@@ -101,7 +101,7 @@ var (
 				Prompt:     "Это пример запроса для ",
 				Activ:      1,
 				Importance: 1.0,
-				Category:   "Киев",
+				Category:   "History",
 			},
 			{
 				Title:      "Пример для Gemini AI 2",
@@ -110,7 +110,7 @@ var (
 				Prompt:     "Это пример запроса для Gemini AI.",
 				Activ:      1,
 				Importance: 1.0,
-				Category:   "Киев",
+				Category:   "Book",
 			},
 			{
 				Title:      "Состояние ",
@@ -119,7 +119,7 @@ var (
 				Prompt:     " Gemini AI.",
 				Activ:      1,
 				Importance: 4.0,
-				Category:   "Киев",
+				Category:   "Other",
 			},
 		},
 	}
